@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول أو إنشاء حساب</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .hidden {
+      display: none;
+    }
+    a {
+      color: #3498db;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <div id="loginBox">
+    <h2>تسجيل الدخول</h2>
+    <input type="text" id="loginUsername" placeholder="اسم المستخدم">
+    <input type="password" id="loginPassword" placeholder="كلمة المرور">
+    <button id="loginBtn">تسجيل الدخول</button>
+    <p><a id="toRegister">ليس لديك حساب؟ أنشئ حساب</a></p>
+  </div>
+
+  <div id="registerBox" class="hidden">
+    <h2>إنشاء حساب</h2>
+    <select id="hall">
+      <option value="شاطبي">شاطبي</option>
+      <option value="حفص">حفص</option>
+      <option value="عاصم">عاصم</option>
+      <option value="حب الرسول">حب الرسول</option>
+    </select>
+    <input type="text" id="regUsername" placeholder="اسم المستخدم">
+    <input type="password" id="regPassword" placeholder="كلمة المرور">
+    <button id="registerBtn">تسجيل</button>
+    <p><a id="toLogin">لديك حساب؟ تسجيل الدخول</a></p>
+  </div>
+</div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+    authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+    projectId: "ahmed-saeed-669ab"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  document.getElementById("loginBtn").addEventListener("click", login);
+  document.getElementById("registerBtn").addEventListener("click", register);
+  document.getElementById("toRegister").addEventListener("click", toggleForms);
+  document.getElementById("toLogin").addEventListener("click", toggleForms);
+
+  function toggleForms() {
+    document.getElementById("loginBox").classList.toggle("hidden");
+    document.getElementById("registerBox").classList.toggle("hidden");
+  }
+
+  function register() {
+    const username = document.getElementById("regUsername").value.trim();
+    const password = document.getElementById("regPassword").value.trim();
+    const hall = document.getElementById("hall").value;
+    if (!username || !password) return alert("يرجى تعبئة كل الحقول");
+
+    db.collection("users").add({ username, password, hall }).then(() => {
+      alert("تم إنشاء الحساب بنجاح");
+      toggleForms();
+    }).catch(err => alert("حدث خطأ أثناء إنشاء الحساب"));
+  }
+
+  function login() {
+    const username = document.getElementById("loginUsername").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+    if (!username || !password) return alert("يرجى تعبئة جميع الحقول");
+
+    if (username === "123456" && password === "123456") {
+      window.location.href = "admin.html";
+      return;
+    }
+
+    db.collection("users")
+      .where("username", "==", username)
+      .where("password", "==", password)
+      .get()
+      .then(snapshot => {
+        if (snapshot.empty) return alert("بيانات الدخول غير صحيحة");
+        const user = snapshot.docs[0].data();
+        sessionStorage.setItem("username", user.username);
+        window.location.href = "home.html";
+      }).catch(err => alert("حدث خطأ أثناء تسجيل الدخول"));
+  }
+</script>
+
+</body>
+</html>

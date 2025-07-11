@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الصفحة الرئيسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      padding-bottom: 60px; /* مساحة للأسفل للهاتف */
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    nav.desktop {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    nav a, nav button {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav a:hover, nav button:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .image-gallery img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: zoom-in;
+      transition: transform 0.3s;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .overlay img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #fff;
+      margin-bottom: 15px;
+    }
+
+    .download-btn {
+      background-color: #f1c40f;
+      border: none;
+      color: #2c3e50;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .download-btn:hover {
+      background-color: #d4ac0d;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #2c5364;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .footer mark {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .footer a {
+      color: #e0ebe6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* شريط سفلي للهاتف */
+    .mobile-nav {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      nav.desktop {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background-color: #2c3e50;
+        z-index: 999;
+      }
+
+      .mobile-nav button,
+      .mobile-nav a,
+      .mobile-nav span {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        background: none;
+        border: none;
+        font-size: 16px;
+      }
+
+      .image-gallery img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><h1>أهلاً في موقع الشيخ سعيد القزاز</h1></div>
+    <nav class="desktop">
+      <a href="home.html">الرئيسية</a>
+      <a href="video.html">الفيديوهات</a>
+      <span id="userName"></span>
+      <button onclick="logout()">تسجيل الخروج</button>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h2 id="greeting">مرحباً بك</h2>
+  </div>
+
+  <section class="image-gallery">
+    <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752222380/485352757_943113181362428_3132559567750757147_n_kjgqw6.jpg" onclick="showFullImage(this.src)">
+    <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752222757/485798694_943649267975486_1448988553082438363_n_lzhurd.jpg" onclick="showFullImage(this.src)">
+    <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752222862/490752456_961104282896651_2122296249277719732_n_fknpsu.jpg" onclick="showFullImage(this.src)">
+    <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752222932/305576135_381513014189117_8642871962361817821_n_euwrtu.jpg" onclick="showFullImage(this.src)">
+  </section>
+
+  <div class="overlay" id="overlay" onclick="hideOverlay()">
+    <img id="fullImage" src="" onclick="event.stopPropagation()">
+    <a id="downloadLink" download>
+      <button class="download-btn">تحميل الصورة</button>
+    </a>
+  </div>
+
+  <div class="footer">
+    <p>جميع الحقوق محفوظة لفضيلة الشيخ أحمد سعيد القزاز</p>
+    <p><mark> © 2025 تم التصميم بواسطة <a href="https://www.facebook.com/omar.tamer.adel">عمر تامر محمد عادل</a></mark></p>
+  </div>
+
+  <!-- شريط سفلي للموبايل -->
+  <div class="mobile-nav">
+    <a href="home.html">الرئيسية</a>
+    <a href="video.html">الفيديوهات</a>
+    <span id="userNameMobile"></span>
+    <button onclick="logout()">خروج</button>
+  </div>
+
+  <script>
+    const username = sessionStorage.getItem("username");
+    document.getElementById("userName").textContent = username ? username : "";
+    document.getElementById("userNameMobile").textContent = username ? username : "";
+    document.getElementById("greeting").textContent = username ? `مرحباً ${username}!` : "مرحباً بك";
+
+    function logout() {
+      sessionStorage.clear();
+      window.location.href = "index.html";
+    }
+
+    function showFullImage(src) {
+      const fullImage = document.getElementById("fullImage");
+      const downloadLink = document.getElementById("downloadLink");
+      const overlay = document.getElementById("overlay");
+
+      fullImage.src = src;
+      fetch(src)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          downloadLink.href = url;
+          downloadLink.download = "الشيخ-سعيد-القزاز.jpg";
+        });
+
+      overlay.style.display = "flex";
+    }
+
+    function hideOverlay() {
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

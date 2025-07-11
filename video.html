@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>صفحة الفيديوهات والصور والنصوص</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #1e3799;
+    }
+
+    .media-box {
+      background: white;
+      padding: 10px;
+      margin: 15px auto;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      max-width: 600px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .media-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    video, img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    video:hover, img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    .text-content {
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 10px;
+    }
+
+    .text-content:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background-color: #f1f1f1;
+      border-radius: 8px;
+    }
+
+    .notification-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .notification-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      display: none;
+    }
+
+    #userName {
+      margin-right: 10px;
+      color: #f1c40f;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>أهلاً في موقع الشيخ سعيد القزاز</h1>
+  <nav>
+    <a href="home.html">الرئيسية</a>
+    <a href="video.html">الفيديوهات</a>
+    <span id="userName"></span>
+    <span class="notification-icon" onclick="markNotificationsSeen()">
+      🔔
+      <span id="notifCount" class="notification-count">0</span>
+    </span>
+  </nav>
+</header>
+
+<div class="content">
+  <h2 id="greeting">مرحباً بك</h2>
+</div>
+
+<h3>الفيديوهات</h3>
+<div id="videoContainer"></div>
+
+<h3>الصور</h3>
+<div id="imageContainer"></div>
+
+<h3>النصوص</h3>
+<div id="textContainer"></div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+    authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+    projectId: "ahmed-saeed-669ab"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  const username = sessionStorage.getItem("username");
+  if (username) {
+    document.getElementById("userName").textContent = username;
+    document.getElementById("greeting").textContent = `مرحباً ${username}!`;
+  }
+
+  let newNotifications = 0;
+
+  function checkNewNotifications() {
+    const collections = ['videos', 'images', 'texts'];
+    const notifElem = document.getElementById("notifCount");
+    newNotifications = 0;
+
+    const promises = collections.map(col => {
+      return db.collection(col).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          if (!data.seenBy || !data.seenBy.includes(username)) {
+            newNotifications++;
+          }
+        });
+      });
+    });
+
+    Promise.all(promises).then(() => {
+      if (newNotifications > 0) {
+        notifElem.textContent = newNotifications;
+        notifElem.style.display = "inline-block";
+      } else {
+        notifElem.style.display = "none";
+      }
+    });
+  }
+
+  function markNotificationsSeen() {
+    const collections = ['videos', 'images', 'texts'];
+    collections.forEach(col => {
+      db.collection(col).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          if (!data.seenBy || !data.seenBy.includes(username)) {
+            const seenBy = data.seenBy || [];
+            seenBy.push(username);
+            db.collection(col).doc(doc.id).update({ seenBy });
+          }
+        });
+      });
+    });
+    document.getElementById("notifCount").style.display = "none";
+  }
+
+  function loadVideos() {
+    const container = document.getElementById("videoContainer");
+    container.innerHTML = "";
+    db.collection("videos").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const video = doc.data();
+        const div = document.createElement("div");
+        div.className = "media-box";
+        div.innerHTML = `
+          <h4>${video.name}</h4>
+          <video controls>
+            <source src="${video.url}" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+        `;
+        container.appendChild(div);
+      });
+    });
+  }
+
+  function loadImages() {
+    const container = document.getElementById("imageContainer");
+    container.innerHTML = "";
+    db.collection("images").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const image = doc.data();
+        const div = document.createElement("div");
+        div.className = "media-box";
+        div.innerHTML = `
+          <h4>${image.name}</h4>
+          <img src="${image.url}" alt="${image.name}">
+        `;
+        container.appendChild(div);
+      });
+    });
+  }
+
+  function loadTexts() {
+    const container = document.getElementById("textContainer");
+    container.innerHTML = "";
+    db.collection("texts").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const text = doc.data();
+        const div = document.createElement("div");
+        div.className = "media-box";
+        div.innerHTML = `<div class="text-content">${text.content}</div>`;
+        container.appendChild(div);
+      });
+    });
+  }
+
+  loadVideos();
+  loadImages();
+  loadTexts();
+  checkNewNotifications();
+</script>
+
+</body>
+</html>
