@@ -164,11 +164,16 @@
         if (!snapshot.empty) {
           alert("❌ هذا الاسم مستخدم بالفعل");
         } else {
+     
+
+
           db.collection("users").doc(username).set({ username, password, gender, phone })
-            .then(() => {
-              sessionStorage.setItem("username", username);
-              window.location.href = "home.html";
-            })
+  .then(() => {
+    // ما فيش تحويل إلى home.html
+    toggleForms(); // يرجعه إلى نموذج تسجيل الدخول
+    alert("✅ تم إنشاء الحساب بنجاح، يمكنك تسجيل الدخول الآن");
+  })
+
             .catch(err => {
               console.error(err);
               alert("حدث خطأ أثناء إنشاء الحساب");
