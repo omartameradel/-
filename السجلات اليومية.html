@@ -206,11 +206,13 @@
 
         const li = document.createElement("li");
         li.innerHTML = `
-          <strong>الاسم:</strong> ${user.fullName || "—"}<br>
-          <strong>اسم المستخدم:</strong> ${user.username}<br>
-          <strong>كلمة المرور:</strong> ${user.password}<br>
-          <button onclick="deleteUser('${doc.id}')">حذف</button>
-        `;
+  <strong>الاسم:</strong> ${user.fullName || "—"}<br>
+  <strong>اسم المستخدم:</strong> ${user.username}<br>
+  <strong>كلمة المرور:</strong> ${user.password}<br>
+  <button onclick="deleteUser('${doc.id}')">حذف</button>
+  <button onclick="loginAsUser('${doc.id}')">دخول إلى الحساب</button>
+`;
+
         userList.appendChild(li);
       });
     });
@@ -303,6 +305,18 @@
       });
     }
   }
+
+  function loginAsUser(userId) {
+  db.collection("users").doc(userId).get().then(doc => {
+    if (!doc.exists) {
+      alert("لم يتم العثور على المستخدم.");
+      return;
+    }
+    currentUser = { id: doc.id, ...doc.data() };
+    showLogPage();
+  });
+}
+
 
   function logout() {
     currentUser = null;
