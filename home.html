@@ -464,15 +464,14 @@ h2:hover::after {
     </a>
   </div>
 
-  <div class="comment-box">
-    <input type="text" id="username" placeholder="اسمك">
-    <input type="text" id="fbLink" placeholder="رابط حساب فيسبوك">
-    <textarea id="commentText" placeholder="اكتب تعليقك هنا..."></textarea>
-    <button onclick="addComment()">أضف تعليق</button>
-  </div>
-
-  <h2 style="text-align:center">آخر التعليقات:</h2>
+  <h2>أضف تعليقك</h2>
+  <input type="text" id="name" placeholder="اسمك" required>
+  <input type="url" id="facebook" placeholder="رابط فيسبوك (اختياري)">
+  <textarea id="comment" placeholder="اكتب تعليقك هنا..." required></textarea>
+  <button onclick="addComment()">نشر التعليق</button>
   <div id="comments"></div>
+
+   
     <nav style="background-color: #2a5764; padding: 10px; text-align: center; color: #fff;"   >
       <h1><b>انجازتي</b></h1>
     <p>  <a href="حجز موقع.html"  title=" انشاءالموقع">انشاء موقع</a>  </p>
