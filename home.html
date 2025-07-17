@@ -511,68 +511,83 @@ h2:hover::after {
 
 
 
-     const firebaseConfig = {
-      apiKey: "AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",
-      authDomain: "programomartamer-451a5.firebaseapp.com",
-      projectId: "programomartamer-451a5",
-      storageBucket: "programomartamer-451a5.appspot.com",
-      messagingSenderId: "351835913301",
-      appId: "1:351835913301:web:d722fdcc9fb7b15c4468dc",
-      measurementId: "G-R5FJQY220K"
+   const firebaseConfig = {
+      apiKey: "AIzaSyBdz0MSOLPC0_q0zk_xGH7CwKUN_2qLw1g",
+      authDomain: "mainproject-9dc2a.firebaseapp.com",
+      projectId: "mainproject-9dc2a",
+      storageBucket: "mainproject-9dc2a.appspot.com",
+      messagingSenderId: "247122642372",
+      appId: "1:247122642372:web:6ff0c68f154b7de2b21f93"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    window.addComment = async function () {
-      const name = document.getElementById('username').value.trim();
-      const fbLink = document.getElementById('fbLink').value.trim();
-      const comment = document.getElementById('commentText').value.trim();
+    function addComment() {
+      const name = document.getElementById("name").value;
+      const facebook = document.getElementById("facebook").value;
+      const comment = document.getElementById("comment").value;
 
-      if (!name || !fbLink || !comment) {
-        alert("يرجى ملء جميع الحقول");
-        return;
+      if (name && comment) {
+        db.collection("comments").add({
+          name, facebook, comment, likes: 0,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          document.getElementById("name").value = "";
+          document.getElementById("facebook").value = "";
+          document.getElementById("comment").value = "";
+          loadComments();
+        });
       }
+    }
 
-      await addDoc(collection(db, "comments"), {
-        name,
-        fbLink,
-        comment,
-        timestamp: serverTimestamp(),
-        likes: 0
+    function likeComment(id) {
+      if (localStorage.getItem(`liked_${id}`)) return;
+
+      const likeBtn = document.getElementById(`like_${id}`);
+      likeBtn.disabled = true;
+      likeBtn.classList.add("liked");
+      likeBtn.innerText = "أعجبتك";
+
+      db.collection("comments").doc(id).update({
+        likes: firebase.firestore.FieldValue.increment(1)
       });
 
-      document.getElementById('username').value = '';
-      document.getElementById('fbLink').value = '';
-      document.getElementById('commentText').value = '';
-    };
+      localStorage.setItem(`liked_${id}`, true);
+    }
 
-    const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
-    onSnapshot(q, (snapshot) => {
-      const commentsDiv = document.getElementById("comments");
-      commentsDiv.innerHTML = '';
-      snapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        const commentID = docSnap.id;
-        const div = document.createElement("div");
-        div.className = "comment";
-        div.innerHTML = `
-          <p><strong>المعلق</strong>: <a class="writer" href="${data.fbLink}" target="_blank">${data.name}</a></p>
-          <p>${data.comment}</p>
-          <button class="like-btn" onclick="likeComment('${commentID}', ${data.likes})">
-            👍 إعجاب <span class="like-count">(${data.likes})</span>
-          </button>
-        `;
-        commentsDiv.appendChild(div);
-      });
-    });
+    function loadComments() {
+      document.getElementById("comments").innerHTML = "";
+      db.collection("comments").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        document.getElementById("comments").innerHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const id = doc.id;
 
-    window.likeComment = async function (commentId, currentLikes) {
-      const commentRef = doc(db, "comments", commentId);
-      await updateDoc(commentRef, {
-        likes: currentLikes + 1
+          const div = document.createElement("div");
+          div.className = "comment";
+
+          let nameHTML = data.facebook
+            ? `<a href="${data.facebook}" target="_blank" class="writer">${data.name}</a>`
+            : `<span class="writer">${data.name}</span>`;
+
+          const likeStatus = localStorage.getItem(`liked_${id}`);
+          const likeText = likeStatus ? "أعجبتك" : "إعجاب";
+          const likeClass = likeStatus ? "like-btn liked" : "like-btn";
+          const likeDisabled = likeStatus ? "disabled" : "";
+
+          div.innerHTML = `
+            <p>${nameHTML}</p>
+            <p>${data.comment}</p>
+            <p><small>الإعجابات: ${data.likes}</small></p>
+            <button id="like_${id}" class="${likeClass}" onclick="likeComment('${id}')" ${likeDisabled}>${likeText}</button>
+          `;
+
+          document.getElementById("comments").appendChild(div);
+        });
       });
-    };
+    }
+
      
 const username = sessionStorage.getItem("username");
 document.getElementById("userName").textContent = username ? username : "";
@@ -623,6 +638,9 @@ document.getElementById("greeting").textContent = username ? `مرحباً ${use
         closeAllDropdowns();
       }
     });
+
+         loadComments();
+
   </script>
 
 </body>
