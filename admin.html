@@ -321,14 +321,68 @@ function loadUsers() {
       });
   }
 
-  function loadAll() {
-    loadUsers();
-    loadVideos();
-    loadImages();
-    loadTexts();
-    loadBoys();
-    updateNotifications();
-  }
+
+
+  function uploadPost() {
+  const file = document.getElementById("postFile").files[0];
+  const text = document.getElementById("postText").value.trim();
+  if (!file || !text) return alert("يرجى اختيار ملف وكتابة النص");
+
+  const type = file.type.startsWith("video") ? "video" : "image";
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", uploadPreset);
+
+  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`, {
+    method: "POST", body: formData
+  })
+  .then(res => res.json())
+  .then(data => db.collection("posts").add({
+    url: data.secure_url,
+    type: type,
+    text: text,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }))
+  .then(() => {
+    alert("✅ تم نشر المنشور");
+    document.getElementById("postFile").value = "";
+    document.getElementById("postText").value = "";
+    loadPosts();
+  });
+}
+
+function loadPosts() {
+  const container = document.getElementById("postContainer");
+  container.innerHTML = "";
+  db.collection("posts").orderBy("timestamp", "desc").get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.className = "box";
+      let media = data.type === "video"
+        ? `<video controls><source src="${data.url}" type="video/mp4"></video>`
+        : `<img src="${data.url}" alt="post">`;
+      div.innerHTML = `
+        <p>${data.text}</p>
+        ${media}
+        <button onclick="deleteItem('posts','${doc.id}',loadPosts)">حذف</button>
+      `;
+      container.appendChild(div);
+    });
+  });
+}
+
+
+function loadAll() {
+  loadUsers();
+  loadVideos();
+  loadImages();
+  loadTexts();
+  loadBoys();
+  loadPosts(); // ✅ أضف هذا السطر
+  updateNotifications();
+}
+
 
   loadAll();
 </script>
