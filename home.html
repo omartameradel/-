@@ -402,6 +402,11 @@ h2:hover::after {
       text-decoration: underline;
     }
   </style>
+  <!-- ✅ أضف مكتبات Firebase -->
+<!-- ✅ Firebase CDN for browser -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
 </head>
 <body>
 
@@ -519,6 +524,9 @@ h2:hover::after {
     </div>
   </div>
 
+ <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
   <script>
     // إعداد Firebase
 const firebaseConfig = {
@@ -542,26 +550,31 @@ const firebaseConfig = {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // إضافة تعليق
-    function addComment() {
-      const name = document.getElementById("name").value;
-      const facebook = document.getElementById("facebook").value;
-      const comment = document.getElementById("comment").value;
+   function addComment() {
+  const name = document.getElementById("name").value;
+  const facebook = document.getElementById("facebook").value;
+  const comment = document.getElementById("comment").value;
 
-      if (name && comment) {
-        db.collection("comments").add({
-          name,
-          facebook,
-          comment,
-          likes: 0,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-          document.getElementById("name").value = "";
-          document.getElementById("facebook").value = "";
-          document.getElementById("comment").value = "";
-        });
-      }
-    }
+  if (name && comment) {
+    db.collection("comments").add({
+      name,
+      facebook,
+      comment,
+      likes: 0,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      alert("تم نشر تعليقك بنجاح ✅");
+      document.getElementById("name").value = "";
+      document.getElementById("facebook").value = "";
+      document.getElementById("comment").value = "";
+    }).catch((error) => {
+      alert("فشل نشر التعليق ❌ " + error.message);
+    });
+  } else {
+    alert("يرجى إدخال الاسم والتعليق");
+  }
+}
+
 
     // الإعجاب بتعليق
     function likeComment(id) {
