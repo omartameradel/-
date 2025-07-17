@@ -510,7 +510,8 @@ h2:hover::after {
 
 
 
-   const firebaseConfig = {
+    // إعداد Firebase
+    const firebaseConfig = {
       apiKey: "AIzaSyBdz0MSOLPC0_q0zk_xGH7CwKUN_2qLw1g",
       authDomain: "mainproject-9dc2a.firebaseapp.com",
       projectId: "mainproject-9dc2a",
@@ -518,10 +519,10 @@ h2:hover::after {
       messagingSenderId: "247122642372",
       appId: "1:247122642372:web:6ff0c68f154b7de2b21f93"
     };
-
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // إضافة تعليق
     function addComment() {
       const name = document.getElementById("name").value;
       const facebook = document.getElementById("facebook").value;
@@ -529,64 +530,58 @@ h2:hover::after {
 
       if (name && comment) {
         db.collection("comments").add({
-          name, facebook, comment, likes: 0,
+          name,
+          facebook,
+          comment,
+          likes: 0,
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(() => {
           document.getElementById("name").value = "";
           document.getElementById("facebook").value = "";
           document.getElementById("comment").value = "";
-          loadComments();
         });
       }
     }
 
+    // الإعجاب بتعليق
     function likeComment(id) {
       if (localStorage.getItem(`liked_${id}`)) return;
-
-      const likeBtn = document.getElementById(`like_${id}`);
-      likeBtn.disabled = true;
-      likeBtn.classList.add("liked");
-      likeBtn.innerText = "أعجبتك";
-
       db.collection("comments").doc(id).update({
         likes: firebase.firestore.FieldValue.increment(1)
       });
-
       localStorage.setItem(`liked_${id}`, true);
     }
 
-    function loadComments() {
-      document.getElementById("comments").innerHTML = "";
-      db.collection("comments").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-        document.getElementById("comments").innerHTML = "";
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          const id = doc.id;
+    // عرض التعليقات
+    db.collection("comments").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+      const container = document.getElementById("comments");
+      container.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const id = doc.id;
 
-          const div = document.createElement("div");
-          div.className = "comment";
+        const commentEl = document.createElement("div");
+        commentEl.className = "comment";
 
-          let nameHTML = data.facebook
-            ? `<a href="${data.facebook}" target="_blank" class="writer">${data.name}</a>`
-            : `<span class="writer">${data.name}</span>`;
+        const writerHTML = data.facebook
+          ? `<a href="${data.facebook}" target="_blank" class="writer">${data.name}</a>`
+          : `<span class="writer">${data.name}</span>`;
 
-          const likeStatus = localStorage.getItem(`liked_${id}`);
-          const likeText = likeStatus ? "أعجبتك" : "إعجاب";
-          const likeClass = likeStatus ? "like-btn liked" : "like-btn";
-          const likeDisabled = likeStatus ? "disabled" : "";
+        const liked = localStorage.getItem(`liked_${id}`);
+        const likeText = liked ? "أعجبتك ❤️" : "إعجاب";
+        const likeClass = liked ? "like-btn liked" : "like-btn";
+        const likeDisabled = liked ? "disabled" : "";
 
-          div.innerHTML = `
-            <p>${nameHTML}</p>
-            <p>${data.comment}</p>
-            <p><small>الإعجابات: ${data.likes}</small></p>
-            <button id="like_${id}" class="${likeClass}" onclick="likeComment('${id}')" ${likeDisabled}>${likeText}</button>
-          `;
+        commentEl.innerHTML = `
+          <p>${writerHTML}</p>
+          <p>${data.comment}</p>
+          <p><small>الإعجابات: ${data.likes || 0}</small></p>
+          <button id="like_${id}" class="${likeClass}" onclick="likeComment('${id}')" ${likeDisabled}>${likeText}</button>
+        `;
 
-          document.getElementById("comments").appendChild(div);
-        });
+        container.appendChild(commentEl);
       });
-    }
-
+    });
      
 const username = sessionStorage.getItem("username");
 document.getElementById("userName").textContent = username ? username : "";
