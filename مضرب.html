@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لعبة المضرب</title>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+
+  <style>
+    body {
+      background: #091dd3;
+      margin: 0;
+      overflow: hidden;
+      direction: rtl;
+      font-family: Arial, sans-serif;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      background: #111;
+      border: 3px solid #fff;
+    }
+
+    #scoreBox {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 10px 20px;
+      font-size: 20px;
+      border-radius: 10px;
+    }
+
+    #restartBtn {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0a0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #names {
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    #controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    #controls button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: #444;
+      color: white;
+    }
+
+    #controls button:hover {
+      background-color: #666;
+    }
+
+       .bottom-center {
+      position: absolute;
+      bottom: 20px; /* المسافة من الأسفل */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div id="scoreBox">اللاعب: 0 | الكمبيوتر: 0</div>
+  <button id="restartBtn">إعادة اللعبة</button>
+  <canvas id="gameCanvas" width="800" height="500"></canvas>
+  <div id="names">مصمم:عمرتامرمحمدعادل</div>
+
+  <!-- أزرار التحكم -->
+  <div id="controls">
+    <button id="upBtn">↑ لأعلى</button>
+    <button id="downBtn">↓ لأسفل</button>
+  </div>
+  <button><a href="home.html">عودة لصفحة الرئيسية</a></button>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreBox = document.getElementById("scoreBox");
+    const restartBtn = document.getElementById("restartBtn");
+
+    const paddleWidth = 10, paddleHeight = 100;
+    let playerY = canvas.height / 2 - paddleHeight / 2;
+    let aiY = canvas.height / 2 - paddleHeight / 2;
+    const paddleSpeed = 5;
+
+    let ballX = canvas.width / 2, ballY = canvas.height / 2;
+    let ballSpeedX = 5, ballSpeedY = 3;
+    const ballSize = 10;
+
+    let playerScore = 0;
+    let aiScore = 0;
+    const winScore = 5;
+    let gameOver = false;
+
+    function drawRect(x, y, w, h, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, r, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2, false);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function draw() {
+      drawRect(0, 0, canvas.width, canvas.height, "#111");
+      drawRect(0, playerY, paddleWidth, paddleHeight, "#0f0"); // اللاعب
+      drawRect(canvas.width - paddleWidth, aiY, paddleWidth, paddleHeight, "#f00"); // الكمبيوتر
+      drawCircle(ballX, ballY, ballSize, "#fff"); // الكرة
+    }
+
+    function resetBall() {
+      ballX = canvas.width / 2;
+      ballY = canvas.height / 2;
+      ballSpeedX = -ballSpeedX;
+      ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
+    }
+
+    function updateScore() {
+      scoreBox.textContent = `اللاعب: ${playerScore} | الكمبيوتر: ${aiScore}`;
+    }
+
+    function checkWin() {
+      if (playerScore >= winScore || aiScore >= winScore) {
+        gameOver = true;
+        scoreBox.textContent += ` - ${playerScore > aiScore ? "اللاعب فاز!" : "الكمبيوتر فاز!"}`;
+        restartBtn.style.display = "block";
+      }
+    }
+
+    function move() {
+      if (gameOver) return;
+
+      ballX += ballSpeedX;
+      ballY += ballSpeedY;
+
+      // ارتداد من الأعلى والأسفل
+      if (ballY <= 0 || ballY >= canvas.height) ballSpeedY = -ballSpeedY;
+
+      // اصطدام مع مضرب اللاعب
+      if (ballX <= paddleWidth && ballY > playerY && ballY < playerY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+      }
+
+      // اصطدام مع مضرب الكمبيوتر
+      if (ballX >= canvas.width - paddleWidth && ballY > aiY && ballY < aiY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+      }
+
+      // تسجيل هدف للكمبيوتر
+      if (ballX < 0) {
+        aiScore++;
+        updateScore();
+        checkWin();
+        resetBall();
+      }
+
+      // تسجيل هدف للاعب
+      if (ballX > canvas.width) {
+        playerScore++;
+        updateScore();
+        checkWin();
+        resetBall();
+      }
+
+      // ذكاء اصطناعي بسيط
+      if (aiY + paddleHeight / 2 < ballY) aiY += paddleSpeed * 0.6;
+      else aiY -= paddleSpeed * 0.6;
+
+      // حدود الذكاء الاصطناعي
+      if (aiY < 0) aiY = 0;
+      if (aiY + paddleHeight > canvas.height) aiY = canvas.height - paddleHeight;
+    }
+
+    // حركة بلوحة المفاتيح
+    document.addEventListener("keydown", function (e) {
+      if (gameOver) return;
+
+      if (e.key === "ArrowUp") {
+        playerY -= paddleSpeed * 2;
+        if (playerY < 0) playerY = 0;
+      }
+      if (e.key === "ArrowDown") {
+        playerY += paddleSpeed * 2;
+        if (playerY + paddleHeight > canvas.height) {
+          playerY = canvas.height - paddleHeight;
+        }
+      }
+    });
+
+    // حركة باستخدام الأزرار
+    document.getElementById("upBtn").addEventListener("click", function () {
+      if (gameOver) return;
+      playerY -= paddleSpeed * 2;
+      if (playerY < 0) playerY = 0;
+    });
+
+    document.getElementById("downBtn").addEventListener("click", function () {
+      if (gameOver) return;
+      playerY += paddleSpeed * 2;
+      if (playerY + paddleHeight > canvas.height) {
+        playerY = canvas.height - paddleHeight;
+      }
+    });
+
+    restartBtn.addEventListener("click", function () {
+      playerScore = 0;
+      aiScore = 0;
+      updateScore();
+      restartBtn.style.display = "none";
+      gameOver = false;
+      resetBall();
+    });
+
+    function gameLoop() {
+      move();
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+
+    updateScore();
+    gameLoop();
+  </script>
+</body>
+</html>

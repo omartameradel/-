@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الدعم الفني</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background: linear-gradient(to right, #03bbf8, #03bbf8, #03c7f8);
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      line-height: 1.8;
+    }
+
+    header {
+      background-color: #00ccff;
+      color: #f4f5f5;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.4);
+      margin: 20px auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(230, 236, 236, 0.2);
+    }
+
+    h2 {
+      color: #f6fafc;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #ffffff;
+    }
+
+.input-box {
+  width: 650px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin: 0 auto px auto;
+  background-color: #1c8eb4;
+  color: #0b0f11;
+  padding: 20px;
+  border: 1px solid #ebf0f1;
+  border-radius: 10px;
+}
+textarea.input-box {
+  white-space: normal;
+  overflow-y: auto;
+  resize: none;
+  height: 30px;
+}
+
+
+    button {
+      margin-top: 20px;
+      padding: 20px 30px;
+      background-color: #ebeff0;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0f8ab3;
+      color: #000;
+    }
+
+    .faq-item {
+      margin-top: 15px;
+    }
+
+    .faq-question {
+      background-color: #faf5f5;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      text-align: right;
+      cursor: pointer;
+      color: #0e1011;
+      font-weight: bold;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 10px;
+      background-color: #000000;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #53b3d3;
+      margin-top: 30px;
+    }
+
+    a {
+      color: #e5ecec;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #09110a;
+    }
+
+    #formResponse {
+      margin-top: 10px;
+    }
+
+    mark {
+      background-color: #f0f0f0;
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .top-nav {
+  background-color: #29525c;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+
+
+
+    .bottom-center {
+      position: absolute;
+      bottom: 20px; /* المسافة من الأسفل */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  
+
+
+
+
+
+  <header>
+    <h1>الدعم الفني</h1>
+    <p>نحن هنا لمساعدتك بكل ما تحتاج إليه</p>
+  </header>
+
+  <div class="container">
+    <h2>نموذج التواصل</h2>
+    <form id="supportForm">
+  <label for="name">الاسم:</label>
+<input type="text" id="name" name="name" class="input-box" required>
+
+<label for="email">البريد الإلكتروني:</label>
+<input type="email" id="email" name="email" class="input-box" required>
+
+<label for="message">الرسالة:</label>
+<textarea id="message" name="message" rows="5" class="input-box" required></textarea>
+
+      <button type="submit">إرسال</button>
+    </form>
+    <div id="formResponse"></div>
+  </div>
+
+  <div class="container">
+    <h2>الأسئلة الشائعة</h2>
+    <div class="faq-item">
+      <button class="faq-question">كيف يمكنني إعادة تعيين كلمة المرور؟</button>
+      <div class="faq-answer">ادخل إلى صفحة "نسيت كلمة المرور"، وأدخل بريدك الإلكتروني لاستلام رابط إعادة التعيين.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">هل أستطيع التواصل مع الدعم مباشرة؟</button>
+      <div class="faq-answer">نعم، عبر البريد omartameradel600@gmail.com أو عبر النموذج أعلاه.</div>
+    </div>
+  </div>
+
+  <button><a href="home.html">عودة لصفحة الرئيسية</a></button>
+
+ 
+
+  <script>
+    // نموذج التواصل
+document.getElementById('supportForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+  const responseBox = document.getElementById("formResponse");
+
+  if (name && email && message) {
+    // صياغة رسالة واتساب
+    const whatsappMessage = 
+      `مرحباً، لدي رسالة دعم من:\n` +
+      `الاسم: ${name}\n` +
+      `البريد الإلكتروني: ${email}\n` +
+      `الرسالة:\n${message}`;
+
+    // ترميز النص ليتناسب مع رابط URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    // رقم واتساب مع رمز الدولة (مصر +20)
+    const phoneNumber = "201220893920"; // +20 122 089 3920
+
+    // رابط واتساب الرسمي
+    const whatsappURL = `https://wa.me/${01220893920}?text=${encodedMessage}`;
+
+    // فتح رابط واتساب في نافذة جديدة
+    window.open(whatsappURL, "_blank");
+
+    responseBox.innerHTML = "<p style='color:#00ffcc;'>✅ تم تجهيز الرسالة لواتساب. يرجى إرسالها من تطبيق واتساب.</p>";
+    this.reset();
+  } else {
+    responseBox.innerHTML = "<p style='color:yellow;'>❌ يرجى تعبئة جميع الحقول.</p>";
+  }
+});
+
+
+    // الأسئلة الشائعة
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isVisible = answer.style.display === 'block';
+        document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+        answer.style.display = isVisible ? 'none' : 'block';
+      });
+    });
+  </script>
+
+</body>
+</html>

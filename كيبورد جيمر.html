@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gamer Keyboard - Final Version</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 6vw;
+      text-shadow: 0 0 15px #0ff;
+    }
+
+    #display {
+      font-size: 3vw;
+      color: yellow;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px yellow;
+    }
+
+    #typing-input {
+      padding: 10px;
+      font-size: 20px;
+      width: 80%;
+      max-width: 400px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #111;
+      color: #0ff;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .keyboard {
+      display: grid;
+      grid-template-columns: repeat(14, 50px);
+      gap: 10px;
+      justify-content: center;
+      margin: auto;
+      padding: 10px;
+    }
+
+    .key {
+      background: #222;
+      border: 2px solid #444;
+      border-radius: 8px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 5px #00ffcc;
+      transition: all 0.1s ease-in-out;
+      cursor: pointer;
+    }
+
+    .key.active {
+      background: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 20px #00ffcc, inset 0 0 10px #000;
+      transform: scale(1.1);
+    }
+
+    .key.wide { grid-column: span 2; }
+    .key.space { grid-column: span 6; }
+
+    .scroll-buttons, .controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .scroll-button, .controls button {
+      background: #00ffcc;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      color: black;
+      box-shadow: 0 0 10px #0ff;
+      cursor: pointer;
+    }
+
+    .controls {
+      left: 20px;
+      right: auto;
+    }
+
+    
+   .bottom-center {
+      position: absolute;
+      bottom: 20px; /* المسافة من الأسفل */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="container">
+  <h1>🎮 Gamer Keyboard 🔥</h1>
+  <div id="display">اضغط على أي مفتاح</div>
+  <input type="text" id="typing-input" placeholder="اكتب هنا...">
+
+
+    <div class="keyboard">
+    <!-- Row 1 -->
+    <div class="key">Esc</div>
+    <div class="key">F1</div>
+    <div class="key">F2</div>
+    <div class="key">F3</div>
+    <div class="key">F4</div>
+    <div class="key">F5</div>
+    <div class="key">F6</div>
+    <div class="key">F7</div>
+    <div class="key">F8</div>
+    <div class="key">F9</div>
+    <div class="key">F10</div>
+    <div class="key">F11</div>
+    <div class="key">F12</div>
+    <div class="key">Del</div>
+
+    <!-- Row 2 -->
+    <div class="key">~</div>
+    <div class="key">1</div>
+    <div class="key">2</div>
+    
+    <div class="key">3</div>
+    <div class="key">4</div>
+    <div class="key">5</div>
+    <div class="key">6</div>
+    <div class="key">7</div>
+    <div class="key">8</div>
+    <div class="key">9</div>
+    <div class="key">0</div>
+    <div class="key">-</div>
+    <div class="key">=</div>
+    <div class="key wide">Backspace</div>
+
+    <!-- Row 3 -->
+    <div class="key wide">Tab</div>
+    <div class="key">Q</div>
+    <div class="key">W</div>
+    <div class="key">E</div>
+    <div class="key">R</div>
+    <div class="key">T</div>
+    <div class="key">Y</div>
+    <div class="key">U</div>
+    <div class="key">I</div>
+    <div class="key">O</div>
+    <div class="key">P</div>
+    <div class="key">[</div>
+    <div class="key">]</div>
+    <div class="key">\</div>
+
+    <!-- Row 4 -->
+    <div class="key wide">Caps</div>
+    <div class="key">A</div>
+    <div class="key">S</div>
+    <div class="key">D</div>
+    <div class="key">F</div>
+    <div class="key">G</div>
+    <div class="key">H</div>
+    <div class="key">J</div>
+    <div class="key">K</div>
+    <div class="key">L</div>
+    <div class="key">;</div>
+    <div class="key">'</div>
+    <div class="key wide">Enter</div>
+
+    <!-- Row 5 -->
+    <div class="key wide">Shift</div>
+    <div class="key">Z</div>
+    <div class="key">X</div>
+    <div class="key">C</div>
+    <div class="key">V</div>
+    <div class="key">B</div>
+    <div class="key">N</div>
+    <div class="key">M</div>
+    <div class="key">,</div>
+    <div class="key">.</div>
+    <div class="key">/</div>
+    <div class="key wide">Shift</div>
+    <div class="key">↑</div>
+
+    <!-- Row 6 -->
+    <div class="key">Ctrl</div>
+    <div class="key">Win</div>
+    <div class="key">Alt</div>
+    <div class="key space">Space</div>
+    <div class="key">Alt</div>
+    <div class="key">Fn</div>
+    <div class="key">Ctrl</div>
+    <div class="key">←</div>
+    <div class="key">↓</div>
+    <div class="key">→</div>
+  </div>
+
+  <div class="controls">
+    <button onclick="toggleTheme()">🌗</button>
+    <button onclick="toggleFullScreen()">🖥</button>
+    <button onclick="adjustVolume(-0.1)">🔉</button>
+    <button onclick="adjustVolume(0.1)">🔊</button>
+    <button onclick="takeScreenshot()">📸</button>
+    <button onclick="clearText()">🗑️</button>
+
+
+
+  </div>
+  <div><button><a href="home.html">عودة لصفحة الرئيسية</a></button></div>
+      
+
+  <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c0fdd1b4df.mp3?filename=click-124467.mp3" preload="auto"></audio>
+  <audio id="bg-music" loop autoplay volume="0.3">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+  </audio>
+</div>
+
+<script>
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+  const cols = Math.floor(w / 20);
+  const ypos = Array(cols).fill(0);
+
+  function matrix() {
+    ctx.fillStyle = '#0001';
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#0f0';
+    ctx.font = '20px monospace';
+    ypos.forEach((y, ind) => {
+      const text = String.fromCharCode(33 + Math.random() * 94);
+      const x = ind * 20;
+      ctx.fillText(text, x, y);
+      if (y > h + Math.random() * 10000) ypos[ind] = 0;
+      else ypos[ind] = y + 20;
+    });
+  }
+  setInterval(matrix, 50);
+  window.addEventListener('resize', () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  });
+
+  const display = document.getElementById('display');
+  const input = document.getElementById('typing-input');
+  const keys = document.querySelectorAll('.key');
+  const clickSound = document.getElementById('click-sound');
+  const music = document.getElementById('bg-music');
+
+  keys.forEach(key => {
+    key.addEventListener('click', () => handlePress(key.innerText));
+  });
+
+  document.addEventListener('keydown', e => handlePress(e.key));
+
+  function handlePress(value) {
+    display.textContent = `You pressed: ${value}`;
+    speak(value);
+    clickSound.currentTime = 0;
+    clickSound.play();
+    input.value += value;
+    keys.forEach(k => {
+      if (k.innerText.toLowerCase() === value.toLowerCase()) {
+        k.classList.add('active');
+        setTimeout(() => k.classList.remove('active'), 300);
+      }
+    });
+  }
+
+  function speak(text) {
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = "en";
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(msg);
+  }
+
+  function toggleTheme() {
+    const dark = document.body.style.background === 'black' || !document.body.style.background;
+    document.body.style.background = dark ? '#fff' : '#000';
+    document.body.style.color = dark ? '#000' : '#fff';
+  }
+
+  function takeScreenshot() {
+    html2canvas(document.body).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'keyboard-screenshot-omartamer.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+
+  function adjustVolume(amount) {
+    let v = music.volume + amount;
+    music.volume = Math.max(0, Math.min(1, v));
+  }
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+
+ function clearText() {
+  document.getElementById("typing-input").value = "";
+  display.textContent = "تم حذف النص";
+}
+
+
+
+
+
+</script>
+</body>
+</html>

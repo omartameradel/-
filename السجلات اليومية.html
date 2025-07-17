@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>السجلات اليومية</title>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 400px;
+      width: 90%;
+      margin: 40px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #17d817;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0b910b;
+    }
+
+    #logoutButton {
+      background-color: #f44336;
+    }
+
+    #logoutButton:hover {
+      background-color: #d32f2f;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #logGreeting {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f0f0f0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: right;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      input, textarea, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .container {
+        margin: 20px auto;
+        padding: 15px;
+      }
+    }
+
+       .bottom-center {
+      position: absolute;
+      bottom: 20px; /* المسافة من الأسفل */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<!-- صفحة تسجيل الدخول -->
+<div id="loginPage" class="container">
+  <h2>تسجيل الدخول</h2>
+  <input type="text" id="username" placeholder="اسم المستخدم" required>
+  <input type="password" id="password" placeholder="كلمة المرور" required>
+  <button onclick="login()">تسجيل الدخول</button>
+  <p><a href="#" onclick="createDummyAccount()">ليس لديك حساب؟ اضغط هنا لإنشاء حساب تجريبي</a></p>
+</div>
+
+<!-- صفحة السجلات اليومية -->
+<div id="logPage" class="container hidden">
+  <div id="logGreeting">Hi</div>
+  <h2>السجلات اليومية</h2>
+  <textarea id="logInput" placeholder="اكتب سجلك هنا..."></textarea>
+  <button onclick="saveLog()">حفظ السجل</button>
+  <h3>السجلات المحفوظة</h3>
+  <ul id="logList"></ul>
+  <button id="logoutButton" onclick="logout()">تسجيل الخروج</button>
+</div>
+  <footer>&copy; omartameradel</footer>
+</div>
+    <button><a href="home.html">عودة لصفحة الرئيسية</a></button>
+
+
+<!-- صفحة المشرف -->
+<div id="adminPage" class="container hidden">
+  <h2>لوحة تحكم المدير</h2>
+  <ul id="userList"></ul>
+  <button id="logoutButton" onclick="logout()">تسجيل الخروج</button>
+</div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD5d4cf8zDtauq3zDxG-imfS_2GlJwQoG0",
+    authDomain: "user-log-app.firebaseapp.com",
+    projectId: "user-log-app",
+    storageBucket: "user-log-app.firebasestorage.app",
+    messagingSenderId: "491593022038",
+    appId: "1:491593022038:web:82f4f6d8e49ab5d6bd99f7",
+    measurementId: "G-E24T90NPR9"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  let currentUser = null;
+
+  function showLoginPage() {
+    document.getElementById("loginPage").classList.remove("hidden");
+    document.getElementById("logPage").classList.add("hidden");
+    document.getElementById("adminPage").classList.add("hidden");
+  }
+
+  function showLogPage() {
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("logPage").classList.remove("hidden");
+    document.getElementById("adminPage").classList.add("hidden");
+    document.getElementById("logGreeting").textContent = "مرحباً، " + (currentUser.fullName || currentUser.username);
+    displayLogs();
+  }
+
+  function showAdminPage() {
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("logPage").classList.add("hidden");
+    document.getElementById("adminPage").classList.remove("hidden");
+
+    const userList = document.getElementById("userList");
+    userList.innerHTML = "";
+
+    db.collection("users").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const user = doc.data();
+        if (user.username === "admin") return;
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>الاسم:</strong> ${user.fullName || "—"}<br>
+          <strong>اسم المستخدم:</strong> ${user.username}<br>
+          <strong>كلمة المرور:</strong> ${user.password}<br>
+          <button onclick="deleteUser('${doc.id}')">حذف</button>
+        `;
+        userList.appendChild(li);
+      });
+    });
+  }
+
+  function createDummyAccount() {
+    const fullName = prompt("أدخل اسمك الكامل:");
+    const username = prompt("أدخل اسم المستخدم:");
+    const password = prompt("أدخل كلمة المرور:");
+    if (!fullName || !username || !password) return;
+
+    db.collection("users").where("username", "==", username).get().then(snapshot => {
+      if (!snapshot.empty) {
+        alert("اسم المستخدم موجود مسبقاً");
+        return;
+      }
+
+      db.collection("users").add({
+        fullName, username, password, logs: []
+      }).then(() => {
+        alert("تم إنشاء الحساب بنجاح. يمكنك تسجيل الدخول الآن.");
+      });
+    });
+  }
+
+  function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (username === "admin" && password === "313589") {
+      currentUser = { username: "admin" };
+      showAdminPage();
+      return;
+    }
+
+    db.collection("users")
+      .where("username", "==", username)
+      .where("password", "==", password)
+      .get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          alert("اسم المستخدم أو كلمة المرور غير صحيحة");
+          return;
+        }
+        const doc = snapshot.docs[0];
+        currentUser = { id: doc.id, ...doc.data() };
+        showLogPage();
+      });
+  }
+
+  function saveLog() {
+    const logText = document.getElementById("logInput").value.trim();
+    if (!logText || !currentUser) return;
+
+    currentUser.logs = currentUser.logs || [];
+    currentUser.logs.push(logText);
+
+    db.collection("users").doc(currentUser.id).update({
+      logs: currentUser.logs
+    }).then(() => {
+      document.getElementById("logInput").value = "";
+      displayLogs();
+    });
+  }
+
+  function displayLogs() {
+    const logList = document.getElementById("logList");
+    logList.innerHTML = "";
+
+    (currentUser.logs || []).forEach((log, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `${log} <button onclick="deleteLog(${index})">حذف</button>`;
+      logList.appendChild(li);
+    });
+  }
+
+  function deleteLog(index) {
+    currentUser.logs.splice(index, 1);
+    db.collection("users").doc(currentUser.id).update({
+      logs: currentUser.logs
+    }).then(() => {
+      displayLogs();
+    });
+  }
+
+  function deleteUser(userId) {
+    if (confirm("هل أنت متأكد من حذف هذا المستخدم؟")) {
+      db.collection("users").doc(userId).delete().then(() => {
+        showAdminPage();
+      });
+    }
+  }
+
+  function logout() {
+    currentUser = null;
+    showLoginPage();
+  }
+
+  showLoginPage();
+</script>
+</body>
+</html>
