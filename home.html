@@ -332,6 +332,21 @@ h2:hover::after {
   .profile-info div {
     margin-bottom: 15px;
   } 
+
+       comment-box { margin-bottom: 20px; }
+    .comment-box input, .comment-box textarea {
+      width: 98%; padding: 10px; margin: 5px 0;
+    }
+    .comment-box button {
+      padding: 10px 20px;      
+      cursor: pointer;
+    }
+    .comment {
+      border: 1px solid #f3eeee; padding: 10px; margin-top: 5px;
+      border-radius: 5px; background: #244f5c;
+    }
+    .writer { color: rgb(238, 238, 243); text-decoration: none; }
+     
   </style>
 </head>
 <body>
@@ -406,7 +421,26 @@ h2:hover::after {
     </a>
   </div>
 
+    </div>
+  <div class="section latest-comments">
+    <div class="container">
+      <h2 class="head-with-desc">
+        آخر التعليقات <span>على كل منشورات الموقع</span>
+      </h2>
+      <div class="data-holder">
 
+  
+ 
+  <div id="comments"></div>
+
+<h1>اضف تعليق:</h1>
+ 
+<div class="comment-box">
+    <input type="text" id="username" placeholder="اسمك">
+    <input type="text" id="fbLink" placeholder="رابط حساب فيسبوك">
+    <textarea id="commentText" placeholder="اكتب تعليقك هنا..."></textarea>
+    <button onclick="addComment()">أضف تعليق</button>
+  </div>
   
     <nav style="background-color: #2a5764; padding: 10px; text-align: center; color: #fff;"   >
       <h1><b>انجازتي</b></h1>
@@ -443,6 +477,62 @@ h2:hover::after {
   </div>
 
   <script>
+
+         const firebaseConfig = {
+      apiKey: "AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",
+      authDomain: "programomartamer-451a5.firebaseapp.com",
+      projectId: "programomartamer-451a5",
+      storageBucket: "programomartamer-451a5.appspot.com",
+      messagingSenderId: "351835913301",
+      appId: "1:351835913301:web:d722fdcc9fb7b15c4468dc",
+      measurementId: "G-R5FJQY220K"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    onSnapshot(query(collection(db, "comments"), orderBy("timestamp", "desc")), (snapshot) => {
+      const commentsDiv = document.getElementById('comments');
+      commentsDiv.innerHTML = '';
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = `
+          <div class="info">
+            <p><strong>المعلق</strong> [ <a class="writer" href="${data.fbLink}" target="_blank">${data.name}</a> ]</p>
+            <p>${data.comment}</p>
+          </div>
+        `;
+        commentsDiv.appendChild(commentDiv);
+      });
+    });
+
+    window.addComment = async function () {
+      const name = document.getElementById('username').value.trim();
+      const fbLink = document.getElementById('fbLink').value.trim();
+      const comment = document.getElementById('commentText').value.trim();
+
+      if (!name || !fbLink || !comment) {
+        alert("يرجى ملء جميع الحقول");
+        return;
+      }
+
+      await addDoc(collection(db, "comments"), {
+        name,
+        fbLink,
+        comment,
+        timestamp: serverTimestamp()
+      });
+
+      document.getElementById('username').value = '';
+      document.getElementById('fbLink').value = '';
+      document.getElementById('commentText').value = '';
+    }
+
+// 🛠 هذا هو المفتاح:
+window.addComment = addComment;
+     
 const username = sessionStorage.getItem("username");
 document.getElementById("userName").textContent = username ? username : "";
 document.getElementById("userNameMobile").textContent = username ? username : "";
