@@ -11,10 +11,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
       <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
-
   <style>
 body {
   font-family: 'Cairo', sans-serif;
@@ -337,62 +333,75 @@ h2:hover::after {
     margin-bottom: 15px;
   } 
 
- h1 {
+  
+
+    h2 {
+      color: #333;
       text-align: center;
-      color: #1e3799;
+      margin-bottom: 20px;
     }
-    .comment-box {
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: 20px auto;
-    }
-    .comment-box input,
-    .comment-box textarea {
+
+    input[type="text"],
+    input[type="url"],
+    textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 8px 0;
-      border-radius: 5px;
       border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .comment-box button {
-      background: #1e88e5;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .comment {
-      background: #e3f2fd;
-      padding: 15px;
       border-radius: 8px;
-      margin: 15px auto;
-      max-width: 600px;
+      box-sizing: border-box;
+      font-size: 16px;
     }
-    .writer {
-      font-weight: bold;
-      color: #0d47a1;
+
+    textarea {
+      height: 120px;
+      resize: vertical;
     }
-    .like-btn {
-      background-color: transparent;
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
       border: none;
-      color: #0d47a1;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
       margin-top: 10px;
-    }
-    .like-btn.liked {
-      color: red;
-      font-weight: bold;
+      width: 100%;
+      transition: background-color 0.3s ease;
     }
 
- 
+    button:hover {
+      background-color: #45a049;
+    }
 
+    #comments {
+      margin-top: 30px;
+    }
+
+    .comment-box {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .comment-box strong {
+      color: #4CAF50;
+    }
+
+    .comment-box a {
+      color: #0077cc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .comment-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
@@ -466,24 +475,26 @@ h2:hover::after {
     </a>
   </div>
 
-  <h2>أضف تعليقك</h2>
+
+  
+    <nav style="background-color: #2a5764; padding: 10px; text-align: center; color: #fff;"   >
+      <h1><b>انجازتي</b></h1>
+    <p>  <a href="حجز موقع.html" target="_blank" title=" انشاءالموقع">انشاء موقع</a>  </p>
+    <p>   <a href="مضرب.html"  target="_blank" title="لعبة المضرب " >لعبة المضرب</a>  </p>
+    <p>   <a href="السجلات اليومية.html"  target="_blank" title="السجلات اليومية">السجلات اليومية</a>   </p>
+    <p>   <a href="تعلم الكتابة.html"  target="_blank" title="تعلم الكتابة">تعلم الكتابة</a>   </p>
+    <p>   <a href="كيبورد جيمر.html"  target="_blank" title=" كيبورد جيمر">كيبورد جيمر</a>   </p>
+
+
+    </nav>
+
+
+      <h2>أضف تعليقك</h2>
   <input type="text" id="name" placeholder="اسمك" required>
   <input type="url" id="facebook" placeholder="رابط فيسبوك (اختياري)">
   <textarea id="comment" placeholder="اكتب تعليقك هنا..." required></textarea>
   <button onclick="addComment()">نشر التعليق</button>
   <div id="comments"></div>
-
-   
-    <nav style="background-color: #2a5764; padding: 10px; text-align: center; color: #fff;"   >
-      <h1><b>انجازتي</b></h1>
-    <p>  <a href="حجز موقع.html"  title=" انشاءالموقع">انشاء موقع</a>  </p>
-    <p>   <a href="مضرب.html"   title="لعبة المضرب " >لعبة المضرب</a>  </p>
-    <p>   <a href="السجلات اليومية.html"   title="السجلات اليومية">السجلات اليومية</a>   </p>
-    <p>   <a href="تعلم الكتابة.html"   title="تعلم الكتابة">تعلم الكتابة</a>   </p>
-    <p>   <a href="كيبورد جيمر.html"   title=" كيبورد جيمر">كيبورد جيمر</a>   </p>
-
-
-    </nav>
 
 
      <div class="footer">
@@ -509,9 +520,6 @@ h2:hover::after {
   </div>
 
   <script>
-
-
-
     // إعداد Firebase
 const firebaseConfig = {
 
@@ -594,7 +602,9 @@ const firebaseConfig = {
         container.appendChild(commentEl);
       });
     });
-     
+
+
+
 const username = sessionStorage.getItem("username");
 document.getElementById("userName").textContent = username ? username : "";
 document.getElementById("userNameMobile").textContent = username ? username : "";
@@ -644,9 +654,6 @@ document.getElementById("greeting").textContent = username ? `مرحباً ${use
         closeAllDropdowns();
       }
     });
-
-         loadComments();
-
   </script>
 
 </body>
