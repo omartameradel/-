@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>لعبة المضرب</title>
-        <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
-
+  <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
   <style>
     body {
       background: #091dd3;
@@ -13,14 +12,12 @@
       direction: rtl;
       font-family: Arial, sans-serif;
     }
-
     canvas {
       display: block;
       margin: auto;
       background: #111;
       border: 3px solid #fff;
     }
-
     #scoreBox {
       position: absolute;
       top: 20px;
@@ -33,7 +30,6 @@
       font-size: 20px;
       border-radius: 10px;
     }
-
     #restartBtn {
       position: absolute;
       top: 70px;
@@ -48,7 +44,6 @@
       cursor: pointer;
       display: none;
     }
-
     #names {
       text-align: center;
       color: #fff;
@@ -56,7 +51,6 @@
       margin-top: 15px;
       font-weight: bold;
     }
-
     #controls {
       position: absolute;
       bottom: 20px;
@@ -64,7 +58,6 @@
       transform: translateX(-50%);
       text-align: center;
     }
-
     #controls button {
       margin: 5px;
       padding: 10px 20px;
@@ -75,18 +68,15 @@
       background-color: #444;
       color: white;
     }
-
     #controls button:hover {
       background-color: #666;
     }
-
-       .bottom-center {
+    .bottom-center {
       position: absolute;
-      bottom: 20px; /* المسافة من الأسفل */
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
     }
-
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -96,7 +86,6 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
     button a {
       color: white;
       text-decoration: none;
@@ -184,20 +173,16 @@
       ballX += ballSpeedX;
       ballY += ballSpeedY;
 
-      // ارتداد من الأعلى والأسفل
       if (ballY <= 0 || ballY >= canvas.height) ballSpeedY = -ballSpeedY;
 
-      // اصطدام مع مضرب اللاعب
       if (ballX <= paddleWidth && ballY > playerY && ballY < playerY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
       }
 
-      // اصطدام مع مضرب الكمبيوتر
       if (ballX >= canvas.width - paddleWidth && ballY > aiY && ballY < aiY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
       }
 
-      // تسجيل هدف للكمبيوتر
       if (ballX < 0) {
         aiScore++;
         updateScore();
@@ -205,7 +190,6 @@
         resetBall();
       }
 
-      // تسجيل هدف للاعب
       if (ballX > canvas.width) {
         playerScore++;
         updateScore();
@@ -213,11 +197,9 @@
         resetBall();
       }
 
-      // ذكاء اصطناعي بسيط
       if (aiY + paddleHeight / 2 < ballY) aiY += paddleSpeed * 0.6;
       else aiY -= paddleSpeed * 0.6;
 
-      // حدود الذكاء الاصطناعي
       if (aiY < 0) aiY = 0;
       if (aiY + paddleHeight > canvas.height) aiY = canvas.height - paddleHeight;
     }
@@ -238,20 +220,46 @@
       }
     });
 
-    // حركة باستخدام الأزرار
-    document.getElementById("upBtn").addEventListener("click", function () {
-      if (gameOver) return;
-      playerY -= paddleSpeed * 2;
-      if (playerY < 0) playerY = 0;
-    });
+    // تحسين حركة أزرار ↑ ↓ بسرعة واستجابة مستمرة
+    let moveInterval = null;
 
-    document.getElementById("downBtn").addEventListener("click", function () {
-      if (gameOver) return;
-      playerY += paddleSpeed * 2;
-      if (playerY + paddleHeight > canvas.height) {
-        playerY = canvas.height - paddleHeight;
-      }
+    function startMoving(direction) {
+      clearInterval(moveInterval);
+      moveInterval = setInterval(() => {
+        if (gameOver) return;
+        if (direction === "up") {
+          playerY -= paddleSpeed * 2;
+          if (playerY < 0) playerY = 0;
+        } else if (direction === "down") {
+          playerY += paddleSpeed * 2;
+          if (playerY + paddleHeight > canvas.height) {
+            playerY = canvas.height - paddleHeight;
+          }
+        }
+      }, 16);
+    }
+
+    function stopMoving() {
+      clearInterval(moveInterval);
+    }
+
+    const upBtn = document.getElementById("upBtn");
+    const downBtn = document.getElementById("downBtn");
+
+    // يدعم الكمبيوتر واللمس
+    upBtn.addEventListener("mousedown", () => startMoving("up"));
+    downBtn.addEventListener("mousedown", () => startMoving("down"));
+    document.addEventListener("mouseup", stopMoving);
+
+    upBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      startMoving("up");
     });
+    downBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      startMoving("down");
+    });
+    document.addEventListener("touchend", stopMoving);
 
     restartBtn.addEventListener("click", function () {
       playerScore = 0;
