@@ -663,10 +663,10 @@ const firebaseConfig = {
 
 
 
-const username = sessionStorage.getItem("username")|| "زائر";
+const username = sessionStorage.getItem("username");
 document.getElementById("userName").textContent = username ? username : "";
 document.getElementById("userNameMobile").textContent = username ? username : "";
-  document.getElementById("greeting").textContent = `مرحباً ${username}!`;
+document.getElementById("greeting").textContent = username ? `مرحباً ${username}!` : "مرحباً بك";
 
      
 
