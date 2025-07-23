@@ -349,6 +349,14 @@
   window.onload = function () {
     document.getElementById("rightClickAlert").style.display = "block";
   };
+
+  document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.key.toLowerCase() === 'q') {
+    e.preventDefault();
+    window.open("https://www.facebook.com/omar.tamer.adel", "_blank");
+  }
+});
+
   showLoginPage();
 </script>
 </body>
