@@ -204,24 +204,29 @@ function loadTexts() {
 }
 
   window.onload = function () {
-  document.getElementById("rightClickAlert").style.display = "block";
-  loadAll();
-};
+    document.getElementById("rightClickAlert").style.display = "block";
+  };
 
-document.addEventListener("keydown", function(e) {
-  const forbidden = [
-    (e.ctrlKey && e.key.toLowerCase() === 'u'),
-    (e.key === "F12"),
-    (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'),
-    (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'),
-    (e.ctrlKey && e.key.toLowerCase() === 's'),
-    (e.ctrlKey && e.key.toLowerCase() === 'p')
-  ];
-  if (forbidden.some(Boolean)) {
+  // تعطيل الزر الأيمن
+  document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
-    alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
-  }
-});
+  });
+
+  // منع الاختصارات الضارة
+  document.addEventListener("keydown", function(e) {
+    const forbidden = [
+      (e.ctrlKey && e.key.toLowerCase() === 'u'),
+      (e.key === "F12"),
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'),
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'),
+      (e.ctrlKey && e.key.toLowerCase() === 's'),
+      (e.ctrlKey && e.key.toLowerCase() === 'p')
+    ];
+    if (forbidden.some(Boolean)) {
+      e.preventDefault();
+      alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
+    }
+  });
   
 function loadAll() {
   loadUsers();
