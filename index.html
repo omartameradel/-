@@ -11,111 +11,40 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      direction: rtl;
-      background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    input, select, button {
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    .password-container {
-      position: relative;
-    }
-
-    .password-container input {
-      padding-right: 35px;
-    }
-
-    .toggle-visibility {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 18px;
-      color: #555;
-    }
-
-    button {
-      background: #3498db;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #2980b9;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    a {
-      color: #3498db;
-      cursor: pointer;
-      text-decoration: underline;
-    }
+a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;background:linear-gradient(to bottom right,#f5f7fa,#c3cfe2);padding:20px;text-align:center}.container{max-width:400px;margin:auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1)}h2{color:#333}button,input,select{width:100%;margin:10px 0;padding:10px;font-size:16px;border-radius:6px;border:1px solid #ccc;box-sizing:border-box}.password-container{position:relative}.password-container input{padding-right:35px}.toggle-visibility{position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;color:#555}button{background:#3498db;color:#fff;border:none}button:hover{background:#2980b9}.hidden{display:none}a{color:#3498db;text-decoration:underline}
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div id="loginBox">
-    <h2>تسجيل الدخول</h2>
-    <input type="text" id="loginUsername" placeholder="اسم المستخدم">
-    <div class="password-container">
-      <input type="password" id="loginPassword" placeholder="أدخل كلمة المرور">
-      <span class="toggle-visibility" onclick="togglePassword('loginPassword', this)">👁️</span>
-    </div>
-    <button id="loginBtn">تسجيل الدخول</button>
-    <p><a id="toRegister">ليس لديك حساب؟ أنشئ حساب</a></p>
-  </div>
-
-  <div id="registerBox" class="hidden">
-    <h2>إنشاء حساب</h2>
-    <select id="gender">
-      <option value="ذكر">ذكر</option>
-      <option value="أنثى">أنثى</option>
-    </select>
-    <input type="text" id="regUsername" placeholder="اسم المستخدم">
-    <div class="password-container">
-      <input type="password" id="regPassword" placeholder="أدخل كلمة المرور">
-      <span class="toggle-visibility" onclick="togglePassword('regPassword', this)">👁️</span>
-    </div>
-    <input type="tel" id="phoneInput" placeholder="رقم الهاتف">
-    <button id="registerBtn">تسجيل</button>
-    <p><a id="toLogin">لديك حساب؟ تسجيل الدخول</a></p>
-  </div>
+<div class=container>
+<div id=loginBox>
+<h2>تسجيل الدخول</h2>
+<input id=loginUsername placeholder="اسم المستخدم">
+<div class=password-container>
+<input type=password id=loginPassword placeholder="أدخل كلمة المرور">
+<span class=toggle-visibility onclick='togglePassword("loginPassword",this)'>👁️</span>
 </div>
-
+<button id=loginBtn>تسجيل الدخول</button>
+<p><a id=toRegister>ليس لديك حساب؟ أنشئ حساب</a></p>
+</div>
+<div id=registerBox class=hidden>
+<h2>إنشاء حساب</h2>
+<select id=gender>
+<option value=ذكر>ذكر</option>
+<option value=أنثى>أنثى</option>
+</select>
+<input id=regUsername placeholder="اسم المستخدم">
+<div class=password-container>
+<input type=password id=regPassword placeholder="أدخل كلمة المرور">
+<span class=toggle-visibility onclick='togglePassword("regPassword",this)'>👁️</span>
+</div>
+<input type=tel id=phoneInput placeholder="رقم الهاتف">
+<button id=registerBtn>تسجيل</button>
+<p><a id=toLogin>لديك حساب؟ تسجيل الدخول</a></p>
+</div>
+</div>
 <script>
  const firebaseConfig={apiKey:"AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",authDomain:"ahmed-saeed-669ab.firebaseapp.com",projectId:"ahmed-saeed-669ab"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function toggleForms(){document.getElementById("loginBox").classList.toggle("hidden"),document.getElementById("registerBox").classList.toggle("hidden")}function togglePassword(e,t){let n=document.getElementById(e);"password"===n.type?(n.type="text",t.textContent="\uD83D\uDE48"):(n.type="password",t.textContent="\uD83D\uDC41️")}function register(){let e=document.getElementById("regUsername").value.trim(),t=document.getElementById("regPassword").value.trim(),n=document.getElementById("gender").value,r=document.getElementById("phoneInput").value.trim();if(!e||!t||!r){alert("يرجى تعبئة كل الحقول");return}db.collection("users").where("username","==",e).get().then(o=>{o.empty?db.collection("users").doc(e).set({username:e,password:t,gender:n,phone:r}).then(()=>{toggleForms(),alert("✅ تم إنشاء الحساب بنجاح، يمكنك تسجيل الدخول الآن")}).catch(e=>{console.error(e),alert("حدث خطأ أثناء إنشاء الحساب")}):alert("❌ هذا الاسم مستخدم بالفعل")}).catch(e=>{console.error(e),alert("حدث خطأ أثناء التحقق من المستخدم")})}function login(){let e=document.getElementById("loginUsername").value.trim(),t=document.getElementById("loginPassword").value.trim();if(!e||!t){alert("يرجى تعبئة جميع الحقول");return}if("admin"===e&&"313589"===t){window.location.href="admin.html";return}db.collection("users").where("username","==",e).where("password","==",t).get().then(e=>{if(e.empty)alert("❌ بيانات الدخول غير صحيحة");else{let t=e.docs[0].data();sessionStorage.setItem("username",t.username),window.location.href="home.html"}}).catch(e=>{console.error(e),alert("حدث خطأ أثناء تسجيل الدخول")})}document.getElementById("loginBtn").addEventListener("click",login),document.getElementById("registerBtn").addEventListener("click",register),document.getElementById("toRegister").addEventListener("click",toggleForms),document.getElementById("toLogin").addEventListener("click",toggleForms),document.addEventListener("keydown",function(e){e.ctrlKey&&("u"===e.key||"U"===e.key)&&e.preventDefault(),"F12"===e.key&&e.preventDefault()});
-  
 </script>
 
 </body>
