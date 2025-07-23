@@ -16,7 +16,11 @@ a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;backgrou
 </head>
 <body>
   <body oncontextmenu="return false;">
-
+<div id="customMenu">
+  <button onclick="document.execCommand('cut')">✂️ قص</button>
+  <button onclick="document.execCommand('copy')">📋 نسخ</button>
+  <button onclick="document.execCommand('paste')">📥 لصق</button>
+</div>
 <div class=container>
 <div id=loginBox>
 <h2>تسجيل الدخول</h2>
@@ -57,6 +61,24 @@ a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;backgrou
       e.preventDefault();
       alert("🚫 هذا الإجراء غير مسموح");
     }
+
+        const customMenu = document.getElementById("customMenu");
+
+  // منع القائمة الأصلية
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+
+    // إظهار القائمة في مكان الماوس
+    customMenu.style.top = `${e.pageY}px`;
+    customMenu.style.left = `${e.pageX}px`;
+    customMenu.style.display = "block";
+  });
+
+  // إخفاء القائمة عند النقر خارجها
+  document.addEventListener("click", function() {
+    customMenu.style.display = "none";
+  });
+</script>
 </script>
 
 </body>
