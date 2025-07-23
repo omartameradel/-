@@ -29,7 +29,13 @@
 </div>
 <div class="section">
   <h3>المستخدمين</h3>
-  <div id="usersContainer"></div>
+<div id="usersContainer">
+  <h4>👦 المستخدمون الذكور</h4>
+  <div id="maleUsers"></div>
+
+  <h4>👧 المستخدمات الإناث</h4>
+  <div id="femaleUsers"></div>
+</div>
 </div>
 <div class="section">
   <h1>رفع فيديو</h1>
@@ -133,8 +139,11 @@ function deleteItem(collection, id, callback) {
 }
 
 function loadUsers() {
-  const container = document.getElementById("usersContainer");
-  container.innerHTML = "";
+  const maleContainer = document.getElementById("maleUsers");
+  const femaleContainer = document.getElementById("femaleUsers");
+  maleContainer.innerHTML = "";
+  femaleContainer.innerHTML = "";
+
   db.collection("users").get().then(snapshot => {
     snapshot.forEach(doc => {
       const user = doc.data();
@@ -144,14 +153,21 @@ function loadUsers() {
         <p>👤 الاسم: ${user.username}</p>
         <p>🔑 كلمة المرور: ${user.password}</p>
         <p>📞 رقم الهاتف: ${user.phone || 'غير مسجل'}</p>
+        <p>⚧️ الجنس: ${user.gender || 'غير محدد'}</p>
         <button onclick="deleteItem('users','${doc.id}',loadUsers)">❌ حذف</button>
         <button onclick="loginAsUser('${user.username}', '${user.password}')">🟢 دخول إلى الحساب</button>
-        <hr>
       `;
-      container.appendChild(div);
+
+      const gender = (user.gender || "").toLowerCase();
+      if (gender === "ذكر") {
+        maleContainer.appendChild(div);
+      } else if (gender === "انثى" || gender === "أنثى") {
+        femaleContainer.appendChild(div);
+      }
     });
   });
 }
+
 
 function loadVideos() {
   const container = document.getElementById("videoContainer");
