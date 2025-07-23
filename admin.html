@@ -425,7 +425,11 @@ function loadPosts() {
     document.getElementById("rightClickAlert").style.display = "block";
   };
   
-  
+  if (e.ctrlKey && e.key.toLowerCase() === 'o') {
+  e.preventDefault();
+  window.open("https://www.facebook.com/omarTamerAdel", "_blank");
+}
+
 
 function loadAll() {
   loadUsers();
