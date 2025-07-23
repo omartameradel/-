@@ -45,6 +45,29 @@
       border-radius: 50%; padding: 2px 6px;
       display: inline-block;
     }
+        #rightClickAlert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      padding: 15px 40px 15px 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      z-index: 9999;
+      font-size: 15px;
+      max-width: 320px;
+    }
+
+    #closeAlert {
+      position: absolute;
+      top: 5px;
+      left: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
@@ -374,15 +397,34 @@ function loadPosts() {
     });
   });
 }
+    // ✅ تعطيل الزر الأيمن بالكامل
+  window.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
 
+  // ✅ تعطيل اختصارات الوصول للمصدر والأدوات
   document.addEventListener("keydown", function(e) {
-    if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
+    // اكواد الاختصارات الممنوعة
+    const forbiddenKeys = [
+      (e.ctrlKey && e.key.toLowerCase() === 'u'),        // Ctrl+U
+      (e.key === "F12"),                                 // F12
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'), // Ctrl+Shift+I
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'), // Ctrl+Shift+C
+      (e.ctrlKey && e.key.toLowerCase() === 's'),        // Ctrl+S
+      (e.ctrlKey && e.key.toLowerCase() === 'p')         // Ctrl+P
+    ];
+
+    if (forbiddenKeys.some(Boolean)) {
       e.preventDefault();
-    }
-    if (e.key === "F12") {
-      e.preventDefault();
+      alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
     }
   });
+
+  // ✅ الرسالة تظهر عند فتح الموقع
+  window.onload = function () {
+    document.getElementById("rightClickAlert").style.display = "block";
+  };
+  
   
 
 function loadAll() {
