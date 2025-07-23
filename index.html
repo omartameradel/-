@@ -17,6 +17,23 @@ a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;backgrou
 <body>
   <body oncontextmenu="return false;">
 
+    <div id="rightClickAlert" style="
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 15px 40px 15px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  z-index: 9999;
+  font-family: 'Cairo', sans-serif;
+">
+  <span style="position: absolute; top: 5px; left: 8px; cursor: pointer; font-weight: bold;" onclick="document.getElementById('rightClickAlert').style.display='none'">×</span>
+  ❌ لا يمكنك الضغط على زر الفأرة الأيمن لأن هذا الموقع محمي من النسخ وسرقة المحتوى.
+</div>
+    
 <div class=container>
 <div id=loginBox>
 <h2>تسجيل الدخول</h2>
@@ -73,6 +90,15 @@ a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;backgrou
   // إخفاء القائمة عند النقر خارجها
   document.addEventListener("click", function() {
     customMenu.style.display = "none";
+  });
+      // ✅ إظهار الرسالة تلقائيًا عند فتح الموقع
+  window.onload = function () {
+    document.getElementById("rightClickAlert").style.display = "block";
+  };
+
+  // ✅ تعطيل الزر الأيمن تمامًا
+  window.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
   });
 </script>
 </script>
