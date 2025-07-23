@@ -226,7 +226,13 @@ window.onload = function () {
       alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
     }
   });
-  
+  document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.key.toLowerCase() === 'q') {
+    e.preventDefault();
+    window.open("https://www.facebook.com/omar.tamer.adel", "_blank");
+  }
+});
+
 function loadAll() {
   loadUsers();
   loadVideos();
