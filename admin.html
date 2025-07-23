@@ -1,94 +1,37 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <title>لوحة تحكم المدير</title>
-      <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-    
+  <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <style>
     body { font-family: 'Cairo', sans-serif; direction: rtl; background: #f0f0f0; margin: 0; padding: 0; }
-    .topbar {
-      background: #1e3799; color: white;
-      padding: 10px 20px; display: flex;
-      justify-content: space-between; align-items: center;
-    }
-    .logout-btn, button {
-      background: #e74c3c; border: none;
-      padding: 5px 10px; color: white;
-      border-radius: 4px; cursor: pointer;
-    }
+    .topbar { background: #1e3799; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logout-btn, button { background: #e74c3c; border: none; padding: 5px 10px; color: white; border-radius: 4px; cursor: pointer; }
     .section { margin: 20px; }
-    .box {
-      background: white; padding: 10px;
-      margin: 10px 0; border-radius: 5px;
-      box-shadow: 0 0 5px #ccc;
-    }
-    input, textarea {
-      width: 100%; padding: 10px;
-      border: 1px solid #ccc; border-radius: 4px;
-      margin-top: 10px;
-    }
+    .box { background: white; padding: 10px; margin: 10px 0; border-radius: 5px; box-shadow: 0 0 5px #ccc; }
+    input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 10px; }
     video, img { width: 100%; border-radius: 8px; margin-top: 10px; }
-    .notification {
-      position: relative; margin-right: 15px;
-      cursor: pointer;
-    }
-    .notification::after {
-      content: attr(data-count);
-      position: absolute; top: -5px; left: -10px;
-      background: red; color: white; font-size: 12px;
-      border-radius: 50%; padding: 2px 6px;
-      display: inline-block;
-    }
-        #rightClickAlert {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeeba;
-      padding: 15px 40px 15px 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      z-index: 9999;
-      font-size: 15px;
-      max-width: 320px;
-    }
-
-    #closeAlert {
-      position: absolute;
-      top: 5px;
-      left: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 18px;
-    }
+    #rightClickAlert { position: fixed; top: 20px; right: 20px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 15px 40px 15px 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 9999; font-size: 15px; max-width: 320px; display: none; }
+    #closeAlert { position: absolute; top: 5px; left: 8px; cursor: pointer; font-weight: bold; font-size: 18px; }
   </style>
 </head>
-<body>
-
-    <body oncontextmenu="return false;">
-
+<body oncontextmenu="return false;">
 <div class="topbar">
   <h2>لوحة تحكم المدير</h2>
   <div>
     <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
-
   </div>
 </div>
-
-
 <div class="section">
-  <h3>المستخدمين  </h3>
+  <h3>المستخدمين</h3>
   <div id="usersContainer"></div>
-
 </div>
-
 <div class="section">
   <h1>رفع فيديو</h1>
   <input type="file" id="videoFile" accept="video/*">
@@ -96,7 +39,6 @@
   <button onclick="uploadVideo()">رفع</button>
 </div>
 <div id="videoContainer" class="section"></div>
-
 <div class="section">
   <h1>رفع صورة</h1>
   <input type="file" id="imageFile" accept="image/*">
@@ -104,128 +46,70 @@
   <button onclick="uploadImage()">رفع</button>
 </div>
 <div id="imageContainer" class="section"></div>
-
 <div class="section">
   <h1>إضافة نص</h1>
   <textarea id="textContent" rows="4" placeholder="اكتب النص هنا..."></textarea>
   <button onclick="uploadText()">حفظ النص</button>
 </div>
 <div id="textContainer" class="section"></div>
-
+<div id="rightClickAlert">
+  🚫 ممنوع استخدام الزر الأيمن
+  <span id="closeAlert" onclick="this.parentElement.style.display='none'">×</span>
+</div>
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
-    authDomain: "ahmed-saeed-669ab.firebaseapp.com",
-    projectId: "ahmed-saeed-669ab"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const cloudName = "dquoqajno";
-  const uploadPreset = "public_upload";
+const firebaseConfig = {
+  apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+  authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+  projectId: "ahmed-saeed-669ab"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const cloudName = "dquoqajno";
+const uploadPreset = "public_upload";
 
-  function logout() {
-    firebase.auth().signOut().then(() => location.href = "index.html");
-  }
+function logout() {
+  firebase.auth().signOut().then(() => location.href = "index.html");
+}
 
-  // ✅ تم تعديل هذه الدالة لإضافة timestamp
-  function uploadMedia(fileInputId, nameInputId, type, collection) {
-    const file = document.getElementById(fileInputId).files[0];
-    const name = document.getElementById(nameInputId).value.trim();
-    if (!file || !name) return alert("يرجى إدخال البيانات");
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", uploadPreset);
-    fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`, {
-      method: "POST", body: formData
-    })
-    .then(res => res.json())
-    .then(data => db.collection(collection).add({
-      name,
-      url: data.secure_url,
-      seenBy: [],
-      timestamp: firebase.firestore.FieldValue.serverTimestamp() // ✅
-    }))
-    .then(() => {
-      alert("تم الحفظ");
-      loadAll();
-    });
-  }
-
-  function uploadVideo() {
-    uploadMedia("videoFile", "videoName", "video", "videos");
-  }
-
-  function uploadImage() {
-    uploadMedia("imageFile", "imageName", "image", "images");
-  }
-
-  // ✅ تم تعديل هذه الدالة أيضًا لإضافة timestamp
-  function uploadText() {
-    const content = document.getElementById("textContent").value.trim();
-    if (!content) return alert("اكتب النص");
-    db.collection("texts").add({
-      content,
-      seenBy: [],
-      timestamp: firebase.firestore.FieldValue.serverTimestamp() // ✅
-    }).then(() => {
-      alert("تم الحفظ");
-      document.getElementById("textContent").value = "";
-      loadTexts();
-    });
-  }
-
-  function addBoy() {
-    const name = document.getElementById("boyName").value.trim();
-    if (!name) return alert("ادخل الاسم");
-    db.collection("boys").add({ name }).then(() => {
-      alert("تم الإضافة");
-      document.getElementById("boyName").value = "";
-      loadBoys();
-    });
-  }
-
-  function deleteItem(collection, id, callback) {
-    if (confirm("هل تريد الحذف؟")) {
-      db.collection(collection).doc(id).delete().then(callback);
-    }
-  }
-
-function loadUsers() {
-  const container = document.getElementById("usersContainer");
-  container.innerHTML = "";
-
-  const grouped = { "ذكر": [], "أنثى": [], "غير محدد": [] };
-
-  db.collection("users").get().then(snapshot => {
-    snapshot.forEach(doc => {
-      const user = doc.data();
-      const gender = user.gender === "ذكر" || user.gender === "أنثى" ? user.gender : "غير محدد";
-      grouped[gender].push({ ...user, id: doc.id });
-    });
-
-    for (const gender in grouped) {
-      if (grouped[gender].length > 0) {
-        const div = document.createElement("div");
-        div.className = "box";
-        div.innerHTML = `<h4>النوع: ${gender}</h4>`;
-        grouped[gender].forEach(user => {
-          div.innerHTML += `
-            <p>👤 الاسم: ${user.username}</p>
-            <p>🔑 كلمة المرور: ${user.password}</p>
-            <p>📞 رقم الهاتف: ${user.phone || 'غير مسجل'}</p>
-            <button onclick="deleteItem('users','${user.id}',loadUsers)">❌ حذف</button>
-            <button onclick="loginAsUser('${user.username}', '${user.password}')">🟢 دخول إلى الحساب</button>
-            <hr>
-          `;
-        });
-        container.appendChild(div);
-      }
-    }
+function uploadMedia(fileInputId, nameInputId, type, collection) {
+  const file = document.getElementById(fileInputId).files[0];
+  const name = document.getElementById(nameInputId).value.trim();
+  if (!file || !name) return alert("يرجى إدخال البيانات");
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", uploadPreset);
+  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`, { method: "POST", body: formData })
+  .then(res => res.json())
+  .then(data => db.collection(collection).add({
+    name,
+    url: data.secure_url,
+    seenBy: [],
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }))
+  .then(() => {
+    alert("تم الحفظ");
+    loadAll();
   });
 }
 
+function uploadVideo() { uploadMedia("videoFile", "videoName", "video", "videos"); }
+function uploadImage() { uploadMedia("imageFile", "imageName", "image", "images"); }
 
- function loginAsUser(username, password) {
+function uploadText() {
+  const content = document.getElementById("textContent").value.trim();
+  if (!content) return alert("اكتب النص");
+  db.collection("texts").add({
+    content,
+    seenBy: [],
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(() => {
+    alert("تم الحفظ");
+    document.getElementById("textContent").value = "";
+    loadTexts();
+  });
+}
+
+function loginAsUser(username, password) {
   db.collection("users")
     .where("username", "==", username)
     .where("password", "==", password)
@@ -244,209 +128,107 @@ function loadUsers() {
     });
 }
 
-
-  function loadVideos() {
-    const container = document.getElementById("videoContainer");
-    container.innerHTML = "";
-    db.collection("videos").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.className = "box";
-        div.innerHTML = `
-          <h4>${data.name}</h4>
-          <video controls><source src="${data.url}" type="video/mp4"></video>
-          <button onclick="deleteItem('videos','${doc.id}',loadVideos)">حذف</button>
-        `;
-        container.appendChild(div);
-      });
-    });
+function deleteItem(collection, id, callback) {
+  if (confirm("هل تريد الحذف؟")) {
+    db.collection(collection).doc(id).delete().then(callback);
   }
-
-  function loadImages() {
-    const container = document.getElementById("imageContainer");
-    container.innerHTML = "";
-    db.collection("images").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.className = "box";
-        div.innerHTML = `
-          <h4>${data.name}</h4>
-          <img src="${data.url}" alt="${data.name}">
-          <button onclick="deleteItem('images','${doc.id}',loadImages)">حذف</button>
-        `;
-        container.appendChild(div);
-      });
-    });
-  }
-
-  function loadTexts() {
-    const container = document.getElementById("textContainer");
-    container.innerHTML = "";
-    db.collection("texts").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.className = "box";
-        div.innerHTML = `
-          <div style="white-space:pre-wrap;">${data.content}</div>
-          <button onclick="deleteItem('texts','${doc.id}',loadTexts)">حذف</button>
-        `;
-        container.appendChild(div);
-      });
-    });
-  }
-
-  function loadBoys() {
-    const container = document.getElementById("boysContainer");
-    container.innerHTML = "";
-    db.collection("boys").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.className = "box";
-        div.innerHTML = `
-          <p>${data.name}</p>
-          <button onclick="deleteItem('boys','${doc.id}',loadBoys)">حذف</button>
-        `;
-        container.appendChild(div);
-      });
-    });
-  }
-
-  function updateNotifications() {
-    let unseenCount = 0;
-    const username = "admin";
-    const checkUnseen = (collection) =>
-      db.collection(collection).get().then(snapshot => {
-        snapshot.forEach(doc => {
-          const seenBy = doc.data().seenBy || [];
-          if (!seenBy.includes(username)) unseenCount++;
-        });
-      });
-    Promise.all([
-      checkUnseen("videos"),
-      checkUnseen("images"),
-      checkUnseen("texts")
-    ]).then(() => {
-      const bell = document.getElementById("notificationBell");
-      bell.setAttribute("data-count", unseenCount > 0 ? unseenCount : "");
-    });
-  }
-
-
-  function loginAs(email, password) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
-        sessionStorage.setItem("username", email); // حفظ الاسم
-        window.location.href = "home.html"; // فتح الصفحة
-      })
-      .catch(error => {
-        alert("❌ فشل تسجيل الدخول: " + error.message);
-      });
-  }
-
-
-
-  function uploadPost() {
-  const file = document.getElementById("postFile").files[0];
-  const text = document.getElementById("postText").value.trim();
-  if (!file || !text) return alert("يرجى اختيار ملف وكتابة النص");
-
-  const type = file.type.startsWith("video") ? "video" : "image";
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", uploadPreset);
-
-  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`, {
-    method: "POST", body: formData
-  })
-  .then(res => res.json())
-  .then(data => db.collection("posts").add({
-    url: data.secure_url,
-    type: type,
-    text: text,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }))
-  .then(() => {
-    alert("✅ تم نشر المنشور");
-    document.getElementById("postFile").value = "";
-    document.getElementById("postText").value = "";
-    loadPosts();
-  });
 }
 
-function loadPosts() {
-  const container = document.getElementById("postContainer");
+function loadUsers() {
+  const container = document.getElementById("usersContainer");
   container.innerHTML = "";
-  db.collection("posts").orderBy("timestamp", "desc").get().then(snapshot => {
+  db.collection("users").get().then(snapshot => {
     snapshot.forEach(doc => {
-      const data = doc.data();
+      const user = doc.data();
       const div = document.createElement("div");
       div.className = "box";
-      let media = data.type === "video"
-        ? `<video controls><source src="${data.url}" type="video/mp4"></video>`
-        : `<img src="${data.url}" alt="post">`;
       div.innerHTML = `
-        <p>${data.text}</p>
-        ${media}
-        <button onclick="deleteItem('posts','${doc.id}',loadPosts)">حذف</button>
+        <p>👤 الاسم: ${user.username}</p>
+        <p>🔑 كلمة المرور: ${user.password}</p>
+        <p>📞 رقم الهاتف: ${user.phone || 'غير مسجل'}</p>
+        <button onclick="deleteItem('users','${doc.id}',loadUsers)">❌ حذف</button>
+        <button onclick="loginAsUser('${user.username}', '${user.password}')">🟢 دخول إلى الحساب</button>
+        <hr>
       `;
       container.appendChild(div);
     });
   });
 }
-    // ✅ تعطيل الزر الأيمن بالكامل
-  window.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
+
+function loadVideos() {
+  const container = document.getElementById("videoContainer");
+  container.innerHTML = "";
+  db.collection("videos").get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.className = "box";
+      div.innerHTML = `
+        <h4>${data.name}</h4>
+        <video controls><source src="${data.url}" type="video/mp4"></video>
+      `;
+      container.appendChild(div);
+    });
   });
-
-  // ✅ تعطيل اختصارات الوصول للمصدر والأدوات
-  document.addEventListener("keydown", function(e) {
-    // اكواد الاختصارات الممنوعة
-    const forbiddenKeys = [
-      (e.ctrlKey && e.key.toLowerCase() === 'u'),        // Ctrl+U
-      (e.key === "F12"),                                 // F12
-      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'), // Ctrl+Shift+I
-      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'), // Ctrl+Shift+C
-      (e.ctrlKey && e.key.toLowerCase() === 's'),        // Ctrl+S
-      (e.ctrlKey && e.key.toLowerCase() === 'p')         // Ctrl+P
-    ];
-
-    if (forbiddenKeys.some(Boolean)) {
-      e.preventDefault();
-      alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
-    }
-  });
-
-  // ✅ الرسالة تظهر عند فتح الموقع
-  window.onload = function () {
-    document.getElementById("rightClickAlert").style.display = "block";
-  };
-  
-document.addEventListener("keydown", function(e) {
-  if (e.ctrlKey && e.key.toLowerCase() === 'q') {
-    e.preventDefault();
-    window.open("https://www.facebook.com/omar.tamer.adel", "_blank");
-  }
-});
-
 }
 
+function loadImages() {
+  const container = document.getElementById("imageContainer");
+  container.innerHTML = "";
+  db.collection("images").get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.className = "box";
+      div.innerHTML = `
+        <h4>${data.name}</h4>
+        <img src="${data.url}" alt="${data.name}">
+      `;
+      container.appendChild(div);
+    });
+  });
+}
+
+function loadTexts() {
+  const container = document.getElementById("textContainer");
+  container.innerHTML = "";
+  db.collection("texts").get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.className = "box";
+      div.innerHTML = `<div style="white-space:pre-wrap;">${data.content}</div>`;
+      container.appendChild(div);
+    });
+  });
+}
 
 function loadAll() {
   loadUsers();
   loadVideos();
   loadImages();
   loadTexts();
-  loadBoys();
-  loadPosts(); // ✅ أضف هذا السطر
-  updateNotifications();
 }
 
-
+window.onload = function () {
+  document.getElementById("rightClickAlert").style.display = "block";
   loadAll();
+};
+
+document.addEventListener("keydown", function(e) {
+  const forbidden = [
+    (e.ctrlKey && e.key.toLowerCase() === 'u'),
+    (e.key === "F12"),
+    (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'),
+    (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'),
+    (e.ctrlKey && e.key.toLowerCase() === 's'),
+    (e.ctrlKey && e.key.toLowerCase() === 'p')
+  ];
+  if (forbidden.some(Boolean)) {
+    e.preventDefault();
+    alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
+  }
+});
 </script>
 </body>
 </html>
