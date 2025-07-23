@@ -221,6 +221,16 @@
         alert("حدث خطأ أثناء تسجيل الدخول");
       });
   }
+
+  document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
+      e.preventDefault();
+    }
+    if (e.key === "F12") {
+      e.preventDefault();
+    }
+  });
+  
 </script>
 
 </body>
