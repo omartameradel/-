@@ -118,4 +118,33 @@
         </div>
     </div>
 </body>
+    <script>
+            // ✅ تعطيل الزر الأيمن بالكامل
+  window.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
+
+  // ✅ تعطيل اختصارات الوصول للمصدر والأدوات
+  document.addEventListener("keydown", function(e) {
+    // اكواد الاختصارات الممنوعة
+    const forbiddenKeys = [
+      (e.ctrlKey && e.key.toLowerCase() === 'u'),        // Ctrl+U
+      (e.key === "F12"),                                 // F12
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'), // Ctrl+Shift+I
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'), // Ctrl+Shift+C
+      (e.ctrlKey && e.key.toLowerCase() === 's'),        // Ctrl+S
+      (e.ctrlKey && e.key.toLowerCase() === 'p')         // Ctrl+P
+    ];
+
+    if (forbiddenKeys.some(Boolean)) {
+      e.preventDefault();
+      alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
+    }
+  });
+
+  // ✅ الرسالة تظهر عند فتح الموقع
+  window.onload = function () {
+    document.getElementById("rightClickAlert").style.display = "block";
+  };
+</script>
 </html>
