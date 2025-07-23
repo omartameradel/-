@@ -201,9 +201,10 @@ function loadTexts() {
   });
 }
 
-  window.onload = function () {
-    document.getElementById("rightClickAlert").style.display = "block";
-  };
+window.onload = function () {
+  document.getElementById("rightClickAlert").style.display = "block";
+  loadAll(); // 🟢 هذا هو المطلوب لإظهار المستخدمين والمحتوى
+};
 
   // تعطيل الزر الأيمن
   document.addEventListener("contextmenu", function(e) {
