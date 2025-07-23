@@ -172,7 +172,11 @@ function loadUsers() {
 function loadVideos() {
   const container = document.getElementById("videoContainer");
   container.innerHTML = "";
-  db.collection("videos").get().then(snapshot => {
+  db.collection("videos").orderBy("timestamp", "desc").get().then(snapshot => {
+    if (snapshot.empty) {
+      container.innerHTML = "<p>لا توجد فيديوهات.</p>";
+      return;
+    }
     snapshot.forEach(doc => {
       const data = doc.data();
       const div = document.createElement("div");
@@ -180,6 +184,7 @@ function loadVideos() {
       div.innerHTML = `
         <h4>${data.name}</h4>
         <video controls><source src="${data.url}" type="video/mp4"></video>
+        <button onclick="deleteItem('videos','${doc.id}',loadVideos)">❌ حذف</button>
       `;
       container.appendChild(div);
     });
@@ -189,7 +194,11 @@ function loadVideos() {
 function loadImages() {
   const container = document.getElementById("imageContainer");
   container.innerHTML = "";
-  db.collection("images").get().then(snapshot => {
+  db.collection("images").orderBy("timestamp", "desc").get().then(snapshot => {
+    if (snapshot.empty) {
+      container.innerHTML = "<p>لا توجد صور.</p>";
+      return;
+    }
     snapshot.forEach(doc => {
       const data = doc.data();
       const div = document.createElement("div");
@@ -197,6 +206,7 @@ function loadImages() {
       div.innerHTML = `
         <h4>${data.name}</h4>
         <img src="${data.url}" alt="${data.name}">
+        <button onclick="deleteItem('images','${doc.id}',loadImages)">❌ حذف</button>
       `;
       container.appendChild(div);
     });
@@ -206,12 +216,19 @@ function loadImages() {
 function loadTexts() {
   const container = document.getElementById("textContainer");
   container.innerHTML = "";
-  db.collection("texts").get().then(snapshot => {
+  db.collection("texts").orderBy("timestamp", "desc").get().then(snapshot => {
+    if (snapshot.empty) {
+      container.innerHTML = "<p>لا توجد نصوص.</p>";
+      return;
+    }
     snapshot.forEach(doc => {
       const data = doc.data();
       const div = document.createElement("div");
       div.className = "box";
-      div.innerHTML = `<div style="white-space:pre-wrap;">${data.content}</div>`;
+      div.innerHTML = `
+        <div style="white-space:pre-wrap;">${data.content}</div>
+        <button onclick="deleteItem('texts','${doc.id}',loadTexts)">❌ حذف</button>
+      `;
       container.appendChild(div);
     });
   });
