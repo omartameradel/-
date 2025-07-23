@@ -213,61 +213,67 @@ img, video {
     document.getElementById("notifCountMobile").style.display = "none";
   }
 
-  function loadVideos() {
-    const container = document.getElementById("videoContainer");
-    container.innerHTML = "";
-    db.collection("videos").orderBy("timestamp", "desc").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const video = doc.data();
-        const div = document.createElement("div");
-        div.className = "media-box";
-        div.innerHTML = `
-          <h4>${video.name}</h4>
-          <video controls>
-            <source src="${video.url}" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-          </video>
-          <p class="timestamp">📅 ${formatTimestamp(video.timestamp)}</p>
-        `;
-        container.appendChild(div);
-      });
+function loadVideos() {
+  const container = document.getElementById("videoContainer");
+  container.innerHTML = "";
+  db.collection("videos").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+    container.innerHTML = ""; // مسح القديم وإعادة بناءه
+    snapshot.forEach(doc => {
+      const video = doc.data();
+      const div = document.createElement("div");
+      div.className = "media-box";
+      div.innerHTML = `
+        <h4>${video.name}</h4>
+        <video controls>
+          <source src="${video.url}" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <p class="timestamp">📅 ${formatTimestamp(video.timestamp)}</p>
+      `;
+      container.appendChild(div);
     });
-  }
+  });
+}
 
-  function loadImages() {
-    const container = document.getElementById("imageContainer");
-    container.innerHTML = "";
-    db.collection("images").orderBy("timestamp", "desc").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const image = doc.data();
-        const div = document.createElement("div");
-        div.className = "media-box";
-        div.innerHTML = `
-          <h4>${image.name}</h4>
-          <img src="${image.url}" alt="${image.name}">
-          <p class="timestamp">📅 ${formatTimestamp(image.timestamp)}</p>
-        `;
-        container.appendChild(div);
-      });
-    });
-  }
 
-  function loadTexts() {
-    const container = document.getElementById("textContainer");
+function loadImages() {
+  const container = document.getElementById("imageContainer");
+  container.innerHTML = "";
+  db.collection("images").orderBy("timestamp", "desc").onSnapshot(snapshot => {
     container.innerHTML = "";
-    db.collection("texts").orderBy("timestamp", "desc").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const text = doc.data();
-        const div = document.createElement("div");
-        div.className = "media-box";
-        div.innerHTML = `
-          <div class="text-content">${text.content}</div>
-          <p class="timestamp">📅 ${formatTimestamp(text.timestamp)}</p>
-        `;
-        container.appendChild(div);
-      });
+    snapshot.forEach(doc => {
+      const image = doc.data();
+      const div = document.createElement("div");
+      div.className = "media-box";
+      div.innerHTML = `
+        <h4>${image.name}</h4>
+        <img src="${image.url}" alt="${image.name}">
+        <p class="timestamp">📅 ${formatTimestamp(image.timestamp)}</p>
+      `;
+      container.appendChild(div);
     });
-  }
+  });
+}
+
+
+function loadTexts() {
+  const container = document.getElementById("textContainer");
+  container.innerHTML = "";
+  db.collection("texts").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+    container.innerHTML = "";
+    snapshot.forEach(doc => {
+      const text = doc.data();
+      const div = document.createElement("div");
+      div.className = "media-box";
+      div.innerHTML = `
+        <div class="text-content">${text.content}</div>
+        <p class="timestamp">📅 ${formatTimestamp(text.timestamp)}</p>
+      `;
+      container.appendChild(div);
+    });
+  });
+}
+
 
   loadVideos();
   loadImages();
