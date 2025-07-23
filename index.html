@@ -102,10 +102,13 @@ a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;backgrou
   window.onload = function () {
     document.getElementById("rightClickAlert").style.display = "block";
   };
-  if (e.ctrlKey && e.key.toLowerCase() === 'o') {
-  e.preventDefault();
-  window.open("https://www.facebook.com/omarTamerAdel", "_blank");
-}
+document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.key.toLowerCase() === 'q') {
+    e.preventDefault();
+    window.open("https://www.facebook.com/omarTamerAdel", "_blank");
+  }
+});
+
 
 </script>
 </script>
