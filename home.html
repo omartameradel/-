@@ -443,6 +443,73 @@ h2:hover::after {
       line-height: 1.5;
       color: #333;
     }
+    .like-btn {
+      background-color: #f1c40f;
+      color: #2c3e50;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    .like-btn:hover {
+      background-color: #d4ac0d;
+    }
+    .like-btn.liked {
+      background-color: #2ecc71;
+      color: white;
+    }
+    .ad-box {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      height: 50px;
+      display: block;
+      border-radius: 2px;
+      object-fit: cover;
+      background-color: #000000;
+      border: none;
+    }
+
+    #muteBtn {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #muteBtn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    h1 {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+.ad-box h1 {
+      font-size: 20px;
+      margin: 10px 0;
+      text-align: center;
+      color: #2c3e50;
+    }
+ 
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
   </style>
   <!-- ✅ أضف مكتبات Firebase -->
 <!-- ✅ Firebase CDN for browser -->
@@ -478,10 +545,15 @@ h2:hover::after {
     </nav>
   </header>
 
+ 
+
+
+  </div>
   <div class="content">
     <h2 id="greeting">مرحباً بك</h2>
   </div>
-<div>
+<div> 
+  
  <h2> عني </h2>
 
   <section style="padding: 30px; direction: rtl; font-family: 'Cairo', sans-serif;">
@@ -555,9 +627,14 @@ h2:hover::after {
 
 
 <div class="تعليقات">
-  <button><a href="تعليقات.html">لاضافة تعليق اضغط هنا</a></button>
+  <button><a href="تعليقات.html">لو تريد ان تري التعليقات او تضف تعليق اضعط هنا</a></button>
 </div>
 
+<div class="ad-box">
+    <video id="adPlayer" autoplay muted playsinline></video>
+    <button id="muteBtn">🔇 كتم</button>
+
+  </div>
      <div class="footer">
             <a href="https://www.facebook.com/omar.tamer.adel" target="_blank">      Facebook     </a> |
                     <a href="https://wa.me/01220893920" target="_blank">     WhatsApp  </a>|
@@ -585,7 +662,10 @@ h2:hover::after {
  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
 
+
+    
   <script>
+
     // إعداد Firebase
 const firebaseConfig = {
 
@@ -690,6 +770,14 @@ document.getElementById("greeting").textContent = username ? `مرحباً ${use
       const fullImage = document.getElementById("fullImage");
       const downloadLink = document.getElementById("downloadLink");
       const overlay = document.getElementById("overlay");
+      fullImage.src = ""; // إعادة تعيين الصورة قبل تحميل الجديدة
+      downloadLink.href = ""; // إعادة تعيين رابط التحميل
+      downloadLink.download = ""; // إعادة تعيين اسم الملف
+      fullImage.onload = function() {
+        // إعادة تعيين حجم الصورة عند تحميلها
+        fullImage.style.maxWidth = "90%"; 
+        fullImage.style.maxHeight = "80%";
+      };
 
       fullImage.src = src;
       fetch(src)
@@ -697,12 +785,23 @@ document.getElementById("greeting").textContent = username ? `مرحباً ${use
         .then(blob => {
           const url = URL.createObjectURL(blob);
           downloadLink.href = url;
-          downloadLink.download = "الشيخ-سعيد-القزاز.jpg"; // اسم الملف عند التحميل
+          downloadLink.download = "omartamer.jpg"; // اسم الملف عند التحميل
         });
 
       overlay.style.display = "flex";
     }
 
+
+    // إخفاء التراكب عند النقر خارج الصورة
+    document.getElementById("overlay").addEventListener("click", function (event) {
+      if (event.target === this) {  
+        hideOverlay();
+      } else {
+        event.stopPropagation(); // منع النقر من الانتقال إلى التراكب
+      }
+
+    
+    });
     function hideOverlay() {
       document.getElementById("overlay").style.display = "none";
     }
@@ -725,6 +824,64 @@ document.getElementById("greeting").textContent = username ? `مرحباً ${use
         closeAllDropdowns();
       }
     });
+
+    // تحميل الإعلانات من Firestore
+    async function loadAds() {
+      const adContainer = document.getElementById("ad-container");
+      adContainer.innerHTML = "تحميل الإعلانات...";
+      try {
+        const querySnapshot = await db.collection("ads").get();
+        if (querySnapshot.empty) {
+          adContainer.innerHTML = "لا توجد إعلانات متاحة.";
+          return;
+        }
+        const ads = querySnapshot.docs.map(doc => doc.data());
+        let adIndex = 0;
+        function showAd() {
+          const ad = ads[adIndex];
+          adContainer.innerHTML = `<iframe src="${ad.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+          adIndex = (adIndex + 1) % ads.length;
+        }
+        showAd();
+        setInterval(showAd, 5000); // تغيير الإعلان كل 5 ثوانٍ
+      } catch (error) {
+        console.error("خطأ في تحميل الإعلانات:", error);
+        adContainer.innerHTML = "حدث خطأ أثناء تحميل الإعلانات.";
+      }
+    }
+    loadAds();
+
+    // روابط الفيديوهات (يمكنك تغييرهم أو إضافة المزيد)
+    const videos = [
+      "https://res.cloudinary.com/dorrpdul5/video/upload/v1753374340/202507011903_zdwmgi.mp4",
+      "https://res.cloudinary.com/dorrpdul5/video/upload/v1753375071/%D8%A7%D8%BA%D9%86%D9%8A%D8%A9_%D8%B2%D8%B9%D9%8A%D9%85_%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9_lzfkdn.mp4"
+    ];
+
+    let current = 0;
+    const player = document.getElementById("adPlayer");
+    const muteBtn = document.getElementById("muteBtn");
+
+    function playNextVideo() {
+      player.src = videos[current];
+      player.load();
+      player.play();
+      current = (current + 1) % videos.length; // يعيد أول فيديو بعد الأخير
+    }
+
+    // عند انتهاء الفيديو → شغل التالي
+    player.addEventListener("ended", playNextVideo);
+
+    // زر كتم الصوت وتبديل النص
+    muteBtn.addEventListener("click", () => {
+      player.muted = !player.muted;
+      muteBtn.textContent = player.muted ? "🔇 كتم" : "🔊 تشغيل";
+    });
+
+    // تشغيل أول فيديو
+    playNextVideo();
+    
+  </script>
+
   </script>
 
 </body>
