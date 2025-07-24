@@ -61,218 +61,25 @@
   <span id="closeAlert" onclick="this.parentElement.style.display='none'"></span>
 </div>
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
-  authDomain: "ahmed-saeed-669ab.firebaseapp.com",
-  projectId: "ahmed-saeed-669ab"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const cloudName = "dquoqajno";
-const uploadPreset = "public_upload";
-
-function logout() {
-  firebase.auth().signOut().then(() => location.href = "index.html");
-}
-
-function uploadMedia(fileInputId, nameInputId, type, collection) {
-  const file = document.getElementById(fileInputId).files[0];
-  const name = document.getElementById(nameInputId).value.trim();
-  if (!file || !name) return alert("يرجى إدخال البيانات");
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", uploadPreset);
-  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`, { method: "POST", body: formData })
-  .then(res => res.json())
-  .then(data => db.collection(collection).add({
-    name,
-    url: data.secure_url,
-    seenBy: [],
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }))
-  .then(() => {
-    alert("تم الحفظ");
-    loadAll();
-  });
-}
-
-function uploadVideo() { uploadMedia("videoFile", "videoName", "video", "videos"); }
-function uploadImage() { uploadMedia("imageFile", "imageName", "image", "images"); }
-
-function uploadText() {
-  const content = document.getElementById("textContent").value.trim();
-  if (!content) return alert("اكتب النص");
-  db.collection("texts").add({
-    content,
-    seenBy: [],
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(() => {
-    alert("تم الحفظ");
-    document.getElementById("textContent").value = "";
-    loadTexts();
-  });
-}
-
-function loginAsUser(username, password) {
-  db.collection("users")
-    .where("username", "==", username)
-    .where("password", "==", password)
-    .get()
-    .then(snapshot => {
-      if (snapshot.empty) {
-        alert("❌ بيانات الدخول غير صحيحة");
-      } else {
-        sessionStorage.setItem("username", username);
-        window.location.href = "home.html";
-      }
-    })
-    .catch(error => {
-      console.error("خطأ في تسجيل الدخول:", error);
-      alert("حدث خطأ أثناء الدخول");
-    });
-}
-
-function deleteItem(collection, id, callback) {
-  if (confirm("هل تريد الحذف؟")) {
-    db.collection(collection).doc(id).delete().then(callback);
-  }
-}
-
-function loadUsers() {
-  const maleContainer = document.getElementById("maleUsers");
-  const femaleContainer = document.getElementById("femaleUsers");
-  maleContainer.innerHTML = "";
-  femaleContainer.innerHTML = "";
-
-  db.collection("users").get().then(snapshot => {
-    snapshot.forEach(doc => {
-      const user = doc.data();
-      const div = document.createElement("div");
-      div.className = "box";
-      div.innerHTML = `
-        <p>👤 الاسم: ${user.username}</p>
-        <p>🔑 كلمة المرور: ${user.password}</p>
-        <p>📞 رقم الهاتف: ${user.phone || 'غير مسجل'}</p>
-        <p>⚧️ الجنس: ${user.gender || 'غير محدد'}</p>
-        <button onclick="deleteItem('users','${doc.id}',loadUsers)">❌ حذف</button>
-        <button onclick="loginAsUser('${user.username}', '${user.password}')">🟢 دخول إلى الحساب</button>
-      `;
-
-      const gender = (user.gender || "").toLowerCase();
-      if (gender === "ذكر") {
-        maleContainer.appendChild(div);
-      } else if (gender === "انثى" || gender === "أنثى") {
-        femaleContainer.appendChild(div);
-      }
-    });
-  });
-}
-
-
-function loadVideos() {
-  const container = document.getElementById("videoContainer");
-  container.innerHTML = "";
-  db.collection("videos").orderBy("timestamp", "desc").get().then(snapshot => {
-    if (snapshot.empty) {
-      container.innerHTML = "<p>لا توجد فيديوهات.</p>";
-      return;
-    }
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const div = document.createElement("div");
-      div.className = "box";
-      div.innerHTML = `
-        <h4>${data.name}</h4>
-        <video controls><source src="${data.url}" type="video/mp4"></video>
-        <button onclick="deleteItem('videos','${doc.id}',loadVideos)">❌ حذف</button>
-      `;
-      container.appendChild(div);
-    });
-  });
-}
-
-function loadImages() {
-  const container = document.getElementById("imageContainer");
-  container.innerHTML = "";
-  db.collection("images").orderBy("timestamp", "desc").get().then(snapshot => {
-    if (snapshot.empty) {
-      container.innerHTML = "<p>لا توجد صور.</p>";
-      return;
-    }
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const div = document.createElement("div");
-      div.className = "box";
-      div.innerHTML = `
-        <h4>${data.name}</h4>
-        <img src="${data.url}" alt="${data.name}">
-        <button onclick="deleteItem('images','${doc.id}',loadImages)">❌ حذف</button>
-      `;
-      container.appendChild(div);
-    });
-  });
-}
-
-function loadTexts() {
-  const container = document.getElementById("textContainer");
-  container.innerHTML = "";
-  db.collection("texts").orderBy("timestamp", "desc").get().then(snapshot => {
-    if (snapshot.empty) {
-      container.innerHTML = "<p>لا توجد نصوص.</p>";
-      return;
-    }
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const div = document.createElement("div");
-      div.className = "box";
-      div.innerHTML = `
-        <div style="white-space:pre-wrap;">${data.content}</div>
-        <button onclick="deleteItem('texts','${doc.id}',loadTexts)">❌ حذف</button>
-      `;
-      container.appendChild(div);
-    });
-  });
-}
-
-window.onload = function () {
-  document.getElementById("rightClickAlert").style.display = "block";
-  loadAll(); // 🟢 هذا هو المطلوب لإظهار المستخدمين والمحتوى
-};
-
-  // تعطيل الزر الأيمن
-  document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-  });
-
-  // منع الاختصارات الضارة
-  document.addEventListener("keydown", function(e) {
-    const forbidden = [
-      (e.ctrlKey && e.key.toLowerCase() === 'u'),
-      (e.key === "F12"),
-      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'),
-      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c'),
-      (e.ctrlKey && e.key.toLowerCase() === 's'),
-      (e.ctrlKey && e.key.toLowerCase() === 'p')
-    ];
-    if (forbidden.some(Boolean)) {
-      e.preventDefault();
-      alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
-    }
-  });
-  document.addEventListener("keydown", function(e) {
-  if (e.ctrlKey && e.key.toLowerCase() === 'q') {
-    e.preventDefault();
-    window.open("https://www.facebook.com/omar.tamer.adel", "_blank");
-  }
-});
-
-function loadAll() {
-  loadUsers();
-  loadVideos();
-  loadImages();
-  loadTexts();
-}
-
+const firebaseConfig={apiKey:"AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",authDomain:"ahmed-saeed-669ab.firebaseapp.com",projectId:"ahmed-saeed-669ab"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore(),cloudName="dquoqajno",uploadPreset="public_upload";function logout(){firebase.auth().signOut().then(()=>location.href="index.html")}function uploadMedia(e,t,n,o){let a=document.getElementById(e).files[0],l=document.getElementById(t).value.trim();if(!a||!l)return alert("يرجى إدخال البيانات");let i=new FormData;i.append("file",a),i.append("upload_preset","public_upload"),fetch(`https://api.cloudinary.com/v1_1/dquoqajno/${n}/upload`,{method:"POST",body:i}).then(e=>e.json()).then(e=>db.collection(o).add({name:l,url:e.secure_url,seenBy:[],timestamp:firebase.firestore.FieldValue.serverTimestamp()})).then(()=>{alert("تم الحفظ"),loadAll()})}function uploadVideo(){uploadMedia("videoFile","videoName","video","videos")}function uploadImage(){uploadMedia("imageFile","imageName","image","images")}function uploadText(){let e=document.getElementById("textContent").value.trim();if(!e)return alert("اكتب النص");db.collection("texts").add({content:e,seenBy:[],timestamp:firebase.firestore.FieldValue.serverTimestamp()}).then(()=>{alert("تم الحفظ"),document.getElementById("textContent").value="",loadTexts()})}function loginAsUser(e,t){db.collection("users").where("username","==",e).where("password","==",t).get().then(t=>{t.empty?alert("❌ بيانات الدخول غير صحيحة"):(sessionStorage.setItem("username",e),window.location.href="home.html")}).catch(e=>{console.error("خطأ في تسجيل الدخول:",e),alert("حدث خطأ أثناء الدخول")})}function deleteItem(e,t,n){confirm("هل تريد الحذف؟")&&db.collection(e).doc(t).delete().then(n)}function loadUsers(){let e=document.getElementById("maleUsers"),t=document.getElementById("femaleUsers");e.innerHTML="",t.innerHTML="",db.collection("users").get().then(n=>{n.forEach(n=>{let o=n.data(),a=document.createElement("div");a.className="box",a.innerHTML=`
+        <p>👤 الاسم: ${o.username}</p>
+        <p>🔑 كلمة المرور: ${o.password}</p>
+        <p>📞 رقم الهاتف: ${o.phone||"غير مسجل"}</p>
+        <p>⚧️ الجنس: ${o.gender||"غير محدد"}</p>
+        <button onclick="deleteItem('users','${n.id}',loadUsers)">❌ حذف</button>
+        <button onclick="loginAsUser('${o.username}', '${o.password}')">🟢 دخول إلى الحساب</button>
+      `;let l=(o.gender||"").toLowerCase();"ذكر"===l?e.appendChild(a):("انثى"===l||"أنثى"===l)&&t.appendChild(a)})})}function loadVideos(){let e=document.getElementById("videoContainer");e.innerHTML="",db.collection("videos").orderBy("timestamp","desc").get().then(t=>{if(t.empty){e.innerHTML="<p>لا توجد فيديوهات.</p>";return}t.forEach(t=>{let n=t.data(),o=document.createElement("div");o.className="box",o.innerHTML=`
+        <h4>${n.name}</h4>
+        <video controls><source src="${n.url}" type="video/mp4"></video>
+        <button onclick="deleteItem('videos','${t.id}',loadVideos)">❌ حذف</button>
+      `,e.appendChild(o)})})}function loadImages(){let e=document.getElementById("imageContainer");e.innerHTML="",db.collection("images").orderBy("timestamp","desc").get().then(t=>{if(t.empty){e.innerHTML="<p>لا توجد صور.</p>";return}t.forEach(t=>{let n=t.data(),o=document.createElement("div");o.className="box",o.innerHTML=`
+        <h4>${n.name}</h4>
+        <img src="${n.url}" alt="${n.name}">
+        <button onclick="deleteItem('images','${t.id}',loadImages)">❌ حذف</button>
+      `,e.appendChild(o)})})}function loadTexts(){let e=document.getElementById("textContainer");e.innerHTML="",db.collection("texts").orderBy("timestamp","desc").get().then(t=>{if(t.empty){e.innerHTML="<p>لا توجد نصوص.</p>";return}t.forEach(t=>{let n=t.data(),o=document.createElement("div");o.className="box",o.innerHTML=`
+        <div style="white-space:pre-wrap;">${n.content}</div>
+        <button onclick="deleteItem('texts','${t.id}',loadTexts)">❌ حذف</button>
+      `,e.appendChild(o)})})}function loadAll(){loadUsers(),loadVideos(),loadImages(),loadTexts()}window.onload=function(){document.getElementById("rightClickAlert").style.display="block",loadAll()},document.addEventListener("contextmenu",function(e){e.preventDefault()}),document.addEventListener("keydown",function(e){let t=[e.ctrlKey&&"u"===e.key.toLowerCase(),"F12"===e.key,e.ctrlKey&&e.shiftKey&&"i"===e.key.toLowerCase(),e.ctrlKey&&e.shiftKey&&"c"===e.key.toLowerCase(),e.ctrlKey&&"s"===e.key.toLowerCase(),e.ctrlKey&&"p"===e.key.toLowerCase()];t.some(Boolean)&&(e.preventDefault(),alert("\uD83D\uDEAB هذا الإجراء غير مسموح على هذا الموقع."))}),document.addEventListener("keydown",function(e){e.ctrlKey&&"q"===e.key.toLowerCase()&&(e.preventDefault(),window.open("https://www.facebook.com/omar.tamer.adel","_blank"))});
 
 </script>
 </body>
