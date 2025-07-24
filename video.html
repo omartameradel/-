@@ -1,6 +1,121 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>صفحة الفيديوهات</title><link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صفحة الفيديوهات</title>
+      <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
-.desktop-header a:hover::after,img,video{width:100%}body{margin:0;font-family:Cairo,sans-serif;background:#f4f6f8;padding-bottom:100px}.desktop-header,.main-header{background-color:#2c3e50;color:#fff;padding:15px 20px;font-weight:700;font-size:18px}.desktop-header{display:flex;justify-content:space-between;align-items:center}.desktop-header a,.mobile-footer .notif-icon,.mobile-footer a,.notif-icon{color:#fff;text-decoration:none;margin-right:10px;position:relative;cursor:pointer;font-size:16px!important}.notif-num{background:red;color:#fff;border-radius:50%;font-size:12px;padding:2px 6px;position:absolute;top:-6px;right:-10px}.mobile-footer{display:none}.desktop-header a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background-color:#fff;transition:width .3s}@media (max-width:768px){.desktop-header{display:none}.main-header{text-align:center}.mobile-footer{display:flex;justify-content:center;gap:15px;position:fixed;bottom:0;width:100%;background-color:#2c3e50;color:#fff;padding:10px 0;z-index:1000}}.content{padding:20px}h2,h3{text-align:center;color:#1e3799}.media-box{background:#fff;padding:15px;margin:20px auto;max-width:700px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1)}img,video{border-radius:8px;margin-top:10px}.text-content{font-size:16px;background-color:#f9f9f9;padding:15px;border-radius:8px;white-space:pre-wrap}.timestamp{font-size:13px;color:#888;margin-top:8px}.media-box:hover{transform:scale(1.03);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: #f4f6f8;
+  padding-bottom: 100px;
+}
+.main-header, .desktop-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 15px 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.desktop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.desktop-header a,
+.notif-icon,
+.mobile-footer a,
+.mobile-footer .notif-icon {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  font-size: 16px !important; /* حجم موحّد */
+}
+.notif-num {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 2px 6px;
+  position: absolute;
+  top: -6px;
+  right: -10px;
+}
+.mobile-footer {
+  display: none;
+}
+.desktop-header a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+.desktop-header a:hover::after {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .desktop-header { display: none; }
+  .main-header { text-align: center; }
+  .mobile-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+}
+.content {
+  padding: 20px;
+}
+h2, h3 {
+  text-align: center;
+  color: #1e3799;
+}
+.media-box {
+  background: white;
+  padding: 15px;
+  margin: 20px auto;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+img, video {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.text-content {
+  font-size: 16px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+.timestamp {
+  font-size: 13px;
+  color: #888;
+  margin-top: 8px;
+}
+.media-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+
   </style>
 </head>
 <body>
@@ -11,6 +126,7 @@
     <span class="notif-icon" onclick="markNotificationsSeen()">🔔
       <span id="notifCount" class="notif-num" style="display:none;">0</span>
     </span>
+    <a href="تواصل.html">تواصل</a>
     <a href="video.html">الفيديوهات</a>
     <a href="home.html">الرئيسية</a>
   </div>
@@ -39,23 +155,120 @@
   <a href="home.html">الرئيسية</a>
 </header>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
-  const firebaseConfig={apiKey:"AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",authDomain:"ahmed-saeed-669ab.firebaseapp.com",projectId:"ahmed-saeed-669ab"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore(),username=sessionStorage.getItem("username")||"زائر";function formatTimestamp(e){if(!e)return"";let t=e.toDate();return`${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`}function checkNewNotifications(){let e=0;Promise.all(["videos","images","texts"].map(t=>db.collection(t).get().then(t=>{t.forEach(t=>{let n=t.data();(!n.seenBy||!n.seenBy.includes(username))&&e++})}))).then(()=>{document.getElementById("notifCount").textContent=e,document.getElementById("notifCountMobile").textContent=e;let t=e>0?"inline-block":"none";document.getElementById("notifCount").style.display=t,document.getElementById("notifCountMobile").style.display=t})}function markNotificationsSeen(){["videos","images","texts"].forEach(e=>{db.collection(e).get().then(t=>{t.forEach(t=>{let n=t.data();if(!n.seenBy||!n.seenBy.includes(username)){let o=n.seenBy||[];o.push(username),db.collection(e).doc(t.id).update({seenBy:o})}})})}),document.getElementById("notifCount").style.display="none",document.getElementById("notifCountMobile").style.display="none"}function loadVideos(){let e=document.getElementById("videoContainer");e.innerHTML="",db.collection("videos").orderBy("timestamp","desc").onSnapshot(t=>{e.innerHTML="",t.forEach(t=>{let n=t.data(),o=document.createElement("div");o.className="media-box",o.innerHTML=`
-        <h4>${n.name}</h4>
-        <video controls>
-          <source src="${n.url}" type="video/mp4">
-          متصفحك لا يدعم تشغيل الفيديو.
-        </video>
-        <p class="timestamp">📅 ${formatTimestamp(n.timestamp)}</p>
-      `,e.appendChild(o)})})}function loadImages(){let e=document.getElementById("imageContainer");e.innerHTML="",db.collection("images").orderBy("timestamp","desc").onSnapshot(t=>{e.innerHTML="",t.forEach(t=>{let n=t.data(),o=document.createElement("div");o.className="media-box",o.innerHTML=`
-        <h4>${n.name}</h4>
-        <img src="${n.url}" alt="${n.name}">
-        <p class="timestamp">📅 ${formatTimestamp(n.timestamp)}</p>
-      `,e.appendChild(o)})})}function loadTexts(){let e=document.getElementById("textContainer");e.innerHTML="",db.collection("texts").orderBy("timestamp","desc").onSnapshot(t=>{e.innerHTML="",t.forEach(t=>{let n=t.data(),o=document.createElement("div");o.className="media-box",o.innerHTML=`
-        <div class="text-content">${n.content}</div>
-        <p class="timestamp">📅 ${formatTimestamp(n.timestamp)}</p>
-      `,e.appendChild(o)})})}document.getElementById("greeting").textContent=`مرحباً ${username}!`,window.addEventListener("contextmenu",function(e){e.preventDefault()}),document.addEventListener("keydown",function(e){let t=[e.ctrlKey&&"u"===e.key.toLowerCase(),"F12"===e.key,e.ctrlKey&&e.shiftKey&&"i"===e.key.toLowerCase(),e.ctrlKey&&e.shiftKey&&"c"===e.key.toLowerCase(),e.ctrlKey&&"s"===e.key.toLowerCase(),e.ctrlKey&&"p"===e.key.toLowerCase()];t.some(Boolean)&&(e.preventDefault(),alert("\uD83D\uDEAB هذا الإجراء غير مسموح على هذا الموقع."))}),window.onload=function(){document.getElementById("rightClickAlert").style.display="block"},document.addEventListener("keydown",function(e){e.ctrlKey&&"q"===e.key.toLowerCase()&&(e.preventDefault(),window.open("https://www.facebook.com/omar.tamer.adel","_blank"))});
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+    authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+    projectId: "ahmed-saeed-669ab"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  const username = sessionStorage.getItem("username") || "زائر";
+  document.getElementById("greeting").textContent = `مرحباً ${username}!`;
+
+  function formatTimestamp(timestamp) {
+    if (!timestamp) return "";
+    const date = timestamp.toDate();
+    return `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
+  }
+
+  function checkNewNotifications() {
+    const collections = ['videos', 'images', 'texts'];
+    let count = 0;
+    Promise.all(
+      collections.map(col =>
+        db.collection(col).get().then(snapshot => {
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            if (!data.seenBy || !data.seenBy.includes(username)) count++;
+          });
+        })
+      )
+    ).then(() => {
+      document.getElementById("notifCount").textContent = count;
+      document.getElementById("notifCountMobile").textContent = count;
+      const display = count > 0 ? "inline-block" : "none";
+      document.getElementById("notifCount").style.display = display;
+      document.getElementById("notifCountMobile").style.display = display;
+    });
+  }
+
+  function markNotificationsSeen() {
+    const collections = ['videos', 'images', 'texts'];
+    collections.forEach(col => {
+      db.collection(col).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          if (!data.seenBy || !data.seenBy.includes(username)) {
+            const seenBy = data.seenBy || [];
+            seenBy.push(username);
+            db.collection(col).doc(doc.id).update({ seenBy });
+          }
+        });
+      });
+    });
+    document.getElementById("notifCount").style.display = "none";
+    document.getElementById("notifCountMobile").style.display = "none";
+  }
+
+  function loadVideos() {
+    const container = document.getElementById("videoContainer");
+    container.innerHTML = "";
+    db.collection("videos").orderBy("timestamp", "desc").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const video = doc.data();
+        const div = document.createElement("div");
+        div.className = "media-box";
+        div.innerHTML = `
+          <h4>${video.name}</h4>
+          <video controls>
+            <source src="${video.url}" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+          <p class="timestamp">📅 ${formatTimestamp(video.timestamp)}</p>
+        `;
+        container.appendChild(div);
+      });
+    });
+  }
+
+  function loadImages() {
+    const container = document.getElementById("imageContainer");
+    container.innerHTML = "";
+    db.collection("images").orderBy("timestamp", "desc").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const image = doc.data();
+        const div = document.createElement("div");
+        div.className = "media-box";
+        div.innerHTML = `
+          <h4>${image.name}</h4>
+          <img src="${image.url}" alt="${image.name}">
+          <p class="timestamp">📅 ${formatTimestamp(image.timestamp)}</p>
+        `;
+        container.appendChild(div);
+      });
+    });
+  }
+
+  function loadTexts() {
+    const container = document.getElementById("textContainer");
+    container.innerHTML = "";
+    db.collection("texts").orderBy("timestamp", "desc").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const text = doc.data();
+        const div = document.createElement("div");
+        div.className = "media-box";
+        div.innerHTML = `
+          <div class="text-content">${text.content}</div>
+          <p class="timestamp">📅 ${formatTimestamp(text.timestamp)}</p>
+        `;
+        container.appendChild(div);
+      });
+    });
+  }
 
   loadVideos();
   loadImages();
