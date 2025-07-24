@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التعليقات مع التفاعلات</title>
+  <style>
+    body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+  color: #1c1e21;
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: #0d47a1;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffffffee;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  box-shadow: 0 0 0 2px #2196f3;
+  outline: none;
+}
+
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+button {
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  transform: translateY(-2px);
+}
+
+hr {
+  margin: 40px 0 30px;
+  border: none;
+  border-top: 1px solid #bbb;
+  width: 100%;
+  max-width: 600px;
+}
+
+#comments {
+  max-width: 600px;
+  width: 100%;
+  display: grid;
+  gap: 20px;
+}
+
+.comment {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.comment:hover {
+  transform: scale(1.02);
+}
+
+.comment::before {
+  content: "💬";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 20px;
+}
+
+.comment strong {
+  color: #0d47a1;
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.comment p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.reactions {
+  margin-top: 10px;
+}
+
+.reactions button.active {
+  background-color: #ffeaea;
+  transform: scale(1.2);
+  box-shadow: 0 0 6px #ff1744aa;
+}
+.reactions button {
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.reactions button {
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.reactions button:hover {
+  transform: scale(1.3);
+}
+
+.reaction-counts {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #555;
+}
+
+.copy-btn {
+  margin-top: 12px;
+  font-size: 14px;
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+  background-color: #e0e0e0;
+}
+.copy-btn:active {
+  background-color: #d0d0d0;
+}
+
+    .home {
+        margin-top: 20px;
+    }
+    .home button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+    .home button a {
+      color: white;
+      text-decoration: none;
+    }
+    .home button:hover {
+      background-color: #2980b9;
+    }
+    
+  </style>
+</head>
+<body>
+
+<h2>إضافة تعليق</h2>
+<input type="text" id="name" placeholder="اسمك" />
+<br><br>
+<textarea id="comment" placeholder="اكتب تعليقك هنا..." rows="3" style="width:100%;"></textarea>
+<br><br>
+<button onclick="addComment()">إرسال</button>
+
+<hr>
+
+<h3>جميع التعليقات:</h3>
+<div id="comments"></div>
+
+
+<div class="home">
+    <button><a href="home.html">عودة لصفحة الرئيسية</a></button>
+</div>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // 🔥 إعداد Firebase
+ const firebaseConfig = {
+
+  apiKey: "AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",
+
+  authDomain: "programomartamer-451a5.firebaseapp.com",
+
+  projectId: "programomartamer-451a5",
+
+  storageBucket: "programomartamer-451a5.firebasestorage.app",
+
+  messagingSenderId: "351835913301",
+
+  appId: "1:351835913301:web:d722fdcc9fb7b15c4468dc",
+
+  measurementId: "G-R5FJQY220K"
+
+};
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // ✅ إضافة تعليق
+  function addComment() {
+    const name = document.getElementById("name").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+    if (!name || !comment) return alert("أدخل الاسم والتعليق");
+
+    db.collection("comments").add({
+      name,
+      comment,
+      timestamp: Date.now(),
+      reactions: {} // سنخزن التفاعلات هنا
+    }).then(() => {
+      document.getElementById("comment").value = "";
+      loadComments();
+    });
+  }
+
+  // ✅ تحميل التعليقات مع التفاعلات
+
+  function loadComments() {
+    const commentsDiv = document.getElementById("comments");
+    commentsDiv.innerHTML = "";
+
+    db.collection("comments").orderBy("timestamp", "desc").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const commentId = doc.id;
+
+        const div = document.createElement("div");
+        div.className = "comment";
+        div.style.border = "1px solid #ddd";
+        div.style.borderRadius = "10px";
+        div.style.padding = "10px";
+        div.style.margin = "10px 0";
+        div.style.backgroundColor = "#f7f7f7";
+
+        div.innerHTML = `
+          <strong>${data.name}:</strong><br>
+          <p>${data.comment}</p>
+          <button onclick="react('${commentId}', '❤️')">❤️</button>
+        `;
+
+        // جلب الأسماء من reactions_log
+        db.collection("reactions_log")
+          .where("commentId", "==", commentId)
+          .where("emoji", "==", "❤️")
+          .get()
+          .then(reactions => {
+            const names = [];
+            reactions.forEach(r => {
+              const rdata = r.data();
+              if (!names.includes(rdata.name)) {
+                names.push(rdata.name);
+              }
+            });
+
+            if (names.length > 0) {
+              const box = document.createElement("div");
+              box.style.marginTop = "10px";
+              box.style.background = "#fff3f3";
+              box.style.padding = "10px";
+              box.style.border = "1px solid #ffb3b3";
+              box.style.borderRadius = "8px";
+              box.style.color = "#b30000";
+              box.textContent = `❤️ أحب هذا التعليق: ${names.join("، ")}`;
+              div.appendChild(box);
+            }
+
+            commentsDiv.appendChild(div);
+          });
+      });
+    });
+  }
+
+  function react(commentId, emoji) {
+    const userName = document.getElementById("name").value.trim();
+if (!userName) return alert("يرجى إدخال اسمك في الحقل المخصص أعلى الصفحة قبل التفاعل");
+    if (!emoji) return alert("يرجى اختيار رمز تعبيري للتفاعل");
+
+    const logRef = db.collection("reactions_log");
+    logRef
+      .where("commentId", "==", commentId)
+      .where("name", "==", userName)
+      .where("emoji", "==", emoji)
+      .get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          logRef.add({
+            commentId: commentId,
+            name: userName,
+            emoji: emoji
+          }).then(() => {
+            loadComments(); // تحديث العرض بعد التفاعل
+          });
+        } else {
+          alert("لقد تفاعلت مسبقًا.");
+        }
+      });
+  }
+
+  window.onload = loadComments;
+
+  // ⏱️ أول تحميل
+  loadComments();
+</script>
+</body>
+</html>
