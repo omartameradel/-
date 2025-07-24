@@ -117,10 +117,14 @@
 <p> <a href="كيبورد جيمر.html" title=" كيبورد جيمر">كيبورد جيمر</a> </p>
 </nav>
 <h2>أضف تعليقك</h2>
-<input id=name placeholder=اسمك required>
-<input type=url id=facebook placeholder="رابط فيسبوك (اختياري)">
-<textarea id=comment placeholder="اكتب تعليقك هنا..." required></textarea>
-<button onclick=addComment()>نشر التعليق</button>
+<div class="profile-info">
+  <div class="comment-box">
+    <input type="text" id="name" placeholder="اسمك" required>
+    <input type="url" id="facebook" placeholder="رابط فيسبوك (اختياري)">
+    <textarea id="comment" placeholder="اكتب تعليقك هنا..." required></textarea>
+    <button onclick="addComment()">نشر التعليق</button>
+  </div>
+</div>
 <div id=comments></div>
 <div class=footer>
 <a href=https://www.facebook.com/omar.tamer.adel target=_blank>Facebook</a> |
