@@ -1,241 +1,57 @@
-<!-- ملف: index.html -->
 <!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>زعيم البرمجة - عمر تامر محمد عادل</title>
-  <meta name="description" content="موقع عمر تامر - مطور ومصمم مواقع ويب احترافية.">
-  <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+  <title>زعيم البرمجة-عمرتامرمحمدعادل</title>
+    <meta name="description" content="موقع عمر تامر - مطور ومصمم مواقع ويب احترافية باستخدام HTML وCSS وJavaScript.">
+      <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
-      padding: 20px;
-      text-align: center;
-      direction: rtl;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-    }
-
-    button:hover {
-      background-color: #2980b9;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .password-container {
-      position: relative;
-    }
-
-    .toggle-visibility {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-    }
-
-    #rightClickAlert {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeeba;
-      padding: 15px;
-      border-radius: 8px;
-      z-index: 9999;
-    }
-
-    #closeAlert {
-      position: absolute;
-      top: 5px;
-      left: 10px;
-      cursor: pointer;
-    }
+a,button{cursor:pointer}body{font-family:Cairo,sans-serif;direction:rtl;background:linear-gradient(to bottom right,#f5f7fa,#c3cfe2);padding:20px;text-align:center}.container{max-width:400px;margin:auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1)}h2{color:#333}button,input,select{width:100%;margin:10px 0;padding:10px;font-size:16px;border-radius:6px;border:1px solid #ccc;box-sizing:border-box}.password-container{position:relative}#closeAlert,.toggle-visibility{position:absolute;cursor:pointer}.password-container input{padding-right:35px}.toggle-visibility{right:10px;top:50%;transform:translateY(-50%);font-size:18px;color:#555}button{background:#3498db;color:#fff;border:none}button:hover{background:#2980b9}.hidden{display:none}a{color:#3498db;text-decoration:underline}#rightClickAlert{position:fixed;top:20px;right:20px;background-color:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:15px 40px 15px 15px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,.1);z-index:9999;font-size:15px;max-width:320px}#closeAlert{top:5px;left:8px;font-weight:700;font-size:18px}
   </style>
 </head>
 <body>
-
-<div id="rightClickAlert">
+ <div id="rightClickAlert">
   <span id="closeAlert" onclick="document.getElementById('rightClickAlert').style.display='none'">×</span>
-  ❌ لا يمكنك استخدام الزر الأيمن، هذا الموقع محمي.
+  ❌ لا يمكنك الضغط على زر الفأرة الأيمن لأن هذا الموقع محمي من النسخ وسرقة المحتوى.<br><br>
+  ✅ يمكنك استخدام اختصارات لوحة المفاتيح فقط:<br>
+  <strong>Ctrl+C</strong> للنسخ، <strong>Ctrl+V</strong> للصق، <strong>Ctrl+X</strong> للقص.
 </div>
-
-<div class="container">
-  <div id="loginBox">
-    <h2>تسجيل الدخول</h2>
-    <input id="loginUsername" placeholder="اسم المستخدم">
-    <div class="password-container">
-      <input type="password" id="loginPassword" placeholder="كلمة المرور">
-      <span class="toggle-visibility" onclick="togglePassword('loginPassword', this)">👁️</span>
-    </div>
-    <button onclick="login()">تسجيل الدخول</button>
-    <p><a href="#" onclick="toggleForms()">ليس لديك حساب؟ أنشئ حساب</a></p>
-  </div>
-
-  <div id="registerBox" class="hidden">
-    <h2>إنشاء حساب</h2>
-    <select id="gender">
-      <option value="ذكر">ذكر</option>
-      <option value="أنثى">أنثى</option>
-    </select>
-    <input id="regUsername" placeholder="اسم المستخدم">
-    <div class="password-container">
-      <input type="password" id="regPassword" placeholder="كلمة المرور">
-      <span class="toggle-visibility" onclick="togglePassword('regPassword', this)">👁️</span>
-    </div>
-    <input id="phoneInput" placeholder="رقم الهاتف">
-    <input type="file" id="photoInput" accept="image/*">
-    <button onclick="register()">تسجيل</button>
-    <p><a href="#" onclick="toggleForms()">لديك حساب؟ تسجيل الدخول</a></p>
-  </div>
+<div class=container>
+<div id=loginBox>
+<h2>تسجيل الدخول</h2>
+<input id=loginUsername placeholder="اسم المستخدم">
+<div class=password-container>
+<input type=password id=loginPassword placeholder="أدخل كلمة المرور">
+<span class=toggle-visibility onclick='togglePassword("loginPassword",this)'>👁️</span>
 </div>
-
+<button id=loginBtn>تسجيل الدخول</button>
+<p><a id=toRegister>ليس لديك حساب؟ أنشئ حساب</a></p>
+</div>
+<div id=registerBox class=hidden>
+<h2>إنشاء حساب</h2>
+<select id=gender>
+<option value=ذكر>ذكر</option>
+<option value=أنثى>أنثى</option>
+</select>
+<input id=regUsername placeholder="اسم المستخدم">
+<div class=password-container>
+<input type=password id=regPassword placeholder="أدخل كلمة المرور">
+<span class=toggle-visibility onclick='togglePassword("regPassword",this)'>👁️</span>
+</div>
+<input type=tel id=phoneInput placeholder="رقم الهاتف">
+<button id=registerBtn>تسجيل</button>
+<p><a id=toLogin>لديك حساب؟ تسجيل الدخول</a></p>
+</div>
+</div>
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
-    authDomain: "ahmed-saeed-669ab.firebaseapp.com",
-    projectId: "ahmed-saeed-669ab",
-    storageBucket: "ahmed-saeed-669ab.appspot.com"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const storage = firebase.storage();
-
-  function toggleForms() {
-    document.getElementById("loginBox").classList.toggle("hidden");
-    document.getElementById("registerBox").classList.toggle("hidden");
-  }
-
-  function togglePassword(id, el) {
-    let input = document.getElementById(id);
-    input.type = input.type === "password" ? "text" : "password";
-    el.textContent = input.type === "text" ? "🙈" : "👁️";
-  }
-
-  function register() {
-    let username = document.getElementById("regUsername").value.trim();
-    let password = document.getElementById("regPassword").value.trim();
-    let gender = document.getElementById("gender").value;
-    let phone = document.getElementById("phoneInput").value.trim();
-    let photo = document.getElementById("photoInput").files[0];
-
-    if (!username || !password || !phone || !photo) {
-      alert("يرجى تعبئة جميع الحقول وتحميل صورة");
-      return;
-    }
-
-    db.collection("users").doc(username).get().then(doc => {
-      if (doc.exists) {
-        alert("❌ اسم المستخدم مستخدم بالفعل");
-      } else {
-        const storageRef = storage.ref(`photos/${username}_${Date.now()}`);
-        storageRef.put(photo).then(snapshot => {
-          return snapshot.ref.getDownloadURL();
-        }).then(photoURL => {
-          return db.collection("users").doc(username).set({
-            username, password, gender, phone, photo: photoURL
-          });
-        }).then(() => {
-          alert("✅ تم إنشاء الحساب بنجاح!");
-          toggleForms();
-        }).catch(err => {
-          console.error(err);
-          alert("❌ حدث خطأ أثناء رفع الصورة أو إنشاء الحساب");
-        });
-      }
-    });
-  }
-
-  function login() {
-    let username = document.getElementById("loginUsername").value.trim();
-    let password = document.getElementById("loginPassword").value.trim();
-
-    if (!username || !password) {
-      alert("يرجى إدخال جميع البيانات");
-      return;
-    }
-
-    if (username === "admin" && password === "313589") {
-      window.location.href = "admin.html";
-      return;
-    }
-
-    db.collection("users")
-      .where("username", "==", username)
-      .where("password", "==", password)
-      .get()
-      .then(snapshot => {
-        if (snapshot.empty) {
-          alert("❌ بيانات الدخول غير صحيحة");
-        } else {
-          const user = snapshot.docs[0].data();
-          sessionStorage.setItem("username", user.username);
-          sessionStorage.setItem("photo", user.photo || "");
-          window.location.href = "home.html";
-        }
-      }).catch(err => {
-        console.error(err);
-        alert("❌ حدث خطأ أثناء تسجيل الدخول");
-      });
-  }
-
-  // منع النسخ وفتح أدوات المطور
-  document.addEventListener("keydown", function (e) {
-    if (
-      (e.ctrlKey && ["u", "s", "p"].includes(e.key.toLowerCase())) ||
-      e.key === "F12" ||
-      (e.ctrlKey && e.shiftKey && ["I", "C"].includes(e.key))
-    ) {
-      e.preventDefault();
-      alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === "q") {
-      e.preventDefault();
-      window.open("https://www.facebook.com/omar.tamer.adel", "_blank");
-    }
-  });
-
-  window.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-  });
-
-  window.onload = function () {
-    document.getElementById("rightClickAlert").style.display = "block";
-  };
+ const firebaseConfig={apiKey:"AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",authDomain:"ahmed-saeed-669ab.firebaseapp.com",projectId:"ahmed-saeed-669ab"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function toggleForms(){document.getElementById("loginBox").classList.toggle("hidden"),document.getElementById("registerBox").classList.toggle("hidden")}function togglePassword(e,t){let n=document.getElementById(e);"password"===n.type?(n.type="text",t.textContent="\uD83D\uDE48"):(n.type="password",t.textContent="\uD83D\uDC41️")}function register(){let e=document.getElementById("regUsername").value.trim(),t=document.getElementById("regPassword").value.trim(),n=document.getElementById("gender").value,r=document.getElementById("phoneInput").value.trim();if(!e||!t||!r){alert("يرجى تعبئة كل الحقول");return}db.collection("users").where("username","==",e).get().then(o=>{o.empty?db.collection("users").doc(e).set({username:e,password:t,gender:n,phone:r}).then(()=>{toggleForms(),alert("✅ تم إنشاء الحساب بنجاح، يمكنك تسجيل الدخول الآن")}).catch(e=>{console.error(e),alert("حدث خطأ أثناء إنشاء الحساب")}):alert("❌ هذا الاسم مستخدم بالفعل")}).catch(e=>{console.error(e),alert("حدث خطأ أثناء التحقق من المستخدم")})}function login(){let e=document.getElementById("loginUsername").value.trim(),t=document.getElementById("loginPassword").value.trim();if(!e||!t){alert("يرجى تعبئة جميع الحقول");return}if("admin"===e&&"313589"===t){window.location.href="admin.html";return}db.collection("users").where("username","==",e).where("password","==",t).get().then(e=>{if(e.empty)alert("❌ بيانات الدخول غير صحيحة");else{let t=e.docs[0].data();sessionStorage.setItem("username",t.username),window.location.href="home.html"}}).catch(e=>{console.error(e),alert("حدث خطأ أثناء تسجيل الدخول")})}document.getElementById("loginBtn").addEventListener("click",login),document.getElementById("registerBtn").addEventListener("click",register),document.getElementById("toRegister").addEventListener("click",toggleForms),document.getElementById("toLogin").addEventListener("click",toggleForms),document.addEventListener("keydown",function(e){e.ctrlKey&&("u"===e.key||"U"===e.key)&&e.preventDefault(),"F12"===e.key&&e.preventDefault()}),window.addEventListener("contextmenu",function(e){e.preventDefault()}),document.addEventListener("keydown",function(e){let t=e.key.toLowerCase();(e.ctrlKey&&"u"===t||"F12"===e.key||e.ctrlKey&&e.shiftKey&&"i"===t||e.ctrlKey&&e.shiftKey&&"c"===t||e.ctrlKey&&"s"===t||e.ctrlKey&&"p"===t)&&(e.preventDefault(),alert("\uD83D\uDEAB هذا الإجراء غير مسموح على هذا الموقع.")),e.ctrlKey&&"q"===t&&(e.preventDefault(),window.open("https://www.facebook.com/omar.tamer.adel","_blank"))}),window.onload=function(){document.getElementById("rightClickAlert").style.display="block"};
 </script>
+</script>
+
 </body>
 </html>
