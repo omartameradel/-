@@ -39,482 +39,11 @@
   }
   </script>
    <style>
-body {
-  font-family: 'Cairo', sans-serif;
-  margin: 0;
-  background: #f9f9f9;
-  padding-bottom: 60px;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #2c3e50;
-  color: white;
-  padding: 15px 20px;
-  flex-wrap: wrap;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
-nav.desktop {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  position: relative;
-}
-
-.desktop-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav a,
-.mobile-nav a,
-.dropdown-toggle {
-  position: relative;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px !important; /* حجم موحّد */
-  transition: color 0.3s ease;
-}
-
-nav a::after,
-.mobile-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-}
-
-nav a:hover::after,
-.mobile-nav a:hover::after {
-  width: 100%;
-}
-
-.desktop-header a::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-}
-
-.desktop-header a:hover::after {
-  width: 100%;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 30px;
-  right: 0;
-  background: white;
-  color: #2c3e50;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 999;
-}
-
-.dropdown-menu button {
-  background: none;
-  border: none;
-  padding: 10px 20px;
-  width: 100%;
-  text-align: right;
-  font-weight: bold;
-  cursor: pointer;
-  color: #2c3e50;
-}
-
-.dropdown-menu button:hover {
-  background-color: #f1f1f1;
-}
-
-.content {
-  padding: 30px 20px;
-  text-align: center;
-}
-
-h2 {
-  position: relative;
-  display: inline-block;
-  color: #1e3799;
-  font-size: 24px;
-  cursor: default;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background-color: #1e3799;
-  transition: width 0.3s ease;
-}
-
-h2:hover::after {
-  width: 100%;
-}
-
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.image-gallery img {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: zoom-in;
-  transition: transform 0.3s;
-}
-
-.image-gallery img:hover {
-  transform: scale(1.05);
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.overlay img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #fff;
-  margin-bottom: 15px;
-}
-
-.download-btn {
-  background-color: #f1c40f;
-  border: none;
-  color: #2c3e50;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
-}
-
-.download-btn:hover {
-  background-color: #d4ac0d;
-}
-
-.footer {
-  text-align: center;
-  padding: 15px;
-  background-color: #2c5364;
-  color: white;
-  margin-top: 30px;
-}
-
-.footer mark {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.footer a {
-  color: #e0ebe6;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.mobile-nav {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  nav.desktop {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #2c3e50;
-    z-index: 999;
-  }
-
-  .mobile-nav .dropdown {
-    position: relative;
-  }
-
-  .mobile-nav button,
-  .mobile-nav a,
-  .mobile-nav span {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    background: none;
-    border: none;
-    font-size: 16px !important;
-  }
-
-  .mobile-nav .dropdown-menu {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    width: 80%;
-    max-width: 300px;
-    z-index: 1000;
-    display: none;
-    text-align: center;
-  }
-
-  .mobile-nav .dropdown-menu button {
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-    font-size: 18px;
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .mobile-nav .dropdown-menu button:hover {
-    background-color: #1a252f;
-  }
-
-  .dropdown-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 999;
-  }
-
-  .image-gallery img {
-    height: 250px;
-  }
-}
-  .image-gallery img:hover {
-    transform: scale(1.03);
-  }
-
-  .profile-info {
-    background-color: white;
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    position: relative;
-  }
-
-  .profile-info div {
-    margin-bottom: 15px;
-  } 
-
-  
-
-    h2 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    input[type="text"],
-    input[type="url"],
-    textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-
-    textarea {
-      height: 120px;
-      resize: vertical;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    #comments {
-      margin-top: 30px;
-    }
-
-    .comment-box {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .comment-box strong {
-      color: #4CAF50;
-    }
-
-    .comment-box a {
-      color: #0077cc;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .comment-box a:hover {
-      text-decoration: underline;
-    }
-    .comment-box small {
-      color: #999;
-      font-size: 12px;
-    }
-    .comment-box hr {
-      border: 0;
-      border-top: 1px solid #ddd;
-      margin: 10px 0;
-    }
-    .comment-box p {
-      margin: 5px 0;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #333;
-    }
-    .like-btn {
-      background-color: #f1c40f;
-      color: #2c3e50;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-    }
-    .like-btn:hover {
-      background-color: #d4ac0d;
-    }
-    .like-btn.liked {
-      background-color: #2ecc71;
-      color: white;
-    }
-    .ad-box {
-      max-width: 400px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      position: relative;
-    }
-
-    video {
-      width: 100%;
-      height: 50px;
-      display: block;
-      border-radius: 2px;
-      object-fit: cover;
-      background-color: #000000;
-      border: none;
-    }
-
-    #muteBtn {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      border: none;
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-
-    #muteBtn:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-    h1 {
-      font-size: 24px;
-      margin: 10px 0;
-    }
-.ad-box h1 {
-      font-size: 20px;
-      margin: 10px 0;
-      text-align: center;
-      color: #2c3e50;
-    }
- 
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+.dropdown,h2,nav.desktop{position:relative}#comments,.footer{margin-top:30px}body{font-family:Cairo,sans-serif;margin:0;background:#f9f9f9;padding-bottom:60px}header{display:flex;justify-content:space-between;align-items:center;background:#2c3e50;color:#fff;padding:15px 20px;flex-wrap:wrap}header h1{margin:0;font-size:20px}nav.desktop{display:flex;gap:10px;align-items:center}.desktop-header{display:flex;justify-content:space-between;align-items:center}.dropdown-toggle,.mobile-nav a,nav a{position:relative;color:#fff;text-decoration:none;font-weight:700;background:0 0;border:none;cursor:pointer;font-size:16px!important;transition:color .3s}.desktop-header a::after,.mobile-nav a::after,nav a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background-color:#fff;transition:width .3s}.desktop-header a:hover::after,.mobile-nav a:hover::after,h2:hover::after,nav a:hover::after{width:100%}#muteBtn,.dropdown-menu,h2::after{position:absolute}.dropdown-menu{display:none;top:30px;right:0;background:#fff;color:#2c3e50;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,.2);z-index:999}.dropdown-menu button{background:0 0;border:none;padding:10px 20px;width:100%;text-align:right;font-weight:700;cursor:pointer;color:#2c3e50}.footer mark,video{background-color:#000}.ad-box h1,.content,.footer,h2{text-align:center}.dropdown-menu button:hover{background-color:#f1f1f1}.content{padding:30px 20px}h2{display:inline-block;font-size:24px;cursor:default;color:#333;margin-bottom:20px}h2::after{content:'';bottom:-5px;right:0;width:0;height:2px;background-color:#1e3799;transition:width .3s}.image-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;padding:20px}.mobile-nav,.overlay{display:none}.image-gallery img{width:100%;height:350px;object-fit:cover;border-radius:10px;cursor:zoom-in;transition:transform .3s}.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:9999;flex-direction:column;padding:10px}.overlay img{max-width:90%;max-height:80%;border-radius:10px;box-shadow:0 0 15px #fff;margin-bottom:15px}.download-btn{background-color:#f1c40f;border:none;color:#2c3e50;font-weight:700;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:16px;transition:background .3s}#muteBtn,.like-btn,button{cursor:pointer;transition:background-color .3s}.download-btn:hover,.like-btn:hover{background-color:#d4ac0d}.footer{padding:15px;background-color:#2c5364;color:#fff}.footer mark{color:#fff;padding:5px 10px;border-radius:5px}.footer a{color:#e0ebe6;text-decoration:none;font-weight:700}@media (max-width:768px){.dropdown-overlay,.mobile-nav{left:0;width:100%;z-index:999}nav.desktop{display:none}.mobile-nav{display:flex;justify-content:space-around;align-items:center;position:fixed;bottom:0;height:60px;background-color:#2c3e50}.mobile-nav .dropdown{position:relative}.mobile-nav a,.mobile-nav button,.mobile-nav span{color:#fff;text-decoration:none;font-weight:700;background:0 0;border:none;font-size:16px!important}.mobile-nav .dropdown-menu{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.3);padding:20px;width:80%;max-width:300px;z-index:1000;display:none;text-align:center}.mobile-nav .dropdown-menu button{width:100%;text-align:center;padding:12px;font-size:18px;background-color:#2c3e50;color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background-color .3s}.mobile-nav .dropdown-menu button:hover{background-color:#1a252f}.dropdown-overlay{display:none;position:fixed;top:0;height:100%;background:rgba(0,0,0,.4)}.image-gallery img{height:250px}}.image-gallery img:hover{transform:scale(1.03)}.profile-info{background-color:#fff;padding:20px;max-width:500px;margin:auto;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.1);position:relative}.comment-box,.profile-info div{margin-bottom:15px}input[type=text],input[type=url],textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:16px}textarea{height:120px;resize:vertical}button{background-color:#4caf50;color:#fff;padding:12px 20px;border:none;border-radius:8px;font-size:16px;margin-top:10px;width:100%}button:hover{background-color:#45a049}.comment-box{background-color:#fff;border:1px solid #ddd;border-radius:10px;padding:15px;box-shadow:0 2px 5px rgba(0,0,0,.05)}.comment-box strong{color:#4caf50}.comment-box a{color:#07c;text-decoration:none;font-size:14px}.comment-box a:hover{text-decoration:underline}.comment-box small{color:#999;font-size:12px}.comment-box hr{border:0;border-top:1px solid #ddd;margin:10px 0}.comment-box p{margin:5px 0;font-size:14px;line-height:1.5;color:#333}.ad-box h1,h1{margin:10px 0}.like-btn{background-color:#f1c40f;color:#2c3e50;border:none;padding:10px 15px;border-radius:5px;font-size:14px}.like-btn.liked{background-color:#2ecc71;color:#fff}.ad-box{max-width:400px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.1);overflow:hidden;position:relative}video{width:100%;height:50px;display:block;border-radius:2px;object-fit:cover;border:none}#muteBtn{top:5px;left:5px;background-color:rgba(0,0,0,.6);color:#fff;border:none;padding:4px 10px;border-radius:4px;font-size:14px;user-select:none}#muteBtn:hover{background-color:rgba(0,0,0,.8)}h1{font-size:24px}.ad-box h1{font-size:20px;color:#2c3e50}
   </style>
   <!-- ✅ أضف مكتبات Firebase -->
 <!-- ✅ Firebase CDN for browser -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 
   
@@ -538,39 +67,28 @@ h2:hover::after {
   <button class="download-btn" onclick="location.href='ملف الشخصي.html'">ملف الشخصي</button>
   <button class="download-btn" onclick="logout()">تسجيل الخروج</button>
 </div>
-
-
-
       </div>
     </nav>
   </header>
-
- 
-
-
   </div>
   <div class="content">
     <h2 id="greeting">مرحباً بك</h2>
   </div>
 <div> 
-  
- <h2> عني </h2>
 
+ <h2> عني </h2>
   <section style="padding: 30px; direction: rtl; font-family: 'Cairo', sans-serif;">
   <h1 style="font-size: 28px; color: #0d47a1;">من هو المبرمج عمر تامر محمد عادل؟</h1>
   <p style="font-size: 18px; line-height: 1.8;">
     <strong>عمر تامر محمد عادل</strong> هو مبرمج ومصمم واجهات مواقع <strong>مصري يبلغ من العمر 13 عامًا</strong>، بدأ رحلته في عالم البرمجة في سن مبكرة، وتمكن خلال وقت قصير من إثبات نفسه كمطور ومبدع في تصميم صفحات الويب وتطبيقات الإنترنت باستخدام لغات البرمجة مثل: 
     <strong>HTML، CSS، وJavaScript</strong>.
   </p>
-
   <p style="font-size: 18px; line-height: 1.8;">
     يُعرف عمر بلقبه على الإنترنت <strong>"زعيم البرمجة – Programming Leader"</strong>، ويقدم محتوى تعليمي رائع على قناته الرسمية في YouTube، يساعد فيه الشباب على تعلم البرمجة بطريقة سهلة وعملية.
   </p>
-
   <p style="font-size: 18px; line-height: 1.8;">
     من أهم ما يميز عمر هو شغفه الكبير بتصميم <strong>واجهات المستخدم (UI)</strong> واهتمامه بتجربة المستخدم، حيث يعمل على تقديم مواقع ذات تصميم احترافي وأسلوب سلس يجذب المستخدم.
   </p>
-
   <h2 style="margin-top: 30px; font-size: 22px; color: #0d47a1;">🔗 روابط مهمة</h2>
   <ul style="font-size: 18px; line-height: 2;">
     <li>الموقع الرسمي: <a href="https://omartamer.netlify.app" target="_blank">https://omartamer.netlify.app</a></li>
@@ -581,10 +99,6 @@ h2:hover::after {
     يسعى عمر إلى أن يصبح من أكبر المطورين في العالم، ويطمح إلى تطوير تطبيقات ومواقع تخدم المجتمع العربي وتُحدث فرقًا حقيقيًا.
   </p>
 </section>
-
-
-  
-
 مهاراتي الأساسية:
   </p>
   <ul>
@@ -595,7 +109,6 @@ h2:hover::after {
   </ul>
   <p>
 <hr>
-
   </div>
   <section class="image-gallery">
     <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752737867/logo_wxn5wy.png" onclick="showFullImage(this.src)">
@@ -605,17 +118,13 @@ h2:hover::after {
     <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752738038/482236654_122204427608164363_2004127349059533219_n_zw9bwq.jpg" onclick="showFullImage(this.src)">
     <img src="https://res.cloudinary.com/dorrpdul5/image/upload/v1752738082/482007103_1076281557869402_4842742535121225851_n_tawxex.jpg" onclick="showFullImage(this.src)">
   </section>
-
   <div class="overlay" id="overlay" onclick="hideOverlay()">
     <img id="fullImage" src="" onclick="event.stopPropagation()">
     <a id="downloadLink" download>
       <button class="download-btn">تحميل الصورة</button>
     </a>
   </div>
-
-
   <hr>
-
     <nav style="background-color: #2a5764; padding: 10px; text-align: center; color: #fff;"   >
       <h1><b>انجازتي</b></h1>
     <p>  <a href="حجز موقع.html"  title=" انشاءالموقع">انشاء موقع</a>  </p>
@@ -623,24 +132,17 @@ h2:hover::after {
     <p>   <a href="السجلات اليومية.html"   title="السجلات اليومية">السجلات اليومية</a>   </p>
     <p>   <a href="تعلم الكتابة.html"   title="تعلم الكتابة">تعلم الكتابة</a>   </p>
     <p>   <a href="كيبورد جيمر.html"   title=" كيبورد جيمر">كيبورد جيمر</a>   </p>
-
-
     </nav>
-
 <hr>
-
 <div class="تعليقات">
   <button><a href="تعليقات.html">لو تريد ان تري التعليقات او تضف تعليق اضعط هنا</a></button>
 </div>
-
 <hr>
 <div class="ad-box">
     <video id="adPlayer" autoplay muted playsinline></video>
     <button id="muteBtn">🔇 كتم</button>
-
   </div>
   <hr>
-
      <div class="footer">
             <a href="https://www.facebook.com/omar.tamer.adel" target="_blank">      Facebook     </a> |
                     <a href="https://wa.me/01220893920" target="_blank">     WhatsApp  </a>|
@@ -650,7 +152,6 @@ h2:hover::after {
                     <p>        <mark>تم التصميم بواسطة عمر تامر عادل &copy; 2025</mark></p>
 
   </div>
-
   <div class="mobile-nav">
     <a href="home.html">الرئيسية</a>
     <a href="video.html">الفيديوهات</a>
@@ -664,12 +165,8 @@ h2:hover::after {
 </div>
     </div>
   </div>
-
  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-
-
-    
   <script>
 const firebaseConfig={apiKey:"AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",authDomain:"programomartamer-451a5.firebaseapp.com",projectId:"programomartamer-451a5",storageBucket:"programomartamer-451a5.firebasestorage.app",messagingSenderId:"351835913301",appId:"1:351835913301:web:d722fdcc9fb7b15c4468dc",measurementId:"G-R5FJQY220K"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function addComment(){let e=document.getElementById("name").value,t=document.getElementById("facebook").value,n=document.getElementById("comment").value;e&&n?db.collection("comments").add({name:e,facebook:t,comment:n,likes:0,timestamp:firebase.firestore.FieldValue.serverTimestamp()}).then(()=>{alert("تم نشر تعليقك بنجاح ✅"),document.getElementById("name").value="",document.getElementById("facebook").value="",document.getElementById("comment").value=""}).catch(e=>{alert("فشل نشر التعليق ❌ "+e.message)}):alert("يرجى إدخال الاسم والتعليق")}function likeComment(e){localStorage.getItem(`liked_${e}`)||(db.collection("comments").doc(e).update({likes:firebase.firestore.FieldValue.increment(1)}),localStorage.setItem(`liked_${e}`,!0))}db.collection("comments").orderBy("timestamp","desc").onSnapshot(e=>{let t=document.getElementById("comments");t.innerHTML="",e.forEach(e=>{let n=e.data(),l=e.id,o=document.createElement("div");o.className="comment";let a=n.facebook?`<a href="${n.facebook}" target="_blank" class="writer">${n.name}</a>`:`<span class="writer">${n.name}</span>`,d=localStorage.getItem(`liked_${l}`),r=d?"أعجبتك ❤️":"إعجاب",m=d?"like-btn liked":"like-btn",i=d?"disabled":"";o.innerHTML=`
           <p>${a}</p>
@@ -678,8 +175,5 @@ const firebaseConfig={apiKey:"AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",authDomai
           <button id="like_${l}" class="${m}" onclick="likeComment('${l}')" ${i}>${r}</button>
         `,t.appendChild(o)})});const username=sessionStorage.getItem("username");function logout(){sessionStorage.clear(),window.location.href="index.html"}function showFullImage(e){let t=document.getElementById("fullImage"),n=document.getElementById("downloadLink"),l=document.getElementById("overlay");t.src="",n.href="",n.download="",t.onload=function(){t.style.maxWidth="90%",t.style.maxHeight="80%"},t.src=e,fetch(e).then(e=>e.blob()).then(e=>{let t=URL.createObjectURL(e);n.href=t,n.download="omartamer.jpg"}),l.style.display="flex"}function hideOverlay(){document.getElementById("overlay").style.display="none"}function toggleDropdown(e){let t=document.getElementById("desktop"===e?"dropdownDesktop":"dropdownMobile"),n="block"===t.style.display;closeAllDropdowns(),t.style.display=n?"none":"block"}function closeAllDropdowns(){document.getElementById("dropdownDesktop").style.display="none",document.getElementById("dropdownMobile").style.display="none"}async function loadAds(){let e=document.getElementById("ad-container");e.innerHTML="تحميل الإعلانات...";try{let t=await db.collection("ads").get();if(t.empty){e.innerHTML="لا توجد إعلانات متاحة.";return}let n=t.docs.map(e=>e.data()),l=0;function o(){let t=n[l];e.innerHTML=`<iframe src="${t.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`,l=(l+1)%n.length}o(),setInterval(o,5e3)}catch(a){console.error("خطأ في تحميل الإعلانات:",a),e.innerHTML="حدث خطأ أثناء تحميل الإعلانات."}}document.getElementById("userName").textContent=username||"",document.getElementById("userNameMobile").textContent=username||"",document.getElementById("greeting").textContent=username?`مرحباً ${username}!`:"مرحباً بك",document.getElementById("overlay").addEventListener("click",function(e){e.target===this?hideOverlay():e.stopPropagation()}),document.addEventListener("click",function(e){e.target.closest(".dropdown")||closeAllDropdowns()}),loadAds();const videos=["https://res.cloudinary.com/dorrpdul5/video/upload/v1753374340/202507011903_zdwmgi.mp4","https://res.cloudinary.com/dorrpdul5/video/upload/v1753375071/%D8%A7%D8%BA%D9%86%D9%8A%D8%A9_%D8%B2%D8%B9%D9%8A%D9%85_%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9_lzfkdn.mp4","https://res.cloudinary.com/dorrpdul5/video/upload/v1753380217/Invitation_for_Galaxy_Unpacked_January_2025___Samsung_vdp7ur.mp4"];let current=0;const player=document.getElementById("adPlayer"),muteBtn=document.getElementById("muteBtn");function playNextVideo(){player.src=videos[current],player.load(),player.play(),current=(current+1)%videos.length}player.addEventListener("ended",playNextVideo),muteBtn.addEventListener("click",()=>{player.muted=!player.muted,muteBtn.textContent=player.muted?"\uD83D\uDD07 كتم":"\uD83D\uDD0A تشغيل"}),playNextVideo();
   </script>
-
-  </script>
-
 </body>
 </html>
