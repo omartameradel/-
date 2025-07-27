@@ -1,44 +1,418 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>التعليقات مع التفاعلات</title>
-        <link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+    <meta charset="UTF-8">
+    <title>تعليقات</title>
+        <meta name="description" content="موقع عمر تامر - مطور ومصمم مواقع ويب احترافية باستخدام HTML وCSS وJavaScript.">
 
-  <style>
-  button,h2{font-weight:700}#comments,hr,input[type=text],textarea{max-width:600px;width:100%}body{font-family:Cairo,sans-serif;background:linear-gradient(to right,#f5f7fa,#c3cfe2);color:#1c1e21;margin:0;padding:40px 20px;display:flex;flex-direction:column;align-items:center}h2{color:#0d47a1;margin-bottom:20px;font-size:26px}input[type=text],textarea{padding:15px;margin-bottom:12px;border:none;border-radius:10px;background-color:#ffffffee;box-shadow:0 2px 4px rgba(0,0,0,.1);font-size:16px;transition:box-shadow .3s}input[type=text]:focus,textarea:focus{box-shadow:0 0 0 2px #2196f3;outline:0}textarea{height:120px;resize:vertical}button{background:linear-gradient(135deg,#1976d2,#0d47a1);color:#fff;padding:12px 25px;border:none;font-size:15px;border-radius:30px;cursor:pointer;transition:background .3s,transform .2s}button:hover{background:linear-gradient(135deg,#1565c0,#0d47a1);transform:translateY(-2px)}hr{margin:40px 0 30px;border:none;border-top:1px solid #bbb}#comments{display:grid;gap:20px}.comment{background-color:#fff;padding:20px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,.05);position:relative;transition:transform .2s}.copy-btn,.reactions button{background-color:#f1f1f1;cursor:pointer}.comment:hover{transform:scale(1.02)}.comment::before{content:"💬";position:absolute;top:15px;left:15px;font-size:20px}.comment strong{color:#0d47a1;font-size:18px;margin-bottom:8px;display:block}.comment p{margin:0;font-size:16px;line-height:1.7}.reactions{margin-top:10px}.reactions button.active{background-color:#ffeaea;transform:scale(1.2);box-shadow:0 0 6px #ff1744aa}.reactions button{border:none;border-radius:50%;padding:8px;margin-right:8px;font-size:20px;transition:transform .2s,background-color .3s}.reactions button:hover{transform:scale(1.3)}.reaction-counts{margin-top:8px;font-size:15px;color:#555}.copy-btn{margin-top:12px;font-size:14px;color:#333;padding:6px 12px;border-radius:20px;border:none;transition:background-color .3s}.copy-btn:hover{background-color:#e0e0e0}.copy-btn:active{background-color:#d0d0d0}.home{margin-top:20px}.home button{background-color:#3498db;color:#fff;border:none;padding:10px 20px;border-radius:5px}.home button a{color:#fff;text-decoration:none}.home button:hover{background-color:#2980b9}
-  </style>
 </head>
 <body>
-
-<h2>إضافة تعليق</h2>
-<input type="text" id="name" placeholder="اسمك" />
-<br><br>
-<textarea id="comment" placeholder="اكتب تعليقك هنا..." rows="3" style="width:100%;"></textarea>
-<br><br>
-<button onclick="addComment()">إرسال</button>
-
-<hr>
-
-<h3>جميع التعليقات:</h3>
-<div id="comments"></div>
-
-
-<div class="home">
-    <button><a href="home.html">عودة لصفحة الرئيسية</a></button>
+    <h2>أضف تعليقك</h2>
+<div class="profile-info">
+  <div class="comment-box">
+    <input type="text" id="name" placeholder="اسمك" required>
+    <input type="url" id="facebook" placeholder="رابط فيسبوك (اختياري)">
+    <textarea id="comment" placeholder="اكتب تعليقك هنا..." required></textarea>
+    <button onclick="addComment()">نشر التعليق</button>
+  </div>
+</div>    
+<h2>التعليقات</h2>
+<div id="comments">
+    <div class="comment"></div>
 </div>
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
+<div class="home"><button><a href="home.html">عودة لصفحة الرئيسية</a></button></div>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script>
-  // 🔥 إعداد Firebase
- const firebaseConfig={apiKey:"AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",authDomain:"programomartamer-451a5.firebaseapp.com",projectId:"programomartamer-451a5",storageBucket:"programomartamer-451a5.firebasestorage.app",messagingSenderId:"351835913301",appId:"1:351835913301:web:d722fdcc9fb7b15c4468dc",measurementId:"G-R5FJQY220K"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function addComment(){let e=document.getElementById("name").value.trim(),t=document.getElementById("comment").value.trim();if(!e||!t)return alert("أدخل الاسم والتعليق");db.collection("comments").add({name:e,comment:t,timestamp:Date.now(),reactions:{}}).then(()=>{document.getElementById("comment").value="",loadComments()})}function loadComments(){let e=document.getElementById("comments");e.innerHTML="",db.collection("comments").orderBy("timestamp","desc").get().then(t=>{t.forEach(t=>{let n=t.data(),o=t.id,a=document.createElement("div");a.className="comment",a.style.border="1px solid #ddd",a.style.borderRadius="10px",a.style.padding="10px",a.style.margin="10px 0",a.style.backgroundColor="#f7f7f7",a.innerHTML=`
-          <strong>${n.name}:</strong><br>
-          <p>${n.comment}</p>
-          <button onclick="react('${o}', '❤️')">❤️</button>
-        `,db.collection("reactions_log").where("commentId","==",o).where("emoji","==","❤️").get().then(t=>{let n=[];if(t.forEach(e=>{let t=e.data();n.includes(t.name)||n.push(t.name)}),n.length>0){let o=document.createElement("div");o.style.marginTop="10px",o.style.background="#fff3f3",o.style.padding="10px",o.style.border="1px solid #ffb3b3",o.style.borderRadius="8px",o.style.color="#b30000",o.textContent=`❤️ أحب هذا التعليق: ${n.join("، ")}`,a.appendChild(o)}e.appendChild(a)})})})}function react(e,t){let n=document.getElementById("name").value.trim();if(!n)return alert("يرجى إدخال اسمك في الحقل المخصص أعلى الصفحة قبل التفاعل");if(!t)return alert("يرجى اختيار رمز تعبيري للتفاعل");let o=db.collection("reactions_log");o.where("commentId","==",e).where("name","==",n).where("emoji","==",t).get().then(a=>{a.empty?o.add({commentId:e,name:n,emoji:t}).then(()=>{loadComments()}):alert("لقد تفاعلت مسبقًا.")})}window.onload=loadComments,loadComments();
+const firebaseConfig = {
+
+  apiKey: "AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",
+
+  authDomain: "programomartamer-451a5.firebaseapp.com",
+
+  projectId: "programomartamer-451a5",
+
+  storageBucket: "programomartamer-451a5.firebasestorage.app",
+
+  messagingSenderId: "351835913301",
+
+  appId: "1:351835913301:web:d722fdcc9fb7b15c4468dc",
+
+  measurementId: "G-R5FJQY220K"
+
+};
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    function addComment() {
+        const name = document.getElementById("name").value.trim();
+        const facebook = document.getElementById("facebook").value.trim();
+        const comment = document.getElementById("comment").value.trim();
+
+        if (!name || !comment) {
+            alert("يرجى ملء جميع الحقول المطلوبة.");
+            return;
+        }
+
+        db.collection("comments").add({
+            name: name,
+            facebook: facebook,
+            comment: comment,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+            document.getElementById("name").value = "";
+            document.getElementById("facebook").value = "";
+            document.getElementById("comment").value = "";
+            loadComments();
+        }).catch(error => {
+            console.error("خطأ في إضافة التعليق: ", error);
+        });
+    }
+
+    function loadComments() {
+        db.collection("comments").orderBy("timestamp", "desc").get().then(snapshot => {
+            const commentsDiv = document.getElementById("comments");
+            commentsDiv.innerHTML = "";
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const commentElement = document.createElement("div");
+                commentElement.className = "comment";
+               commentElement.innerHTML = `
+    <p>${data.facebook ? `<a href="${data.facebook}" target="_blank"><strong>${data.name}</strong></a>` : `<strong>${data.name}</strong>`}</p>
+    <p>${data.comment}</p>
+`;
+                if (data.timestamp) {
+                    const date = new Date(data.timestamp.toDate());
+                    commentElement.innerHTML += `<p><small>في ${date.toLocaleDateString()} عند ${date.toLocaleTimeString()}</small></p>`;
+                }
+                commentElement.innerHTML += `<hr>`;
+                commentElement.style.marginBottom = "10px";
+                commentElement.style.padding = "10px";
+                commentElement.style.backgroundColor = "#f9f9f9";
+                commentElement.style.borderRadius = "5px";
+                commentElement.style.boxShadow = "0 1px 3px rgba(0, 0, 0, 0.1)";
+                commentElement.style.border = "1px solid #ddd";
+                commentElement.style.fontFamily = "Arial, sans-serif";
+                commentElement.style.color = "#333";
+                commentElement.style.lineHeight = "1.5";
+                commentElement.style.fontSize = "14px";
+                commentElement.style.marginTop = "10px";
+                commentElement.style.transition = "background-color 0.3s ease";
+                commentsDiv.appendChild(commentElement);
+            });
+        }).catch(error => {
+            console.error("خطأ في تحميل التعليقات: ", error);
+        });
+    }
+    document.addEventListener("DOMContentLoaded", loadComments);
+    postCommentBtn.onclick = async () => {
+  const comment = commentInput.value.trim();
+  if (!comment) return;
+
+  await addDoc(collection(db, "comments"), {
+    text: comment,
+    uid: currentUser.uid,
+    username: currentUser.displayName,
+    photoURL: currentUser.photoURL,
+    reactions: {},
+    createdAt: Date.now()
+  });
+
+  commentInput.value = '';
+};
+
+function listenToComments() {
+  onSnapshot(collection(db, "comments"), snapshot => {
+    commentsGrid.innerHTML = '';
+    snapshot.forEach(docSnap => {
+      const data = docSnap.data();
+      const commentID = docSnap.id;
+      const div = document.createElement("div");
+      div.className = "comment-card";
+
+      div.innerHTML = `
+        <div class="user-info">
+          <img src="${data.photoURL}" alt="user" />
+          <strong>${data.username}</strong>
+        </div>
+        <p>${data.text}</p>
+
+        <div class="reactions" id="react-${commentID}">
+          ${['❤️','😮','😢','😡'].map(icon => `
+            <button onclick="react('${commentID}','${icon}')">${icon}</button>
+          `).join('')}
+          <button onclick="showShare('${commentID}')">🔗 مشاركة</button>
+        </div>
+        <div class="share-box" id="share-${commentID}">
+          <input type="text" value="${window.location.href}#${commentID}" readonly />
+          <button onclick="copyLink('${commentID}')">نسخ</button>
+        </div>
+      `;
+
+      commentsGrid.appendChild(div);
+    });
+  });
+}
+
+window.react = async function (commentID, icon) {
+  const commentRef = doc(db, "comments", commentID);
+  const commentSnap = await getDoc(commentRef);
+  const data = commentSnap.data();
+
+  const currentReacts = data.reactions[icon] || [];
+  const hasReacted = currentReacts.includes(currentUser.uid);
+
+  await updateDoc(commentRef, {
+    [`reactions.${icon}`]: hasReacted
+      ? arrayRemove(currentUser.uid)
+      : arrayUnion(currentUser.uid)
+  });
+};
+
+window.showShare = function(id) {
+  const box = document.getElementById(`share-${id}`);
+  box.style.display = box.style.display === 'block' ? 'none' : 'block';
+};
+
+window.copyLink = function(id) {
+  const input = document.querySelector(`#share-${id} input`);
+  input.select();
+  document.execCommand("copy");
+  alert("تم نسخ الرابط ✅");
+};
+    listenToComments();
+
+     function loadComments() {
+    const commentsDiv = document.getElementById("comments");
+    commentsDiv.innerHTML = "";
+
+    db.collection("comments").orderBy("timestamp", "desc").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const commentId = doc.id;
+
+        const div = document.createElement("div");
+        div.className = "comment";
+        div.style.border = "1px solid #ddd";
+        div.style.borderRadius = "10px";
+        div.style.padding = "10px";
+        div.style.margin = "10px 0";
+        div.style.backgroundColor = "#f7f7f7";
+
+        div.innerHTML = `
+          <strong>${data.name}:</strong><br>
+          <p>${data.comment}</p>
+          <button onclick="react('${commentId}', '❤️')">❤️</button>
+        `;
+
+        // جلب الأسماء من reactions_log
+        db.collection("reactions_log")
+          .where("commentId", "==", commentId)
+          .where("emoji", "==", "❤️")
+          .get()
+          .then(reactions => {
+            const names = [];
+            reactions.forEach(r => {
+              const rdata = r.data();
+              if (!names.includes(rdata.name)) {
+                names.push(rdata.name);
+              }
+            });
+
+            if (names.length > 0) {
+              const box = document.createElement("div");
+              box.style.marginTop = "10px";
+              box.style.background = "#fff3f3";
+              box.style.padding = "10px";
+              box.style.border = "1px solid #ffb3b3";
+              box.style.borderRadius = "8px";
+              box.style.color = "#b30000";
+              box.textContent = `❤️ أحب هذا التعليق: ${names.join("، ")}`;
+              div.appendChild(box);
+            }
+
+            commentsDiv.appendChild(div);
+          });
+      });
+    });
+  }
+
+  function react(commentId, emoji) {
+    const userName = document.getElementById("name").value.trim();
+if (!userName) return alert("يرجى إدخال اسمك في الحقل المخصص أعلى الصفحة قبل التفاعل");
+    if (!emoji) return alert("يرجى اختيار رمز تعبيري للتفاعل");
+
+    const logRef = db.collection("reactions_log");
+    logRef
+      .where("commentId", "==", commentId)
+      .where("name", "==", userName)
+      .where("emoji", "==", emoji)
+      .get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          logRef.add({
+            commentId: commentId,
+            name: userName,
+            emoji: emoji
+          }).then(() => {
+            loadComments(); // تحديث العرض بعد التفاعل
+          });
+        } else {
+          alert("لقد تفاعلت مسبقًا.");
+        }
+      });
+  }
+
+  window.onload = loadComments;
+
+  // ⏱️ أول تحميل
+  loadComments();
 </script>
+<style>
+   body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to right, #f0f2f5, #d9e4f5);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    h2 {
+      color: #0d47a1;
+      margin-bottom: 20px;
+    }
+
+    .comment-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      background: #0d47a1;
+      color: white;
+      padding: 10px 25px;
+      font-size: 15px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1565c0;
+    }
+
+    #comments {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .comment {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      text-align: right;
+    }
+
+    .comment strong {
+      color: #0d47a1;
+      font-size: 16px;
+    }
+
+    .comment p {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    .comment small {
+      display: block;
+      color: #888;
+      margin-top: 5px;
+    }
+
+    .reactions button {
+      background-color: #f1f1f1;
+      border: none;
+      border-radius: 50%;
+      padding: 6px;
+      margin: 5px 3px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+
+    .reactions button:hover {
+      background-color: #d0e2f3;
+      transform: scale(1.2);
+    }
+
+    .share-box {
+      display: none;
+      background-color: #eef3f8;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .share-box input {
+      width: 80%;
+      padding: 6px;
+      margin-bottom: 5px;
+    }
+
+    .copy-btn {
+      background-color: #1976d2;
+      color: white;
+      padding: 5px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background-color: #0d47a1;
+    }
+
+    .home {
+      margin-top: 30px;
+    }
+
+    .home a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .home button {
+      background-color: #3498db;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .home button:hover {
+      background-color: #2980b9;
+    }
+    
+</style>
 </body>
 </html>
