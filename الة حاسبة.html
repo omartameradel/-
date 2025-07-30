@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>آلة حاسبة علمية</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background: #222;
+      padding: 20px;
+      border-radius: 15px;
+      width: 400px;
+      color: white;
+      box-shadow: 0 0 15px #000;
+    }
+    #result {
+      background: #000;
+      color: #0f0;
+      padding: 10px;
+      font-size: 20px;
+      border-radius: 5px;
+      height: 50px;
+      overflow-y: auto;
+    }
+    .btns {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #333;
+      color: white;
+    }
+    button:hover {
+      background: #444;
+    }
+    .options {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .history {
+      margin-top: 20px;
+      background: #111;
+      padding: 10px;
+      border-radius: 8px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    .history div {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    .home {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .home button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .home button a {
+      color: white;
+      text-decoration: none;
+    }
+    .home button:hover {
+      background-color: #0056b3;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      color: #00ffcc;
+      font-size: 2em;
+      margin: 0;
+    }
+    header p {
+      color: #ccc;
+      font-size: 1.2em;
+      margin: 5px 0;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #888;
+      font-size: 14px;
+    }
+    footer p {
+      margin: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="result"></div>
+    <div class="btns">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button onclick="press('/')">÷</button>
+      <button onclick="press('Math.sqrt(')">√</button>
+
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button onclick="press('*')">×</button>
+      <button onclick="press('Math.pow(')">xʸ</button>
+
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button onclick="press('-')">−</button>
+      <button onclick="press('Math.sin(')">sin</button>
+
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="press('+')">+</button>
+      <button onclick="press('Math.cos(')">cos</button>
+
+      <button onclick="press('Math.tan(')">tan</button>
+      <button onclick="clearResult()">C</button>
+      <button onclick="copyResult()">📋</button>
+      <button onclick="deleteHistory()">🗑️</button>
+      <button onclick="toggleDegRad()" id="modeBtn">Deg</button>
+    </div>
+
+    <div class="options">
+      <button onclick="printHistory()">🖨️ طباعة السجل</button>
+      <button onclick="downloadPDF()">📄 تحميل PDF</button>
+    </div>
+
+    <div class="history" id="historyBox"></div>
+
+    <div class="home">
+      <button><a href="home.html">عودة لصفحة الرئيسية</a></button>
+  </div>
+
+ 
+ 
+  
+  <script>
+    let resultBox = document.getElementById("result");
+    let historyBox = document.getElementById("historyBox");
+    let input = "";
+    let degMode = true;
+
+    function press(val) {
+      input += val;
+      resultBox.innerText = input;
+    }
+
+    function clearResult() {
+      input = "";
+      resultBox.innerText = "";
+    }
+
+    function calculate() {
+      try {
+        let expression = input.replace(/Math\.sin\((.*?)\)/g, (_, x) => `Math.sin(${degMode ? x + '*Math.PI/180' : x})`)
+                              .replace(/Math\.cos\((.*?)\)/g, (_, x) => `Math.cos(${degMode ? x + '*Math.PI/180' : x})`)
+                              .replace(/Math\.tan\((.*?)\)/g, (_, x) => `Math.tan(${degMode ? x + '*Math.PI/180' : x})`);
+        let result = eval(expression);
+        resultBox.innerText = result;
+        saveToHistory(input + " = " + result);
+        input = "";
+      } catch (e) {
+        resultBox.innerText = "خطأ";
+      }
+    }
+
+    function copyResult() {
+      navigator.clipboard.writeText(resultBox.innerText);
+      alert("تم نسخ الناتج!");
+    }
+
+    function saveToHistory(record) {
+      const now = new Date();
+      const time = now.toLocaleString();
+      const entry = `${time} ➤ ${record}`;
+      let history = JSON.parse(localStorage.getItem("calcHistory") || "[]");
+      history.push(entry);
+      localStorage.setItem("calcHistory", JSON.stringify(history));
+      loadHistory();
+    }
+
+    function loadHistory() {
+      let history = JSON.parse(localStorage.getItem("calcHistory") || "[]");
+      historyBox.innerHTML = history.map(h => `<div>${h}</div>`).join("");
+    }
+
+    function deleteHistory() {
+      localStorage.removeItem("calcHistory");
+      loadHistory();
+    }
+
+    function toggleDegRad() {
+      degMode = !degMode;
+      document.getElementById("modeBtn").innerText = degMode ? "Deg" : "Rad";
+    }
+
+    function printHistory() {
+      const win = window.open('', '', 'width=600,height=400');
+      win.document.write('<pre>' + historyBox.innerText + '</pre>');
+      win.print();
+    }
+
+    function downloadPDF() {
+      const element = document.createElement("a");
+      const blob = new Blob([historyBox.innerText], { type: 'text/plain' });
+      element.href = URL.createObjectURL(blob);
+      element.download = "سجل_الآلة_الحاسبة.txt";
+      element.click();
+    }
+
+    
+    loadHistory();
+
+
+  </script>
+</body>
+</html>
