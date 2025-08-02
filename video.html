@@ -47,23 +47,203 @@
   <a href="home.html">الرئيسية</a>
 </header>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
 <script>
-const firebaseConfig={apiKey:"AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",authDomain:"ahmed-saeed-669ab.firebaseapp.com",projectId:"ahmed-saeed-669ab"};firebase.initializeApp(firebaseConfig);const db=firebase.firestore(),username=sessionStorage.getItem("username")||"زائر";function formatTimestamp(e){if(!e)return"";let t=e.toDate();return`${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`}function checkNewNotifications(){let e=0;Promise.all(["videos","images","texts"].map(t=>db.collection(t).get().then(t=>{t.forEach(t=>{let n=t.data();(!n.seenBy||!n.seenBy.includes(username))&&e++})}))).then(()=>{document.getElementById("notifCount").textContent=e,document.getElementById("notifCountMobile").textContent=e;let t=e>0?"inline-block":"none";document.getElementById("notifCount").style.display=t,document.getElementById("notifCountMobile").style.display=t})}function markNotificationsSeen(){["videos","images","texts"].forEach(e=>{db.collection(e).get().then(t=>{t.forEach(t=>{let n=t.data();if(!n.seenBy||!n.seenBy.includes(username)){let a=n.seenBy||[];a.push(username),db.collection(e).doc(t.id).update({seenBy:a})}})})}),document.getElementById("notifCount").style.display="none",document.getElementById("notifCountMobile").style.display="none"}function loadVideos(){let e=document.getElementById("videoContainer");e.innerHTML="",db.collection("videos").orderBy("timestamp","desc").get().then(t=>{t.forEach(t=>{let n=t.data(),a=document.createElement("div");a.className="media-box",a.innerHTML=`
-          <h4>${n.name}</h4>
-          <video controls>
-            <source src="${n.url}" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-          </video>
-          <p class="timestamp">📅 ${formatTimestamp(n.timestamp)}</p>
-        `,e.appendChild(a)})})}function loadImages(){let e=document.getElementById("imageContainer");e.innerHTML="",db.collection("images").orderBy("timestamp","desc").get().then(t=>{t.forEach(t=>{let n=t.data(),a=document.createElement("div");a.className="media-box",a.innerHTML=`
-          <h4>${n.name}</h4>
-          <img src="${n.url}" alt="${n.name}">
-          <p class="timestamp">📅 ${formatTimestamp(n.timestamp)}</p>
-        `,e.appendChild(a)})})}function loadTexts(){let e=document.getElementById("textContainer");e.innerHTML="",db.collection("texts").orderBy("timestamp","desc").get().then(t=>{t.forEach(t=>{let n=t.data(),a=document.createElement("div");a.className="media-box",a.innerHTML=`
-          <div class="text-content">${n.content}</div>
-          <p class="timestamp">📅 ${formatTimestamp(n.timestamp)}</p>
-        `,e.appendChild(a)})})}document.getElementById("greeting").textContent=`مرحباً ${username}!`,loadVideos(),loadImages(),loadTexts(),checkNewNotifications();
+const firebaseConfig = {
+  apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+  authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+  projectId: "ahmed-saeed-669ab"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const username = sessionStorage.getItem("username") || "زائر";
+
+// تنسيق الوقت
+function formatTimestamp(e) {
+  if (!e) return "";
+  let t = e.toDate();
+  return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
+}
+
+// الإشعارات
+function checkNewNotifications() {
+  let e = 0;
+  Promise.all(["videos", "images", "texts"].map(t =>
+    db.collection(t).get().then(t => {
+      t.forEach(t => {
+        let n = t.data();
+        (!n.seenBy || !n.seenBy.includes(username)) && e++;
+      });
+    })
+  )).then(() => {
+    document.getElementById("notifCount").textContent = e;
+    document.getElementById("notifCountMobile").textContent = e;
+    let t = e > 0 ? "inline-block" : "none";
+    document.getElementById("notifCount").style.display = t;
+    document.getElementById("notifCountMobile").style.display = t;
+  });
+}
+
+function markNotificationsSeen() {
+  ["videos", "images", "texts"].forEach(e => {
+    db.collection(e).get().then(t => {
+      t.forEach(t => {
+        let n = t.data();
+        if (!n.seenBy || !n.seenBy.includes(username)) {
+          let a = n.seenBy || [];
+          a.push(username);
+          db.collection(e).doc(t.id).update({ seenBy: a });
+        }
+      });
+    });
+  });
+  document.getElementById("notifCount").style.display = "none";
+  document.getElementById("notifCountMobile").style.display = "none";
+}
+
+// ✅ تحميل الفيديوهات مع زر الشير
+function loadVideos() {
+  let container = document.getElementById("videoContainer");
+  container.innerHTML = "";
+  db.collection("videos")
+    .orderBy("timestamp", "desc")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        let videoId = `video_${doc.id}`;
+        let pageUrl = `${window.location.origin}${window.location.pathname}#${videoId}`;
+
+        let box = document.createElement("div");
+        box.className = "media-box";
+        box.id = videoId;
+        box.style.position = "relative";
+
+        box.innerHTML = `
+  <h4>${data.name}</h4>
+
+  <video controls style="width: 100%; max-height: 70vh;">
+    <source src="${data.url}" type="video/mp4">
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+  <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+
+  <button onclick="copyLink('${pageUrl}', this)" 
+    style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
+    🔗 مشاركة
+  </button>
+`;
+          
+
+        container.appendChild(box);
+      });
+
+      // لو الرابط يحتوي على هاش لفيديو، انزل له تلقائياً
+      if (location.hash) {
+        let target = document.querySelector(location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+}
+
+// زر نسخ رابط الفيديو
+function copyLink(link, btn) {
+  navigator.clipboard.writeText(link).then(() => {
+    btn.innerText = "✅ تم النسخ";
+    setTimeout(() => {
+      btn.innerText = "🔗 مشاركة";
+    }, 2000);
+  });
+}
+
+// الصور
+function loadImages() {
+  let container = document.getElementById("imageContainer");
+  container.innerHTML = "";
+  db.collection("images")
+    .orderBy("timestamp", "desc")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        let imageId = `image_${doc.id}`;
+        let pageUrl = `${window.location.origin}${window.location.pathname}#${imageId}`;
+
+        let box = document.createElement("div");
+        box.className = "media-box";
+        box.id = imageId;
+        box.innerHTML = `
+          <h4>${data.name}</h4>
+          <img src="${data.url}" alt="${data.name}" style="width: 100%; max-height: 70vh; border-radius: 8px;">
+          <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+          <button onclick="copyLink('${pageUrl}', this)" 
+            style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
+            🔗 مشاركة
+          </button>
+        `;
+        container.appendChild(box);
+      });
+
+      if (location.hash) {
+        let target = document.querySelector(location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+}
+
+
+
+// النصوص
+function loadTexts() {
+  let container = document.getElementById("textContainer");
+  container.innerHTML = "";
+  db.collection("texts")
+    .orderBy("timestamp", "desc")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        let textId = `text_${doc.id}`;
+        let pageUrl = `${window.location.origin}${window.location.pathname}#${textId}`;
+
+        let box = document.createElement("div");
+        box.className = "media-box";
+        box.id = textId;
+        box.innerHTML = `
+          <div class="text-content">${data.content}</div>
+          <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+          <button onclick="copyLink('${pageUrl}', this)" 
+            style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
+            🔗 مشاركة
+          </button>
+        `;
+        container.appendChild(box);
+      });
+
+      if (location.hash) {
+        let target = document.querySelector(location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+}
+
+// ترحيب وتحميل الكل
+document.getElementById("greeting").textContent = `مرحباً ${username}!`;
+loadVideos();
+loadImages();
+loadTexts();
+checkNewNotifications();
 </script>
+
 </body>
 </html>
