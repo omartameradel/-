@@ -1,0 +1,416 @@
+  <!DOCTYPE html>
+  <html lang="ar" dir="rtl">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> مولد وقارئ QR </title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+
+  <!-- خط حديث وجريء -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- مكتبات QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <style>
+    :root{
+      --bg1:#0f172a;   /* slate-900 */
+      --bg2:#111827;   /* gray-900 */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c3aed; /* violet-600 */
+      --accent-2:#06b6d4; /* cyan-500 */
+      --success:#22c55e;
+      --danger:#ef4444;
+      --warning:#f59e0b;
+    }
+    *{font-family:'Cairo',sans-serif}
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%, #111827 0%, #0f172a 50%, #0b1020 100%);
+      color:#e5e7eb;
+    }
+    h1{
+      font-weight:800;
+      letter-spacing:.5px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+    }
+    .qr-box{text-align:center}
+    #qr-code canvas, #qr-code img{margin:auto;display:block}
+    .form-label, .small, small{color:var(--muted)}
+    .btn-gradient{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      border:none;
+    }
+    .btn-gradient:hover{filter:brightness(1.05)}
+    .range-wrap{
+      background:#0c1426;border-radius:12px;padding:10px 12px;border:1px solid rgba(255,255,255,0.06)
+    }
+    .copyright-area{
+      background: #0b1020; border-top:1px solid rgba(255,255,255,.06);
+      padding: 22px 0; margin-top:28px
+    }
+    .copyright-text p{margin:0;font-size:14px;color:#9ca3af}
+    .copyright-text p a{color:#a78bfa;text-decoration:none}
+    .footer-menu li{display:inline-block;margin-left:16px}
+    .footer-menu li a{font-size:14px;color:#9ca3af;text-decoration:none}
+    .footer-menu li:hover a{color:#a78bfa}
+    .hint{font-size:12px;color:#9ca3af}
+    .badge-soft{
+      background: rgba(124,58,237,.12);
+      color:#c4b5fd;border:1px solid rgba(124,58,237,.3);
+      padding:.25rem .5rem;border-radius:999px;font-size:.75rem
+    }
+  </style>
+  </head>
+  <body class="container py-4">
+
+  <h1 class="text-center mb-4"><i class="fa-solid fa-qrcode"></i> مولد وقارئ QR</h1>
+
+  <div class="row g-4">
+
+    <!-- توليد كود -->
+    <div class="col-lg-6">
+      <div class="card p-3 p-md-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h4 class="m-0"><i class="fa-solid fa-plus"></i> توليد كود QR</h4>
+          <span class="badge-soft">يدعم شعار في المنتصف</span>
+        </div>
+
+        <label class="form-label">النص أو الرابط</label>
+        <input type="text" id="qr-text" class="form-control mb-3" placeholder="أدخل النص أو الرابط">
+
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label class="form-label">اختيار شعار (Logo)</label>
+            <input type="file" id="slogo-file" class="form-control" accept="image/*">
+            <div class="hint mt-1">اختر صورة واضحة (PNG شفافة أفضل)</div>
+          </div>
+          <div class="col-sm-6">
+            <div class="range-wrap">
+              <label class="form-label m-0">حجم الشعار: <b><span id="logo-size-label">30</span>%</b></label>
+              <input type="range" id="logo-size" min="10" max="50" value="30" class="form-range">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="range-wrap">
+              <label class="form-label m-0">حجم كود الـ QR: <b><span id="qr-size-label">400</span>px</b></label>
+              <input type="range" id="qr-size" min="200" max="800" step="50" value="400" class="form-range">
+            </div>
+            <div class="hint mt-1">عند تغيير حجم الكود، يتغيّر الشعار تلقائيًا بنفس النسبة.</div>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 my-3">
+          <button class="btn btn-gradient btn-lg" id="generate-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> توليد</button>
+          <button class="btn btn-outline-light btn-lg" id="download-btn" style="display:none;"><i class="fa-solid fa-download"></i> تحميل PNG</button>
+        </div>
+
+        <div id="qr-code" class="qr-box p-3 border rounded" style="border-color:rgba(255,255,255,.08)"></div>
+        <p id="generate-message" class="mt-2 small"></p>
+      </div>
+    </div>
+
+    <!-- قراءة كود -->
+    <div class="col-lg-6">
+      <div class="card p-3 p-md-4">
+        <h4 class="mb-3"><i class="fa-solid fa-camera"></i> قراءة كود QR</h4>
+
+        <!-- من صورة -->
+        <div class="mb-3">
+          <label class="form-label"><i class="fa-solid fa-image"></i> اختر صورة فيها QR</label>
+          <div id="image-reader" style="display:none;"></div>
+          <input type="file" id="qr-file" class="form-control" accept="image/*">
+          <p id="file-result" class="mt-2 fw-bold text-success"></p>
+        </div>
+
+        <hr class="border-secondary">
+
+        <!-- من كاميرا -->
+        <div class="mb-3">
+          <label class="form-label"><i class="fa-solid fa-video"></i> اختر الكاميرا</label>
+          <select id="camera-select" class="form-select"></select>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-success flex-fill" id="start-camera"><i class="fa-solid fa-play"></i> بدء</button>
+          <button class="btn btn-danger flex-fill" id="stop-camera"><i class="fa-solid fa-stop"></i> إيقاف</button>
+        </div>
+        <div id="qr-reader" class="mt-3"></div>
+        <p id="camera-result" class="mt-2 fw-bold text-success"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="copyright-area">
+    <div class="container">
+      <div class="row align-items-center gy-3">
+        <div class="col-xl-6 col-lg-6 text-center text-lg-start">
+          <div class="copyright-text">
+            <p>Copyright &copy; 2025, All Right Reserved <a href="https://omartamer.netlify.app" target="_blank">omartamer</a></p>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 d-none d-lg-block text-lg-end">
+          <div class="footer-menu">
+            <ul class="list-unstyled m-0">
+              <li><a href="https://wa.me/201220893920" target="_blank">عمر تامر</a></li>
+              <li><a href="https://wa.me/201023706309" target="_blank">عبدالرحمن مصطفي</a></li>
+              <li><a href="https://wa.me/201220893920" target="_blank">خالد مدحت</a></li>
+              <li><a href="https://wa.me/201015361670" target="_blank">Policy</a></li>
+              <li><a href="https://wa.me/201120757228" target="_blank">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /* ---------- Helpers ---------- */
+  function waitForCanvas(container, timeout = 1500) {
+    return new Promise((resolve, reject) => {
+      const existing = container.querySelector('canvas');
+      if (existing) return resolve(existing);
+
+      const observer = new MutationObserver((mutations, obs) => {
+        const c = container.querySelector('canvas');
+        if (c) { obs.disconnect(); resolve(c); }
+      });
+      observer.observe(container, { childList: true, subtree: true });
+
+      setTimeout(() => {
+        observer.disconnect();
+        // fallback: if qrcodejs created <img>, convert it to canvas
+        const img = container.querySelector('img');
+        if (img) {
+          const c = document.createElement('canvas');
+          c.width = img.naturalWidth || 300;
+          c.height = img.naturalHeight || 300;
+          const ctx = c.getContext('2d');
+          ctx.drawImage(img, 0, 0, c.width, c.height);
+          container.innerHTML = '';
+          container.appendChild(c);
+          return resolve(c);
+        }
+        reject(new Error('لم يتم إنشاء canvas للـ QR'));
+      }, timeout);
+    });
+  }
+
+  function roundedRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  /* ---------- Elements ---------- */
+  const qrContainer = document.getElementById('qr-code');
+  const generateBtn = document.getElementById('generate-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const logoSizeRange = document.getElementById('logo-size');
+  const logoSizeLabel = document.getElementById('logo-size-label');
+  const qrSizeRange = document.getElementById('qr-size');
+  const qrSizeLabel = document.getElementById('qr-size-label');
+  const generateMessage = document.getElementById('generate-message');
+
+  /* ---------- State for logo image reuse ---------- */
+  let currentLogoURL = null;
+  let currentLogoImg = null;
+
+  /* ---------- Label live updates ---------- */
+  logoSizeRange.addEventListener('input', () => {
+    logoSizeLabel.innerText = logoSizeRange.value;
+    // إذا في كود ونص، أعد التوليد فوراً ليتغير حجم الشعار مباشرة
+    if (qrContainer.firstChild && document.getElementById('qr-text').value.trim()) {
+      generateQR();
+    }
+  });
+  qrSizeRange.addEventListener('input', () => {
+    qrSizeLabel.innerText = qrSizeRange.value;
+    // تغيير حجم الكود يعيد التوليد فوراً
+    if (document.getElementById('qr-text').value.trim()) {
+      generateQR();
+    }
+  });
+
+  /* ---------- Logo file selection ---------- */
+  document.getElementById('slogo-file').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) { currentLogoImg = null; if (document.getElementById('qr-text').value.trim()) generateQR(); return; }
+    if (currentLogoURL) URL.revokeObjectURL(currentLogoURL);
+    currentLogoURL = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      currentLogoImg = img;
+      if (document.getElementById('qr-text').value.trim()) generateQR();
+    };
+    img.onerror = () => { currentLogoImg = null; };
+    img.src = currentLogoURL;
+  });
+
+  /* ---------- Generate QR with optional centered logo ---------- */
+  async function generateQR() {
+    const text = document.getElementById('qr-text').value.trim();
+    const logoPercent = Number(logoSizeRange.value) / 100;
+    const size = Number(qrSizeRange.value);
+
+    qrContainer.innerHTML = '';
+    downloadBtn.style.display = 'none';
+    generateMessage.innerText = '';
+
+    if (!text) { alert('الرجاء إدخال نص أو رابط!'); return; }
+
+    // إنشاء QR
+    new QRCode(qrContainer, {
+    text: unescape(encodeURIComponent(text)),
+    width: size,
+    height: size,
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+    try {
+      const canvas = await waitForCanvas(qrContainer, 2000);
+      const ctx = canvas.getContext('2d');
+
+      if (currentLogoImg) {
+        // حساب حجم ومكان الشعار
+        const logoW = canvas.width * logoPercent;
+        const logoH = canvas.height * logoPercent;
+
+        // خلفية بيضاء ناعمة للحفاظ على قابلية المسح
+        const padding = Math.max(8, Math.round(canvas.width * 0.02));
+        const bgW = logoW + padding * 2;
+        const bgH = logoH + padding * 2;
+        const bgX = (canvas.width - bgW) / 2;
+        const bgY = (canvas.height - bgH) / 2;
+
+        ctx.save();
+        ctx.fillStyle = '#ffffff';
+        roundedRect(ctx, bgX, bgY, bgW, bgH, Math.min(24, bgW * 0.15));
+        ctx.fill();
+        ctx.restore();
+
+        // المحافظة على نسبة الأبعاد للشعار
+        let drawW = logoW;
+        let drawH = logoH;
+        const ratio = currentLogoImg.naturalWidth / currentLogoImg.naturalHeight;
+        if (ratio > 1) { drawH = logoW / ratio; } else { drawW = logoH * ratio; }
+        const drawX = (canvas.width - drawW) / 2;
+        const drawY = (canvas.height - drawH) / 2;
+        ctx.drawImage(currentLogoImg, drawX, drawY, drawW, drawH);
+      }
+
+      downloadBtn.style.display = 'block';
+      generateMessage.innerText = 'تم توليد الكود بنجاح. يمكنك تنزيله الآن.';
+    } catch (err) {
+      console.error(err);
+      generateMessage.innerText = 'حدث خطأ أثناء توليد QR.';
+    }
+  }
+
+  /* ---------- Download ---------- */
+  function downloadQR() {
+    const canvas = qrContainer.querySelector('canvas');
+    if (!canvas) return alert('لا يوجد QR للتحميل.');
+    const url = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'qr-with-logo.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  generateBtn.addEventListener('click', generateQR);
+  downloadBtn.addEventListener('click', downloadQR);
+
+  /* ---------- Scanner: image + camera ---------- */
+  let html5QrCode;
+  let cameraId;
+
+  function handleQRCodeResult(result, targetElement) {
+    document.getElementById(targetElement).innerText = 'تم قراءة: ' + result;
+    localStorage.setItem('lastQR', result);
+    if (/^(http|https):\/\/[^ \"']+$/.test(result)) {
+      window.open(result, '_blank');
+    }
+  }
+
+  /* قراءة من صورة */
+  document.getElementById('qr-file').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const imageScanner = new Html5Qrcode('image-reader');
+    imageScanner.scanFile(file, true)
+      .then(qrCodeMessage => {
+        handleQRCodeResult(qrCodeMessage, 'file-result');
+        imageScanner.clear();
+      })
+      .catch(err => {
+        document.getElementById('file-result').innerText = 'لم يتم العثور على كود صالح.';
+      });
+  });
+
+  /* قراءة من كاميرا */
+  async function startCameraScan() {
+    try {
+      if (!html5QrCode) html5QrCode = new Html5Qrcode('qr-reader');
+
+      const devices = await Html5Qrcode.getCameras();
+      const select = document.getElementById('camera-select');
+      select.innerHTML = '';
+      devices.forEach((d, i) => {
+        const opt = document.createElement('option');
+        opt.value = d.id;
+        opt.text = d.label || `كاميرا ${i+1}`;
+        select.appendChild(opt);
+      });
+
+      cameraId = select.value || (devices[0] && devices[0].id);
+      if (!cameraId) return alert('لا يوجد كاميرات متاحة أو لم تمنح الإذن.');
+
+      await html5QrCode.start(
+        cameraId,
+        { fps: 10, qrbox: { width: 300, height: 300 } },
+        qrCodeMessage => { handleQRCodeResult(qrCodeMessage, 'camera-result'); },
+        error => { /* قراءة فاشلة مؤقتا */ }
+      );
+    } catch (err) {
+      console.error(err);
+      alert('فشل بدء الكاميرا: ' + (err.message || err));
+    }
+  }
+  function stopCameraScan() {
+    if (html5QrCode) {
+      html5QrCode.stop().then(() => {
+        document.getElementById('qr-reader').innerHTML = '';
+      }).catch(err => console.error(err));
+    }
+  }
+  document.getElementById('start-camera')?.addEventListener('click', startCameraScan);
+  document.getElementById('stop-camera')?.addEventListener('click', stopCameraScan);
+
+  /* ---------- Restore last scanned ---------- */
+  window.onload = function() {
+    const lastQR = localStorage.getItem('lastQR');
+    if (lastQR) {
+      document.getElementById('file-result').innerText = 'آخر كود: ' + lastQR;
+    }
+  };
+  </script>
+  </body>
+  </html>
