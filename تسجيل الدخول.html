@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قاتل الفيروسات - عمر تامر</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css">
+      <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="logo">Omar_Tamer<span>-قاتل الفيروسات</span></div>
+                <input type="checkbox" name="" id="click">
+                <label for="click" class="menu-btn">
+                    <i class="material-icons">menu</i>
+                </label>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container">
+            <div class="row full-screen align-items-center">
+                <div class="left">
+                    <span class="line"></span>
+                    <h2>Hello, I'm Omar, <br> a <span>Program </span></h2>
+                    <a href="contact.html" class="btn" target="_blank">Contact</a>
+
+                    
+                    <div class="social-media">
+                        <a href="https://www.facebook.com/Programming.Leader"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://x.com/omarta89068"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.tiktok.com/@omartameradel1"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@omartameradel"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/201220893920"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+               <div class="right">
+    <div class="text-center">
+        <h4><span>Log In</span> 
+            <span>Sign Up</span></h4>
+        <input type="checkbox" class="checkbox" id="reg-log">
+        <label for="reg-log"></label>
+        <div class="card-3d-wrap">
+            <div class="card-3d-wrapper">
+
+                <!-- ====== تسجيل الدخول ====== -->
+                <div class="card-front" id="loginBox">
+                    <div class="center-wrap">
+                        <h4 class="heading">Log In</h4>
+                        <div class="form-group">
+                            <input type="text" id="loginUsername" class="form-style" placeholder="Username">
+                            <i class="input-icon material-icons">perm_identity</i>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="loginPassword" class="form-style" placeholder="Password">
+                            <i class="input-icon material-icons">lock</i>
+                        </div>
+                        <a href="#" id="loginBtn" class="btn">Submit</a>
+                    </div>
+                </div>
+
+                <!-- ====== إنشاء حساب ====== -->
+                <div class="card-back" id="registerBox">
+                    <div class="center-wrap">
+                        <h4 class="heading">Sign Up</h4>
+                        <div class="form-group">
+                            <input type="text" id="regUsername" class="form-style" placeholder="Your Name">
+                            <i class="input-icon material-icons">perm_identity</i>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="phoneInput" class="form-style" placeholder="Your Phone">
+                            <i class="input-icon material-icons">phone</i>
+                        </div>
+                        <div class="form-group">
+                            <select id="gender" class="form-style">
+                                <option value="">اختر النوع</option>
+                                <option value="male">ذكر</option>
+                                <option value="female">أنثى</option>
+                    
+                            </select>
+                            <i class="input-icon material-icons">male</i>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="regPassword" class="form-style" placeholder="Your Password">
+                            <i class="input-icon material-icons">lock</i>
+                        </div>
+                        <a href="#" id="registerBtn" class="btn">Submit</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+                    </div>    
+                    
+                </div>
+            </div>
+        </div>
+
+        
+    </section>
+
+
+    <section>
+        
+    </section>
+<div>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>  <a href="tel:20+ 012-2089-3920">012-2089-3920</a> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span><a href="mailto:programmingleaderwithomartamer@gmail.com">programmingleaderwithomartamer@gmail.com</a> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="https://omartamer.netlify.app"><img src="https://omartamer.netlify.app/لوجو زعيم البرمجة.png" class="img-fluid" alt="logo"></a>
+                            </div>
+                            <div class="footer-text">
+                                <p>اهلا في موقع زعيم البرمجة - عمر تامر محمد عادل
+                                    هذا الموقع له خصوصية 
+                                    هذا الموقع الخاص بــ عمر تامر محمد عادل
+                                </p>
+                            </div>
+                            
+                            
+                           
+                    
+                </div>
+                    </div>
+
+                    
+
+<section>
+     
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Subscribe</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>لا تفوت الاشتراك في نشراتنا الجديدة، يرجى ملء النموذج أدناه</p>
+                            </div>
+<div class="subscribe-form">
+    <form id="emailForm">
+        <input type="email" id="userEmail" placeholder="Email Address" required>
+        <button type="submit"><i class="fab fa-telegram-plane"></i></button>
+    </form>
+</div>
+</section>
+
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Friends </h3>
+                            </div>
+                            <ul>
+              <li><a href="https://wa.me/201220893920" target="_blank">عمر تامر</a></li>
+              <li><a href="https://wa.me/201023706309" target="_blank">عبدالرحمن مصطفي</a></li>
+              <li><a href="https://wa.me/201220893920" target="_blank">خالد مدحت</a></li>
+              <li><a href="https://wa.me/201015361670" target="_blank"> ليلى ابراهيم ابراهيم </a></li>
+              <li><a href="https://wa.me/201120757228" target="_blank">اسيل محمد طلعت</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                   
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2025, All Right Reserved <a href="https://omartamer.netlify.app">omartamer</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --mainColor: crimson;
+    --black: #000000;
+    --white: #FFFFFF;
+    --whiteSmoke: #C4C3CA;
+    --shadow: 0px 4px 8px 0 rgba(21, 21, 21, .2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+::before, ::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    background-color: var(--black);
+}
+
+a { text-decoration: none; }
+ul { list-style: none; }
+.container { max-width: 1080px; margin: auto; }
+.row { display: flex; flex-wrap: wrap; }
+.justify-content-between { justify-content: space-between; }
+.align-items-center { align-items: center; }
+.full-screen { min-height: 100vh; padding: 80px 0 0; }
+.text-center { text-align: center; }
+
+/*NAV*/
+
+nav {
+    width: 100%;
+    background-color: var(--black);
+    position: fixed;
+    z-index: 999;
+    padding: 25px;
+}
+
+    nav .logo { color: var(--white); font-size: 32px; font-weight: 600; text-transform: capitalize; }
+        nav .logo span { color: var(--mainColor); }
+    nav .container { padding: 0 25px; }
+    nav .menu-btn i { color: var(--white); font-size: 28px; cursor: pointer; display: none; }
+    nav ul { display: flex; flex-wrap: wrap; }
+        nav ul li { margin: 0 5px; }
+            nav ul li a { 
+                color: var(--white); 
+                font-size: 16px; 
+                font-weight: 600; 
+                padding: 8px 15px;
+                border-radius: 5px;
+                transition: all .3s ease; 
+            }
+                nav ul li a.active, nav ul li a:hover { color: var(--mainColor); background: var(--white); }
+
+/*MAIN*/
+
+.left, .right { flex: 0 0 50%; max-width: 50%; padding: 20px; }
+    .left .line { width: 15%; height: 2px; background-color: var(--mainColor); display: inline-block; }
+    .left h2 { margin-top: 25px; font-size: 50px; color: var(--white); line-height: 55px; }
+        .left h2 span { color: var(--mainColor); font-size: 52px; }
+    .left p { color: var(--whiteSmoke); font-size: 16px; margin-top: 20px; margin-bottom: 10px; }
+
+.btn {
+    height: 44px;
+    padding: 0px 30px;
+    background-color: var(--mainColor);
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    letter-spacing: 1px;
+    border: none;
+    margin-top: 15px;
+    box-shadow: 0px 8px 24px 0 rgba(228, 10, 57, .2);
+    transition: all .2s linear;
+}
+
+    .btn:hover { background-color: var(--white); color: var(--mainColor); box-shadow: 0 8px 24px 0 rgba(138, 140, 146, .2); }
+
+.social-media { margin-top: 60px; }
+    .social-media a {
+        color: var(--white);
+        margin-right: 22px;
+        font-size: 22px;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+        .social-media a:hover { color: var(--mainColor); }
+
+.form {width: 100%; display: flex; justify-content: center; }
+.right h4 { font-weight: 600; color: var(--white); }
+.right h6 { color: var(--white); margin-bottom: 30px; } 
+    .right h6 span { padding: 0 20px; text-transform: uppercase; font-weight: 700; font-size: 16px; }
+
+input[type="checkbox"] { display: none; }
+.checkbox:checked + label, .checkbox:not(:checked) + label { 
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 60px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: var(--mainColor);
+    padding: 0;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+    .checkbox:checked + label::before, .checkbox:not(:checked) + label::before {
+        position: absolute;
+        display: block;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        color: var(--mainColor);
+        background-color: var(--white);
+        font-family: 'Material Icons';
+        content: '\f1e2';
+        z-index: 20;
+        top: -10px;
+        left: -10px;
+        line-height: 36px;
+        text-align: center;
+        font-size: 24px;
+        transition: all .5s ease;
+    }
+
+        .checkbox:checked + label::before { transform: translateX(44px) rotate(-270deg); }
+
+.link { color: var(--whiteSmoke); margin-top: 20px; display: block; }
+    .link:hover { color: var(--mainColor); }
+
+.card-3d-wrap {
+    position: relative;
+    width: 400px;
+    max-width: 100%;
+    height: 400px;
+    margin-top: 60px;
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.card-3d-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transition: all .6s ease-out;
+}
+
+    .checkbox:checked ~ .card-3d-wrap .card-3d-wrapper { transform: rotateY(180deg); }
+
+.card-front, .card-back { 
+    width: 100%; 
+    height: 100%;
+    background-color: #1B1B1B; 
+    background-image: url('https://i.postimg.cc/4dnZCH03/background.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 300%;
+    position: absolute;
+    border-radius: 6px;
+    left: 0;
+    top: 0;
+    transform-style: preserve-3d;
+}
+
+    .card-back { transform: rotateY(180deg); }
+
+.center-wrap {
+    position: absolute;
+    width: 100%;
+    padding: 0 35px;
+    top: 50%;
+    left: 0;
+    transform: translate3d(0, -50%, 35px) perspective(100px);
+    display: block;
+    z-index: 20;
+}
+
+.heading { margin-bottom: 20px; font-size: 24px; text-transform: uppercase; }
+.form-group { position: relative; display: block; margin-bottom: 10px; }
+    .form-group input::placeholder { color: var(--whiteSmoke); opacity: .7; transition: all .2s linear; }
+        .form-group input:focus::placeholder { opacity: 0; transition: all .2s linear; }
+
+.form-style {
+    padding: 13px 20px;
+    padding-left: 55px;
+    height: 48px;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    outline: none;
+    color: var(--whiteSmoke);
+    background-color: #242323;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+    .form-style:focus, .form-style:active { border: none; outline: none; box-shadow: var(--shadow); }
+
+.input-icon {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    height: 48px;
+    font-size: 24px;
+    text-align: left;
+    color: var(--mainColor);
+    transition: all .2s linear;
+}
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 992px) {
+    nav .menu-btn i { display: block; }
+    nav .container { padding: 0; }
+    nav ul { 
+        position: fixed;
+        top: 85px;
+        left: -100%;
+        background-color: #1B1B1B;
+        height: 320px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        transition: all .3s ease;
+    }
+
+    #click:checked ~ ul { left: 0; }
+        nav ul li { margin: 20px 0; }
+            nav ul li a { display: block; font-size: 20px; }
+                nav ul li a.active, nav ul li a:hover { background: none; color: var(--mainColor); }
+
+    .left h2 { font-size: 40px; }
+        .left h2 span { font-size: 42px; }
+    .left p { font-size: 14px; }
+    .card-3d-wrap { width: 350px; }
+}
+
+@media (max-width: 768px) {
+    .left, .right { flex: 0 0 100%; max-width: 100%; }
+        .left { display: grid; place-items: center; order: 2;}
+        .right { order: 1; }
+            .left h2 { text-align: center; }
+}
+
+@media (max-width: 400px) {
+    .left h2 { font-size: 28px; }
+        .left h2 span { font-size: 30px; }
+    .card-3d-wrap { width: 300px; }
+}
+  ul {
+    margin: 0px;
+    padding: 0px;
+}
+.footer-section {
+  background: #151414;
+  position: relative;
+}
+.footer-cta {
+  border-bottom: 1px solid #373636;
+}
+.single-cta i {
+  color: #ff5e14;
+  font-size: 30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+.cta-text h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.cta-text span {
+  color: #757575;
+  font-size: 15px;
+}
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+.footer-pattern img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 330px;
+  background-size: cover;
+  background-position: 100% 100%;
+}
+.footer-logo {
+  margin-bottom: 30px;
+}
+.footer-logo img {
+    max-width: 200px;
+}
+.footer-text p {
+  margin-bottom: 14px;
+  font-size: 14px;
+      color: #7e7e7e;
+  line-height: 28px;
+}
+.footer-social-icon span {
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+.footer-social-icon a {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.footer-social-icon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+}
+.facebook-bg{
+  background: #3B5998;
+}
+.twitter-bg{
+  background: #55ACEE;
+}
+.google-bg{
+  background: #DD4B39;
+}
+.footer-widget-heading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: #ff5e14;
+}
+.footer-widget ul li {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  margin-bottom: 12px;
+}
+.footer-widget ul li a:hover{
+  color: #ff5e14;
+}
+.footer-widget ul li a {
+  color: #878787;
+  text-transform: capitalize;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form input {
+  width: 100%;
+  padding: 14px 28px;
+  background: #2E2E2E;
+  border: 1px solid #2E2E2E;
+  color: #fff;
+}
+.subscribe-form button {
+    position: absolute;
+    right: 0;
+    background: #ff5e14;
+    padding: 13px 20px;
+    border: 1px solid #ff5e14;
+    top: 0;
+}
+.subscribe-form button i {
+  color: #fff;
+  font-size: 22px;
+  transform: rotate(-6deg);
+}
+.copyright-area{
+  background: #202020;
+  padding: 25px 0;
+}
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+}
+.copyright-text p a{
+  color: #ff5e14;
+}
+.footer-menu li {
+  display: inline-block;
+  margin-left: 20px;
+}
+.footer-menu li:hover a{
+  color: #ff5e14;
+}
+.footer-menu li a {
+  font-size: 14px;
+  color: #878787;
+}
+
+</style>
+<!-- partial -->
+  
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCUDzvcRn7khY41TwMQw2PrW3Zd6Bd8-0o",
+  authDomain: "login-8c705.firebaseapp.com",
+  projectId: "login-8c705",
+  storageBucket: "login-8c705.firebasestorage.app",
+  messagingSenderId: "142971498779",
+  appId: "1:142971498779:web:35122cb26021d50bca63be",
+  measurementId: "G-1M121C0Y9E"
+};
+firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function toggleForms(){document.getElementById("loginBox").classList.toggle("hidden"),document.getElementById("registerBox").classList.toggle("hidden")}function togglePassword(e,t){let n=document.getElementById(e);"password"===n.type?(n.type="text",t.textContent="\uD83D\uDE48"):(n.type="password",t.textContent="\uD83D\uDC41️")}function register(){let e=document.getElementById("regUsername").value.trim(),t=document.getElementById("regPassword").value.trim(),n=document.getElementById("gender").value,r=document.getElementById("phoneInput").value.trim();if(!e||!t||!r){alert("يرجى تعبئة كل الحقول");return}db.collection("users").where("username","==",e).get().then(o=>{o.empty?db.collection("users").doc(e).set({username:e,password:t,gender:n,phone:r}).then(()=>{toggleForms(),alert("✅ تم إنشاء الحساب بنجاح، يمكنك تسجيل الدخول الآن")}).catch(e=>{console.error(e),alert("حدث خطأ أثناء إنشاء الحساب")}):alert("❌ هذا الاسم مستخدم بالفعل")}).catch(e=>{console.error(e),alert("حدث خطأ أثناء التحقق من المستخدم")})}function login(){let e=document.getElementById("loginUsername").value.trim(),t=document.getElementById("loginPassword").value.trim();if(!e||!t){alert("يرجى تعبئة جميع الحقول");return}if("admin"===e&&"313589"===t){window.location.href="admin.html";return}db.collection("users").where("username","==",e).where("password","==",t).get().then(e=>{if(e.empty)alert("❌ بيانات الدخول غير صحيحة");else{let t=e.docs[0].data();sessionStorage.setItem("username",t.username),window.location.href="قاتل الفيروسات.html"}}).catch(e=>{console.error(e),alert("حدث خطأ أثناء تسجيل الدخول")})}document.getElementById("loginBtn").addEventListener("click",login),document.getElementById("registerBtn").addEventListener("click",register),document.getElementById("toRegister").addEventListener("click",toggleForms),document.getElementById("toLogin").addEventListener("click",toggleForms),document.addEventListener("keydown",function(e){e.ctrlKey&&("u"===e.key||"U"===e.key)&&e.preventDefault(),"F12"===e.key&&e.preventDefault()}),window.addEventListener("contextmenu",function(e){e.preventDefault()}),document.addEventListener("keydown",function(e){let t=e.key.toLowerCase();(e.ctrlKey&&"u"===t||"F12"===e.key||e.ctrlKey&&e.shiftKey&&"i"===t||e.ctrlKey&&e.shiftKey&&"c"===t||e.ctrlKey&&"s"===t||e.ctrlKey&&"p"===t)&&(e.preventDefault(),alert("\uD83D\uDEAB هذا الإجراء غير مسموح على هذا الموقع.")),e.ctrlKey&&"q"===t&&(e.preventDefault(),window.open("https://www.facebook.com/omar.tamer.adel","_blank"))}),window.onload=function(){document.getElementById("rightClickAlert").style.display="block"};
+</script>
+
+
+
+
+</body>
+</html>
