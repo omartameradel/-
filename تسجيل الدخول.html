@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css">
-      <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
+    <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
       <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -18,7 +18,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="row justify-content-between align-items-center">
-                <div class="logo">Omar_Tamer<span>-قاتل الفيروسات</span></div>
+                <div class="logo">نينجا كود<span>-قاتل الفيروسات</span></div>
                 <input type="checkbox" name="" id="click">
                 <label for="click" class="menu-btn">
                     <i class="material-icons">menu</i>
@@ -28,13 +28,14 @@
         </div>
     </nav>
 
+
     <section>
         <div class="container">
             <div class="row full-screen align-items-center">
                 <div class="left">
                     <span class="line"></span>
-                    <h2>Hello, I'm Omar, <br> a <span>Program </span></h2>
-                    <a href="contact.html" class="btn" target="_blank">Contact</a>
+                    <h2>Hello, we are the Ninja Code team <br> a <span>Program </span></h2>
+                    <a href="https://omartamer.netlify.app/contact.html" class="btn" target="_blank">Contact</a>
 
                     
                     <div class="social-media">
@@ -140,7 +141,7 @@
                             <i class="far fa-envelope-open"></i>
                             <div class="cta-text">
                                 <h4>Mail us</h4>
-                                <span><a href="mailto:programmingleaderwithomartamer@gmail.com">programmingleaderwithomartamer@gmail.com</a> </span>
+                                <span><a href="mailto:nengacode@gmail.com">nengacode@gmail.com</a> </span>
                             </div>
                         </div>
                     </div>
@@ -154,7 +155,7 @@
                     <div class="col-xl-4 col-lg-4 mb-50">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <a href="https://omartamer.netlify.app"><img src="https://omartamer.netlify.app/لوجو زعيم البرمجة.png" class="img-fluid" alt="logo"></a>
+                                <a href="https://omartamer.netlify.app"><img src="https://i.ibb.co/2YWP6Cz9/Chat-GPT-Image-Aug-17-2025-12-42-29-PM.png class="img-fluid" alt="logo"></a>
                             </div>
                             <div class="footer-text">
                                 <p>اهلا في موقع زعيم البرمجة - عمر تامر محمد عادل
@@ -662,6 +663,9 @@ input[type="checkbox"] { display: none; }
   font-size: 14px;
   color: #878787;
 }
+.cta-text{
+    
+}
 
 </style>
 <!-- partial -->
@@ -680,8 +684,44 @@ firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function to
 </script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // تهيئة EmailJS بمفتاحك العام
+  (function () {
+    emailjs.init({
+      publicKey: "AfNDiQb3QMOlXbpJw", // ضع المفتاح العام الصحيح من لوحة EmailJS
+    });
+  })();
 
+  // إرسال الإيميل عند إرسال النموذج
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("emailForm");
+    const input = document.getElementById("userEmail");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = input.value.trim();
+      if (!email) {
+        alert("⚠️ الرجاء إدخال بريد إلكتروني صحيح");
+        return;
+      }
+
+      emailjs.send("service_hprgxdq", "template_nlrufwv", {
+    user_email: email
+})
+
+        .then(function () {
+          alert("✅ تم إرسال بريدك الإلكتروني بنجاح!");
+          form.reset();
+        })
+        .catch(function (error) {
+          console.error("تفاصيل الخطأ:", error);
+          alert(`❌ حدث خطأ (${error.status || "?"}): ${error.text || "خطأ غير معروف"}`);
+        });
+    });
+  });
+</script>
 
 </body>
 </html>
-
