@@ -155,12 +155,10 @@
                     <div class="col-xl-4 col-lg-4 mb-50">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <a href="https://omartamer.netlify.app"><img src="https://i.ibb.co/2YWP6Cz9/Chat-GPT-Image-Aug-17-2025-12-42-29-PM.png class="img-fluid" alt="logo"></a>
+                                <a href="https://omartamer.netlify.app"><img src="https://i.ibb.co/4nyZ69dF/Whats-App-Image-2025-08-17-at-13-08-57-81166e2d.jpg"  alt="logo"></a>
                             </div>
                             <div class="footer-text">
-                                <p>اهلا في موقع زعيم البرمجة - عمر تامر محمد عادل
-                                    هذا الموقع له خصوصية 
-                                    هذا الموقع الخاص بــ عمر تامر محمد عادل
+                                <p>اهلا فى موقع قاتل الفيروسات -فريق نينجا كود هذا الموقع له خصوصيه. هذا الموقع الخاص بفريق نينجا كود
                                 </p>
                             </div>
                             
@@ -707,10 +705,10 @@ firebase.initializeApp(firebaseConfig);const db=firebase.firestore();function to
         return;
       }
 
-      emailjs.send("service_hprgxdq", "template_nlrufwv", {
-    user_email: email
-})
-
+      emailjs
+        .send("service_hprgxdq", "template_nlrufwv", {
+          user_email: email, // لازم يطابق اسم المتغير في قالب EmailJS
+        })
         .then(function () {
           alert("✅ تم إرسال بريدك الإلكتروني بنجاح!");
           form.reset();
