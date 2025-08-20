@@ -1,762 +1,423 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة مدافع الإنترنت</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* أنماط CSS لتحسين مظهر اللعبة */
-        body {
-            font-family: 'Cairo', sans-serif;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .game-canvas {
-            background: #0a0a2a;
-            background-image:
-                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0),
-                radial-gradient(circle at 15px 15px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 30px 30px;
-            cursor: crosshair;
-            touch-action: none;
-        }
-        .shield-cooldown-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            transition: height 0.1s linear; pointer-events: none;
-        }
-        @keyframes screenShake {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-        }
-        .shake { animation: screenShake 0.5s; }
-
-        @keyframes glitch {
-            2%,64%{ transform: translate(2px,-2px) skew(0deg); }
-            4%,60%{ transform: translate(-2px,2px) skew(0deg); }
-            62%{ transform: translate(0,0) skew(5deg); }
-        }
-        .glitch { animation: glitch 1s infinite linear alternate-reverse; filter: invert(1); }
-
-        #hackingMinigame {
-            background-color: rgba(0, 20, 30, 0.95);
-            border: 2px solid #0ff;
-            box-shadow: 0 0 20px #0ff;
-        }
-        .arrow-key {
-            font-size: 2rem;
-            padding: 0.5rem 1rem;
-            background: #333;
-            border: 1px solid #555;
-            border-radius: 0.25rem;
-            margin: 0 0.25rem;
-            color: #fff;
-        }
-        .arrow-key.correct { background: #0f0; color: #000; }
-        .arrow-key.incorrect { background: #f00; color: #000; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لعبة مدافع الإنترنت</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', sans-serif; overflow-x:hidden; }
+    .game-canvas {
+      background: #0a0a2a;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0),
+        radial-gradient(circle at 15px 15px, rgba(255,255,255,0.05) 1px, transparent 0);
+      background-size: 30px 30px;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .shield-cooldown-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5); transition: height 0.1s linear; pointer-events:none;
+    }
+    #hackingMinigame .arrow-key { /* style if needed */ }
+  </style>
 </head>
-
 <body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
 
-    <div id="game-container" class="w-full max-w-4xl mx-auto flex flex-col lg:flex-row gap-8">
-
-        <div class="flex-grow flex flex-col items-center">
-
-            <h1 class="text-4xl font-bold text-cyan-400 mb-2">مدافع الإنترنت</h1>
-            <p class="text-gray-400 mb-4">اقضِ على الفيروسات قبل أن تسيطر على النظام!</p>
-
-            <div id="canvas-wrapper" class="w-full aspect-w-4 aspect-h-3 relative">
-                <canvas id="gameCanvas" class="game-canvas rounded-lg shadow-2xl shadow-cyan-500/20 w-full h-full"></canvas>
-
-                <div id="powerupStatus" class="absolute top-2 left-2 flex gap-2"></div>
-
-                <div id="startScreen" class="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-70">
-                    <h2 id="startScreenTitle" class="text-3xl font-bold mb-4">هل أنت مستعد؟</h2>
-                    <!-- زر جديد لبدء لعبة جديدة -->
-                    <button id="startButton" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-105">ابدأ لعبة جديدة</button>
-                    <!-- زر المتابعة الذي يظهر فقط عند وجود نتيجة سابقة -->
-                    <button id="continueButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg text-xl mt-4 transition-transform transform hover:scale-105 hidden">
-                        متابعة من <span id="savedScoreDisplay">0</span> نقطة
-                    </button>
-                </div>
-                <div id="gameOverScreen" class="absolute inset-0 flex-col justify-center items-center bg-black bg-opacity-70 hidden">
-                    <h2 class="text-4xl font-bold text-red-500 mb-2">انتهت اللعبة!</h2>
-                    <p class="text-2xl mb-4">نتيجتك النهائية: <span id="finalScore">0</span></p>
-                    <div class="flex flex-col gap-4 items-center">
-                        <button id="continueAfterDeathButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform transform hover:scale-105 hidden">
-                            متابعة من <span id="continueAfterDeathScore">0</span> نقطة
-                        </button>
-                    </div>
-                </div>
-
-                <div id="hackingMinigame" class="absolute inset-0 flex-col justify-center items-center p-8 rounded-lg hidden">
-                    <h2 class="text-3xl font-bold text-red-500 mb-4">!!! اختراق فيروس مشفر !!!</h2>
-                    <p class="text-xl text-yellow-400 mb-6">أدخل التسلسل الصحيح لكسر الحماية!</p>
-                    <div id="arrowSequence" class="flex mb-6"></div>
-                    <p id="minigameStatus" class="text-lg h-8"></p>
-                </div>
-            </div>
-
-            <div class="w-full flex justify-between items-center mt-4 p-4 bg-gray-800 rounded-lg">
-                <div class="text-lg">النتيجة: <span id="score" class="font-bold text-2xl text-yellow-400">0</span></div>
-                <div class="text-lg">الوقت: <span id="timer" class="font-bold text-2xl text-yellow-400">60</span></div>
-                <div class="relative">
-                    <button id="shieldButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-5 rounded-lg disabled:opacity-50">
-                        🛡 درع سيبراني (<span id="shieldsLeft">3</span>)
-                    </button>
-                    <div id="shieldCooldownOverlay" class="shield-cooldown-overlay rounded-lg" style="height: 0%;"></div>
-                </div>
-            </div>
+  <div id="game-container" class="w-full max-w-4xl mx-auto flex flex-col lg:flex-row gap-8">
+    <div class="flex-grow flex flex-col items-center">
+      <h1 class="text-4xl font-bold text-cyan-400 mb-2">مدافع الإنترنت</h1>
+      <p class="text-gray-400 mb-4">اقضِ على الفيروسات قبل أن تسيطر على النظام!</p>
+      <div id="canvas-wrapper" class="w-full relative">
+        <canvas id="gameCanvas" class="game-canvas rounded-lg shadow-2xl shadow-cyan-500/20 w-full"></canvas>
+        <div id="powerupStatus" class="absolute top-2 left-2 flex gap-2"></div>
+        <div id="startScreen" class="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-70">
+          <h2 id="startScreenTitle" class="text-3xl font-bold mb-4">هل أنت مستعد؟</h2>
+          <button id="startButton" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold py-3 px-8 rounded-lg text-xl transition-transform hover:scale-105">ابدأ لعبة جديدة</button>
+          <button id="continueButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg text-xl mt-4 transition-transform hover:scale-105 hidden">
+            متابعة من <span id="savedScoreDisplay">0</span> نقطة
+          </button>
         </div>
-
-        <div class="w-full lg:w-1/3 bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 id="greeting" class="text-2xl font-bold text-cyan-400 mb-2">مرحباً بك!</h2>
-            <button class="mb-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg"><a href="تسجيل الدخول.html">تسجيل الخروج</a></button>
-            <p id="usernameDisplay" class="text-cyan-400 font-bold"></p>
-
-            <h2 class="text-2xl font-bold text-cyan-400 mb-4 border-b-2 border-cyan-500 pb-2" >🏆 لوحة المتصدرين</h2>
-            <div id="leaderboard" class="space-y-3"><p class="text-gray-400">يتم التحميل...</p></div>
-            <p class="text-xs text-gray-500 mt-4">معرف المستخدم: <span id="userIdDisplay"></span></p>
+        <div id="gameOverScreen" class="absolute inset-0 flex-col justify-center items-center bg-black bg-opacity-70 hidden">
+          <h2 class="text-4xl font-bold text-red-500 mb-2">انتهت اللعبة!</h2>
+          <p class="text-2xl mb-4">نتيجتك النهائية: <span id="finalScore">0</span></p>
+          <div class="flex flex-col gap-4 items-center">
+            <button id="continueAfterDeathButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg text-xl transition-transform hover:scale-105 hidden">
+              متابعة من <span id="continueAfterDeathScore">0</span> نقطة
+            </button>
+          </div>
         </div>
+        <div id="hackingMinigame" class="absolute inset-0 flex-col justify-center items-center p-8 rounded-lg hidden">
+          <h2 class="text-3xl font-bold text-red-500 mb-4">!!! اختراق فيروس مشفر !!!</h2>
+          <p class="text-xl text-yellow-400 mb-6">أدخل التسلسل الصحيح لكسر الحماية!</p>
+          <div id="arrowSequence" class="flex mb-6"></div>
+          <p id="minigameStatus" class="text-lg h-8"></p>
+        </div>
+      </div>
+      <div class="w-full flex justify-between items-center mt-4 p-4 bg-gray-800 rounded-lg">
+        <div class="text-lg">النتيجة: <span id="score" class="font-bold text-2xl text-yellow-400">0</span></div>
+        <div class="text-lg">الوقت: <span id="timer" class="font-bold text-2xl text-yellow-400">60</span></div>
+        <div class="relative">
+          <button id="shieldButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-5 rounded-lg disabled:opacity-50">
+            🛡️ درع سيبراني (<span id="shieldsLeft">3</span>)
+          </button>
+          <div id="shieldCooldownOverlay" class="shield-cooldown-overlay rounded-lg" style="height: 0%;"></div>
+        </div>
+      </div>
     </div>
+    <div class="w-full lg:w-1/3 bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 id="greeting" class="text-2xl font-bold text-cyan-400 mb-2">مرحباً بك!</h2>
+      <button class="mb-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg"><a href="تسجيل الدخول.html">تسجيل الخروج</a></button>
+      <p id="usernameDisplay" class="text-cyan-400 font-bold"></p>
+      <h2 class="text-2xl font-bold text-cyan-400 mb-4 border-b-2 border-cyan-500 pb-2">🏆 لوحة المتصدرين</h2>
+      <div id="leaderboard" class="space-y-3"><p class="text-gray-400">يتم التحميل...</p></div>
+      <p class="text-xs text-gray-500 mt-4">معرف المستخدم: <span id="userIdDisplay"></span></p>
+    </div>
+  </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import {
-            getAuth,
-            signInAnonymously,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import {
-            getFirestore,
-            collection,
-            doc,
-            getDoc,
-            setDoc,
-            updateDoc,
-            onSnapshot,
-            query,
-            orderBy
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, doc, getDoc, setDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // --- عناصر واجهة المستخدم ---
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const scoreEl = document.getElementById('score');
-        const timerEl = document.getElementById('timer');
-        const startScreen = document.getElementById('startScreen');
-        const startScreenTitle = document.getElementById('startScreenTitle');
-        const gameOverScreen = document.getElementById('gameOverScreen');
-        const startButton = document.getElementById('startButton'); // الزر الجديد
-        const continueButton = document.getElementById('continueButton');
-        const savedScoreDisplay = document.getElementById('savedScoreDisplay');
-        const continueAfterDeathButton = document.getElementById('continueAfterDeathButton');
-        const continueAfterDeathScoreEl = document.getElementById('continueAfterDeathScore');
-        const finalScoreEl = document.getElementById('finalScore');
-        const shieldButton = document.getElementById('shieldButton');
-        const shieldsLeftEl = document.getElementById('shieldsLeft');
-        const shieldCooldownOverlay = document.getElementById('shieldCooldownOverlay');
-        const leaderboardEl = document.getElementById('leaderboard');
-        const userIdDisplay = document.getElementById('userIdDisplay');
-        const powerupStatusEl = document.getElementById('powerupStatus');
-        const hackingMinigameEl = document.getElementById('hackingMinigame');
-        const arrowSequenceEl = document.getElementById('arrowSequence');
-        const minigameStatusEl = document.getElementById('minigameStatus');
-        const greetingEl = document.getElementById("greeting");
-        const usernameDisplayEl = document.getElementById("usernameDisplay");
+    // DOM-e
+    const canvas = document.getElementById('gameCanvas'), ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score'), timerEl = document.getElementById('timer');
+    const startScreen = document.getElementById('startScreen'), startButton = document.getElementById('startButton'), continueButton = document.getElementById('continueButton');
+    const savedScoreDisplay = document.getElementById('savedScoreDisplay'), gameOverScreen = document.getElementById('gameOverScreen');
+    const finalScoreEl = document.getElementById('finalScore'), continueAfterDeathButton = document.getElementById('continueAfterDeathButton'), continueAfterDeathScoreEl = document.getElementById('continueAfterDeathScore');
+    const shieldButton = document.getElementById('shieldButton'), shieldsLeftEl = document.getElementById('shieldsLeft'), shieldCooldownOverlay = document.getElementById('shieldCooldownOverlay');
+    const leaderboardEl = document.getElementById('leaderboard'), userIdDisplay = document.getElementById('userIdDisplay');
+    const powerupStatusEl = document.getElementById('powerupStatus'), hackingMinigameEl = document.getElementById('hackingMinigame');
+    const arrowSequenceEl = document.getElementById('arrowSequence'), minigameStatusEl = document.getElementById('minigameStatus');
+    const greetingEl = document.getElementById('greeting'), usernameDisplayEl = document.getElementById('usernameDisplay');
 
+    // Firebase config (صحّح storageBucket)
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",
+      authDomain: "programomartamer-451a5.firebaseapp.com",
+      projectId: "programomartamer-451a5",
+      storageBucket: "programomartamer-451a5.appspot.com",
+      messagingSenderId: "351835913301",
+      appId: "1:351835913301:web:d722fdcc9fb7b15c4468dc",
+      measurementId: "G-R5FJQY220K"
+    };
 
-        const lockImage = new Image();
-const skullImage = new Image();
-
-// 2. استخدام Data URLs لتحميل الصور مباشرة (لا حاجة لملفات خارجية)
-// صورة قفل بسيطة
-lockImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3lhbiIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCI+PHBhdGggZD0iTTE4IDhoLTFWNmMwLTIuNzYtMi4yNC01LTUtNV M3IDMuMjQgNyA2djJINmMtMS4xIDAtMiAuOS0yIDJ2MTBjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMlYxMGMwLTEuMS0uOS0yLTItMnpNOSAxMEg5VjZjMC0xLjY2IDEuMzQtMyAzLTNzMyAxLjM0IDMgM3YySDl6Ii8+PC9zdmc+';
-// صورة جمجمة بسيطة
-skullImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIiB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMjR6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyczQuNDcgMTAgMTAgMTBzMTAtNC40NyAxMC0xMFMxNy41MyAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCA0IDggOC0zLjU5IDgtOCA4em0zLjUtOWMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzE0LjY3IDggMTUuNSA4czEuNS42NyAxLjUgMS41LS42NyAxLjUtMS41IDEuNXptLTcgMGMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzcuNjcgOCA4LjUgOHMxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTMuNSA1Yy0yLjMzIDAtNC4zMS0xLjQ2LTUuMTItMy41aDEwLjI0Yy0uODIgMi4wNC0yLjggMy41LTUuMTIgMy41eiIvPjwvc3ZnPg==';
-
-skullImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIiB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMjR6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyczQuNDcgMTAgMTAgMTBzMTAtNC40NyAxMC0xMFMxNy41MyAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCA0IDggOC0zLjU5IDgtOCA4em0zLjUtOWMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzE0LjY3IDggMTUuNSA4czEuNS42NyAxLjUgMS41LS42NyAxLjUtMS41IDEuNXptLTcgMGMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzcuNjcgOCA4LjUgOHMxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTMuNSA1Yy0yLjMzIDAtNC4zMS0xLjQ2LTUuMTItMy41aDEwLjI0Yy0uODIgMi4wNC0yLjggMy41LTUuMTIgMy41eiIvPjwvc3ZnPg==';
-
-
-// 3. التأكد من أن الصور قد تم تحميلها قبل تفعيل أزرار اللعبة
-let imagesLoaded = 0;
-const totalImages = 2;
-startButton.disabled = true;
-continueButton.disabled = true;
-
-function onImageLoad() {
-    imagesLoaded++;
-    if (imagesLoaded === totalImages) {
-        startButton.disabled = false;
-        continueButton.disabled = false;
-        console.log("All game images loaded successfully!");
+    let db, auth, userId, savedScore = 0, scoreSavingInterval;
+    try {
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+      setupAuthListener();
+      setupLeaderboardListener();
+    } catch (e) {
+      console.error("Firebase init error", e);
+      leaderboardEl.innerHTML = '<p class="text-red-500">فشل الاتصال بقاعدة البيانات.</p>';
     }
-}
 
-lockImage.onload = onImageLoad;
-skullImage.onload = onImageLoad;
-lockImage.onerror = () => console.error("Failed to load lock image.");
-skullImage.onerror = () => console.error("Failed to load skull image.");
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        userId = user.uid; userIdDisplay.textContent = userId;
+        const username = sessionStorage.getItem("username") || "مجهول";
+        usernameDisplayEl.textContent = username; greetingEl.textContent = `مرحباً، ${username}!`;
+        fetchSavedScore();
+      } else signInAnonymously(auth);
+    });
 
-
-
-
-
-        // --- إعداد Firebase ---
-        let db, auth, userId, savedScore = 0;
-        const firebaseConfig = {
-            apiKey: "AIzaSyD4B49RUOXRXcW9S7Nv4puz9m7QKoAa_tE",
-            authDomain: "programomartamer-451a5.firebaseapp.com",
-            projectId: "programomartamer-451a5",
-            storageBucket: "programomartamer-451a5.firebase.app",
-            messagingSenderId: "351835913301",
-            appId: "1:351835913301:web:d722fdcc9fb7b15c4468dc",
-            measurementId: "G-R5FJQY220K"
-        };
-        let scoreSavingInterval; 
-        
-        // تهيئة Firebase والمستمعين
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            setupAuthListener();
-            setupLeaderboardListener();
-        } catch (error) {
-            console.error("Firebase initialization failed:", error);
-            leaderboardEl.innerHTML = '<p class="text-red-500">فشل في الاتصال بقاعدة البيانات.</p>';
+    async function fetchSavedScore() {
+      if (!userId) return;
+      try {
+        const docSnap = await getDoc(doc(db, "leaderboard", userId));
+        if (docSnap.exists() && docSnap.data().score > 0) {
+          savedScore = docSnap.data().score;
+          savedScoreDisplay.textContent = savedScore;
+          continueButton.classList.remove('hidden');
+          startButton.classList.add('hidden');
+          document.getElementById('startScreenTitle').textContent = "تابع لعبتك";
         }
+      } catch (e) { console.error("fetch score error", e); }
+    }
 
-        // يستمع لتغيرات حالة المصادقة (تسجيل الدخول/الخروج)
-        async function setupAuthListener() {
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    userId = user.uid;
-                    userIdDisplay.textContent = userId;
-                    const username = sessionStorage.getItem("username");
-                    usernameDisplayEl.textContent = username ? username : "!";
-                    greetingEl.textContent = username ? مرحباً، ${username}! : "مرحباً!";
-                    await fetchSavedScore();
-                } else {
-                    signInAnonymously(auth); // تسجيل دخول مجهول إذا لم يكن هناك مستخدم
-                }
-            });
-        }
-        
-        // جلب النتيجة المحفوظة من Firestore
-        async function fetchSavedScore() {
-            if (!userId) return;
-            const userRef = doc(db, "leaderboard", userId);
-            try {
-                const docSnap = await getDoc(userRef);
-                if (docSnap.exists() && docSnap.data().score > 0) {
-                    savedScore = docSnap.data().score;
-                    savedScoreDisplay.textContent = savedScore;
-                    continueButton.classList.remove('hidden');
-                    startButton.classList.add('hidden'); // إخفاء زر البدء الجديد
-                    startScreenTitle.textContent = "تابع لعبتك";
-                } else {
-                    savedScore = 0;
-                    continueButton.classList.add('hidden');
-                    startButton.classList.remove('hidden'); // إظهار زر البدء الجديد
-                    startScreenTitle.textContent = "هل أنت مستعد؟";
-                }
-            } catch (e) {
-                console.error("Error fetching saved score:", e);
-                savedScore = 0;
-                continueButton.classList.add('hidden');
-                startButton.classList.remove('hidden');
-                startScreenTitle.textContent = "هل أنت مستعد؟";
-            }
-        }
-        
-        // دالة لحفظ النتيجة في Firestore
-        async function saveScoreToFirestore(name, currentScore) {
-            if (!userId) return; // لا تفعل شيئًا إذا لم يكن هناك معرف مستخدم
-            const userRef = doc(db, "leaderboard", userId);
-            
-            try {
-                await setDoc(userRef, {
-                    name: name,
-                    score: currentScore,
-                    userId: userId
-                });
-            } catch (e) {
-                console.error("Error saving score:", e);
-            }
-        }
+    async function saveScoreToFirestore(name, currentScore) {
+      if (!userId) return;
+      try { await setDoc(doc(db, "leaderboard", userId), { name, score: currentScore, userId }); }
+      catch (e) { console.error("save score error", e); }
+    }
 
-        // دالة جديدة لبدء الحفظ التلقائي للنتيجة
-        function startScoreSaving() {
-            if (scoreSavingInterval) clearInterval(scoreSavingInterval);
-            scoreSavingInterval = setInterval(() => {
-                if (gameActive && !gamePaused) {
-                    const username = sessionStorage.getItem("username") || "مجهول";
-                    saveScoreToFirestore(username, score);
-                }
-            }, 5000); // الحفظ كل 5 ثواني
+    function startScoreSaving() {
+      clearInterval(scoreSavingInterval);
+      scoreSavingInterval = setInterval(() => {
+        if (gameActive && !gamePaused) {
+          const uname = sessionStorage.getItem("username") || "مجهول";
+          saveScoreToFirestore(uname, score);
         }
-        
-        // يستمع لتغيرات لوحة المتصدرين ويحدث الواجهة
-        function setupLeaderboardListener() {
-            try {
-                const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
-                onSnapshot(q, (querySnapshot) => {
-                    let html = '';
-                    let rank = 1;
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        html += `
-                            <div class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
-                                <span>${escapeHTML(data.name)}</span>
-                                <span class="font-bold text-yellow-400">${data.score}</span>
-                            </div>
-                        `;
-                        rank++;
-                    });
-                    leaderboardEl.innerHTML = html;
-                });
-            } catch (error) {
-                console.error("Failed to load leaderboard:", error);
-                leaderboardEl.innerHTML = '<p class="text-red-500">فشل في تحميل لوحة المتصدرين.</p>';
-            }
+      }, 5000);
+    }
+
+    function setupLeaderboardListener() {
+      try {
+        const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
+        onSnapshot(q, snap => {
+          let html = '';
+          snap.forEach(docSnap => {
+            const d = docSnap.data();
+            html += `<div class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
+                       <span>${escapeHTML(d.name)}</span>
+                       <span class="font-bold text-yellow-400">${d.score}</span>
+                     </div>`;
+          });
+          leaderboardEl.innerHTML = html;
+        });
+      } catch (e) {
+        console.error("leaderboard listener error", e);
+        leaderboardEl.innerHTML = '<p class="text-red-500">فشل في تحميل لوحة المتصدرين.</p>';
+      }
+    }
+
+    // لعبة – الإيموجي فقط (بدون صور)
+    const virusTypes = [
+      { emoji: '🐛', size: 20, speed: 1, points: 10 },
+      { emoji: '🐜', size: 15, speed: 2, points: 20 },
+      { emoji: '🐞', size: 25, speed: 0.8, points: 15 },
+      { emoji: '🕷️', size: 22, speed: 1.5, points: 30 },
+      { emoji: '🦠', size: 30, speed: 0.5, points: 50 },
+      { emoji: '👾', size: 25, speed: 1, points: -50, isGlitched: true }
+    ];
+    const bossType = { emoji: '💀', size: 60, speed: 0.5, points: 500, health: 10, maxHealth: 10 };
+    const encryptedVirusType = { emoji: '🔒', size: 30, speed: 0.7, points: 0, isEncrypted: true };
+    const powerUpTypes = { slowMo: { emoji: '❄️', duration: 5000 }, multiShot: { emoji: '☄️', duration: 10000 }, timeBonus: { emoji: '⏳' } };
+
+    let score = 0, timer = 60, shieldsLeft = 3;
+    let viruses = [], powerUps = [], activePowerUps = {};
+    let shieldCooldown = 5000, isShieldOnCooldown = false;
+    let gameActive = false, gamePaused = false, bossActive = false, minigameActive = false;
+    let nextBossScore = 500;
+
+    window.addEventListener('resize', setCanvasDimensions);
+    startButton.addEventListener('click', () => initializeGame(0));
+    continueButton.addEventListener('click', () => initializeGame(savedScore));
+    continueAfterDeathButton.addEventListener('click', () => initializeGame(score));
+    shieldButton.addEventListener('click', useShield);
+    canvas.addEventListener('click', handleCanvasClick);
+
+    setCanvasDimensions();
+
+    function setCanvasDimensions() {
+      const w = canvas.parentElement.clientWidth;
+      canvas.width = w;
+      canvas.height = w * 0.75;
+    }
+
+    function initializeGame(initialScore) {
+      score = initialScore; timer = 60; shieldsLeft = 3;
+      scoreEl.textContent = score; timerEl.textContent = timer; shieldsLeftEl.textContent = shieldsLeft;
+      gameActive = true; gamePaused = false; bossActive = false; minigameActive = false; nextBossScore = 500;
+      startScreen.style.display = 'none'; gameOverScreen.classList.add('hidden');
+      hackingMinigameEl.classList.add('hidden'); canvas.classList.remove('glitch');
+      clearInterval(scoreSavingInterval);
+      startScoreSaving();
+      gameInterval = setInterval(() => {
+        if (!gamePaused) {
+          timer--; timerEl.textContent = timer;
+          if (timer <= 0) endGame();
         }
+      }, 1000);
+      scheduleNextSpawn();
+      animate();
+    }
 
-        // --- حالة اللعبة ---
-        let score, timer, gameInterval, spawnTimeout, shieldsLeft;
-        let viruses = [], particles = [], powerUps = [];
-        let activePowerUps = {};
-        let shieldCooldown = 5000, isShieldOnCooldown = false;
-        let gameActive = false, gamePaused = false, bossActive = false, minigameActive = false;
-        let nextBossScore = 500;
-        
-        // --- تعريفات اللعبة ---
-        const virusTypes = [
-            { emoji: '🐛', size: 20, speed: 1, points: 10, color: '#a3e635' },
-            { emoji: '🐜', size: 15, speed: 2, points: 20, color: '#facc15' },
-            { emoji: '🐞', size: 25, speed: 0.8, points: 15, color: '#ef4444' },
-            { emoji: '🕷', size: 22, speed: 1.5, points: 30, color: '#a855f7' },
-            { emoji: '🦠', size: 30, speed: 0.5, points: 50, color: '#22d3ee' },
-            { emoji: '👾', size: 25, speed: 1, points: -50, color: '#9333ea', isGlitched: true },
-        ];
-        const bossType = { emoji: '💀', size: 60, speed: 0.5, points: 500, color: '#ff0000', health: 10, maxHealth: 10 };
-        const encryptedVirusType = { emoji: '🔒', size: 30, speed: 0.7, points: 0, color: '#0ff', isEncrypted: true };
-        const powerUpTypes = {
-            slowMo: { emoji: '❄', duration: 5000, color: '#3b82f6' },
-            multiShot: { emoji: '☄', duration: 10000, color: '#f97316' },
-            timeBonus: { emoji: '⏳', color: '#10b981' },
-        };
+    function endGame() {
+      gameActive = false; clearInterval(gameInterval); clearInterval(scoreSavingInterval);
+      finalScoreEl.textContent = score; continueAfterDeathScoreEl.textContent = score;
+      continueAfterDeathButton.classList.remove('hidden');
+      gameOverScreen.classList.remove('hidden');
+      const uname = sessionStorage.getItem("username") || "مجهول";
+      saveScoreToFirestore(uname, score);
+    }
 
-        // --- محرك الصوت (مبسط) ---
-        let audioCtx;
-        function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-        function playSound(type) { initAudio(); }
+    function scheduleNextSpawn() {
+      if (!gameActive) return;
+      const rate = Math.max(200, 1000 - score / 2);
+      setTimeout(() => {
+        if (!gamePaused) {
+          if (score >= nextBossScore && !bossActive) { spawnBoss(); nextBossScore += 500; }
+          else if (Math.random() < 0.03 && !minigameActive) spawnItem(encryptedVirusType);
+          else if (Math.random() < 0.1) spawnItem(Object.values(powerUpTypes)[Math.floor(Math.random()*3)], true);
+          else spawnVirus();
+        }
+        scheduleNextSpawn();
+      }, rate);
+    }
 
-        // --- حلقة اللعبة الرئيسية ---
-        function initializeGame(initialScore) {
-            initAudio();
-            score = initialScore;
-            timer = 60;
-            shieldsLeft = 3;
-            viruses = []; particles = []; powerUps = []; activePowerUps = {};
-            isShieldOnCooldown = false; gameActive = true; gamePaused = false; bossActive = false; minigameActive = false;
-            nextBossScore = 500;
-            
-            scoreEl.textContent = score;
-            timerEl.textContent = timer;
-            shieldsLeftEl.textContent = shieldsLeft;
+    function spawnVirus() {
+      if (bossActive) return;
+      const count = Math.floor(Math.random()*3)+1;
+      for (let i = 0; i < count; i++) {
+        spawnItem(virusTypes[Math.floor(Math.random()*virusTypes.length)]);
+      }
+    }
+
+    function spawnBoss() { bossActive = true; spawnItem({ ...bossType }); }
+
+    function spawnItem(type, isPowerUp = false) {
+      const x = Math.random() * (canvas.width - type.size*2) + type.size;
+      const y = -type.size - Math.random()*50;
+      const angle = Math.random()*Math.PI*0.5 + Math.PI*0.25;
+      const speed = (type.speed || 1) + (score/1000);
+      const factor = activePowerUps['❄️'] ? 0.3 : 1;
+      const entity = { x, y, dx: Math.cos(angle)*speed*factor, dy: Math.sin(angle)*speed*factor, ...type };
+      if (isPowerUp) powerUps.push(entity); else viruses.push(entity);
+    }
+
+    function useShield() {
+      if (shieldsLeft > 0 && !isShieldOnCooldown && gameActive && !gamePaused) {
+        shieldsLeft--; shieldsLeftEl.textContent = shieldsLeft;
+        isShieldOnCooldown = true; shieldButton.disabled = true;
+        viruses = [];
+        let cooldown = shieldCooldown;
+        const interval = setInterval(() => {
+          cooldown -= 100;
+          shieldCooldownOverlay.style.height = `${(cooldown/shieldCooldown)*100}%`;
+          if (cooldown <= 0) {
+            clearInterval(interval);
+            isShieldOnCooldown = false;
             shieldButton.disabled = false;
             shieldCooldownOverlay.style.height = '0%';
-            startScreen.style.display = 'none';
-            gameOverScreen.classList.add('hidden');
-            hackingMinigameEl.classList.add('hidden');
-            canvas.classList.remove('glitch');
-            continueAfterDeathButton.classList.add('hidden'); // إخفاء زر المتابعة في بداية اللعبة
+          }
+        }, 100);
+      }
+    }
 
-            gameInterval = setInterval(() => {
-                if (gamePaused) return;
-                timer--;
-                timerEl.textContent = timer;
-                if (timer <= 0) endGame();
-            }, 1000);
+    function activatePowerUp(type) {
+      if (type.emoji === '⏳') {
+        timer += 5; timerEl.textContent = timer;
+        return;
+      }
+      if (activePowerUps[type.emoji]) clearTimeout(activePowerUps[type.emoji].timeout);
+      activePowerUps[type.emoji] = { expire: Date.now()+type.duration };
+      activePowerUps[type.emoji].timeout = setTimeout(() => {
+        delete activePowerUps[type.emoji];
+      }, type.duration);
+    }
 
-            startScoreSaving(); // بدء الحفظ التلقائي للنتيجة
-            scheduleNextSpawn();
-            animate();
+    let minigameSequence = [], playerIndex = 0;
+    function startHackingMinigame() {
+      gamePaused = true; minigameActive = true;
+      hackingMinigameEl.classList.remove('hidden');
+      minigameStatusEl.textContent = '';
+      const arrows = ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'];
+      const symbols = { ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→' };
+      minigameSequence = Array.from({ length: 5 }, () => arrows[Math.floor(Math.random()*4)]);
+      playerIndex = 0;
+      arrowSequenceEl.innerHTML = minigameSequence.map(k => `<div class="arrow-key">${symbols[k]}</div>`).join('');
+      window.addEventListener('keydown', handleMinigameKeys);
+    }
+
+    function handleMinigameKeys(e) {
+      const key = e.key;
+      if (!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(key)) return;
+      const correct = minigameSequence[playerIndex];
+      const keyEl = arrowSequenceEl.children[playerIndex];
+      if (key === correct) {
+        keyEl.classList.add('correct'); playerIndex++;
+        if (playerIndex === minigameSequence.length) {
+          minigameStatusEl.textContent = 'تم الاختراق! +500 نقاط، +10 ثواني';
+          score += 500; timer += 10; scoreEl.textContent = score; timerEl.textContent = timer;
+          endMinigame(true);
         }
+      } else {
+        keyEl.classList.add('incorrect');
+        minigameStatusEl.textContent = 'فشل الاختراق! -5 ثواني';
+        timer -= 5; timerEl.textContent = timer;
+        endMinigame(false);
+      }
+    }
 
-        function endGame() {
-            playSound('gameOver');
-            gameActive = false;
-            clearInterval(gameInterval);
-            clearInterval(scoreSavingInterval); // إيقاف مؤقت الحفظ
-            clearTimeout(spawnTimeout);
-            finalScoreEl.textContent = score;
-            continueAfterDeathScoreEl.textContent = score;
-            continueAfterDeathButton.classList.remove('hidden'); // إظهار زر المتابعة
-            gameOverScreen.classList.remove('hidden');
-            const username = sessionStorage.getItem("username") || "مجهول";
-            saveScoreToFirestore(username, score); // التأكد من حفظ النتيجة النهائية
+    function endMinigame(success) {
+      window.removeEventListener('keydown', handleMinigameKeys);
+      setTimeout(() => {
+        hackingMinigameEl.classList.add('hidden');
+        minigameStatusEl.className = 'text-lg h-8';
+        minigameActive = false; gamePaused = false;
+      }, 1500);
+    }
+
+    function handleCanvasClick(e) {
+      if (!gameActive || gamePaused) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX - rect.left) * canvas.width / rect.width;
+      const y = (e.clientY - rect.top) * canvas.height / rect.height;
+      const shots = activePowerUps['☄️'] ? [{x,y},{x-20,y+20},{x+20,y+20}] : [{x,y}];
+      shots.forEach(shot => {
+        for (let i = viruses.length-1; i >= 0; i--) {
+          const v = viruses[i];
+          const dist = Math.hypot(shot.x - v.x, shot.y - v.y);
+          if (dist < v.size) {
+            if (v.isEncrypted) { startHackingMinigame(); viruses.splice(i,1); }
+            else if (v.isGlitched) { canvas.classList.add('glitch'); setTimeout(() => canvas.classList.remove('glitch'),2000); score += v.points; viruses.splice(i,1); }
+            else if (v.health) { v.health--; if (v.health<=0) { score+=v.points; viruses.splice(i,1); bossActive=false; } }
+            else { score += v.points; viruses.splice(i,1); }
+            scoreEl.textContent = score; return;
+          }
         }
-        
-        function pauseGame() { gamePaused = true; }
-        function resumeGame() { gamePaused = false; }
-
-        // --- منطق ظهور الفيروسات ---
-        function scheduleNextSpawn() {
-            if (!gameActive) return;
-            const spawnRate = Math.max(200, 1000 - score / 2);
-            spawnTimeout = setTimeout(() => {
-                if (gamePaused) {
-                    scheduleNextSpawn();
-                    return;
-                }
-                const rand = Math.random();
-                if (score >= nextBossScore && !bossActive) {
-                    spawnBoss();
-                    nextBossScore += 500;
-                } else if (rand < 0.03 && !minigameActive) {
-                    spawnItem(encryptedVirusType);
-                } else if (rand < 0.1) {
-                    spawnItem(Object.values(powerUpTypes)[Math.floor(Math.random() * 3)], true);
-                } else {
-                    spawnVirus(); // استدعاء الدالة الجديدة لتوليد مجموعة من الفيروسات
-                }
-                scheduleNextSpawn();
-            }, spawnRate);
+        for (let i = powerUps.length-1; i >= 0; i--) {
+          const p = powerUps[i];
+          const dist = Math.hypot(shot.x - p.x, shot.y - p.y);
+          if (dist < 20) {
+            const typeKey = Object.keys(powerUpTypes).find(k => powerUpTypes[k].emoji === p.emoji);
+            activatePowerUp(powerUpTypes[typeKey]);
+            powerUps.splice(i,1);
+            return;
+          }
         }
+      });
+    }
 
-        function spawnVirus() {
-            if (bossActive) return;
-            const numToSpawn = Math.floor(Math.random() * 3) + 1; // توليد من 1 إلى 3 فيروسات في كل مرة
-            for (let i = 0; i < numToSpawn; i++) {
-                const type = virusTypes[Math.floor(Math.random() * virusTypes.length)];
-                spawnItem(type);
-            }
+    function animate() {
+      if (!gameActive) return;
+      requestAnimationFrame(animate);
+      if (gamePaused) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+
+      viruses.forEach((v,i) => {
+        v.y += v.dy; v.x += v.dx;
+        if (v.x - v.size < 0 || v.x + v.size > canvas.width) v.dx *= -1;
+        if (v.y > canvas.height + v.size*2) { viruses.splice(i,1); score = Math.max(0, score - Math.floor(v.points * 0.5)); scoreEl.textContent = score; return; }
+
+        ctx.save();
+        ctx.font = `${v.size * 1.5}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        v.emoji === '👻' ? ctx.globalAlpha = 0.5 : ctx.globalAlpha = 1;
+        ctx.fillText(v.emoji, v.x, v.y);
+
+        if (v.health) {
+          const w = v.size*2, h = 5, pct = v.health / v.maxHealth;
+          const col = pct > 0.6 ? '#22c55e' : pct > 0.3 ? '#eab308' : '#ef4444';
+          ctx.fillStyle = '#333'; ctx.fillRect(v.x - w/2, v.y - v.size*1.5 - 10, w, h);
+          ctx.fillStyle = col; ctx.fillRect(v.x - w/2, v.y - v.size*1.5 - 10, w*pct, h);
         }
+        ctx.restore();
+      });
 
-        function spawnBoss() {
-            bossActive = true;
-            spawnItem({ ...bossType, health: bossType.maxHealth });
-        }
-        
-        function spawnItem(item, isPowerUp = false) {
-            // توليد الفيروس في مكان عشوائي قريب من الأعلى
-            const x = Math.random() * (canvas.width - item.size * 2) + item.size;
-            const y = -item.size - Math.random() * 50; // لجعلها تظهر من خارج الشاشة
-            const angle = Math.random() * Math.PI * 0.5 + Math.PI * 0.25;
-            const speed = (item.speed || 1) + (score / 1000);
-            const entity = {
-                x, y,
-                dx: Math.cos(angle) * speed * (activePowerUps.slowMo ? 0.3 : 1),
-                dy: Math.sin(angle) * speed * (activePowerUps.slowMo ? 0.3 : 1),
-                ...item
-            };
-            if (isPowerUp) powerUps.push(entity);
-            else viruses.push(entity);
-        }
-        
-        // --- إجراءات اللاعب وقوى المساعدة ---
-        function useShield() {
-            if (shieldsLeft > 0 && !isShieldOnCooldown && gameActive && !gamePaused) {
-                playSound('shield');
-                shieldsLeft--;
-                shieldsLeftEl.textContent = shieldsLeft;
-                isShieldOnCooldown = true;
-                shieldButton.disabled = true;
-                
-                const originalViruses = [...viruses];
-                viruses = []; // مسح جميع الفيروسات
-                
-                let cooldownTime = shieldCooldown;
-                const cooldownInterval = setInterval(() => {
-                    cooldownTime -= 100;
-                    shieldCooldownOverlay.style.height = ${(cooldownTime / shieldCooldown) * 100}%;
-                    if (cooldownTime <= 0) {
-                        clearInterval(cooldownInterval);
-                        isShieldOnCooldown = false;
-                        shieldButton.disabled = false;
-                        shieldCooldownOverlay.style.height = '0%';
-                    }
-                }, 100);
-            }
-        }
+      powerUps.forEach((p,i) => {
+        p.y += (p.speed || 1) * (activePowerUps['❄️'] ? 0.3 : 1);
+        if (p.y - p.size > canvas.height) return powerUps.splice(i,1);
+        ctx.font = `30px sans-serif`;
+        ctx.fillText(p.emoji, p.x, p.y);
+      });
 
-        function activatePowerUp(type) {
-            const id = type.emoji;
-            if (activePowerUps[id]) clearTimeout(activePowerUps[id].timeout);
+      powerupStatusEl.innerHTML = "";
+      for (const k in activePowerUps) {
+        const remaining = Math.ceil((activePowerUps[k].expire - Date.now())/1000);
+        powerupStatusEl.innerHTML += `<div class="bg-black bg-opacity-50 p-2 rounded-lg text-2xl">${k} ${remaining}s</div>`;
+      }
+    }
 
-            if (id === '⏳') {
-                timer += 5;
-                timerEl.textContent = timer;
-                return;
-            }
-
-            activePowerUps[id] = {
-                duration: type.duration,
-                expire: Date.now() + type.duration
-            };
-
-            activePowerUps[id].timeout = setTimeout(() => {
-                delete activePowerUps[id];
-            }, type.duration);
-        }
-
-        // --- اللعبة المصغرة للاختراق ---
-        let minigameSequence = [];
-        let playerSequenceIndex = 0;
-
-        function startHackingMinigame() {
-            pauseGame();
-            minigameActive = true;
-            hackingMinigameEl.classList.remove('hidden');
-            minigameStatusEl.textContent = '';
-            
-            const arrows = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-            const symbols = { 'ArrowUp': '↑', 'ArrowDown': '↓', 'ArrowLeft': '←', 'ArrowRight': '→' };
-            minigameSequence = Array.from({ length: 5 }, () => arrows[Math.floor(Math.random() * 4)]);
-            playerSequenceIndex = 0;
-            
-            arrowSequenceEl.innerHTML = minigameSequence.map(key => <div id="key-${key}" class="arrow-key">${symbols[key]}</div>).join('');
-            
-            window.addEventListener('keydown', handleMinigameKeys);
-        }
-
-        function handleMinigameKeys(e) {
-            const key = e.key;
-            if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key)) return;
-
-            const correctKey = minigameSequence[playerSequenceIndex];
-            const keyEl = arrowSequenceEl.children[playerSequenceIndex];
-
-            if (key === correctKey) {
-                keyEl.classList.add('correct');
-                playerSequenceIndex++;
-                if (playerSequenceIndex === minigameSequence.length) {
-                    minigameStatusEl.textContent = 'تم الاختراق! +500 نقاط، +10 ثواني';
-                    minigameStatusEl.classList.add('text-green-400');
-                    score += 500;
-                    timer += 10;
-                    scoreEl.textContent = score;
-                    timerEl.textContent = timer;
-                    endMinigame(true);
-                }
-            } else {
-                keyEl.classList.add('incorrect');
-                minigameStatusEl.textContent = 'فشل الاختراق! -5 ثواني';
-                minigameStatusEl.classList.add('text-red-400');
-                timer -= 5;
-                timerEl.textContent = timer;
-                endMinigame(false);
-            }
-        }
-
-        function endMinigame(success) {
-            window.removeEventListener('keydown', handleMinigameKeys);
-            setTimeout(() => {
-                hackingMinigameEl.classList.add('hidden');
-                minigameStatusEl.className = 'text-lg h-8';
-                minigameActive = false;
-                resumeGame();
-            }, 1500);
-        }
-
-        // --- الرسم والتحريك ---
-        function animate() {
-            if (!gameActive) return;
-            requestAnimationFrame(animate);
-            if (gamePaused) return;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            viruses.forEach((v, i) => {
-                v.dy = v.dy > 0 ? Math.abs(v.dy) * (activePowerUps.slowMo ? 0.3 : 1) : -Math.abs(v.dy) * (activePowerUps.slowMo ? 0.3 : 1);
-                v.x += v.dx; v.y += v.dy;
-                if (v.x - v.size < 0 || v.x + v.size > canvas.width) v.dx *= -1;
-                
-                if (v.y > canvas.height + v.size * 2) {
-                    viruses.splice(i, 1);
-                    if (!v.health) {
-                        score -= Math.floor(v.points * 0.5);
-                        if (score < 0) score = 0;
-                        scoreEl.textContent = score;
-                    }
-                }
-                
-                ctx.save();
-                ctx.font = ${v.size * 1.5}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.globalAlpha = v.emoji === '👻' ? 0.5 : 1;
-                if (v.emoji === '🔒') {
-    // ارسم صورة القفل بدلاً من الإيموجي
-    ctx.drawImage(lockImage, v.x - v.size, v.y - v.size, v.size * 2, v.size * 2);
-} else if (v.emoji === '💀') {
-    // ارسم صورة الجمجمة
-    ctx.drawImage(skullImage, v.x - v.size, v.y - v.size, v.size * 2, v.size * 2);
-} else {
-    // استخدم الرمز الافتراضي للإيموجي
-    ctx.fillText(v.emoji, v.x, v.y);
-}
-                
-                if (v.health) {
-                    const healthBarWidth = v.size * 2;
-                    const healthBarHeight = 5;
-                    const healthPercentage = v.health / v.maxHealth;
-                    const healthColor = healthPercentage > 0.6 ? '#22c55e' : healthPercentage > 0.3 ? '#eab308' : '#ef4444';
-                    
-                    ctx.fillStyle = '#333';
-                    ctx.fillRect(v.x - healthBarWidth / 2, v.y - v.size * 1.5 - 10, healthBarWidth, healthBarHeight);
-                    
-                    ctx.fillStyle = healthColor;
-                    ctx.fillRect(v.x - healthBarWidth / 2, v.y - v.size * 1.5 - 10, healthBarWidth * healthPercentage, healthBarHeight);
-                }
-                
-                ctx.restore();
-            });
-
-            powerUps.forEach((p, i) => {
-                p.dy = (p.speed || 1) * (activePowerUps.slowMo ? 0.3 : 1);
-                p.y += p.dy;
-                if (p.y - p.size > canvas.height) powerUps.splice(i, 1);
-                ctx.font = ${30}px sans-serif;
-                ctx.fillText(p.emoji, p.x, p.y);
-            });
-
-            particles.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.alpha -= p.fade;
-                if (p.alpha <= 0) {
-                    particles.splice(i, 1);
-                } else {
-                    ctx.fillStyle = rgba(${p.color}, ${p.alpha});
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            });
-
-            powerupStatusEl.innerHTML = '';
-            for (const id in activePowerUps) {
-                const remaining = Math.ceil((activePowerUps[id].expire - Date.now()) / 1000);
-                powerupStatusEl.innerHTML += <div class="bg-black bg-opacity-50 p-2 rounded-lg text-2xl">${id} ${remaining}s</div>;
-            }
-
-            // ... (داخل دالة animate)
-if (v.emoji === '🔒') {
-    // ارسم صورة القفل بدلاً من الإيموجي
-    // هذا السطر سيعمل الآن بنجاح
-    ctx.drawImage(lockImage, v.x - v.size, v.y - v.size, v.size * 2, v.size * 2);
-} else if (v.emoji === '💀') {
-    // ارسم صورة الجمجمة
-    // هذا السطر سيعمل الآن بنجاح
-    ctx.drawImage(skullImage, v.x - v.size, v.y - v.size, v.size * 2, v.size * 2);
-} else {
-    // استخدم الرمز الافتراضي للإيموجي
-    ctx.fillText(v.emoji, v.x, v.y);
-}
-
-        }
-        
-        // --- معالج النقر ---
-        function handleCanvasClick(event) {
-            if (!gameActive || gamePaused) return;
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            let clientX, clientY;
-            if (event.touches) {
-                if (event.touches.length > 0) { clientX = event.touches[0].clientX; clientY = event.touches[0].clientY; }
-                else { return; }
-            } else { clientX = event.clientX; clientY = event.clientY; }
-            const x = (clientX - rect.left) * scaleX;
-            const y = (clientY - rect.top) * scaleY;
-            
-            const shots = activePowerUps.multiShot ? [{x,y}, {x:x-20, y:y+20}, {x:x+20, y:y+20}] : [{x,y}];
-
-            shots.forEach(shot => {
-                for (let i = viruses.length - 1; i >= 0; i--) {
-                    const virus = viruses[i];
-                    const distance = Math.sqrt((shot.x - virus.x)*2 + (shot.y - virus.y)*2);
-                    if (distance < virus.size) {
-                        const username = sessionStorage.getItem("username") || "مجهول";
-                        if (virus.isEncrypted) {
-                            startHackingMinigame();
-                            viruses.splice(i, 1);
-                        } else if (virus.isGlitched) {
-                            canvas.classList.add('glitch');
-                            setTimeout(() => canvas.classList.remove('glitch'), 2000);
-                            score += virus.points;
-                            viruses.splice(i, 1);
-                        } else if (virus.health) {
-                            virus.health--;
-                            if (virus.health <= 0) {
-                                score += virus.points;
-                                viruses.splice(i, 1);
-                                bossActive = false;
-                            }
-                        } else {
-                            score += virus.points;
-                            viruses.splice(i, 1);
-                        }
-                        scoreEl.textContent = score;
-                        return;
-                    }
-                }
-                for (let i = powerUps.length - 1; i >= 0; i--) {
-                    const p = powerUps[i];
-                    const distance = Math.sqrt((shot.x - p.x)*2 + (shot.y - p.y)*2);
-                    if (distance < 20) {
-                        const typeKey = Object.keys(powerUpTypes).find(key => powerUpTypes[key].emoji === p.emoji);
-                        activatePowerUp(powerUpTypes[typeKey]);
-                        powerUps.splice(i, 1);
-                        return;
-                    }
-                }
-            });
-        }
-
-        // --- دوال مساعدة ومستمعي الأحداث ---
-        function escapeHTML(str) {
-            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-        }
-        
-        function setCanvasDimensions() {
-            const wrapper = document.getElementById('canvas-wrapper');
-            const style = getComputedStyle(wrapper);
-            const width = parseInt(style.width, 10);
-            const height = width * 0.75;
-            canvas.width = width;
-            canvas.height = height;
-        }
-        
-        // مستمعو الأحداث للأزرار واللوحة
-        window.addEventListener('resize', setCanvasDimensions);
-        startButton.addEventListener('click', () => initializeGame(0));
-        continueButton.addEventListener('click', () => initializeGame(savedScore));
-        continueAfterDeathButton.addEventListener('click', () => initializeGame(score));
-        shieldButton.addEventListener('click', useShield);
-        canvas.addEventListener('click', handleCanvasClick);
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleCanvasClick(e); }, { passive: false });
-        
-        // --- الإعداد الأولي ---
-        setCanvasDimensions();
-    </script>
+    function escapeHTML(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,"&#039;"); }
+  </script>
 </body>
 </html>
