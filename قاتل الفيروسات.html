@@ -116,7 +116,7 @@
                 <div class="text-lg">الوقت: <span id="timer" class="font-bold text-2xl text-yellow-400">60</span></div>
                 <div class="relative">
                     <button id="shieldButton" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-5 rounded-lg disabled:opacity-50">
-                        🛡️ درع سيبراني (<span id="shieldsLeft">3</span>)
+                        🛡 درع سيبراني (<span id="shieldsLeft">3</span>)
                     </button>
                     <div id="shieldCooldownOverlay" class="shield-cooldown-overlay rounded-lg" style="height: 0%;"></div>
                 </div>
@@ -181,32 +181,16 @@
         const usernameDisplayEl = document.getElementById("usernameDisplay");
 
 
-let images = {
-  lock: new Image(),
-  skull: new Image(),
-  ant: new Image(),
-  ladybug: new Image(),
-  spider: new Image(),
-  virus: new Image(),
-  alien: new Image(),
-  worm: new Image()
-};
+        const lockImage = new Image();
+const skullImage = new Image();
 
 // 2. استخدام Data URLs لتحميل الصور مباشرة (لا حاجة لملفات خارجية)
 // صورة قفل بسيطة
 lockImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3lhbiIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCI+PHBhdGggZD0iTTE4IDhoLTFWNmMwLTIuNzYtMi4yNC01LTUtNV M3IDMuMjQgNyA2djJINmMtMS4xIDAtMiAuOS0yIDJ2MTBjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMlYxMGMwLTEuMS0uOS0yLTItMnpNOSAxMEg5VjZjMC0xLjY2IDEuMzQtMyAzLTNzMyAxLjM0IDMgM3YySDl6Ii8+PC9zdmc+';
 // صورة جمجمة بسيطة
 skullImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIiB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMjR6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyczQuNDcgMTAgMTAgMTBzMTAtNC40NyAxMC0xMFMxNy41MyAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCA0IDggOC0zLjU5IDgtOCA4em0zLjUtOWMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzE0LjY3IDggMTUuNSA4czEuNS42NyAxLjUgMS41LS42NyAxLjUtMS41IDEuNXptLTcgMGMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzcuNjcgOCA4LjUgOHMxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTMuNSA1Yy0yLjMzIDAtNC4zMS0xLjQ2LTUuMTItMy41aDEwLjI0Yy0uODIgMi4wNC0yLjggMy41LTUuMTIgMy41eiIvPjwvc3ZnPg==';
-antImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMzMwMDIwIj7wn5GJPC90ZXh0Pjwvc3ZnPg==';
-ladybugImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjQ0YwMDAwIj7wn5GKPC90ZXh0Pjwvc3ZnPg==';
-spiderImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMzMzMzMzIj7wn5GUPC90ZXh0Pjwvc3ZnPg==';
-virusImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMDA4ODAwIj7wn5GdPC90ZXh0Pjwvc3ZnPg==';
-alienImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjODAwMGY4Ij7wn5KfPC90ZXh0Pjwvc3ZnPg==';
-wormImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjN0QzMzAwIj7wn5GAPC90ZXh0Pjwvc3ZnPg==';
 
-let loaded = 0;
-let total = Object.keys(sources).length;
-
+skullImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIiB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMjR6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyczQuNDcgMTAgMTAgMTBzMTAtNC40NyAxMC0xMFMxNy41MyAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCA0IDggOC0zLjU5IDgtOCA4em0zLjUtOWMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzE0LjY3IDggMTUuNSA4czEuNS42NyAxLjUgMS41LS42NyAxLjUtMS41IDEuNXptLTcgMGMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzcuNjcgOCA4LjUgOHMxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTMuNSA1Yy0yLjMzIDAtNC4zMS0xLjQ2LTUuMTItMy41aDEwLjI0Yy0uODIgMi4wNC0yLjggMy41LTUuMTIgMy41eiIvPjwvc3ZnPg==';
 
 
 // 3. التأكد من أن الصور قد تم تحميلها قبل تفعيل أزرار اللعبة
@@ -266,7 +250,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
                     userIdDisplay.textContent = userId;
                     const username = sessionStorage.getItem("username");
                     usernameDisplayEl.textContent = username ? username : "!";
-                    greetingEl.textContent = username ? `مرحباً، ${username}!` : "مرحباً!";
+                    greetingEl.textContent = username ? مرحباً، ${username}! : "مرحباً!";
                     await fetchSavedScore();
                 } else {
                     signInAnonymously(auth); // تسجيل دخول مجهول إذا لم يكن هناك مستخدم
@@ -274,29 +258,6 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
             });
         }
         
-
-        
-        for (let key in images) {
-  images[key].src = sources[key];
-  images[key].onload = () => {
-    loaded++;
-    if (loaded === total) {
-      console.log("✅ كل الصور اتحملت");
-
-      // ارسم بعد ما كله يبقى جاهز
-      ctx.drawImage(images.lock,   20,  20, 64, 64);
-      ctx.drawImage(images.skull,  100, 20, 64, 64);
-      ctx.drawImage(images.ant,    180, 20, 64, 64);
-      ctx.drawImage(images.ladybug,260, 20, 64, 64);
-      ctx.drawImage(images.spider, 340, 20, 64, 64);
-      ctx.drawImage(images.virus,  420, 20, 64, 64);
-      ctx.drawImage(images.alien,  500, 20, 64, 64);
-      ctx.drawImage(images.worm,   20, 120,64, 64);
-    }
-  };
-}
-
-
         // جلب النتيجة المحفوظة من Firestore
         async function fetchSavedScore() {
             if (!userId) return;
@@ -389,15 +350,15 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
             { emoji: '🐛', size: 20, speed: 1, points: 10, color: '#a3e635' },
             { emoji: '🐜', size: 15, speed: 2, points: 20, color: '#facc15' },
             { emoji: '🐞', size: 25, speed: 0.8, points: 15, color: '#ef4444' },
-            { emoji: '🕷️', size: 22, speed: 1.5, points: 30, color: '#a855f7' },
+            { emoji: '🕷', size: 22, speed: 1.5, points: 30, color: '#a855f7' },
             { emoji: '🦠', size: 30, speed: 0.5, points: 50, color: '#22d3ee' },
             { emoji: '👾', size: 25, speed: 1, points: -50, color: '#9333ea', isGlitched: true },
         ];
         const bossType = { emoji: '💀', size: 60, speed: 0.5, points: 500, color: '#ff0000', health: 10, maxHealth: 10 };
         const encryptedVirusType = { emoji: '🔒', size: 30, speed: 0.7, points: 0, color: '#0ff', isEncrypted: true };
         const powerUpTypes = {
-            slowMo: { emoji: '❄️', duration: 5000, color: '#3b82f6' },
-            multiShot: { emoji: '☄️', duration: 10000, color: '#f97316' },
+            slowMo: { emoji: '❄', duration: 5000, color: '#3b82f6' },
+            multiShot: { emoji: '☄', duration: 10000, color: '#f97316' },
             timeBonus: { emoji: '⏳', color: '#10b981' },
         };
 
@@ -525,7 +486,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
                 let cooldownTime = shieldCooldown;
                 const cooldownInterval = setInterval(() => {
                     cooldownTime -= 100;
-                    shieldCooldownOverlay.style.height = `${(cooldownTime / shieldCooldown) * 100}%`;
+                    shieldCooldownOverlay.style.height = ${(cooldownTime / shieldCooldown) * 100}%;
                     if (cooldownTime <= 0) {
                         clearInterval(cooldownInterval);
                         isShieldOnCooldown = false;
@@ -571,7 +532,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
             minigameSequence = Array.from({ length: 5 }, () => arrows[Math.floor(Math.random() * 4)]);
             playerSequenceIndex = 0;
             
-            arrowSequenceEl.innerHTML = minigameSequence.map(key => `<div id="key-${key}" class="arrow-key">${symbols[key]}</div>`).join('');
+            arrowSequenceEl.innerHTML = minigameSequence.map(key => <div id="key-${key}" class="arrow-key">${symbols[key]}</div>).join('');
             
             window.addEventListener('keydown', handleMinigameKeys);
         }
@@ -638,7 +599,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
                 }
                 
                 ctx.save();
-                ctx.font = `${v.size * 1.5}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+                ctx.font = ${v.size * 1.5}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.globalAlpha = v.emoji === '👻' ? 0.5 : 1;
@@ -673,7 +634,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
                 p.dy = (p.speed || 1) * (activePowerUps.slowMo ? 0.3 : 1);
                 p.y += p.dy;
                 if (p.y - p.size > canvas.height) powerUps.splice(i, 1);
-                ctx.font = `${30}px sans-serif`;
+                ctx.font = ${30}px sans-serif;
                 ctx.fillText(p.emoji, p.x, p.y);
             });
 
@@ -684,7 +645,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
                 if (p.alpha <= 0) {
                     particles.splice(i, 1);
                 } else {
-                    ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+                    ctx.fillStyle = rgba(${p.color}, ${p.alpha});
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     ctx.fill();
@@ -694,7 +655,7 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
             powerupStatusEl.innerHTML = '';
             for (const id in activePowerUps) {
                 const remaining = Math.ceil((activePowerUps[id].expire - Date.now()) / 1000);
-                powerupStatusEl.innerHTML += `<div class="bg-black bg-opacity-50 p-2 rounded-lg text-2xl">${id} ${remaining}s</div>`;
+                powerupStatusEl.innerHTML += <div class="bg-black bg-opacity-50 p-2 rounded-lg text-2xl">${id} ${remaining}s</div>;
             }
 
             // ... (داخل دالة animate)
@@ -732,7 +693,7 @@ if (v.emoji === '🔒') {
             shots.forEach(shot => {
                 for (let i = viruses.length - 1; i >= 0; i--) {
                     const virus = viruses[i];
-                    const distance = Math.sqrt((shot.x - virus.x)**2 + (shot.y - virus.y)**2);
+                    const distance = Math.sqrt((shot.x - virus.x)*2 + (shot.y - virus.y)*2);
                     if (distance < virus.size) {
                         const username = sessionStorage.getItem("username") || "مجهول";
                         if (virus.isEncrypted) {
@@ -760,7 +721,7 @@ if (v.emoji === '🔒') {
                 }
                 for (let i = powerUps.length - 1; i >= 0; i--) {
                     const p = powerUps[i];
-                    const distance = Math.sqrt((shot.x - p.x)**2 + (shot.y - p.y)**2);
+                    const distance = Math.sqrt((shot.x - p.x)*2 + (shot.y - p.y)*2);
                     if (distance < 20) {
                         const typeKey = Object.keys(powerUpTypes).find(key => powerUpTypes[key].emoji === p.emoji);
                         activatePowerUp(powerUpTypes[typeKey]);
