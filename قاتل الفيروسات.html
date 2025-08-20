@@ -181,16 +181,26 @@
         const usernameDisplayEl = document.getElementById("usernameDisplay");
 
 
-        const lockImage = new Image();
-const skullImage = new Image();
+let lockImage   = new Image();
+let skullImage  = new Image();
+let antImage    = new Image();
+let ladybugImage= new Image();
+let spiderImage = new Image();
+let virusImage  = new Image();
+let alienImage  = new Image();
+let wormImage   = new Image();
 
 // 2. استخدام Data URLs لتحميل الصور مباشرة (لا حاجة لملفات خارجية)
 // صورة قفل بسيطة
 lockImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3lhbiIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCI+PHBhdGggZD0iTTE4IDhoLTFWNmMwLTIuNzYtMi4yNC01LTUtNV M3IDMuMjQgNyA2djJINmMtMS4xIDAtMiAuOS0yIDJ2MTBjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMlYxMGMwLTEuMS0uOS0yLTItMnpNOSAxMEg5VjZjMC0xLjY2IDEuMzQtMyAzLTNzMyAxLjM0IDMgM3YySDl6Ii8+PC9zdmc+';
 // صورة جمجمة بسيطة
 skullImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIiB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMjR6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyczQuNDcgMTAgMTAgMTBzMTAtNC40NyAxMC0xMFMxNy41MyAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCA0IDggOC0zLjU5IDgtOCA4em0zLjUtOWMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzE0LjY3IDggMTUuNSA4czEuNS42NyAxLjUgMS41LS42NyAxLjUtMS41IDEuNXptLTcgMGMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzcuNjcgOCA4LjUgOHMxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTMuNSA1Yy0yLjMzIDAtNC4zMS0xLjQ2LTUuMTItMy41aDEwLjI0Yy0uODIgMi4wNC0yLjggMy41LTUuMTIgMy41eiIvPjwvc3ZnPg==';
-
-skullImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIiB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMjR6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyczQuNDcgMTAgMTAgMTBzMTAtNC40NyAxMC0xMFMxNy41MyAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCA0IDggOC0zLjU5IDgtOCA4em0zLjUtOWMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzE0LjY3IDggMTUuNSA4czEuNS42NyAxLjUgMS41LS42NyAxLjUtMS41IDEuNXptLTcgMGMtLjgzIDAtMS41LS42Ny0xLjUtMS41UzcuNjcgOCA4LjUgOHMxLjUuNjcgMS41IDEuNS0uNjcgMS41LTEuNSAxLjV6bTMuNSA1Yy0yLjMzIDAtNC4zMS0xLjQ2LTUuMTItMy41aDEwLjI0Yy0uODIgMi4wNC0yLjggMy41LTUuMTIgMy41eiIvPjwvc3ZnPg==';
+antImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMzMwMDIwIj7wn5GJPC90ZXh0Pjwvc3ZnPg==';
+ladybugImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjQ0YwMDAwIj7wn5GKPC90ZXh0Pjwvc3ZnPg==';
+spiderImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMzMzMzMzIj7wn5GUPC90ZXh0Pjwvc3ZnPg==';
+virusImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMDA4ODAwIj7wn5GdPC90ZXh0Pjwvc3ZnPg==';
+alienImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjODAwMGY4Ij7wn5KfPC90ZXh0Pjwvc3ZnPg==';
+wormImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRleHQgeD0iMTAiIHk9IjIwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjN0QzMzAwIj7wn5GAPC90ZXh0Pjwvc3ZnPg==';
 
 
 // 3. التأكد من أن الصور قد تم تحميلها قبل تفعيل أزرار اللعبة
@@ -258,6 +268,18 @@ skullImage.onerror = () => console.error("Failed to load skull image.");
             });
         }
         
+        lockImage.onload = () => {
+  ctx.drawImage(lockImage,   20, 20,  64, 64);
+  ctx.drawImage(skullImage, 100, 20,  64, 64);
+  ctx.drawImage(antImage,   180, 20,  64, 64);
+  ctx.drawImage(ladybugImage,260,20, 64, 64);
+  ctx.drawImage(spiderImage, 340,20, 64, 64);
+  ctx.drawImage(virusImage,  420,20, 64, 64);
+  ctx.drawImage(alienImage,  500,20, 64, 64);
+  ctx.drawImage(wormImage,   20, 120,64, 64);
+};
+
+
         // جلب النتيجة المحفوظة من Firestore
         async function fetchSavedScore() {
             if (!userId) return;
