@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>جـنى عـطيه - معرض فني</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      border-radius: 15px;
+      margin-bottom: 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .lang-switch {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .nav-row {
+      display: flex;
+      gap: 10px;
+    }
+    .nav-row button {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .nav-row button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #ff2a6d;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .btn-secondary {
+      background: #3498db;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    input, button, select, textarea {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+    input, select, textarea {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    .art-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .poem-card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 15px 0;
+      line-height: 2;
+      font-style: italic;
+    }
+    .cart-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .cart-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .payment-info {
+      background: #2c3e50;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .img-preview {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="site-title">جـنى عـطيه</h1>
+    <button class="lang-switch" id="lang-btn" onclick="toggleLanguage()">EN</button>
+  </header>
+
+  <div class="container">
+    <div class="nav-grid">
+      <div class="nav-row">
+        <button onclick="showScreen('home')"><span id="nav-home">الرئيسية</span></button>
+        <button onclick="showScreen('gallery')"><span id="nav-gallery">المعرض</span></button>
+      </div>
+      <div class="nav-row">
+        <button onclick="showScreen('poetry')"><span id="nav-poetry">الشعر</span></button>
+        <button onclick="showScreen('about')"><span id="nav-about">عن الفنانة</span></button>
+      </div>
+      <div class="nav-row">
+        <button onclick="showScreen('contact')"><span id="nav-contact">اتصل بنا</span></button>
+        <button onclick="showScreen('cart')"><span id="nav-cart">السلة</span> <span id="cart-count">(0)</span></button>
+      </div>
+      <div class="nav-row">
+        <button onclick="showScreen('wishlist')"><span id="nav-wishlist">المفضلة</span> <span id="wishlist-count">(0)</span></button>
+        <button onclick="window.location.href='admin.html'"><span id="nav-admin">دخول المالك</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="app">
+    <!-- يتم تعبئته ديناميكيًا -->
+  </div>
+
+  <footer>
+    &copy; 2025 <span id="footer-name">Jana Attia</span>. جميع الحقوق محفوظة.
+  </footer>
+
+  <script>
+    // تحميل اللغة المحفوظة
+    let lang = localStorage.getItem('app-lang') || 'ar';
+
+    // ترجمات
+    const t = {
+      ar: {
+        home: 'الرئيسية',
+        gallery: 'المعرض',
+        poetry: 'الشعر',
+        about: 'عن الفنانة',
+        contact: 'اتصل بنا',
+        cart: 'السلة',
+        wishlist: 'المفضلة',
+        admin: 'دخول المالك',
+        welcome: 'مرحباً في عالم جـنى عـطيه',
+        explore: 'عرض المعرض',
+        readPoetry: 'اقرأ شعري',
+        shop: 'الذهاب للسلة',
+        title: 'العنوان',
+        price: 'السعر',
+        addToCart: 'إضافة للسلة',
+        addToWishlist: 'تفضيل',
+        removeFromWishlist: 'إزالة من المفضلة',
+        category: 'الفئة',
+        description: 'الوصف',
+        total: 'الإجمالي',
+        checkout: 'الدفع الآن',
+        emptyCart: 'سلتك فارغة',
+        payment: 'طريقة الدفع',
+        transferNumber: 'رقم التحويل:',
+        amount: 'المبلغ:',
+        transferNote: 'الرجاء التحويل ثم تعبئة النموذج أدناه لإرسال صورة التحويل.',
+        buyerName: 'اسمك الكامل',
+        buyerPhone: 'رقم هاتفك',
+        buyerEmail: 'بريدك الإلكتروني',
+        paymentNote: 'ملاحظات (اختياري)',
+        sendConfirmation: 'تأكيد إرسال صورة التحويل',
+        thankYou: 'شكرًا لك! سيتم التواصل معك بعد استلام صورة التحويل.',
+        poems: 'أعمالي الشعرية',
+        noPoems: 'لا توجد قصائد بعد',
+        contactTitle: 'اتصل بنا',
+        name: 'اسمك الكامل',
+        email: 'بريدك الإلكتروني',
+        message: 'رسالتك',
+        sendMessage: 'إرسال الرسالة',
+        aboutTitle: 'عن الفنانة جـنى عـطيه',
+        aboutText: 'الفنانة جنى عطيه هي طالبة في الصف الثاني الإعدادي وتبلغ من العمر 13 عامًا، وتمتلك موهبة فنية استثنائية في الرسم والشعر. تُعرف بإبداعها الكبير وقدرتها على تحويل الأفكار والمشاعر إلى لوحات فنية معبّرة. بدأت رحلتها الفنية مبكرًا، وسرعان ما لاقت إعجاب المحيطين بها بفضل أسلوبها الفريد ورؤية فنية ناضجة تفوق عمرها.',
+        achievements: 'إنجازاتها',
+        achievement1: 'أفضل لوحة فنية في مدرسة النور الإعدادية (2024)',
+        achievement2: 'نشرت قصائد في مجلة "صغار المبدعين"',
+        achievement3: 'معرض فني محلي بمشاركة 10 لوحات',
+        siteTitle: 'جـنى عـطيه',
+        footerName: 'Jana Attia',
+        addedToCart: (title) => `تمت إضافة "${title}" إلى السلة!`,
+        addedToWishlist: 'تمت إضافة العمل إلى المفضلة',
+        removedFromWishlist: 'تمت إزالة العمل من المفضلة',
+        loginFailed: 'خطأ في اسم المستخدم أو كلمة المرور'
+      },
+      en: {
+        home: 'Home',
+        gallery: 'Gallery',
+        poetry: 'Poetry',
+        about: 'About Artist',
+        contact: 'Contact',
+        cart: 'Cart',
+        wishlist: 'Wishlist',
+        admin: 'Admin Login',
+        welcome: 'Welcome to Jana Attia\'s World',
+        explore: 'Explore Gallery',
+        readPoetry: 'Read My Poetry',
+        shop: 'Go to Cart',
+        title: 'Title',
+        price: 'Price',
+        addToCart: 'Add to Cart',
+        addToWishlist: 'Wishlist',
+        removeFromWishlist: 'Remove from Wishlist',
+        category: 'Category',
+        description: 'Description',
+        total: 'Total',
+        checkout: 'Checkout',
+        emptyCart: 'Your cart is empty',
+        payment: 'Payment Method',
+        transferNumber: 'Transfer Number:',
+        amount: 'Amount:',
+        transferNote: 'Please transfer and fill the form below to send a screenshot of the payment.',
+        buyerName: 'Your Full Name',
+        buyerPhone: 'Your Phone Number',
+        buyerEmail: 'Your Email',
+        paymentNote: 'Notes (Optional)',
+        sendConfirmation: 'Confirm Sending Payment Screenshot',
+        thankYou: 'Thank you! We will contact you after receiving the payment proof.',
+        poems: 'My Poetry Works',
+        noPoems: 'No poems yet',
+        contactTitle: 'Contact Me',
+        name: 'Your Name',
+        email: 'Your Email',
+        message: 'Your Message',
+        sendMessage: 'Send Message',
+        aboutTitle: 'About Jana Attia',
+        aboutText: 'Jana Attia is a 13-year-old student in the second preparatory grade, with an exceptional talent in painting and poetry. She is known for her great creativity and ability to turn ideas and emotions into expressive artworks. She started her artistic journey early and quickly gained admiration from those around her for her unique style and mature artistic vision beyond her age.',
+        achievements: 'Achievements',
+        achievement1: 'Best Artwork at Al-Noor Preparatory School (2024)',
+        achievement2: 'Published poems in "Young Creators" magazine',
+        achievement3: 'Local art exhibition with 10 paintings',
+        siteTitle: 'Jana Attia',
+        footerName: 'Jana Attia',
+        addedToCart: (title) => `Added "${title}" to cart!`,
+        addedToWishlist: 'Added to wishlist',
+        removedFromWishlist: 'Removed from wishlist',
+        loginFailed: 'Invalid username or password'
+      }
+    };
+
+    // تبديل اللغة
+    function toggleLanguage() {
+      lang = lang === 'ar' ? 'en' : 'ar';
+      localStorage.setItem('app-lang', lang);
+      updateTexts();
+      showScreen(screen);
+    }
+
+    // تحديث النصوص
+    function updateTexts() {
+      document.getElementById('site-title').textContent = t[lang].siteTitle;
+      document.getElementById('footer-name').textContent = t[lang].footerName;
+      document.getElementById('nav-home').textContent = t[lang].home;
+      document.getElementById('nav-gallery').textContent = t[lang].gallery;
+      document.getElementById('nav-poetry').textContent = t[lang].poetry;
+      document.getElementById('nav-about').textContent = t[lang].about;
+      document.getElementById('nav-contact').textContent = t[lang].contact;
+      document.getElementById('nav-cart').textContent = t[lang].cart;
+      document.getElementById('nav-wishlist').textContent = t[lang].wishlist;
+      document.getElementById('nav-admin').textContent = t[lang].admin;
+      document.getElementById('lang-btn').textContent = lang === 'ar' ? 'EN' : 'AR';
+    }
+
+    // تحميل البيانات من localStorage
+    let artworks = JSON.parse(localStorage.getItem('artworks')) || [
+      {
+        id: 1,
+        title: "Dreamscape",
+        titleEn: "Dreamscape",
+        price: 2500,
+        image: "https://source.unsplash.com/random/600x800/?digital-art,abstract",
+        category: "الفن الرقمي",
+        categoryEn: "Digital Art",
+        description: "لوحة رقمية سريالية تستكشف الحدود بين الأحلام والواقع.",
+        descriptionEn: "A surreal digital painting exploring the boundaries between dreams and reality."
+      },
+      {
+        id: 2,
+        title: "Portrait of Serenity",
+        titleEn: "Portrait of Serenity",
+        price: 4000,
+        image: "https://source.unsplash.com/random/600x800/?portrait,painting",
+        category: "الفن المخصص",
+        categoryEn: "Customized Art",
+        description: "رسم مخصص يلتقط جوهر الهدوء والسلام الداخلي.",
+        descriptionEn: "A customized painting capturing the essence of calm and inner peace."
+      }
+    ];
+
+    let poems = JSON.parse(localStorage.getItem('poems')) || [
+      {
+        id: 1,
+        title: "نجمة في الليل",
+        titleEn: "A Star in the Night",
+        content: `نجمةٌ في ليلِ الدُّجى تلمعُ\nكأنّها عينٌ تُرَاقِبُني\nأُناديها: هل تسمعينني؟\nفتجيب: نعم، أنا أسمعُ\nلأنّ قلبكَ نقيٌّ كالفجرِ\nولا يُخفى عليَّ شيءٌ من ألمكَ`
+      },
+      {
+        id: 2,
+        title: "الرسم والروح",
+        titleEn: "Painting and the Soul",
+        content: `أنا لا أرسمُ بأصابعي فقط\nأنا أرسمُ بقلبي ونفسي\nكلّ لونٍ يخرج من فُصّي\nهو دمعةٌ، أو ضحكةٌ، أو حلمٌ\nالورقةُ تُصبحُ قلبًا نابضًا\nوالألوانُ تُصبحُ صوتَ روحي`
+      }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    let screen = "home";
+
+    function saveToStorage() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      localStorage.setItem('poems', JSON.stringify(poems));
+    }
+
+    function updateCounts() {
+      document.getElementById("cart-count").textContent = `(${cart.length})`;
+      document.getElementById("wishlist-count").textContent = `(${wishlist.length})`;
+    }
+
+    function showScreen(s) {
+      screen = s;
+      const app = document.getElementById("app");
+      app.innerHTML = "";
+
+      if (s === "home") {
+        app.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px;">
+            <h2 style="font-size: 2rem; margin: 20px 0;">${t[lang].welcome}</h2>
+            <p style="opacity: 0.8; margin: 20px 0;">${lang === 'ar' ? 'فن رقمي يلامس الروح' : 'Digital art that touches the soul'}</p>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+              <button onclick="showScreen('gallery')" class="btn">${t[lang].explore}</button>
+              <button onclick="showScreen('poetry')" class="btn btn-secondary">${t[lang].readPoetry}</button>
+            </div>
+          </div>
+        `;
+      }
+
+      else if (s === "gallery") {
+        let html = `<h2 style="text-align: center; margin: 20px 0;">${t[lang].gallery}</h2><div class="art-grid">`;
+        artworks.forEach(art => {
+          const title = lang === 'ar' ? art.title : art.titleEn;
+          const category = lang === 'ar' ? art.category : art.categoryEn;
+          const description = lang === 'ar' ? art.description : art.descriptionEn;
+          const inWishlist = wishlist.some(a => a.id === art.id);
+          html += `
+            <div class="card">
+              <img src="${art.image}" alt="${title}" class="img-preview" />
+              <h3 style="margin: 10px 0;">${title}</h3>
+              <p>${category}</p>
+              <p><strong>${art.price} ج.م</strong></p>
+              <p style="font-size: 0.9rem; opacity: 0.8;">${description}</p>
+              <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button onclick="addToCart(${art.id})" class="btn">${t[lang].addToCart}</button>
+                <button onclick="toggleWishlist(${art.id})" class="btn" style="background: ${inWishlist ? '#e74c3c' : '#9b59b6'};">
+                  ${inWishlist ? t[lang].removeFromWishlist : t[lang].addToWishlist}
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        html += `</div>`;
+        app.innerHTML = html;
+      }
+
+      else if (s === "poetry") {
+        let html = `<h2 style="text-align: center; margin: 20px 0;">${t[lang].poems}</h2>`;
+        if (poems.length === 0) {
+          html += `<p style="text-align: center;">${t[lang].noPoems}</p>`;
+        } else {
+          poems.forEach(poem => {
+            const title = lang === 'ar' ? poem.title : poem.titleEn;
+            html += `
+              <div class="poem-card">
+                <h3 style="text-align: center; margin-bottom: 15px;">${title}</h3>
+                <pre style="white-space: pre-line; text-align: right; font-size: 1.1rem; line-height: 2;">${poem.content}</pre>
+              </div>
+            `;
+          });
+        }
+        app.innerHTML = html;
+      }
+
+      else if (s === "cart") {
+        let html = `<h2 style="text-align: center; margin: 20px 0;">${t[lang].cart}</h2>`;
+        if (cart.length === 0) {
+          html += `<p style="text-align: center;">${t[lang].emptyCart}</p>`;
+        } else {
+          html += `<div class="card">`;
+          let total = 0;
+          cart.forEach(item => {
+            total += item.price;
+            const title = lang === 'ar' ? item.title : item.titleEn;
+            html += `
+              <div class="cart-item">
+                <img src="${item.image}" alt="${title}" class="cart-img" />
+                <div style="flex: 1;">
+                  <h4>${title}</h4>
+                  <p>${item.price} ج.م</p>
+                </div>
+                <button onclick="removeFromCart(${item.id})" style="background: #e74c3c;">×</button>
+              </div>
+            `;
+          });
+          html += `
+            <div style="margin-top: 20px; font-weight: bold;">
+              ${t[lang].total}: ${total} ج.م
+            </div>
+            <button onclick="showScreen('payment')" class="btn" style="width: 100%; margin-top: 10px;">
+              ${t[lang].checkout}
+            </button>
+          `;
+          html += `</div>`;
+        }
+        app.innerHTML = html;
+      }
+
+      else if (s === "payment") {
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        app.innerHTML = `
+          <div class="card">
+            <h2 style="text-align: center;">${t[lang].payment}</h2>
+            <div class="payment-info">
+              <p><strong>${t[lang].transferNumber}</strong> 01023706309 (فودافون كاش)</p>
+              <p><strong>${t[lang].amount}</strong> ${total} ج.م</p>
+              <p>${t[lang].transferNote}</p>
+            </div>
+            <form onsubmit="event.preventDefault(); sendPaymentConfirmation();">
+              <input type="text" id="buyer-name" placeholder="${t[lang].buyerName}" required />
+              <input type="tel" id="buyer-phone" placeholder="${t[lang].buyerPhone}" required />
+              <input type="email" id="buyer-email" placeholder="${t[lang].buyerEmail}" required />
+              <textarea id="payment-note" placeholder="${t[lang].paymentNote}"></textarea>
+              <button type="submit" class="btn">${t[lang].sendConfirmation}</button>
+            </form>
+          </div>
+        `;
+      }
+
+      else if (s === "wishlist") {
+        let html = `<h2 style="text-align: center; margin: 20px 0;">${t[lang].wishlist} (${wishlist.length})</h2>`;
+        if (wishlist.length === 0) {
+          html += `<p style="text-align: center;">${lang === 'ar' ? 'لا توجد أعمال مفضلة' : 'No favorite artworks'}</p>`;
+        } else {
+          html += `<div class="art-grid">`;
+          wishlist.forEach(art => {
+            const title = lang === 'ar' ? art.title : art.titleEn;
+            const category = lang === 'ar' ? art.category : art.categoryEn;
+            html += `
+              <div class="card">
+                <img src="${art.image}" alt="${title}" class="img-preview" />
+                <h3>${title}</h3>
+                <p>${category}</p>
+                <p><strong>${art.price} ج.م</strong></p>
+                <button onclick="addToCart(${art.id})" class="btn">${t[lang].addToCart}</button>
+                <button onclick="toggleWishlist(${art.id})" class="btn" style="background: #e74c3c; margin-top: 5px;">
+                  ${t[lang].removeFromWishlist}
+                </button>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        }
+        app.innerHTML = html;
+      }
+
+      else if (s === "about") {
+        app.innerHTML = `
+          <div class="card">
+            <h2 style="text-align: center;">${t[lang].aboutTitle}</h2>
+            <img src="https://source.unsplash.com/random/400x500/?young-artist,girl" alt="Jana" class="img-preview" />
+            <p style="line-height: 1.8; margin: 20px 0;">${t[lang].aboutText}</p>
+            <h4 style="margin: 20px 0 10px 0;">${t[lang].achievements}</h4>
+            <ul style="margin: 10px 20px; line-height: 1.8;">
+              <li>${t[lang].achievement1}</li>
+              <li>${t[lang].achievement2}</li>
+              <li>${t[lang].achievement3}</li>
+            </ul>
+          </div>
+        `;
+      }
+
+      else if (s === "contact") {
+        app.innerHTML = `
+          <div class="card">
+            <h2 style="text-align: center;">${t[lang].contactTitle}</h2>
+            <form onsubmit="event.preventDefault(); sendEmail();">
+              <input type="text" id="name" placeholder="${t[lang].name}" required />
+              <input type="email" id="email" placeholder="${t[lang].email}" required />
+              <textarea id="message" placeholder="${t[lang].message}" rows="4" required></textarea>
+              <button type="submit" class="btn">${t[lang].sendMessage}</button>
+            </form>
+          </div>
+        `;
+      }
+    }
+
+    function addToCart(id) {
+      const art = artworks.find(a => a.id === id);
+      cart.push({...art});
+      saveToStorage();
+      updateCounts();
+      alert(t[lang].addedToCart(lang === 'ar' ? art.title : art.titleEn));
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveToStorage();
+      updateCounts();
+      showScreen("cart");
+    }
+
+    function toggleWishlist(id) {
+      const art = artworks.find(a => a.id === id);
+      const index = wishlist.findIndex(a => a.id === id);
+      if (index === -1) {
+        wishlist.push(art);
+        alert(t[lang].addedToWishlist);
+      } else {
+        wishlist.splice(index, 1);
+        alert(t[lang].removedFromWishlist);
+      }
+      saveToStorage();
+      updateCounts();
+      if (screen === "wishlist") showScreen("wishlist");
+      else if (screen === "gallery") showScreen("gallery");
+    }
+
+    function sendEmail() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      const subject = lang === 'ar' ? 'رسالة من موقع جنى عطيه' : 'Message from Jana Attia Website';
+      const body = `الاسم: ${name}%0D%0Aالبريد: ${email}%0D%0Aالرسالة: ${message}`;
+      const mailto = `mailto:rozzaabdalrahman1@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    }
+
+    function sendPaymentConfirmation() {
+      const name = document.getElementById("buyer-name").value;
+      const phone = document.getElementById("buyer-phone").value;
+      const email = document.getElementById("buyer-email").value;
+      const note = document.getElementById("payment-note").value;
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      const subject = `تأكيد دفع - ${total} ج.م`;
+      const body = `اسم العميل: ${name}%0D%0Aالهاتف: ${phone}%0D%0Aالبريد: ${email}%0D%0Aالمبلغ: ${total} ج.م%0D%0Aالملاحظات: ${note}%0D%0D%0Aتم الدفع عبر فودافون كاش (رقم 01023706309)`;
+
+      const mailto = `mailto:rozzaabdalrahman1@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+
+      alert(t[lang].thankYou);
+      cart = [];
+      saveToStorage();
+      updateCounts();
+      showScreen("home");
+    }
+
+    // تحميل الشاشة
+    updateTexts();
+    showScreen("home");
+    updateCounts();
+  </script>
+</body>
+</html>
