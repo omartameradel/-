@@ -76,47 +76,59 @@
       return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
     }
 
-    if (hash && hash.startsWith('#video_')) {
-        const docId = hash.replace('#video_', '');
+    if (hash && hash.startsWith('#')) {
+      const parts = hash.substring(1).split('_');
+      const type = parts[0]; // video, img, text
+      const docId = parts[1];
 
-        db.collection("videos").doc(docId).get()
-          .then((doc) => {
-            if (doc.exists) {
-              const data = doc.data();
-              let htmlContent = `<h2>${data.name || 'المحتوى'}</h2>`;
+      if (!docId) {
+        itemContentDiv.innerHTML = '<h2>معرّف المحتوى مفقود.</h2>';
+      } else {
+        let collection = '';
+        if (type === 'video') collection = 'videos';
+        if (type === 'img') collection = 'images';
+        if (type === 'text') collection = 'texts';
 
-              // الفيديو
-              if (data.videoUrl) {
-                htmlContent += `
-                  <video controls autoplay>
-                    <source src="${data.videoUrl}" type="video/mp4">
-                    متصفحك لا يدعم تشغيل الفيديو.
-                  </video>`;
+        if (collection) {
+          db.collection(collection).doc(docId).get()
+            .then((doc) => {
+              if (doc.exists) {
+                const data = doc.data();
+                let htmlContent = `<h2>${data.name || 'المحتوى'}</h2>`;
+
+                if (type === 'video' && data.url) {
+                  htmlContent += `
+                    <video controls autoplay>
+                      <source src="${data.url}" type="video/mp4">
+                      متصفحك لا يدعم تشغيل الفيديو.
+                    </video>`;
+                }
+
+                if (type === 'img' && data.url) {
+                  htmlContent += `
+                    <img src="${data.url}" alt="صورة">`;
+                }
+
+                if (type === 'text' && data.content) {
+                  htmlContent += `
+                    <div class="text-content">${data.content}</div>`;
+                }
+
+                htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
+                itemContentDiv.innerHTML = htmlContent;
+                itemContentDiv.classList.remove('loading');
+              } else {
+                itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
               }
-
-              // الصورة
-              if (data.imageUrl) {
-                htmlContent += `
-                  <img src="${data.imageUrl}" alt="صورة">`;
-              }
-
-              // النص
-              if (data.textContent) {
-                htmlContent += `
-                  <div class="text-content">${data.textContent}</div>`;
-              }
-
-              htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
-              itemContentDiv.innerHTML = htmlContent;
-              itemContentDiv.classList.remove('loading');
-            } else {
-              itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
-            }
-          })
-          .catch((error) => {
-            console.error("Error getting document:", error);
-            itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-          });
+            })
+            .catch((error) => {
+              console.error("Error getting document:", error);
+              itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+            });
+        } else {
+          itemContentDiv.innerHTML = '<h2>نوع محتوى غير صالح.</h2>';
+        }
+      }
     } else {
       itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
     }
