@@ -196,8 +196,15 @@ function loadVideos() {
 
 
 // زر نسخ رابط الفيديو
+// زر نسخ رابط الفيديو
+// ✅ تعديل دالة copyLink لإنشاء رابط جديد لصفحة الفيديو المنفصلة
+// ✅ تعديل دالة copyLink لإنشاء رابط جديد لصفحة الفيديو المنفصلة
 function copyLink(link, btn) {
-  navigator.clipboard.writeText(link).then(() => {
+  // بدلًا من استخدام الرابط الحالي، سنبني رابطًا جديدًا.
+  const videoId = link.split('_')[1]; // استخراج معرف المستند من الرابط
+  const newLink = `https://omartamer.netlify.app/single_video#video_${videoId}`;
+
+  navigator.clipboard.writeText(newLink).then(() => {
     btn.innerText = "✅ تم النسخ";
     setTimeout(() => {
       btn.innerText = "🔗 مشاركة";
