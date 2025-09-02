@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فيديوا-عمرتامرمحمدعادل</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+    .video-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 90%;
+      width: 800px;
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+    }
+    h2 {
+      color: #1e3799;
+    }
+    .loading {
+      font-size: 24px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <div id="videoContent" class="loading">
+      جاري تحميل الفيديو...
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+      authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+      projectId: "ahmed-saeed-669ab"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get('id');
+    const videoContentDiv = document.getElementById('videoContent');
+
+    if (videoId) {
+      db.collection('videos').doc(videoId).get()
+        .then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            videoContentDiv.innerHTML = `
+              <h2>${data.name}</h2>
+              <video controls autoplay>
+                <source src="${data.url}" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+              </video>
+            `;
+          } else {
+            videoContentDiv.innerHTML = '<h2>الفيديو غير موجود!</h2>';
+          }
+        })
+        .catch((error) => {
+          console.error("Error getting document:", error);
+          videoContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+        });
+    } else {
+      videoContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+    }
+  </script>
+</body>
+</html>
