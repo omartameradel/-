@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>فيديوا-عمرتامرمحمدعادل</title>
-  <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
+  <title>المحتوى - عمر تامر محمد عادل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -14,10 +14,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       color: #333;
     }
-    .video-container {
+    .media-box {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
@@ -25,10 +25,20 @@
       text-align: center;
       max-width: 90%;
       width: 800px;
+      margin: 20px auto;
     }
-    video {
+    video, img {
       width: 100%;
+      max-height: 70vh;
       border-radius: 8px;
+      margin: 10px 0;
+    }
+    .text-content {
+      font-size: 18px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      text-align: justify;
+      margin: 10px 0;
     }
     h2 {
       color: #1e3799;
@@ -40,11 +50,12 @@
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <div id="videoContent" class="loading">
-      جاري تحميل الفيديو...
+  <div id="contentContainer" class="media-box">
+    <div id="itemContent" class="loading">
+      جاري تحميل المحتوى...
     </div>
   </div>
+
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
@@ -56,39 +67,59 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // ✅ هذا هو الجزء المُعدّل
     const hash = window.location.hash;
-    let videoId = null;
+    const itemContentDiv = document.getElementById('itemContent');
+
+    function formatTimestamp(e) {
+      if (!e) return "";
+      let t = e.toDate();
+      return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
+    }
+
     if (hash && hash.startsWith('#video_')) {
-        videoId = hash.split('_')[1];
-    }
+        const docId = hash.replace('#video_', '');
 
-    const videoContentDiv = document.getElementById('videoContent');
+        db.collection("videos").doc(docId).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const data = doc.data();
+              let htmlContent = `<h2>${data.name || 'المحتوى'}</h2>`;
 
-    if (videoId) {
-      db.collection('videos').doc(videoId).get()
-        .then((doc) => {
-          if (doc.exists) {
-            const data = doc.data();
-            videoContentDiv.innerHTML = `
-              <h2>${data.name}</h2>
-              <video controls autoplay>
-                <source src="${data.url}" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو.
-              </video>
-            `;
-          } else {
-            videoContentDiv.innerHTML = '<h2>الفيديو غير موجود!</h2>';
-          }
-        })
-        .catch((error) => {
-          console.error("Error getting document:", error);
-          videoContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-        });
+              // الفيديو
+              if (data.videoUrl) {
+                htmlContent += `
+                  <video controls autoplay>
+                    <source src="${data.videoUrl}" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                  </video>`;
+              }
+
+              // الصورة
+              if (data.imageUrl) {
+                htmlContent += `
+                  <img src="${data.imageUrl}" alt="صورة">`;
+              }
+
+              // النص
+              if (data.textContent) {
+                htmlContent += `
+                  <div class="text-content">${data.textContent}</div>`;
+              }
+
+              htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
+              itemContentDiv.innerHTML = htmlContent;
+              itemContentDiv.classList.remove('loading');
+            } else {
+              itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
+            }
+          })
+          .catch((error) => {
+            console.error("Error getting document:", error);
+            itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+          });
     } else {
-      videoContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+      itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
     }
-</script>
+  </script>
 </body>
 </html>
-
