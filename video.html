@@ -161,10 +161,11 @@ function loadVideos() {
 
   <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
 
-  <button onclick="copyLink('${pageUrl}', this)" 
-    style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
-    🔗 مشاركة
-  </button>
+<button onclick="copyLink('video', '${doc.id}', this)">
+  style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
+  🔗 مشاركة
+</button>
+
 `;
           
 
@@ -199,10 +200,14 @@ function loadVideos() {
 // زر نسخ رابط الفيديو
 // ✅ تعديل دالة copyLink لإنشاء رابط جديد لصفحة الفيديو المنفصلة
 // ✅ تعديل دالة copyLink لإنشاء رابط جديد لصفحة الفيديو المنفصلة
-function copyLink(link, btn) {
-  // بدلًا من استخدام الرابط الحالي، سنبني رابطًا جديدًا.
-  const videoId = link.split('_')[1]; // استخراج معرف المستند من الرابط
-  const newLink = `https://omartamer.netlify.app/single_video#video_${videoId}`;
+function copyLink(type, docId, btn) {
+  let prefix = "";
+
+  if (type === "video") prefix = "video_";
+  if (type === "img") prefix = "img_";
+  if (type === "text") prefix = "text_";
+
+  const newLink = `https://omartamer.netlify.app/single_video#${prefix}${docId}`;
 
   navigator.clipboard.writeText(newLink).then(() => {
     btn.innerText = "✅ تم النسخ";
@@ -232,10 +237,12 @@ function loadImages() {
           <h4>${data.name}</h4>
           <img src="${data.url}" alt="${data.name}" style="width: 100%; max-height: 70vh; border-radius: 8px;">
           <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-          <button onclick="copyLink('${pageUrl}', this)" 
-            style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
-            🔗 مشاركة
-          </button>
+          <button onclick="copyLink('img', '${doc.id}', this)">
+style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
+  🔗 مشاركة
+</button>
+
+         
         `;
         container.appendChild(box);
       });
@@ -272,10 +279,11 @@ function loadTexts() {
         box.innerHTML = `
           <div class="text-content">${data.content}</div>
           <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-          <button onclick="copyLink('${pageUrl}', this)" 
+          <button onclick="copyLink('text', '${doc.id}', this)">
             style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
-            🔗 مشاركة
-          </button>
+  🔗 مشاركة
+</button>
+
         `;
         container.appendChild(box);
       });
