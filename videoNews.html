@@ -30,6 +30,31 @@
         .highlighted .close-btn { display: block }
         .close-btn { position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; border: none; border-radius: 5px; padding: 4px 8px; cursor: pointer; display: none; z-index: 10 }
         .highlighted .close-btn:hover { background: #c0392b; box-shadow: 0 0 10px rgba(192, 57, 43, 0.5) }
+         .timestamp {
+      font-size: 14px;
+      color: #888;
+      margin-top: 10px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer a {
+      color: #1e3799;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+    .loading {
+      font-size: 20px;
+      color: #555;
+    }
     </style>
 </head>
 <body>
@@ -50,9 +75,13 @@
     <div id="textContainer"></div>
 </div>
 
+     <div class="footer">
+    <p>جميع الحقوق محفوظة لــ(News)&copy; </p>
+    <p>Developed by <a href="https://www.facebook.com/omar.tamer.adel">Omar Tamer</a></p>
+  </div>
+
 <header class="mobile-footer">
-    <a href='/home'>الرئيسية</a>
-</header>
+   <a href='https://omartamer.netlify.app/contactnews'>التواصل</a></header>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
