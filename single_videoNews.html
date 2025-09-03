@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>فيديوا-عمرتامرمحمدعادل</title>
-  <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
+  <title>المحتوى - عمر تامر محمد عادل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -14,10 +14,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       color: #333;
     }
-    .video-container {
+    .media-box {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
@@ -25,10 +25,18 @@
       text-align: center;
       max-width: 90%;
       width: 800px;
+      margin: 20px auto; /* لضمان وجود مساحة من الأعلى والأسفل */
     }
-    video {
+    video, img {
       width: 100%;
+      max-height: 70vh;
       border-radius: 8px;
+    }
+    .text-content {
+      font-size: 18px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      text-align: justify;
     }
     h2 {
       color: #1e3799;
@@ -37,48 +45,19 @@
       font-size: 24px;
       color: #777;
     }
-     .timestamp {
-      font-size: 14px;
-      color: #888;
-      margin-top: 10px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #1e3799;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    .footer p {
-      margin: 5px 0;
-    }
-    .loading {
-      font-size: 20px;
-      color: #555;
-    }
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <div id="videoContent" class="loading">
-      جاري تحميل الفيديو...
+  <div id="contentContainer" class="media-box">
+    <div id="itemContent" class="loading">
+      جاري تحميل المحتوى...
     </div>
   </div>
 
-   <div class="footer">
-    <p>جميع الحقوق محفوظة لــ(News)&copy; </p>
-    <p>Developed by <a href="https://www.facebook.com/omar.tamer.adel">Omar Tamer</a></p>
-  </div>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
-     const firebaseConfig = {
+        const firebaseConfig = {
 
   apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
 
@@ -98,38 +77,78 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // ✅ هذا هو الجزء المُعدّل
     const hash = window.location.hash;
-    let videoId = null;
-    if (hash && hash.startsWith('#video_')) {
-        videoId = hash.split('_')[1];
+    const itemContentDiv = document.getElementById('itemContent');
+    const contentContainer = document.getElementById('contentContainer');
+
+    function formatTimestamp(e) {
+      if (!e) return "";
+      let t = e.toDate();
+      return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
     }
 
-    const videoContentDiv = document.getElementById('videoContent');
+    if (hash && hash.startsWith('#')) {
+        const hashParts = hash.substring(1).split('_');
+        const type = hashParts[0];
+        const docId = hashParts[1];
 
-    if (videoId) {
-      db.collection('videos').doc(videoId).get()
-        .then((doc) => {
-          if (doc.exists) {
-            const data = doc.data();
-            videoContentDiv.innerHTML = `
-              <h2>${data.name}</h2>
-              <video controls autoplay>
-                <source src="${data.url}" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو.
-              </video>
-            `;
-          } else {
-            videoContentDiv.innerHTML = '<h2>الفيديو غير موجود!</h2>';
-          }
-        })
-        .catch((error) => {
-          console.error("Error getting document:", error);
-          videoContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-        });
+        if (docId) {
+            let collectionName;
+            if (type === 'video') {
+                collectionName = 'videos';
+            } else if (type === 'image') {
+                collectionName = 'images';
+            } else if (type === 'text') {
+                collectionName = 'texts';
+            }
+
+            if (collectionName) {
+                db.collection(collectionName).doc(docId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            let htmlContent = '';
+                            if (type === 'video') {
+                                htmlContent = `
+                                    <h2>${data.name || 'فيديو'}</h2>
+                                    <video controls autoplay>
+                                        <source src="${data.url}" type="video/mp4">
+                                        متصفحك لا يدعم تشغيل الفيديو.
+                                    </video>
+                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+                                `;
+                            } else if (type === 'image') {
+                                htmlContent = `
+                                    <h2>${data.name || 'صورة'}</h2>
+                                    <img src="${data.url}" alt="${data.name}" loading="lazy">
+                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+                                `;
+                            } else if (type === 'text') {
+                                htmlContent = `
+                                    <div class="text-content">${data.content}</div>
+                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+                                `;
+                            }
+                            itemContentDiv.innerHTML = htmlContent;
+                            // إخفاء الـ loading class بعد التحميل
+                            itemContentDiv.classList.remove('loading');
+                        } else {
+                            itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error getting document:", error);
+                        itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+                    });
+            } else {
+                itemContentDiv.innerHTML = '<h2>نوع محتوى غير صالح.</h2>';
+            }
+        } else {
+            itemContentDiv.innerHTML = '<h2>معرّف المحتوى مفقود.</h2>';
+        }
     } else {
-      videoContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+        itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
     }
-</script>
+  </script>
 </body>
 </html>
