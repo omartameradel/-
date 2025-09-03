@@ -37,6 +37,31 @@
       font-size: 24px;
       color: #777;
     }
+     .timestamp {
+      font-size: 14px;
+      color: #888;
+      margin-top: 10px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer a {
+      color: #1e3799;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+    .loading {
+      font-size: 20px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -45,14 +70,31 @@
       جاري تحميل الفيديو...
     </div>
   </div>
+
+   <div class="footer">
+    <p>جميع الحقوق محفوظة لــ(News)&copy; </p>
+    <p>Developed by <a href="https://www.facebook.com/omar.tamer.adel">Omar Tamer</a></p>
+  </div>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
-      authDomain: "ahmed-saeed-669ab.firebaseapp.com",
-      projectId: "ahmed-saeed-669ab"
-    };
+     const firebaseConfig = {
+
+  apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
+
+  authDomain: "bluetooth-4791f.firebaseapp.com",
+
+  projectId: "bluetooth-4791f",
+
+  storageBucket: "bluetooth-4791f.firebasestorage.app",
+
+  messagingSenderId: "80129288547",
+
+  appId: "1:80129288547:web:05c480484ba5eb1b908b56",
+
+  measurementId: "G-51VB9VFYFJ"
+
+};
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
