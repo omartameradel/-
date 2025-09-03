@@ -141,7 +141,7 @@
         if (type === "video") prefix = "video_";
         if (type === "img") prefix = "img_";
         if (type === "text") prefix = "text_";
-        const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
+        const newLink = `https://omartamer.netlify.app/single_video#${prefix}${docId}`;
         navigator.clipboard.writeText(newLink).then(() => {
             btn.innerText = "✅ تم النسخ";
             setTimeout(() => {
