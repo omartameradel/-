@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>المحتوى - عمر تامر محمد عادل</title>
-  <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
     body {
@@ -26,20 +25,18 @@
       text-align: center;
       max-width: 90%;
       width: 800px;
-      margin: 20px auto;
+      margin: 20px auto; /* لضمان وجود مساحة من الأعلى والأسفل */
     }
     video, img {
       width: 100%;
       max-height: 70vh;
       border-radius: 8px;
-      margin: 10px 0;
     }
     .text-content {
       font-size: 18px;
       line-height: 1.6;
       white-space: pre-wrap;
       text-align: justify;
-      margin: 10px 0;
     }
     h2 {
       color: #1e3799;
@@ -47,31 +44,6 @@
     .loading {
       font-size: 24px;
       color: #777;
-    }
-    .timestamp {
-      font-size: 14px;
-      color: #888;
-      margin-top: 10px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #1e3799;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    .footer p {
-      margin: 5px 0;
-    }
-    .loading {
-      font-size: 20px;
-      color: #555;
     }
   </style>
 </head>
@@ -82,38 +54,20 @@
     </div>
   </div>
 
-  <div class="footer">
-    <p>جميع الحقوق محفوظة لــ(News)&copy; </p>
-    <p>Developed by <a href="https://www.facebook.com/omar.tamer.adel">Omar Tamer</a></p>
-  </div>
-
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
     const firebaseConfig = {
-
-  apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
-
-  authDomain: "bluetooth-4791f.firebaseapp.com",
-
-  projectId: "bluetooth-4791f",
-
-  storageBucket: "bluetooth-4791f.firebasestorage.app",
-
-  messagingSenderId: "80129288547",
-
-  appId: "1:80129288547:web:05c480484ba5eb1b908b56",
-
-  measurementId: "G-51VB9VFYFJ"
-
-};
-
-
+      apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
+      authDomain: "ahmed-saeed-669ab.firebaseapp.com",
+      projectId: "ahmed-saeed-669ab"
+    };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
     const hash = window.location.hash;
     const itemContentDiv = document.getElementById('itemContent');
+    const contentContainer = document.getElementById('contentContainer');
 
     function formatTimestamp(e) {
       if (!e) return "";
@@ -121,49 +75,67 @@
       return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
     }
 
-    if (hash && hash.startsWith('#video_')) {
-        const docId = hash.replace('#video_', '');
+    if (hash && hash.startsWith('#')) {
+        const hashParts = hash.substring(1).split('_');
+        const type = hashParts[0];
+        const docId = hashParts[1];
 
-        db.collection("videos").doc(docId).get()
-          .then((doc) => {
-            if (doc.exists) {
-              const data = doc.data();
-              let htmlContent = `<h2>${data.name || 'المحتوى'}</h2>`;
-
-              // الفيديو
-              if (data.videoUrl) {
-                htmlContent += `
-                  <video controls autoplay>
-                    <source src="${data.videoUrl}" type="video/mp4">
-                    متصفحك لا يدعم تشغيل الفيديو.
-                  </video>`;
-              }
-
-              // الصورة
-              if (data.imageUrl) {
-                htmlContent += `
-                  <img src="${data.imageUrl}" alt="صورة">`;
-              }
-
-              // النص
-              if (data.textContent) {
-                htmlContent += `
-                  <div class="text-content">${data.textContent}</div>`;
-              }
-
-              htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
-              itemContentDiv.innerHTML = htmlContent;
-              itemContentDiv.classList.remove('loading');
-            } else {
-              itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
+        if (docId) {
+            let collectionName;
+            if (type === 'video') {
+                collectionName = 'videos';
+            } else if (type === 'image') {
+                collectionName = 'images';
+            } else if (type === 'text') {
+                collectionName = 'texts';
             }
-          })
-          .catch((error) => {
-            console.error("Error getting document:", error);
-            itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-          });
+
+            if (collectionName) {
+                db.collection(collectionName).doc(docId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            let htmlContent = '';
+                            if (type === 'video') {
+                                htmlContent = `
+                                    <h2>${data.name || 'فيديو'}</h2>
+                                    <video controls autoplay>
+                                        <source src="${data.url}" type="video/mp4">
+                                        متصفحك لا يدعم تشغيل الفيديو.
+                                    </video>
+                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+                                `;
+                            } else if (type === 'image') {
+                                htmlContent = `
+                                    <h2>${data.name || 'صورة'}</h2>
+                                    <img src="${data.url}" alt="${data.name}" loading="lazy">
+                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+                                `;
+                            } else if (type === 'text') {
+                                htmlContent = `
+                                    <div class="text-content">${data.content}</div>
+                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
+                                `;
+                            }
+                            itemContentDiv.innerHTML = htmlContent;
+                            // إخفاء الـ loading class بعد التحميل
+                            itemContentDiv.classList.remove('loading');
+                        } else {
+                            itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error getting document:", error);
+                        itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+                    });
+            } else {
+                itemContentDiv.innerHTML = '<h2>نوع محتوى غير صالح.</h2>';
+            }
+        } else {
+            itemContentDiv.innerHTML = '<h2>معرّف المحتوى مفقود.</h2>';
+        }
     } else {
-      itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+        itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
     }
   </script>
 </body>
