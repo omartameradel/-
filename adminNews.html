@@ -1,0 +1,266 @@
+<!doctype html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>لوحة تحكم المدير</title>
+<link rel="icon" type="image/png" href="https://i.ibb.co/9kvrBz1x/Screenshot-2025-06-12-193337.png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<style>
+body {
+font-family: 'Cairo', sans-serif;
+direction: rtl;
+background: #f0f0f0;
+margin: 0;
+padding: 0;
+}
+.topbar {
+background: #1e3799;
+color: white;
+padding: 10px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logout-btn, button {
+background: #e74c3c;
+border: none;
+padding: 5px 10px;
+color: white;
+border-radius: 4px;
+cursor: pointer;
+}
+.section {
+margin: 20px;
+}
+.box {
+background: white;
+padding: 10px;
+margin: 10px 0;
+border-radius: 5px;
+box-shadow: 0 0 5px #ccc;
+}
+input, textarea {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+margin-top: 10px;
+}
+video, img {
+width: 100%;
+border-radius: 8px;
+margin-top: 10px;
+}
+</style>
+</head>
+<body oncontextmenu="return false;">
+<div class="topbar">
+<h2>لوحة تحكم المدير</h2>
+<div>
+<button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+</div>
+</div>
+<div class="section">
+<h1>رفع فيديو</h1>
+<input type="file" id="videoFile" accept="video/">
+<input type="text" id="videoName" placeholder="اسم الفيديو">
+<button onclick="uploadVideo()">رفع</button>
+</div>
+<div id="videoContainer" class="section"></div>
+<div class="section">
+<h1>رفع صورة</h1>
+<input type="file" id="imageFile" accept="image/">
+<input type="text" id="imageName" placeholder="اسم الصورة">
+<button onclick="uploadImage()">رفع</button>
+</div>
+<div id="imageContainer" class="section"></div>
+<div class="section">
+<h1>إضافة نص</h1>
+<textarea id="textContent" rows="4" placeholder="اكتب النص هنا..."></textarea>
+<button onclick="uploadText()">حفظ النص</button>
+</div>
+<div id="textContainer" class="section"></div>
+<div id="rightClickAlert">
+<span id="closeAlert" onclick="this.parentElement.style.display='none'"></span>
+</div>
+<script>
+const firebaseConfig = {
+apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
+authDomain: "bluetooth-4791f.firebaseapp.com",
+projectId: "bluetooth-4791f",
+storageBucket: "bluetooth-4791f.firebasestorage.app",
+messagingSenderId: "80129288547",
+appId: "1:80129288547:web:05c480484ba5eb1b908b56",
+measurementId: "G-51VB9VFYFJ"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const cloudName = "dquoqajno";
+const uploadPreset = "public_upload";
+
+    function logout() {
+        firebase.auth().signOut().then(() => location.href = "index.html");
+    }
+
+    function uploadMedia(fileInputId, nameInputId, mediaType, collectionName) {
+        let file = document.getElementById(fileInputId).files[0];
+        let name = document.getElementById(nameInputId).value.trim();
+        if (!file || !name) {
+            return alert("يرجى إدخال البيانات");
+        }
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "public_upload");
+        fetch(`https://api.cloudinary.com/v1_1/dquoqajno/${mediaType}/upload`, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            db.collection(collectionName).add({
+                name: name,
+                url: data.secure_url,
+                seenBy: [],
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                alert("تم الحفظ");
+                loadAll();
+            });
+        });
+    }
+
+    function uploadVideo() {
+        uploadMedia("videoFile", "videoName", "video", "videos");
+    }
+
+    function uploadImage() {
+        uploadMedia("imageFile", "imageName", "image", "images");
+    }
+
+    function uploadText() {
+        let content = document.getElementById("textContent").value.trim();
+        if (!content) {
+            return alert("اكتب النص");
+        }
+        db.collection("texts").add({
+            content: content,
+            seenBy: [],
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            alert("تم الحفظ");
+            document.getElementById("textContent").value = "";
+            loadTexts();
+        });
+    }
+
+    function deleteItem(collection, docId, callback) {
+        if (confirm("هل تريد الحذف؟")) {
+            db.collection(collection).doc(docId).delete().then(callback);
+        }
+    }
+
+    function loadVideos() {
+        let container = document.getElementById("videoContainer");
+        container.innerHTML = "";
+        db.collection("videos").orderBy("timestamp", "desc").get().then(snapshot => {
+            if (snapshot.empty) {
+                container.innerHTML = "<p>لا توجد فيديوهات.</p>";
+                return;
+            }
+            snapshot.forEach(doc => {
+                let item = doc.data();
+                let box = document.createElement("div");
+                box.className = "box";
+                box.innerHTML = `
+                    <h4>${item.name}</h4>
+                    <video controls><source src="${item.url}" type="video/mp4"></video>
+                    <button onclick="deleteItem('videos', '${doc.id}', loadVideos)">❌ حذف</button>
+                `;
+                container.appendChild(box);
+            });
+        });
+    }
+
+    function loadImages() {
+        let container = document.getElementById("imageContainer");
+        container.innerHTML = "";
+        db.collection("images").orderBy("timestamp", "desc").get().then(snapshot => {
+            if (snapshot.empty) {
+                container.innerHTML = "<p>لا توجد صور.</p>";
+                return;
+            }
+            snapshot.forEach(doc => {
+                let item = doc.data();
+                let box = document.createElement("div");
+                box.className = "box";
+                box.innerHTML = `
+                    <h4>${item.name}</h4>
+                    <img src="${item.url}" alt="${item.name}">
+                    <button onclick="deleteItem('images', '${doc.id}', loadImages)">❌ حذف</button>
+                `;
+                container.appendChild(box);
+            });
+        });
+    }
+
+    function loadTexts() {
+        let container = document.getElementById("textContainer");
+        container.innerHTML = "";
+        db.collection("texts").orderBy("timestamp", "desc").get().then(snapshot => {
+            if (snapshot.empty) {
+                container.innerHTML = "<p>لا توجد نصوص.</p>";
+                return;
+            }
+            snapshot.forEach(doc => {
+                let item = doc.data();
+                let box = document.createElement("div");
+                box.className = "box";
+                box.innerHTML = `
+                    <div style="white-space:pre-wrap;">${item.content}</div>
+                    <button onclick="deleteItem('texts', '${doc.id}', loadTexts)">❌ حذف</button>
+                `;
+                container.appendChild(box);
+            });
+        });
+    }
+
+    function loadAll() {
+        loadVideos();
+        loadImages();
+        loadTexts();
+    }
+
+    window.onload = function() {
+        document.getElementById("rightClickAlert").style.display = "block";
+        loadAll();
+    };
+
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener("keydown", function(e) {
+        const forbiddenKeys = [
+            e.ctrlKey && e.key.toLowerCase() === 'u',
+            e.key === 'F12',
+            e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i',
+            e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c',
+            e.ctrlKey && e.key.toLowerCase() === 's',
+            e.ctrlKey && e.key.toLowerCase() === 'p'
+        ];
+        if (forbiddenKeys.some(Boolean)) {
+            e.preventDefault();
+            alert("🚫 هذا الإجراء غير مسموح على هذا الموقع.");
+        }
+    });
+</script>
+
+</body>
+</html>
