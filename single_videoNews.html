@@ -25,18 +25,20 @@
       text-align: center;
       max-width: 90%;
       width: 800px;
-      margin: 20px auto; /* لضمان وجود مساحة من الأعلى والأسفل */
+      margin: 20px auto;
     }
     video, img {
       width: 100%;
       max-height: 70vh;
       border-radius: 8px;
+      margin: 10px 0;
     }
     .text-content {
       font-size: 18px;
       line-height: 1.6;
       white-space: pre-wrap;
       text-align: justify;
+      margin: 10px 0;
     }
     h2 {
       color: #1e3799;
@@ -57,7 +59,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
-        const firebaseConfig = {
+       const firebaseConfig = {
 
   apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
 
@@ -79,7 +81,6 @@
 
     const hash = window.location.hash;
     const itemContentDiv = document.getElementById('itemContent');
-    const contentContainer = document.getElementById('contentContainer');
 
     function formatTimestamp(e) {
       if (!e) return "";
@@ -88,66 +89,60 @@
     }
 
     if (hash && hash.startsWith('#')) {
-        const hashParts = hash.substring(1).split('_');
-        const type = hashParts[0];
-        const docId = hashParts[1];
+      const parts = hash.substring(1).split('_');
+      const type = parts[0]; // video, img, text
+      const docId = parts[1];
 
-        if (docId) {
-            let collectionName;
-            if (type === 'video') {
-                collectionName = 'videos';
-            } else if (type === 'image') {
-                collectionName = 'images';
-            } else if (type === 'text') {
-                collectionName = 'texts';
-            }
+      if (!docId) {
+        itemContentDiv.innerHTML = '<h2>معرّف المحتوى مفقود.</h2>';
+      } else {
+        let collection = '';
+        if (type === 'video') collection = 'videos';
+        if (type === 'img') collection = 'images';
+        if (type === 'text') collection = 'texts';
 
-            if (collectionName) {
-                db.collection(collectionName).doc(docId).get()
-                    .then((doc) => {
-                        if (doc.exists) {
-                            const data = doc.data();
-                            let htmlContent = '';
-                            if (type === 'video') {
-                                htmlContent = `
-                                    <h2>${data.name || 'فيديو'}</h2>
-                                    <video controls autoplay>
-                                        <source src="${data.url}" type="video/mp4">
-                                        متصفحك لا يدعم تشغيل الفيديو.
-                                    </video>
-                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-                                `;
-                            } else if (type === 'image') {
-                                htmlContent = `
-                                    <h2>${data.name || 'صورة'}</h2>
-                                    <img src="${data.url}" alt="${data.name}" loading="lazy">
-                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-                                `;
-                            } else if (type === 'text') {
-                                htmlContent = `
-                                    <div class="text-content">${data.content}</div>
-                                    <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-                                `;
-                            }
-                            itemContentDiv.innerHTML = htmlContent;
-                            // إخفاء الـ loading class بعد التحميل
-                            itemContentDiv.classList.remove('loading');
-                        } else {
-                            itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error getting document:", error);
-                        itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-                    });
-            } else {
-                itemContentDiv.innerHTML = '<h2>نوع محتوى غير صالح.</h2>';
-            }
+        if (collection) {
+          db.collection(collection).doc(docId).get()
+            .then((doc) => {
+              if (doc.exists) {
+                const data = doc.data();
+                let htmlContent = `<h2>${data.name || 'المحتوى'}</h2>`;
+
+                if (type === 'video' && data.url) {
+                  htmlContent += `
+                    <video controls autoplay>
+                      <source src="${data.url}" type="video/mp4">
+                      متصفحك لا يدعم تشغيل الفيديو.
+                    </video>`;
+                }
+
+                if (type === 'img' && data.url) {
+                  htmlContent += `
+                    <img src="${data.url}" alt="صورة">`;
+                }
+
+                if (type === 'text' && data.content) {
+                  htmlContent += `
+                    <div class="text-content">${data.content}</div>`;
+                }
+
+                htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
+                itemContentDiv.innerHTML = htmlContent;
+                itemContentDiv.classList.remove('loading');
+              } else {
+                itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
+              }
+            })
+            .catch((error) => {
+              console.error("Error getting document:", error);
+              itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+            });
         } else {
-            itemContentDiv.innerHTML = '<h2>معرّف المحتوى مفقود.</h2>';
+          itemContentDiv.innerHTML = '<h2>نوع محتوى غير صالح.</h2>';
         }
+      }
     } else {
-        itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+      itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
     }
   </script>
 </body>
