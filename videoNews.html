@@ -1,229 +1,412 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>صفحة المحتوى</title>
-    <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://omartamer.netlify.app/صورة زعيم البرمجة.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .desktop-header a:hover::after, img, video { width: 100% }
-        body { margin: 0; font-family: Cairo, sans-serif; background: #f4f6f8; padding-bottom: 100px }
-        .desktop-header, .main-header { background-color: #2c3e50; color: #fff; padding: 15px 20px; font-weight: 700; font-size: 18px }
-        .desktop-header { display: flex; justify-content: space-between; align-items: center }
-        .desktop-header a, .mobile-footer a { color: #fff; text-decoration: none; margin-right: 10px; cursor: pointer; font-size: 16px !important }
-        .mobile-footer { display: none }
-        .desktop-header a::after { content: ''; position: absolute; bottom: -3px; right: 0; width: 0; height: 2px; background-color: #fff; transition: width .3s }
-        @media (max-width: 768px) {
-            .desktop-header { display: none }
-            .main-header { text-align: center }
-            .mobile-footer { display: flex; justify-content: center; gap: 15px; position: fixed; bottom: 0; width: 100%; background-color: #2c3e50; color: #fff; padding: 10px 0; z-index: 1000 }
+      body {
+        margin: 0;
+        font-family: Cairo, sans-serif;
+        background: #f4f6f8;
+        padding-bottom: 100px;
+      }
+      .desktop-header,
+      .main-header {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 15px 20px;
+        font-weight: 700;
+        font-size: 18px;
+      }
+      .desktop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .desktop-header a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 10px;
+        position: relative;
+        cursor: pointer;
+        font-size: 16px !important;
+      }
+      .desktop-header a:hover::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+      }
+      .mobile-footer {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .desktop-header {
+          display: none;
         }
-        .content { padding: 20px }
-        h2, h3 { text-align: center; color: #1e3799 }
-        .media-box { background: #fff; padding: 15px; margin: 20px auto; max-width: 700px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, .1) }
-        img, video { border-radius: 8px; margin-top: 10px }
-        .text-content { font-size: 16px; background-color: #f9f9f9; padding: 15px; border-radius: 8px; white-space: pre-wrap }
-        .timestamp { font-size: 13px; color: #888; margin-top: 8px }
-        .media-box:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0, 0, 0, .15) }
-        .highlighted { border: 3px solid #3498db !important; box-shadow: 0 0 15px #2980b9 !important; position: relative }
-        .highlighted .close-btn { display: block }
-        .close-btn { position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; border: none; border-radius: 5px; padding: 4px 8px; cursor: pointer; display: none; z-index: 10 }
-        .highlighted .close-btn:hover { background: #c0392b; box-shadow: 0 0 10px rgba(192, 57, 43, 0.5) }
-         .timestamp {
-      font-size: 14px;
-      color: #888;
-      margin-top: 10px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #1e3799;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    .footer p {
-      margin: 5px 0;
-    }
-    .loading {
-      font-size: 20px;
-      color: #555;
-    }
+        .main-header {
+          text-align: center;
+        }
+        .mobile-footer {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background-color: #2c3e50;
+          color: #fff;
+          padding: 10px 0;
+          z-index: 1000;
+        }
+        .mobile-footer a {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+
+      .content {
+        padding: 20px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #1e3799;
+      }
+
+      .media-box {
+        background: #fff;
+        padding: 15px;
+        margin: 20px auto;
+        max-width: 600px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .media-box img,
+      .media-box video {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      .text-content {
+        font-size: 16px;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        line-height: 1.7;
+      }
+      /* ✅ أي لينك في النص يبقى تحتيه خط */
+      .text-content a {
+        color: #2980b9;
+        text-decoration: underline;
+      }
+
+      .timestamp {
+        font-size: 13px;
+        color: #888;
+        margin-top: 8px;
+      }
+      .media-box:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ✅ Modal */
+      #mediaModal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+      #mediaModal img,
+      #mediaModal video {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        box-shadow: 0 0 20px #000;
+      }
+      #mediaModal span {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+      }
+      .share-btn {
+        margin-top: 10px;
+        background: #2980b9;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      /* ✅ Footer Style */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #2c3e50;
+        color: #fff;
+        font-size: 14px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .footer a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header class="desktop-header">
+      <div>
+        <a href="https://omartamer.netlify.app/contactnews" target="_blank"
+          >التواصل</a
+        >
+      </div>
+      <div>موقع الاخبار (News)</div>
+    </header>
 
-<header class="desktop-header">
-    <div>
-        <a href='https://omartamer.netlify.app/contactnews'>التواصل</a>
+    <div class="content">
+      <h3>الفيديوهات</h3>
+      <div id="videoContainer"></div>
+      <h3>الصور</h3>
+      <div id="imageContainer"></div>
+      <h3>النصوص</h3>
+      <div id="textContainer"></div>
     </div>
-    <div> موقع الاخبار (News)</div>
-</header>
 
-<div class="content">
-    <h3>الفيديوهات</h3>
-    <div id="videoContainer"></div>
-    <h3>الصور</h3>
-    <div id="imageContainer"></div>
-    <h3>النصوص</h3>
-    <div id="textContainer"></div>
-</div>
+    <div id="mediaModal" onclick="closeModal()">
+      <span onclick="closeModal()">&times;</span>
+      <video id="modalVideo" controls style="display: none"></video>
+      <img id="modalImg" src="" style="display: none" />
+    </div>
 
-     <div class="footer">
-    <p>جميع الحقوق محفوظة لــ(News)&copy; </p>
-    <p>Developed by <a href="https://www.facebook.com/omar.tamer.adel">Omar Tamer</a></p>
-  </div>
+    <header class="mobile-footer">
+      <a href="https://omartamer.netlify.app/contactnews" target="_blank"
+        >التواصل</a
+      >
+    </header>
 
-<header class="mobile-footer">
-   <a href='https://omartamer.netlify.app/contactnews'>التواصل</a></header>
+    <div class="footer">
+      <p>
+        Made The Website of
+        <a href="https://www.facebook.com/omar.tamer.adel" target="_blank"
+          >Omar_Tamer</a
+        >
+      </p>
+    </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
-<script>
-    const firebaseConfig = {
+    <script>
+      const firebaseConfig = {
         apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
         authDomain: "bluetooth-4791f.firebaseapp.com",
         projectId: "bluetooth-4791f",
         storageBucket: "bluetooth-4791f.firebasestorage.app",
         messagingSenderId: "80129288547",
         appId: "1:80129288547:web:05c480484ba5eb1b908b56",
-        measurementId: "G-51VB9VFYFJ"
-    };
+        measurementId: "G-51VB9VFYFJ",
+      };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
 
-    function formatTimestamp(e) {
+      function formatTimestamp(e) {
         if (!e) return "";
         let t = e.toDate();
         return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
-    }
+      }
 
-    function loadVideos() {
+      function openModal(url, type) {
+        const modal = document.getElementById("mediaModal");
+        const video = document.getElementById("modalVideo");
+        const img = document.getElementById("modalImg");
+
+        if (type === "video") {
+          video.src = url;
+          video.style.display = "block";
+          img.style.display = "none";
+        } else if (type === "image") {
+          img.src = url;
+          img.style.display = "block";
+          video.style.display = "none";
+        }
+
+        modal.style.display = "flex";
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("mediaModal");
+        const video = document.getElementById("modalVideo");
+        modal.style.display = "none";
+        video.pause();
+      }
+
+      function copyLink(type, docId, btn) {
+        let prefix = "";
+        if (type === "video") prefix = "video_";
+        if (type === "image") prefix = "image_";
+        if (type === "text") prefix = "text_";
+        const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
+        navigator.clipboard.writeText(newLink).then(() => {
+          btn.innerText = "✅ تم النسخ";
+          setTimeout(() => {
+            btn.innerText = "🔗 مشاركة";
+          }, 2000);
+        });
+      }
+
+      function loadVideos() {
         let container = document.getElementById("videoContainer");
         container.innerHTML = "";
         db.collection("videos")
-            .orderBy("timestamp", "desc")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    let data = doc.data();
-                    let videoId = `video_${doc.id}`;
-                    let box = document.createElement("div");
-                    box.className = "media-box";
-                    box.id = videoId;
-                    box.style.position = "relative";
-                    box.innerHTML = `
-                        <h4>${data.name}</h4>
-                        <video controls style="width: 100%; max-height: 70vh;">
-                            <source src="${data.url}" type="video/mp4">
-                            متصفحك لا يدعم تشغيل الفيديو.
-                        </video>
-                        <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-                        <button onclick="copyLink('video', '${doc.id}', this)" style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
-                            🔗 مشاركة
-                        </button>`;
-                    container.appendChild(box);
-                });
-                highlightIfAnchorExists();
+          .orderBy("timestamp", "desc")
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let data = doc.data();
+              let videoId = `video_${doc.id}`;
+              let box = document.createElement("div");
+              box.className = "media-box";
+              box.id = videoId;
+              box.innerHTML = `
+                      <h4>${data.name}</h4>
+                      <video onclick="openModal('${data.url}','video')" style="width: 100%; max-height: 70vh;">
+                          <source src="${data.url}" type="video/mp4">
+                          متصفحك لا يدعم تشغيل الفيديو.
+                      </video>
+                      <p class="timestamp">📅 ${formatTimestamp(
+                        data.timestamp
+                      )}</p>
+                      <button onclick="copyLink('video', '${doc.id}', this)" class="share-btn">
+                          🔗 مشاركة
+                      </button>`;
+              container.appendChild(box);
             });
-    }
+            highlightIfAnchorExists();
+          });
+      }
 
-    function copyLink(type, docId, btn) {
-        let prefix = "";
-        if (type === "video") prefix = "video_";
-        if (type === "img") prefix = "img_";
-        if (type === "text") prefix = "text_";
-        const newLink = `https://omartamer.netlify.app/single_video#${prefix}${docId}`;
-        navigator.clipboard.writeText(newLink).then(() => {
-            btn.innerText = "✅ تم النسخ";
-            setTimeout(() => {
-                btn.innerText = "🔗 مشاركة";
-            }, 2000);
-        });
-    }
-
-    function loadImages() {
+      function loadImages() {
         let container = document.getElementById("imageContainer");
         container.innerHTML = "";
         db.collection("images")
-            .orderBy("timestamp", "desc")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    let data = doc.data();
-                    let imageId = `image_${doc.id}`;
-                    let box = document.createElement("div");
-                    box.className = "media-box";
-                    box.id = imageId;
-                    box.innerHTML = `
-                        <h4>${data.name}</h4>
-                        <img src="${data.url}" alt="${data.name}" style="width: 100%; max-height: 70vh; border-radius: 8px;">
-                        <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-                        <button onclick="copyLink('img', '${doc.id}', this)" style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
-                            🔗 مشاركة
-                        </button>`;
-                    container.appendChild(box);
-                });
+          .orderBy("timestamp", "desc")
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let data = doc.data();
+              let imageId = `image_${doc.id}`;
+              let box = document.createElement("div");
+              box.className = "media-box";
+              box.id = imageId;
+              box.innerHTML = `
+                      <h4>${data.name}</h4>
+                      <img src="${data.url}" alt="${data.name}" onclick="openModal('${data.url}','image')" style="width: 100%; max-height: 70vh; border-radius: 8px;">
+                      <p class="timestamp">📅 ${formatTimestamp(
+                        data.timestamp
+                      )}</p>
+                      <button onclick="copyLink('image', '${doc.id}', this)" class="share-btn">
+                          🔗 مشاركة
+                      </button>`;
+              container.appendChild(box);
             });
-    }
+          });
+      }
 
-    function loadTexts() {
+      function loadTexts() {
         let container = document.getElementById("textContainer");
         container.innerHTML = "";
         db.collection("texts")
-            .orderBy("timestamp", "desc")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    let data = doc.data();
-                    let textId = `text_${doc.id}`;
-                    let box = document.createElement("div");
-                    box.className = "media-box";
-                    box.id = textId;
-                    box.innerHTML = `
-                        <div class="text-content">${data.content}</div>
-                        <p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>
-                        <button onclick="copyLink('text', '${doc.id}', this)" style="margin-top:10px;background:#2980b9;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
-                            🔗 مشاركة
-                        </button>`;
-                    container.appendChild(box);
-                });
+          .orderBy("timestamp", "desc")
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let data = doc.data();
+              let textId = `text_${doc.id}`;
+              let box = document.createElement("div");
+              box.className = "media-box";
+              box.id = textId;
+              let safeContent = data.content.replace(
+                /(https?:\/\/[^\s]+)/g,
+                '<a href="$1" target="_blank">$1</a>'
+              );
+              box.innerHTML = `
+                      <div class="text-content">${safeContent}</div>
+                      <p class="timestamp">📅 ${formatTimestamp(
+                        data.timestamp
+                      )}</p>
+                      <button onclick="copyLink('text', '${doc.id}', this)" class="share-btn">
+                          🔗 مشاركة
+                      </button>`;
+              container.appendChild(box);
             });
-    }
+          });
+      }
 
-    function highlightIfAnchorExists() {
+      function highlightIfAnchorExists() {
         const hash = location.hash;
         if (hash) {
-            const target = document.querySelector(hash);
-            if (target) {
-                target.classList.add("highlighted");
-                if (!target.querySelector('.close-btn')) {
-                    const closeBtn = document.createElement('button');
-                    closeBtn.className = 'close-btn';
-                    closeBtn.innerText = '❌';
-                    closeBtn.onclick = () => {
-                        target.style.display = 'none';
-                        window.history.pushState('', document.title, window.location.pathname);
-                    };
-                    target.appendChild(closeBtn);
-                }
-                target.scrollIntoView({ behavior: "smooth", block: "center" });
+          const target = document.querySelector(hash);
+          if (target) {
+            target.classList.add("highlighted");
+            if (!target.querySelector(".close-btn")) {
+              const closeBtn = document.createElement("button");
+              closeBtn.className = "close-btn";
+              closeBtn.innerText = "❌";
+              closeBtn.onclick = () => {
+                target.style.display = "none";
+                window.history.pushState(
+                  "",
+                  document.title,
+                  window.location.pathname
+                );
+              };
+              target.appendChild(closeBtn);
             }
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
         }
-    }
+      }
 
-    loadVideos();
-    loadImages();
-    loadTexts();
-</script>
-
-</body>
+      loadVideos();
+      loadImages();
+      loadTexts();
+    </script>
+  </body>
 </html>
