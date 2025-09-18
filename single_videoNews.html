@@ -28,12 +28,18 @@
       width: 800px;
       margin: 20px auto;
     }
-    video, img {
-      width: 100%;
-      max-height: 70vh;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
+video, img {
+  max-width: 100%;      /* ما يتعداش حدود الصندوق */
+  max-height: 80vh;     /* يمنع الطول من إنه يخرج برة الشاشة */
+  height: auto;         /* يحافظ على النسبة */
+  width: auto;          /* يحافظ على النسبة */
+  border-radius: 8px;
+  margin: 10px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;   /* يخليها في النص */
+}
+
     .text-content {
       font-size: 18px;
       line-height: 1.6;
@@ -167,3 +173,4 @@
   </script>
 </body>
 </html>
+
