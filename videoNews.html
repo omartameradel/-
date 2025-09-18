@@ -277,19 +277,20 @@
         video.pause();
       }
 
-      function copyLink(type, docId, btn) {
-        let prefix = "";
-        if (type === "video") prefix = "video_";
-        if (type === "img") prefix = "img_";
-        if (type === "text") prefix = "text_";
-        const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
-        navigator.clipboard.writeText(newLink).then(() => {
-          btn.innerText = "✅ تم النسخ";
-          setTimeout(() => {
-            btn.innerText = "🔗 مشاركة";
-          }, 2000);
-        });
-      }
+   function copyLink(type, docId, btn) {
+  let prefix = "";
+  if (type === "video") prefix = "video_";
+  if (type === "img" || type === "image") prefix = "img_";
+  if (type === "text") prefix = "text_";
+  const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
+  navigator.clipboard.writeText(newLink).then(() => {
+    btn.innerText = "✅ تم النسخ";
+    setTimeout(() => {
+      btn.innerText = "🔗 مشاركة";
+    }, 2000);
+  });
+}
+
 
       function loadVideos() {
         let container = document.getElementById("videoContainer");
@@ -341,9 +342,10 @@
                       <p class="timestamp">📅 ${formatTimestamp(
                         data.timestamp
                       )}</p>
-                      <button onclick="copyLink('image', '${doc.id}', this)" class="share-btn">
-                          🔗 مشاركة
-                      </button>`;
+                      <button onclick="copyLink('img', '${doc.id}', this)" class="share-btn">
+    🔗 مشاركة
+</button>
+`;
               container.appendChild(box);
             });
           });
