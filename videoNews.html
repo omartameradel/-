@@ -280,7 +280,7 @@
       function copyLink(type, docId, btn) {
         let prefix = "";
         if (type === "video") prefix = "video_";
-        if (type === "image") prefix = "image_";
+        if (type === "img") prefix = "img_";
         if (type === "text") prefix = "text_";
         const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
         navigator.clipboard.writeText(newLink).then(() => {
