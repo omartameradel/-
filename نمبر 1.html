@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نمبر 1</title>
+    <style>
+        /* كود CSS المخصص للفيديو */
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            background-size: cover;
+            filter: brightness(0.5) blur(1px);
+        }
+    </style>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <video muted loop id="myVideo">
+        <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1758196481/WhatsApp_Video_2025-09-16_at_18.39.12_8c14b630_hxqwcu.mp4" type="video/mp4">
+        متصفحك لا يدعم عنصر الفيديو.
+    </video>
+
+    <div class="container">
+        <header>
+            
+        </div>
+
+    <audio id="background-audio" loop>
+        <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1758191965/ElGay.bta3y-Houda-MaTb3aa.Com_nns0i4.mp3" type="audio/mpeg">
+        متصفحك لا يدعم عنصر الصوت.
+    </audio>
+    
+
+    <script>
+        document.addEventListener('click', function() {
+            const video = document.getElementById('myVideo');
+            if (video.paused) {
+                video.play();
+            }
+            const audio = document.getElementById('background-audio');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
+    </body>
+</html>
