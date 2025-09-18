@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cipher Quest: Codebreaker</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      z-index: -1;
+      object-fit: cover;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <video muted loop autoplay playsinline id="myVideo">
+    <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1758196481/WhatsApp_Video_2025-09-16_at_18.39.12_8c14b630_hxqwcu.mp4" type="video/mp4">
+    متصفحك لا يدعم عنصر الفيديو.
+  </video>
+  <div class="container">
+    <header>
+      <h1 class="glitch-title">ERROR: ACCESS DENIED WITH OMAR_TAMER</h1>
+    </header>
+    <main>
+      <section class="keypad-section">
+        <div class="keypad-container">
+          <div class="pin-display">
+            <div class="pin-dots">
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+            </div>
+          </div>
+          <div class="keypad-grid">
+            <button class="key" data-key="1">1</button>
+            <button class="key" data-key="2">2</button>
+            <button class="key" data-key="3">3</button>
+            <button class="key" data-key="4">4</button>
+            <button class="key" data-key="5">5</button>
+            <button class="key" data-key="6">6</button>
+            <button class="key" data-key="7">7</button>
+            <button class="key" data-key="8">8</button>
+            <button class="key" data-key="9">9</button>
+            <button class="key key-delete" data-key="delete">DEL</button>
+            <button class="key" data-key="0">0</button>
+            <button class="key key-unlock" data-key="unlock">UNLOCK</button>
+          </div>
+        </div>
+      </section>
+      <section class="log-section">
+        <div class="log-container">
+          <div class="log-header">
+            <h2>CIPHER ATTEMPT LOG</h2>
+            <div class="attempts-counter">
+              <span class="attempts-text">ATTEMPTS REMAINING:</span>
+              <span class="attempts-number">5</span>
+            </div>
+          </div>
+          <div class="log-content" id="log-content">
+            <div class="log-placeholder">
+              <div class="scanner-line"></div>
+              <p>ENTER ACCESS CODE </p>
+              <p>5 ATTEMPTS BEFORE SECURITY LOCKDOWN</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="overlay"></div>
+    <div class="scanlines"></div>
+    <div class="glow"></div>
+  </div>
+  <audio id="background-audio" loop>
+    <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1758191965/ElGay.bta3y-Houda-MaTb3aa.Com_nns0i4.mp3" type="audio/mpeg">
+    متصفحك لا يدعم عنصر الصوت.
+  </audio>
+  <script>
+    // تشغيل الفيديو والصوت عند أول تفاعل
+    document.addEventListener('click', function() {
+      const video = document.getElementById('myVideo');
+      if (video.paused) {
+        video.play();
+      }
+      const audio = document.getElementById('background-audio');
+      if (audio.paused) {
+        audio.play();
+      }
+    }, { once: true });
+  </script>
+<!-- partial:index.partial.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Access Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+       
+
+    <div class="container">
+        <header>
+            <h1 class="glitch-title">ERROR: ACCESS DENIED WITH OMAR_TAMER</h1>
+        </header>
+        
+        <main>
+            <section class="keypad-section">
+                <div class="keypad-container">
+                    <div class="pin-display">
+                        <div class="pin-dots">
+                            <span class="pin-dot"></span>
+                            <span class="pin-dot"></span>
+                            <span class="pin-dot"></span>
+                            <span class="pin-dot"></span>
+                        </div>
+                    </div>
+                    <div class="keypad-grid">
+                        <button class="key" data-key="1">1</button>
+                        <button class="key" data-key="2">2</button>
+                        <button class="key" data-key="3">3</button>
+                        <button class="key" data-key="4">4</button>
+                        <button class="key" data-key="5">5</button>
+                        <button class="key" data-key="6">6</button>
+                        <button class="key" data-key="7">7</button>
+                        <button class="key" data-key="8">8</button>
+                        <button class="key" data-key="9">9</button>
+                        <button class="key key-delete" data-key="delete">DEL</button>
+                        <button class="key" data-key="0">0</button>
+                        <button class="key key-unlock" data-key="unlock">UNLOCK</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="log-section">
+                <div class="log-container">
+                    <div class="log-header">
+                        <h2>CIPHER ATTEMPT LOG</h2>
+                        <div class="attempts-counter">
+                            <span class="attempts-text">ATTEMPTS REMAINING:</span>
+                            <span class="attempts-number">5</span>
+                        </div>
+                    </div>
+                    <div class="log-content" id="log-content">
+                        <div class="log-placeholder">
+                            <div class="scanner-line"></div>
+                            <p>ENTER ACCESS CODE </p>
+                            <p>5 ATTEMPTS BEFORE SECURITY LOCKDOWN</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="overlay"></div>
+        <div class="scanlines"></div>
+        <div class="glow"></div>
+    </div>
+    <video muted loop autoplay id="myVideo">
+  <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1753375071/%D8%A7%D8%BA%D9%86%D9%8A%D8%A9_%D8%B2%D8%B9%D9%8A%D9%85_%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9_lzfkdn.mp4" type="video/mp4">
+  متصفحك لا يدعم عنصر الفيديو.
+</video>
+
+    <div class="container">
+        <header>
+            <h1>Cipher Quest: Codebreaker</h1>
+            <p>Embark on a thrilling journey to decode mysteries and unlock secrets!</p>
+        </div>
+
+    <audio id="background-audio" loop>
+        <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1758191965/ElGay.bta3y-Houda-MaTb3aa.Com_nns0i4.mp3" type="audio/mpeg">
+        متصفحك لا يدعم عنصر الصوت.
+    </audio>
+
+  <script>
+        document.addEventListener('click', function() {
+            const video = document.getElementById('myVideo');
+            if (video.paused) {
+                video.play();
+            }
+            const audio = document.getElementById('background-audio');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
+
+
+</body>
+</html>
+<!-- partial -->
+  <script>const PIN_LENGTH = 4;
+const MAX_ATTEMPTS = 5;
+const CORRECT_PIN = (() => {
+  const digits = new Set();
+  while (digits.size < 4) { digits.add(Math.floor(Math.random() * 10));
+  }
+  return Array.from(digits).join('');
+})();
+
+const pinDots = document.querySelectorAll('.pin-dot');
+const keys = document.querySelectorAll('.key');
+const attemptsCounter = document.querySelector('.attempts-number');
+const logContent = document.getElementById('log-content');
+const container = document.querySelector('.container');
+
+let currentPin = '';
+let attemptsRemaining = MAX_ATTEMPTS;
+let isLocked = false;
+
+function init() {
+    addEventListeners();
+    animateElements();
+}
+
+function addEventListeners() {
+    keys.forEach(key => {
+        key.addEventListener('click', () => handleKeyPress(key));
+
+        key.addEventListener('mouseenter', () => {
+            playSound('hover');
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') {
+            toggleBackgroundAudio();
+        }
+    });
+}
+
+function handleKeyPress(key) {
+    if (isLocked) return;
+
+    key.classList.add('clicked');
+    setTimeout(() => key.classList.remove('clicked'), 300);
+
+    playSound('keypress');
+
+    const keyValue = key.getAttribute('data-key');
+
+    switch (keyValue) {
+        case 'delete':
+            deleteLastDigit();
+            break;
+        case 'unlock':
+            attemptUnlock();
+            break;
+        default:
+
+            if (currentPin.length < PIN_LENGTH) {
+                addDigit(keyValue);
+            }
+    }
+}
+
+function addDigit(digit) {
+    if (currentPin.length < PIN_LENGTH) {
+        currentPin += digit;
+        updatePinDisplay();
+
+        if (currentPin.length === PIN_LENGTH) {
+            setTimeout(attemptUnlock, 500);
+        }
+    }
+}
+
+function deleteLastDigit() {
+    if (currentPin.length > 0) {
+        currentPin = currentPin.slice(0, -1);
+        updatePinDisplay();
+    }
+}
+
+document.addEventListener('click', function() {
+  const audio = document.getElementById('background-audio');
+  if (audio.paused) {
+    audio.play();
+  }
+}, { once: true });
+
+
+
+function updatePinDisplay() {
+    pinDots.forEach((dot, index) => {
+        if (index < currentPin.length) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+function attemptUnlock() {
+    if (currentPin.length !== PIN_LENGTH) {
+        shakeEffect('.pin-display');
+        playSound('error');
+        return;
+    }
+
+    attemptsRemaining--;
+    attemptsCounter.textContent = attemptsRemaining;
+
+    const isCorrect = checkPin(currentPin);
+
+    if (isCorrect) {
+        handleSuccessfulUnlock();
+    } else {
+        handleFailedAttempt();
+    }
+
+    currentPin = '';
+    updatePinDisplay();
+}
+
+function checkPin(pin) {
+    return pin === CORRECT_PIN;
+}
+
+function getPinFeedback(enteredPin) {
+    const feedback = [];
+
+    for (let i = 0; i < PIN_LENGTH; i++) {
+        if (i < enteredPin.length) {
+            const digit = enteredPin[i];
+
+            if (digit === CORRECT_PIN[i]) {
+                feedback.push('correct');
+            } else if (CORRECT_PIN.includes(digit)) {
+                feedback.push('wrong-position');
+            } else {
+                feedback.push('wrong');
+            }
+        } else {
+            feedback.push('empty');
+        }
+    }
+
+    return feedback;
+}
+
+function handleSuccessfulUnlock() {
+    playSound('success');
+
+    addLogEntry({
+        message: 'ACCESS GRANTED - DECRYPTION SUCCESSFUL',
+        pin: currentPin,
+        feedback: getPinFeedback(currentPin),
+        type: 'success'
+    });
+
+    container.classList.add('access-granted');
+
+    document.body.style.animation = 'pulseSuccess 0.5s 3';
+
+    setTimeout(() => {
+        alert('Access granted! System unlocked.');
+        resetSystem();
+    }, 1500);
+}
+
+function handleFailedAttempt() {
+    playSound('error');
+    shakeEffect('.keypad-container');
+
+    addLogEntry({
+        message: `INVALID PIN - ATTEMPT ${MAX_ATTEMPTS - attemptsRemaining} OF ${MAX_ATTEMPTS}`,
+        pin: currentPin,
+        feedback: getPinFeedback(currentPin),
+        type: 'error'
+    });
+
+    if (attemptsRemaining <= 0) {
+        setTimeout(lockSystem, 500);
+    }
+}
+
+function lockSystem() {
+    isLocked = true;
+
+    const lockMessage = 'SECURITY BREACH DETECTED - SYSTEM LOCKED';
+    addLogEntry({
+        message: lockMessage,
+        type: 'error',
+        isLockout: true
+    });
+
+    playSound('lockdown');
+
+    shakeEffect('.keypad-container', 10);
+    shakeEffect('.log-container', 10);
+
+    container.classList.add('system-locked');
+
+    setTimeout(() => {
+        alert('Too many failed attempts. System locked!');
+        resetSystem();
+    }, 3000);
+}
+
+function resetSystem() {
+
+    currentPin = '';
+    attemptsRemaining = MAX_ATTEMPTS;
+    isLocked = false;
+
+    updatePinDisplay();
+    attemptsCounter.textContent = attemptsRemaining;
+    container.classList.remove('system-locked', 'access-granted');
+
+    if (logContent.querySelector('.log-placeholder')) {
+        return; 
+    }
+
+    logContent.innerHTML = `
+        <div class="log-placeholder">
+            <div class="scanner-line"></div>
+            <p>ENTER ACCESS CODE WITH OMAR_TAMER   </p>
+            <p>5 ATTEMPTS BEFORE SECURITY LOCKDOWN</p>
+        </div>
+    `;
+
+    playSound('reset');
+}
+
+function addLogEntry(entry) {
+
+    const placeholder = logContent.querySelector('.log-placeholder');
+    if (placeholder) {
+        logContent.removeChild(placeholder);
+    }
+
+    const logEntry = document.createElement('div');
+    logEntry.className = `log-entry ${entry.type || ''}`;
+
+    const now = new Date();
+    const timestamp = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now.getMilliseconds().toString().padStart(3, '0')}`;
+
+    let logHTML = `<div class="timestamp">[${timestamp}]</div>`;
+    logHTML += `<div class="message">${entry.message}</div>`;
+
+    if (entry.pin && entry.feedback) {
+        logHTML += '<div class="code">';
+
+        for (let i = 0; i < PIN_LENGTH; i++) {
+            if (i < entry.pin.length) {
+                const digitClass = entry.feedback[i];
+                logHTML += `<div class="digit ${digitClass}">${entry.pin[i]}</div>`;
+            } else {
+                logHTML += `<div class="digit">-</div>`;
+            }
+        }
+
+        logHTML += '</div>';
+    }
+
+    if (entry.isLockout) {
+        logHTML += `
+            <div class="lockout-animation">
+                <div class="lockout-text">SYSTEM LOCKDOWN</div>
+            </div>
+        `;
+    }
+
+    logEntry.innerHTML = logHTML;
+    logContent.appendChild(logEntry);
+
+    logContent.scrollTop = logContent.scrollHeight;
+}
+
+function shakeEffect(selector, intensity = 5) {
+    const element = document.querySelector(selector);
+    element.style.animation = `shake 0.5s cubic-bezier(.36,.07,.19,.97) both`;
+    element.style.transform = `translate3d(0, 0, 0)`;
+
+    const keyframes = `
+        @keyframes shake {
+            10%, 90% { transform: translate3d(${-intensity}px, 0, 0); }
+            20%, 80% { transform: translate3d(${intensity * 2}px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(${-intensity * 2}px, 0, 0); }
+            40%, 60% { transform: translate3d(${intensity * 2}px, 0, 0); }
+        }
+    `;
+
+    let style = document.getElementById('shake-style');
+    if (!style) {
+        style = document.createElement('style');
+        style.id = 'shake-style';
+        document.head.appendChild(style);
+    }
+
+    style.innerHTML = keyframes;
+
+    setTimeout(() => {
+        element.style.animation = '';
+    }, 500);
+}
+
+function playSound(type) {
+
+    if (!window.audioContext) {
+        window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const context = window.audioContext;
+
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+
+    switch (type) {
+        case 'keypress':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, context.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.2, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.1);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.1);
+            break;
+
+        case 'error':
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(300, context.currentTime);
+            oscillator.frequency.setValueAtTime(280, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(260, context.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.3);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.3);
+            break;
+
+        case 'success':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, context.currentTime);
+            oscillator.frequency.setValueAtTime(554, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(659, context.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.3);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.3);
+            break;
+
+        case 'lockdown':
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(180, context.currentTime);
+            oscillator.frequency.setValueAtTime(150, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(120, context.currentTime + 0.2);
+            oscillator.frequency.setValueAtTime(100, context.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.4, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.4);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.4);
+            break;
+
+        case 'hover':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(1760, context.currentTime);
+            gain.gain.setValueAtTime(0.05, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.05);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.05);
+            break;
+
+        case 'reset':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(659, context.currentTime);
+            oscillator.frequency.setValueAtTime(554, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(440, context.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.2, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.3);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.3);
+            break;
+    }
+}
+
+let backgroundAudio = null;
+
+function createBackgroundAudio() {
+    if (!window.audioContext) {
+        window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const context = window.audioContext;
+
+    const bufferSize = 2 * context.sampleRate;
+    const noiseBuffer = context.createBuffer(1, bufferSize, context.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
+
+    const noise = context.createBufferSource();
+    noise.buffer = noiseBuffer;
+    noise.loop = true;
+
+    const filter = context.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 400;
+
+    const gain = context.createGain();
+    gain.gain.value = 0.03;
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(context.destination);
+
+    noise.start(0);
+
+    return {
+        noise,
+        gain,
+        filter,
+        isPlaying: true
+    };
+}
+
+function toggleBackgroundAudio() {
+    if (!backgroundAudio) {
+        backgroundAudio = createBackgroundAudio();
+    } else {
+        if (backgroundAudio.isPlaying) {
+            backgroundAudio.gain.gain.value = 0;
+            backgroundAudio.isPlaying = false;
+        } else {
+            backgroundAudio.gain.gain.value = 0.03;
+            backgroundAudio.isPlaying = true;
+        }
+    }
+}
+
+function animateElements() {
+
+    const glow = document.querySelector('.glow');
+    setInterval(() => {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(0, 255, 213, 0.1), transparent 70%)`;
+    }, 3000);
+
+    document.addEventListener('click', () => {
+        if (!backgroundAudio) {
+            backgroundAudio = createBackgroundAudio();
+        }
+    }, { once: true });
+}
+
+init();
+</script>
+
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --primary-color: #00ffd5;
+    --secondary-color: #ff005b;
+    --tertiary-color: #001eff;
+    --background-dark: #0a0a14;
+    --glass-bg: rgba(23, 25, 35, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --neu-shadow-dark: rgba(0, 0, 0, 0.4);
+    --neu-shadow-light: rgba(255, 255, 255, 0.05);
+    --font-main: 'Orbitron', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--background-dark);
+    color: var(--primary-color);
+    font-family: var(--font-main);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    perspective: 1000px;
+    background: radial-gradient(circle at center, #1a1a2e, #0a0a14);
+    overflow: hidden;
+}
+
+header {
+    position: relative;
+    padding: 20px 0;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    animation: float 4s ease-in-out infinite;
+}
+
+.glitch-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    position: relative;
+    animation: textShadow 1.6s infinite;
+    text-shadow: 0 0 10px var(--primary-color), 
+                 0 0 20px var(--primary-color),
+                 0 0 30px var(--primary-color);
+}
+
+.glitch-title::before, .glitch-title::after {
+    content: "ERROR: ACCESS DENIED WITH OMAR_TAMER";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+.glitch-title::before {
+    color: var(--secondary-color);
+    animation: glitch 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-2px, -2px);
+}
+
+.glitch-title::after {
+    color: var(--tertiary-color);
+    animation: glitch 2s infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(2px, 2px);
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 0 20px 30px;
+    perspective: 1000px;
+    z-index: 5;
+    position: relative;
+    margin: -35px auto;
+}
+
+.keypad-section, .log-section {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.keypad-container {
+    width: min(380px, 90%);
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px var(--neu-shadow-dark),
+                inset 0 1px 1px var(--neu-shadow-light),
+                0 0 20px rgba(0, 255, 213, 0.2);
+    transform-style: preserve-3d;
+    animation: floatKeypad 6s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.keypad-container::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 255, 213, 0.1) 0%, transparent 70%);
+    opacity: 0.5;
+    animation: moveGlow 15s infinite alternate;
+}
+
+.pin-display {
+    margin-bottom: 30px;
+    height: 60px;
+    background: rgba(10, 12, 18, 0.8);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5),
+                0 1px 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pin-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.pin-dot.active {
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color),
+                0 0 20px var(--primary-color);
+    animation: pulseDot 1.5s infinite;
+}
+
+.keypad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.key {
+    height: clamp(50px, 10vh, 70px);
+    border-radius: 15px;
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background: linear-gradient(145deg, #15152a, #1a1a33);
+    border: none;
+    box-shadow: 5px 5px 10px var(--neu-shadow-dark),
+                -5px -5px 10px var(--neu-shadow-light);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.85, 0.45, 1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.key::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 213, 0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.key:hover {
+    transform: translateY(-2px);
+}
+
+.key:hover::before {
+    opacity: 1;
+}
+
+.key:active {
+    transform: translateY(2px);
+    box-shadow: 3px 3px 6px var(--neu-shadow-dark),
+                -3px -3px 6px var(--neu-shadow-light),
+                0 0 15px rgba(0, 255, 213, 0.3);
+    background: linear-gradient(145deg, #14142a, #191932);
+}
+
+.key-delete {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.key-unlock {
+    font-size: 1.2rem;
+    color: #0f0;
+}
+
+.key-delete:active, .key-unlock:active {
+    box-shadow: 3px 3px 6px var(--neu-shadow-dark),
+                -3px -3px 6px var(--neu-shadow-light),
+                0 0 15px rgba(255, 0, 89, 0.3);
+}
+
+.key.clicked {
+    animation: keyPress 0.3s forwards;
+}
+
+.log-container {
+    width: min(440px, 90%);  
+    height: min(500px, 80vh);  
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px var(--neu-shadow-dark),
+                inset 0 1px 1px var(--neu-shadow-light),
+                0 0 20px rgba(0, 255, 213, 0.2);
+    display: flex;
+    flex-direction: column;
+    animation: floatLog 7s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.log-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 255, 213, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.log-header h2 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--primary-color), #1ef3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: pulse 3s infinite alternate;
+}
+
+.attempts-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+}
+
+.attempts-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+    animation: pulsate 2s infinite alternate;
+}
+
+.log-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.2);
+}
+
+.log-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.log-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.log-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.log-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.log-placeholder p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    animation: scanLine 2s linear infinite;
+}
+
+.log-entry {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: rgba(10, 15, 20, 0.6);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 5px;
+    animation: fadeInUp 0.5s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.log-entry::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 213, 0.1), transparent);
+    transform: translateX(-100%);
+    animation: scan 2s ease-in-out infinite;
+}
+
+.log-entry.error {
+    border-left-color: var(--secondary-color);
+    background: rgba(20, 0, 10, 0.6);
+}
+
+.log-entry.success {
+    border-left-color: #0f0;
+    background: rgba(0, 20, 10, 0.6);
+}
+
+.log-entry .timestamp {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.log-entry .code {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.log-entry .digit {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.log-entry .digit.correct {
+    background: rgba(0, 255, 0, 0.2);
+    color: #0f0;
+    box-shadow: 0 0 5px #0f0;
+    animation: pulse 2s infinite alternate;
+}
+
+.log-entry .digit.wrong-position {
+    background: rgba(255, 255, 0, 0.2);
+    color: #ff0;
+    box-shadow: 0 0 5px #ff0;
+}
+
+.log-entry .digit.wrong {
+    background: rgba(255, 0, 0, 0.2);
+    color: #f55;
+    box-shadow: 0 0 5px #f55;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.01) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 3;
+    animation: scanlines 1s steps(60) infinite;
+    opacity: 0.2;
+}
+
+.glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 213, 0.1), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes floatKeypad {
+    0%, 100% { transform: translateY(0) rotateX(5deg); }
+    50% { transform: translateY(-15px) rotateX(2deg); }
+}
+
+@keyframes floatLog {
+    0%, 100% { transform: translateY(0) rotateY(-5deg); }
+    50% { transform: translateY(-10px) rotateY(-2deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes pulsate {
+    0% { text-shadow: 0 0 5px var(--primary-color); }
+    100% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color); }
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.8); }
+}
+
+@keyframes scanLine {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes keyPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); background: linear-gradient(145deg, #1a1a33, #15152a); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes textShadow {
+    0% { text-shadow: 0.4389924193300864px 0 1px rgba(0, 255, 213, 0.5), 
+                     -0.4389924193300864px 0 1px rgba(255, 0, 91, 0.3), 
+                     0 0 3px; }
+    5% { text-shadow: 2.7928974010788217px 0 1px rgba(0, 255, 213, 0.5), 
+                     -2.7928974010788217px 0 1px rgba(255, 0, 91, 0.3), 
+                     0 0 3px; }
+    10% { text-shadow: 0.02956275843481219px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.02956275843481219px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    15% { text-shadow: 0.40218538552878136px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.40218538552878136px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    20% { text-shadow: 3.4794037899852017px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.4794037899852017px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    25% { text-shadow: 1.6125630401149584px 0 1px rgba(0, 255, 213, 0.5), 
+                      -1.6125630401149584px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    30% { text-shadow: 0.7015590085143956px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.7015590085143956px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    35% { text-shadow: 3.896914047650351px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.896914047650351px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    40% { text-shadow: 3.870905614848819px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.870905614848819px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    45% { text-shadow: 2.231056963361899px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.231056963361899px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    50% { text-shadow: 0.08084290417898504px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.08084290417898504px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    55% { text-shadow: 2.3758461067427543px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.3758461067427543px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    60% { text-shadow: 2.202193051050636px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.202193051050636px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    65% { text-shadow: 2.8638780614874975px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.8638780614874975px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    70% { text-shadow: 0.48874025155497314px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.48874025155497314px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    75% { text-shadow: 1.8948491305757957px 0 1px rgba(0, 255, 213, 0.5), 
+                      -1.8948491305757957px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    80% { text-shadow: 0.0833037308038857px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.0833037308038857px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    85% { text-shadow: 0.09769827255241735px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.09769827255241735px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    90% { text-shadow: 3.443339761481782px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.443339761481782px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    95% { text-shadow: 2.1841838852799786px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.1841838852799786px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    100% { text-shadow: 2.6208764473832513px 0 1px rgba(0, 255, 213, 0.5), 
+                       -2.6208764473832513px 0 1px rgba(255, 0, 91, 0.3), 
+                       0 0 3px; }
+}
+
+@keyframes scanlines {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+}
+
+@keyframes moveGlow {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(250px, 100px); }
+    50% { transform: translate(100px, 250px); }
+    75% { transform: translate(300px, 0); }
+    100% { transform: translate(0, 200px); }
+}
+
+@media (max-width: 200px) {
+    main {
+        flex-direction: column;
+        padding: 0 20px 20px;
+    }
+
+    .keypad-section, .log-section {
+        padding: 10px;
+    }
+
+    .glitch-title {
+        font-size: 2.5rem;
+    }
+}
+
+</style>
+
+    <style>
+        /* كود CSS المخصص للفيديو */
+#myVideo {
+  position: fixed;       /* يخلي الفيديو ثابت بالخلفية */
+  right: 0;
+  bottom: 0;
+  min-width: 100%;       /* يخلي الفيديو يغطي العرض */
+  min-height: 100%;      /* يخلي الفيديو يغطي الطول */
+  z-index: -1;           /* يخليه ورا كل العناصر */
+  object-fit: cover; 
+  left: auto;
+      /* يملأ الشاشة من غير تشويه */
+}
+
+    </style>
+</html>
