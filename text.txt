@@ -1,2803 +1,1231 @@
-
-
-
 <!DOCTYPE html>
-<html class="no-focus-outline" lang="ar" dir="rtl">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
-    
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=11">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-<link rel="icon" href="/wwwroot/images/logo.png">
-
-<title>وزارة التربية والتعليم - الصفحة الرئيسية</title>
-
-
-
-<meta name="description" content="وزارة التربية والتعليم" />
-<meta name="keywords" content="" />
-
-
-<link rel="canonical" href="https://moe.gov.eg//ar/" /><meta property="og:type" content="website" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="twitter:card" content="summary_large_image" /><meta property="fb:app_id" content="146799583256850" /><meta property="og:url" content="https://moe.gov.eg//ar/" /><meta property="og:title" content="وزارة التربية والتعليم" /><meta property="og:description" content="وزارة التربية والتعليم" /><meta property="og:image:alt" content="وزارة التربية والتعليم" /><meta property="twitter:title" content="وزارة التربية والتعليم" /><meta property="twitter:image:alt" content="وزارة التربية والتعليم" />
-
-    <link href="/wwwroot/css/portal-rtl.css" rel="stylesheet" />
-    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDN5LQQHKG"></script>
-    <script>
-            var googleAnaliticsId = 'G-HDN5LQQHKG';
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-
-            gtag('config', googleAnaliticsId);
-    </script>
-
-    <script>
-        var isAuthenticated = false;
-        var loginUrl = "https://moe.gov.eg//ar/Account/Login";
-
-        var siteSettingsConfig = {
-            appId: "146799583256850",
-            fbSDKVersion: "v6.0",
-            twitterAccount: "",
-            subjectPrefix: "وزارة التربية والتعليم |",
-            maxTweetLength: "224"
-        };
-    </script>
-    <link rel="icon" href="/wwwroot/images/logo.png">
-    <script src="/wwwroot/js/accessibility.js"></script>
-
-</head>
-<body onclick="closeMenu(event)">
-    <div class="beta">
-        بث تجريبي
-    </div>
-
-    
-
-
-
-<header>
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-                <a href="/">
-                    <img src="/wwwroot/images/logo.png" class="logo" alt="MOE logo" />
-                </a>
-            
-            <div class="d-none d-md-flex justify-content-md-between align-items-md-center w-100 mobile-menu-wrp">
-
-                        <ul class="navigation">
-                <li>
-                        <label onclick="openMenu(event)" class="drop-down-icon">
-                            الوزير
-                        </label>
-        <ul class="sub-navigation row">
-                <li class="col-md-3">
-                        <a title="القرارات"
-                           href="/ar/decisions">
-                            القرارات
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="القوانين"
-                           href="/ar/laws">
-                            القوانين
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="الكتب الدورية"
-                           href="/ar/periodicals">
-                            الكتب الدورية
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-        </ul>
-                </li>
-                <li>
-                            <a title="المنصات التعليمية"
-                               href="https://moe.gov.eg//ar/educationalplatform">
-                                المنصات التعليمية
-                            </a>
-                </li>
-                <li>
-                        <label onclick="openMenu(event)" class="drop-down-icon">
-                            الخدمات الإلكترونية
-                        </label>
-        <ul class="sub-navigation row">
-                <li class="col-md-3">
-                        <a title="نتيجــة الثانويــة العامــــة"
-                           href="https://g12.emis.gov.eg/"
-                           target="_blank" rel="noopener">
-                            نتيجــة الثانويــة العامــــة
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="أوائل الثانوية العامة"
-                           href="https://awael.emis.gov.eg/"
-                           target="_blank" rel="noopener">
-                            أوائل الثانوية العامة
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="طلب التقدم لمد الخدمة للمعلمين المحالين لسن التقاعد"
-                           href="https://teacherext.emis.gov.eg"
-                           target="_blank" rel="noopener">
-                            طلب التقدم لمد الخدمة للمعلمين المحالين لسن التقاعد
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="ارقام جلوس الثانوية العامة"
-                           href="https://moe-register.emis.gov.eg/"
-                           target="_blank" rel="noopener">
-                            ارقام جلوس الثانوية العامة
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="نتيجة ابناؤنا فى الخارج"
-                           href="https://sabroad-register.emis.gov.eg"
-                           target="_blank" rel="noopener">
-                            نتيجة ابناؤنا فى الخارج
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="الاعلان عن شغل وظائف قيادية"
-                           href="https://emis.gov.eg/Site%20Content/pdf/2024/tawzef_Leader2024/Leader_2024.pdf"
-                           target="_blank" rel="noopener">
-                            الاعلان عن شغل وظائف قيادية
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="انشاء الحساب الموحد "
-                           href="https://office365.emis.gov.eg"
-                           target="_blank" rel="noopener">
-                            انشاء الحساب الموحد 
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="بوابة مركز المعلومــات"
-                           href="https://emis.gov.eg/"
-                           target="_blank" rel="noopener">
-                            بوابة مركز المعلومــات
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-                <li class="col-md-3">
-                        <a title="منصة  التقدم لإمتحانات الثانوية العامة - الاعدادية"
-                           href="https://moe-register.emis.gov.eg/"
-                           target="_blank" rel="noopener">
-                            منصة  التقدم لإمتحانات الثانوية العامة - الاعدادية
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-        </ul>
-                </li>
-                <li>
-                            <a title="الخطة الاستراتيجية "
-                               href="https://moe.gov.eg//ar/stratigic-plan"
-                               target="_blank" rel="noopener">الخطة الاستراتيجية </a>
-                </li>
-                <li>
-                        <label onclick="openMenu(event)" class="drop-down-icon">
-                            بنك المعرفــة
-                        </label>
-        <ul class="sub-navigation row">
-                <li class="col-md-3">
-                        <a title="منصة ذاكر"
-                           href="https://study.ekb.eg/"
-                           target="_blank" rel="noopener">
-                            منصة ذاكر
-                            <span class="drop-down-icon moe-ico-down-head-arrow"></span>
-                        </a>
-                </li>
-        </ul>
-                </li>
-                <li>
-                            <a title="الإدارات التابعة"
-                               href="https://moe.gov.eg//ar/departments-page">
-                                الإدارات التابعة
-                            </a>
-                </li>
-                <li>
-                            <a title="شكاوي خدمة المواطنيين"
-                               href="https://moe.gov.eg//ar/complaints"
-                               target="_blank" rel="noopener">شكاوي خدمة المواطنيين</a>
-                </li>
-                <li>
-                            <a title="اتصل بنا"
-                               href="https://moe.gov.eg//ar/contactus">
-                                اتصل بنا
-                            </a>
-                </li>
-        </ul>
-
-
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="font-resize d-md-flex justify-content-md-between align-items-md-baseline">
-                        <a href="#" class="level-a small-font" onclick="resize(event, 'small-font')">A</a>
-                        <a href="#" class="level-b medium-font" onclick="resize(event, 'medium-font')">A</a>
-                        <a href="#" class="level-c large-font" onclick="resize(event, 'large-font')">A</a>
-                        <span class="moe-ico-contrast" onclick="contrast(event)"></span>
-                    </div>
-                    <div class="lang-switcher d-md-flex justify-content-md-between align-items-md-center">
-                        <span>ع</span>
-                        <a href="#" class="switcher" onclick="CheckLanguage()"></a>
-                        <span>EN</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-
-                    <a href="/ar/search/" class="d-block d-md-none mobile-search"  title="بحث">
-                        <span class="moe-ico-search"></span>
-                    </a>
-
-                <a href="#" class="burger d-block d-md-none" onclick="mobileMenu(event)">
-                    <span></span>
-                </a>
-
-
-
-            </div>
-        </div>
-    </div>
-</header>
-
-
-
-
-<script type="text/javascript">
-    function CheckLanguage() {
-        debugger;
-        if (window.location.href.toLowerCase().indexOf("/en") > -1) {
-            window.location.href = window.location.href.toLowerCase().replace('/en', '/ar');
-        } else if (window.location.href.toLowerCase().indexOf("/ar") > -1) {
-            window.location.href = window.location.href.toLowerCase().replace('/ar', '/en');
-
-        } else {
-
-            window.location.href = window.location.origin + '/en' + window.location.pathname;
-
-        }
-    }
-</script>
-
-
-
-  
-
-
-
-    <main role="main">
-        
-
-<div class="bg-primary-gray">
-
-<section class="banner-highlights-wrp position-relative">
-    <div class="home-banner">
-        
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1">
-                    
-    <div class="side-bar d-none d-lg-flex">
-        <ul>
-                    <ul>
-                <li>
-
-                    <a href="https://office365.emis.gov.eg/" target="_blank" rel="noopener" title="البريد المدرسى الموحد">
-                            <span class="moe-ico-office"></span>
-                                            </a>
-                </li>
-                <li>
-
-                    <a href="https://moe.gov.eg/ar/search/" target="_blank" rel="noopener" title="Search">
-                                                    <span class="moe-ico-search"></span>
-                    </a>
-                </li>
-        </ul>
-
-
-
-
-
-            
-            
-
-            
-        </ul>
-        <ul class="social">
-                <li>
-                    <a class="icon moe-ico-whatsapp"
-                       title="WhatsApp"
-                       href="https://moe.gov.eg/" target="_blank" rel="noopener">
-                        <span class="sr-only">WhatsApp</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="icon moe-ico-facebook"
-                       title="Facebook"
-                       href="https://www.facebook.com/egypt.moe" target="_blank" rel="noopener">
-                        <span class="sr-only">Facebook</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="icon moe-ico-twitter"
-                       title="Twitter"
-                       href="https://twitter.com/MoeteEg" target="_blank" rel="noopener">
-                        <span class="sr-only">Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="icon moe-ico-youtube"
-                       title="YouTube"
-                       href="https://www.youtube.com/channel/UCGgeDgjIJ3GXZcLUnExAybw" target="_blank" rel="noopener">
-                        <span class="sr-only">YouTube</span>
-                    </a>
-                </li>
-        </ul>
-    </div>
-
-
-                </div>
-                <div class="col-md-6 px-0 px-md-3">
-
-                    <img src="/media/nwqjfsr5/download.jpeg" class="banner-image" alt="home banner" />
-                </div>
-                <div class="col-md-4">
-                    <div class="top-news">
-                        <h3 class="news-title">وزير التربية والتعليم يبحث مع وفد من أعضاء لجنة التعليم والثقافة بمجلس الشيوخ الفرنسي تعزيز التعاون </h3>
-                        <p class="news-description">
-استقبل السيد محمد عبد اللطيف وزير التربية والتعليم والتعليم الفني وفداً من أعضاء لجنة التعليم والثقافة بمجلس الشيوخ الفرنسي، وذلك لبحث سبل تعزيز التعاون المشترك في مجالات التعليم والتعليم الفني.
-
-
-</p>
-                        <a class="btn btn-primary read-more" href="https://moe.gov.eg/what-s-on/news/17-9-25/">اقرأ المزيد</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="col-md-6 highlight-desktop">
-            <div class="bg-secondary swiper-wrp">
-                <div class="swiper-container swiper-template" id="top-news">
-                    <div class="swiper-wrapper">
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/h4amwgvb/whatsapp-image-2025-07-02-at-1-00-59-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133976517522600000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/h4amwgvb/whatsapp-image-2025-07-02-at-1-00-59-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133976517522600000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/h4amwgvb/whatsapp-image-2025-07-02-at-1-00-59-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133976517522600000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/h4amwgvb/whatsapp-image-2025-07-02-at-1-00-59-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133976517522600000" alt="وزارة التربية والتعليم تعلن فتح باب التقدم الكترونيًا لمدارس المتفوقين للعلوم والتكنولوجيا &quot;STEM” ومدرسة المتفوقين بعين شمس)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/the-ain-sha/" class="link text-white" target="_blank">
-
-                                            وزارة التربية والتعليم تعلن فتح باب التقدم الكترونيًا لمدارس المتفوقين للعلوم والتكنولوجيا &quot;STEM” ومدرسة المتفوقين بعين شمس
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/4dkd2wgm/whatsapp-image-2025-07-15-at-1-04-37-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970484256230000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/4dkd2wgm/whatsapp-image-2025-07-15-at-1-04-37-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970484256230000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/4dkd2wgm/whatsapp-image-2025-07-15-at-1-04-37-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970484256230000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/4dkd2wgm/whatsapp-image-2025-07-15-at-1-04-37-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970484256230000" alt="وزير التربية والتعليم يتفقد مواقع إنشائية لعدد من المدارس الجديدة بالمرج)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/marg-are/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يتفقد مواقع إنشائية لعدد من المدارس الجديدة بالمرج
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/sjub1ex1/whatsapp-image-2025-07-15-at-10-09-06-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970472516330000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/sjub1ex1/whatsapp-image-2025-07-15-at-10-09-06-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970472516330000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/sjub1ex1/whatsapp-image-2025-07-15-at-10-09-06-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970472516330000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/sjub1ex1/whatsapp-image-2025-07-15-at-10-09-06-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970472516330000" alt="وزير التربية والتعليم يشيد بمقترح رئيس الجهاز المركزي للتنظيم والإدارة بإعداد قوائم انتظار من المتقدمين الناجحين&#160;)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/commends/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يشيد بمقترح رئيس الجهاز المركزي للتنظيم والإدارة بإعداد قوائم انتظار من المتقدمين الناجحين&#160;
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/pz1erq5d/whatsapp-image-2025-07-15-at-9-21-33-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970466082800000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/pz1erq5d/whatsapp-image-2025-07-15-at-9-21-33-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970466082800000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/pz1erq5d/whatsapp-image-2025-07-15-at-9-21-33-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970466082800000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/pz1erq5d/whatsapp-image-2025-07-15-at-9-21-33-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970466082800000" alt="توقيع بروتوكول تعاون بين مصلحة الكفاية الإنتاجية وصندوق تطوير التعليم التابع لمجلس الوزراء )" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/productivity-efficiency/" class="link text-white" target="_blank">
-
-                                            توقيع بروتوكول تعاون بين مصلحة الكفاية الإنتاجية وصندوق تطوير التعليم التابع لمجلس الوزراء 
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/madlkiot/whatsapp-image-2025-07-13-at-9-44-09-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970462771400000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/madlkiot/whatsapp-image-2025-07-13-at-9-44-09-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970462771400000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/madlkiot/whatsapp-image-2025-07-13-at-9-44-09-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970462771400000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/madlkiot/whatsapp-image-2025-07-13-at-9-44-09-am.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133970462771400000" alt="وزير التربية والتعليم يعتمد نتيجة الدبلومات الفنية الدور الأول ٢٠٢٥ بنسبة نجاح (٧٠,٤٧%))" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/pass-rate/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يعتمد نتيجة الدبلومات الفنية الدور الأول ٢٠٢٥ بنسبة نجاح (٧٠,٤٧%)
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/gbii3cqy/whatsapp-image-2025-06-19-at-3-00-41-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950598602430000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/gbii3cqy/whatsapp-image-2025-06-19-at-3-00-41-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950598602430000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/gbii3cqy/whatsapp-image-2025-06-19-at-3-00-41-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950598602430000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/gbii3cqy/whatsapp-image-2025-06-19-at-3-00-41-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950598602430000" alt="وزير التربية والتعليم يعقد اجتماعًا مع مديرى المديريات التعليمية على مستوى الجمهورية عبر الفيديو كونفرانس)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/2025-high/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يعقد اجتماعًا مع مديرى المديريات التعليمية على مستوى الجمهورية عبر الفيديو كونفرانس
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/ng1hpkae/whatsapp-image-2025-06-17-at-2-35-25-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950584045030000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/ng1hpkae/whatsapp-image-2025-06-17-at-2-35-25-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950584045030000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/ng1hpkae/whatsapp-image-2025-06-17-at-2-35-25-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950584045030000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/ng1hpkae/whatsapp-image-2025-06-17-at-2-35-25-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133950584045030000" alt="وزير التربية والتعليم يبحث مع وفد هيئة التعاون الدولي اليابانية (JICA) خطوات التوسع في المدارس المصرية اليابانية والاستعداد لمؤتمر (TICAD))" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/ticad/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يبحث مع وفد هيئة التعاون الدولي اليابانية (JICA) خطوات التوسع في المدارس المصرية اليابانية والاستعداد لمؤتمر (TICAD)
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/ffhf0bes/whatsapp-image-2025-06-12-at-1-29-23-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133944615552100000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/ffhf0bes/whatsapp-image-2025-06-12-at-1-29-23-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133944615552100000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/ffhf0bes/whatsapp-image-2025-06-12-at-1-29-23-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133944615552100000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/ffhf0bes/whatsapp-image-2025-06-12-at-1-29-23-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133944615552100000" alt="وزير التربية والتعليم يستقبل رئيس الجهاز المركزي للتنظيم والإدارة ويتفقان على إعلان نتيجة مسابقة تعيين 20 ألف معلم مساعد للغة الإنجليزية)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/20-000-eng/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يستقبل رئيس الجهاز المركزي للتنظيم والإدارة ويتفقان على إعلان نتيجة مسابقة تعيين 20 ألف معلم مساعد للغة الإنجليزية
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/0d1lbyx4/whatsapp-image-2025-05-20-at-3-40-47-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133923811842600000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/0d1lbyx4/whatsapp-image-2025-05-20-at-3-40-47-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133923811842600000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/0d1lbyx4/whatsapp-image-2025-05-20-at-3-40-47-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133923811842600000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/0d1lbyx4/whatsapp-image-2025-05-20-at-3-40-47-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133923811842600000" alt="وزير التربية والتعليم يشهد توقيع بروتوكول تعاون بين الوزارة ومؤسسة “التعليم أولًا”)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/first-found/" class="link text-white" target="_blank">
-
-                                            وزير التربية والتعليم يشهد توقيع بروتوكول تعاون بين الوزارة ومؤسسة “التعليم أولًا”
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="swiper-slide dark-hover">
-                                    <div class="d-overlay">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/bobhjamy/whatsapp-image-2025-05-17-at-5-37-57-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133920314362200000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/bobhjamy/whatsapp-image-2025-05-17-at-5-37-57-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133920314362200000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/bobhjamy/whatsapp-image-2025-05-17-at-5-37-57-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133920314362200000" />
-                                            <img class="top-news-image" src="https://moe.gov.eg//media/bobhjamy/whatsapp-image-2025-05-17-at-5-37-57-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=690&amp;rnd=133920314362200000" alt="نائب رئيس مجلس الوزراء وزير الصحة يعقد اجتماعا مع وزير التربية والتعليم لمناقشة تعديل قانون التعليم)" />
-                                        </picture>
-
-                                    </div>
-
-                                <div class="top-news-detials overlap text-white">
-                                    <h3 class="top-news-title">
-                                        <a href="/ar/what-s-on/news/deputy-pri/" class="link text-white" target="_blank">
-
-                                            نائب رئيس مجلس الوزراء وزير الصحة يعقد اجتماعا مع وزير التربية والتعليم لمناقشة تعديل قانون التعليم
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination swiper-pagination-news d-md-none"></div>
-
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev swiper-button-prev-news d-none d-md-block"></div>
-                <div class="swiper-button-next swiper-button-next-news d-none d-md-block"></div>
-            </div>
-        </div>
-</section>
-
-
-
-    <section class="our-services position-relative">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-2">
-                    <h3 class="section-heading text-primary">المنصات التعليمية</h3>
-                    <p class="section-desc">اعرف المزيد من خدمات التعليم الإلكترونية من بوابة الوزارة</p>
-                        <a class="all-links d-none d-md-block" href="https://moe.gov.eg//ar/our-services/"> كل المنصات التعليمية</a> <!-- If we need navigation buttons -->
-                        <div class="circle-swiper-nav">
-                            <div class="swiper-button-prev swiper-button-prev-services d-none d-md-inline-block"></div>
-                            <div class="swiper-button-next swiper-button-next-services d-none d-md-inline-block"></div>
-                        </div>                </div>
-
-
-    <div class="col-md-9 pr">
-
-        <div class="our-services-slider">
-            <div class="swiper-container swiper-template swiper-our-services " id="our-services">
-                <div class="swiper-wrapper">
-                        <div class="swiper-slide dark-hover">
-                            <div class="d-overlay">
-                                <img src="https://moe.gov.eg//media/gxefxcvk/logo-black.png?anchor=center&amp;mode=crop&amp;width=222&amp;height=171&amp;rnd=133602345086430000" />
-                                <div class="services-detials">
-                                    <p class="text-white">
-                                        Madrasetna-Egypt
-                                    </p>
-                                    <a class="btn btn-primary btn-primary-white" href="https://madrasetnaplus.eg/sign-in" target="_blank">اقرأ المزيد</a>
-                                </div>
-                            </div>
-                            <h3 class="our-services-title">
-                                منصة مدرستنا
-                            </h3>
-                        </div>
-                        <div class="swiper-slide dark-hover">
-                            <div class="d-overlay">
-                                <img src="https://moe.gov.eg//media/on4pdcvr/serv6.png?anchor=center&amp;mode=crop&amp;width=222&amp;height=171&amp;rnd=133993253113330000" />
-                                <div class="services-detials">
-                                    <p class="text-white">
-                                          بوابة التعليم الإلكترونى
-                                    </p>
-                                    <a class="btn btn-primary btn-primary-white" href="https://studentbooks.moe.gov.eg/" target="_blank">اقرأ المزيد</a>
-                                </div>
-                            </div>
-                            <h3 class="our-services-title">
-                                  بوابة التعليم الإلكترونى
-                            </h3>
-                        </div>
-                        <div class="swiper-slide dark-hover">
-                            <div class="d-overlay">
-                                <img src="https://moe.gov.eg//media/y5amlt32/serv18.png?anchor=center&amp;mode=crop&amp;width=222&amp;height=171&amp;rnd=132583054115770000" />
-                                <div class="services-detials">
-                                    <p class="text-white">
-                                        منصة البث المباشر
-                                    </p>
-                                    <a class="btn btn-primary btn-primary-white" href="https://stream.moe.gov.eg/" target="_blank">اقرأ المزيد</a>
-                                </div>
-                            </div>
-                            <h3 class="our-services-title">
-                                منصة البث المباشر
-                            </h3>
-                        </div>
-                        <div class="swiper-slide dark-hover">
-                            <div class="d-overlay">
-                                <img src="https://moe.gov.eg//media/h10osblb/block01.jpeg?center=0.46739130434782611%2C0.50543478260869568&amp;mode=crop&amp;width=222&amp;height=171&amp;rnd=132690234158470000" />
-                                <div class="services-detials">
-                                    <p class="text-white">
-                                        بوابة التعليم الفني
-                                    </p>
-                                    <a class="btn btn-primary btn-primary-white" href="https://tech.moe.gov.eg/tech/" target="_blank">اقرأ المزيد</a>
-                                </div>
-                            </div>
-                            <h3 class="our-services-title">
-                                بوابة  التعليم الفني
-                            </h3>
-                        </div>
-                        <div class="swiper-slide dark-hover">
-                            <div class="d-overlay">
-                                <img src="https://moe.gov.eg//media/jljbqoop/hero3-copy.jpeg?anchor=center&amp;mode=crop&amp;width=222&amp;height=171&amp;rnd=133992124789570000" />
-                                <div class="services-detials">
-                                    <p class="text-white">
-                                        منصة تعلم معنا
-                                    </p>
-                                    <a class="btn btn-primary btn-primary-white" href="https://livestream.moe.gov.eg/" target="_blank">اقرأ المزيد</a>
-                                </div>
-                            </div>
-                            <h3 class="our-services-title">
-                                منصة تعلم معنا
-                            </h3>
-                        </div>
-                        <div class="swiper-slide dark-hover">
-                            <div class="d-overlay">
-                                <img src="https://moe.gov.eg//media/x4tdi5kb/image.png?anchor=center&amp;mode=crop&amp;width=222&amp;height=171&amp;rnd=133993283975000000" />
-                                <div class="services-detials">
-                                    <p class="text-white">
-                                         والتطوير المهني للمعلمين
-                                    </p>
-                                    <a class="btn btn-primary btn-primary-white" href="https://cpd.moe.gov.eg  " target="_blank">اقرأ المزيد</a>
-                                </div>
-                            </div>
-                            <h3 class="our-services-title">
-                                المنصة الإلكترونية للتدريب
-                            </h3>
-                        </div>
-
-                </div>
-            </div>
-            <a href="/ar/our-services/" class="btn btn-primary btn-primary-center d-md-none">كل المنصات التعليمية </a>
-
-        </div>
-
-    </div>
-
-
-            </div>
-        </div>
-    </section>
-    <section class=" latest-news">
-        <div class="lastest-news-list" data-title="أخر الأخبار">
-            <div class="container">
-                <div class="text-center">
-                    <h3 class="section-heading">أخر الأخبار</h3>
-                    <p class="section-desc">
-                        اعرف أخر الأخبار من خدمات التعليم الإلكترونية من بوابة الوزارة
-                            <a class="all-links end-position d-none d-md-block" href="https://moe.gov.eg//ar/what-s-on/news/">كل الأخبار</a>                    </p>
-                </div>
-            </div>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1"></div>
-<div class="col-md-4 d-flex px-0 px-md-3">
-
-        <div class="card dark-hover  w-100 border-0 rounded-0">
-
-                    <picture>
-                        <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/shshzoq3/whatsapp-image-2025-09-17-at-10-06-00-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025726740870000" />
-                        <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/shshzoq3/whatsapp-image-2025-09-17-at-10-06-00-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025726740870000" />
-                        <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/shshzoq3/whatsapp-image-2025-09-17-at-10-06-00-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025726740870000" />
-
-
-                        <img class="card-img-top rounded-0" src="https://moe.gov.eg//media/shshzoq3/whatsapp-image-2025-09-17-at-10-06-00-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025726740870000" alt="Card image cap">
-
-                    </picture>
-            <div class="card-img-overlay text-white">
-                <div class="main-news-body">
-                    <p><span class="moe-ico-calendar"></span>17/09/2025</p>
-                    <h5 class="card-title">
-                        <a href="/ar/what-s-on/news/17-9-25/" class="link text-white">
-
-                                            وزير التربية والتعليم يبحث مع وفد من أعضاء لجنة التعليم والثقافة بمجلس الشيوخ الفرنسي تعزيز التعاون
-                                        </a>
-                                    </h5>
-                                    <p class="card-text">
-                                        استقبل السيد محمد عبد اللطيف وزير التربية والتعليم والتعليم الفني وفداً من أعضاء لجنة التعليم والثق…
-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-<div class="col-md-3 d-flex px-md-3">
-                        <div class="card dark-hover w-100 border-0 rounded-0 bg-secondary">
-                            
-                            <div class="d-overlay">
-
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/gkehcr5k/whatsapp-image-2025-09-16-at-4-35-19-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025760519770000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/gkehcr5k/whatsapp-image-2025-09-16-at-4-35-19-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025760519770000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/gkehcr5k/whatsapp-image-2025-09-16-at-4-35-19-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025760519770000" />
-
-
-                                            <img class="card-img-top rounded-0" src="https://moe.gov.eg//media/gkehcr5k/whatsapp-image-2025-09-16-at-4-35-19-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025760519770000" alt="Card image cap">
-                                        </picture>
-                            </div>
-                            <div class="card-body text-white">
-                                <p><span class="moe-ico-calendar"></span>16/09/2025</p>
-                                <h5 class="card-title">
-                                    <a href="/ar/what-s-on/news/16-9-25/" class="link text-white">
-                                        وزير التربية والتعليم يعقد مؤتمرًا صحفيًا مع محرري ملف التعليم لاستعراض الاستعدادات النهائية للعام الدراسي الجديد
-                                    </a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-<div class="col-md-3 d-flex px-md-3">
-                        <div class="card dark-hover w-100 border-0 rounded-0 bg-secondary">
-                            
-                            <div class="d-overlay">
-
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/3veelpaz/whatsapp-image-2025-09-15-at-5-18-27-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025870764800000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/3veelpaz/whatsapp-image-2025-09-15-at-5-18-27-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025870764800000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/3veelpaz/whatsapp-image-2025-09-15-at-5-18-27-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025870764800000" />
-
-
-                                            <img class="card-img-top rounded-0" src="https://moe.gov.eg//media/3veelpaz/whatsapp-image-2025-09-15-at-5-18-27-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=134025870764800000" alt="Card image cap">
-                                        </picture>
-                            </div>
-                            <div class="card-body text-white">
-                                <p><span class="moe-ico-calendar"></span>15/09/2025</p>
-                                <h5 class="card-title">
-                                    <a href="/ar/what-s-on/news/15-9-25/" class="link text-white">
-                                        وزير التربية والتعليم يشهد إطلاق أولى تدريبات مادة البرمجة والذكاء الاصطناعي لمعلمي الحاسب الآلي &quot;المرحلة الثانوية&quot;
-                                    </a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-        <div class="col-md-1"></div>
-        <a href="/ar/what-s-on/news/" class="btn btn-primary btn-primary-center d-md-none"> كل الأخبار</a>
-    </div>
-
-</div>
-        </div>
-    </section>
-
-    <section class="site-links">
-        <div class="container px-0 px-md-3">
-            <div class="swiper-container swiper-template" id="site-links">
-                <div class="swiper-wrapper">
-                        <div class="swiper-slide dark-hover">
-                            <div class="position-relative">
-                                <div class="d-overlay">
-                                    <img src="/wwwroot/images/1.jpg" />
-                                </div>
-                                <div class="site-link-detials">
-                                    <h3>المدارس</h3>
-                                    <ul class="site-link-list">
-                                            <li><a target="_blank" href="http://nes.moe.gov.eg/">مدارس النيل</a></li>
-                                            <li><a target="_blank" href="https://search.emis.gov.eg/">دليل المدارس المصرية</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>                        <div class="swiper-slide dark-hover">
-                            <div class="position-relative">
-                                <div class="d-overlay">
-                                    <img src="/wwwroot/images/4.jpg" />
-                                </div>
-                                <div class="site-link-detials">
-                                    <h3>اولياء الامور</h3>
-                                    <ul class="site-link-list">
-                                            <li><a target="_blank" href="https://sabroad-register.emis.gov.eg/">اعلان نتيجة  ابناؤنا فى الخارج</a></li>
-                                            <li><a target="_blank" href="https://emis.gov.eg/">بوابة  مركز معلومات الوزارة</a></li>
-                                            <li><a target="_blank" href="https://moe.gov.eg/ar/complaints/">شكاوي خدمة المواطنيين</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>                        <div class="swiper-slide dark-hover">
-                            <div class="position-relative">
-                                <div class="d-overlay">
-                                    <img src="/wwwroot/images/2.jpg" />
-                                </div>
-                                <div class="site-link-detials">
-                                    <h3>الطالب</h3>
-                                    <ul class="site-link-list">
-                                            <li><a target="_blank" href="https://g12.emis.gov.eg/">نتيجة الثانوية العامة</a></li>
-                                            <li><a target="_blank" href="https://awael.emis.gov.eg/">اوائل الثانوية العامة</a></li>
-                                            <li><a target="_blank" href="https://sabroad.emis.gov.eg/">ابناؤنا في الخارج</a></li>
-                                            <li><a target="_blank" href="https://stream.moe.gov.eg/">منصة البث المباشر</a></li>
-                                            <li><a target="_blank" href="https://study.ekb.eg/">منصة ذاكر</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>                        <div class="swiper-slide dark-hover">
-                            <div class="position-relative">
-                                <div class="d-overlay">
-                                    <img src="/wwwroot/images/3.jpg" />
-                                </div>
-                                <div class="site-link-detials">
-                                    <h3>المعلم</h3>
-                                    <ul class="site-link-list">
-                                            <li><a target="_blank" href="https://cpd.moe.gov.eg/">منصة التدريب والتطوير المهنى الالكترونية</a></li>
-                                            <li><a target="_blank" href="http://academy.emis.gov.eg/">منصة التسكين  والترقى على وظائف الكادرللمعلمين والاخصائيين</a></li>
-                                            <li><a target="_blank" href="https://office365.emis.gov.eg/">الحساب الموحد للمعلمين</a></li>
-                                            <li><a target="_blank" href="http://pat.edu.eg/">الاكاديمية المهنية</a></li>
-                                            <li><a target="_blank" href="https://teachersfirstegypt.com/">المعلمون اولا</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<section class="link-other">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-                <div class="links">
-                        <h3 class="section-heading text-primary">روابط هامة</h3>
-                        <div class="section-desc">
-<!DOCTYPE html>
-<html>
+<html lang="en" >
 <head>
+  <meta charset="UTF-8">
+  <title>Cipher Quest: Codebreaker</title>
+  <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Access Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+       
 
-</body>
-</html>                                <a target="_blank" class="all-links end-position d-none d-md-block" href="https://moe.gov.eg//ar/importantLinks">كل الروابط الهامة</a>                         </div>
-                        <div class="row">
-                                <div class="col-md-6 d-flex">
-                                    <div class="card border w-100 rounded-0">
-                                        <div class="card-body">
-                                                <a target="_blank" href="https://moe.gov.eg/media/4hynodsu/20250729095537098-1.pdf" title="جداول الامتحانات العامة للدبلومات الفنية (دورثان )">
-                                                    جداول الامتحانات العامة للدبلومات الفنية (دورثان )
-                                                </a> 
-                                        </div>
-                                    </div>
-                                </div>                                <div class="col-md-6 d-flex">
-                                    <div class="card border w-100 rounded-0">
-                                        <div class="card-body">
-                                                <a target="_blank" href="https://moe.gov.eg/media/1b0peard/stem2025.pdf" title="اعلان التقدم لمدارس المتفوقين STEM 2025">
-                                                    اعلان التقدم لمدارس المتفوقين STEM 2025
-                                                </a> 
-                                        </div>
-                                    </div>
-                                </div>                                <div class="col-md-6 d-flex">
-                                    <div class="card border w-100 rounded-0">
-                                        <div class="card-body">
-                                                <a target="_blank" href="https://moe.gov.eg/media/tniiuuqs/arab_model.pdf" title="اعلان مشروع النموذج العربي للجودة والتميز في التعليم">
-                                                    اعلان مشروع النموذج العربي للجودة والتميز في التعليم
-                                                </a> 
-                                        </div>
-                                    </div>
-                                </div>                                <div class="col-md-6 d-flex">
-                                    <div class="card border w-100 rounded-0">
-                                        <div class="card-body">
-                                                <a target="_blank" href="https://moe.gov.eg//ar/stratigic-plan" title="الخطة الاستراتيجية لوزارة التربية والتعليم 2024-2029">
-                                                    الخطة الاستراتيجية لوزارة التربية والتعليم 2024-2029
-                                                </a> 
-                                        </div>
-                                    </div>
-                                </div>                        </div> 
-
-                    <a href="https://moe.gov.eg//ar/importantLinks" class="btn btn-primary btn-primary-center d-md-none">كل الروابط الهامة</a>
-                </div>
-            </div>
-            <div class="col-md-6 px-0 px-md-3">
-                <div class="others">
-
-                    <h3 class="section-heading text-white">جهات أخرى</h3>
-                    <p class="section-desc text-white">
-                        بعض روابط الجهات الهامة
-                            <a class="all-links end-position d-none d-md-block c-space" href="https://moe.gov.eg//ar/related-links/">عرض كل الجهات</a>                     </p>
-    <div class="swiper-container swiper-template swiper-related-link " id="related-link">
-        <div class="swiper-wrapper">
-                <a href="https://www.mod.gov.eg" title="موقع وزارة الدفاع المصرية" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/gajby1b0/5050.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133468486939330000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/gajby1b0/5050.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133468486939330000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/gajby1b0/5050.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133468486939330000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/gajby1b0/5050.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133468486939330000" alt="موقع وزارة الدفاع المصرية" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="موقع وزارة الدفاع المصرية">موقع وزارة الدفاع المصرية</p>
-                </a>
-                <a href="https://www.elections.eg/" title="الهيئة الوطنية للإنتخابات" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/qvnlpp1c/الهيئة-الوطنية-للإنتخابات.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133939355759700000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/qvnlpp1c/الهيئة-الوطنية-للإنتخابات.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133939355759700000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/qvnlpp1c/الهيئة-الوطنية-للإنتخابات.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133939355759700000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/qvnlpp1c/الهيئة-الوطنية-للإنتخابات.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133939355759700000" alt="الهيئة الوطنية للإنتخابات" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="الهيئة الوطنية للإنتخابات">الهيئة الوطنية للإنتخابات</p>
-                </a>
-                <a href="https://moe.gov.eg/" title="موقع وزارة التربية والتعليم والتعليم الفنى" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/5qifarkr/22450102_1733817589982314_4541296815018730801_n.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133407994383330000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/5qifarkr/22450102_1733817589982314_4541296815018730801_n.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133407994383330000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/5qifarkr/22450102_1733817589982314_4541296815018730801_n.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133407994383330000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/5qifarkr/22450102_1733817589982314_4541296815018730801_n.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133407994383330000" alt="موقع وزارة التربية والتعليم والتعليم الفنى" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="موقع وزارة التربية والتعليم والتعليم الفنى">موقع وزارة التربية والتعليم والتعليم الفنى</p>
-                </a>
-                <a href="https://www.cabinet.gov.eg/" title="" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/pe0fhhl3/cab.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934231052270000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/pe0fhhl3/cab.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934231052270000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/pe0fhhl3/cab.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934231052270000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/pe0fhhl3/cab.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934231052270000" alt="" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="رئاسة مجلس الوزراء">رئاسة مجلس الوزراء</p>
-                </a>
-                <a href="http://www.mohp.gov.eg/" title="" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/j0tdgubb/health.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583078577300000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/j0tdgubb/health.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583078577300000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/j0tdgubb/health.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583078577300000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/j0tdgubb/health.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583078577300000" alt="" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="وزارة الصحة والسكان المصرية ">وزارة الصحة والسكان المصرية </p>
-                </a>
-                <a href="https://www.moss.gov.eg/ar-eg/Pages/default.aspx" title="" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/fhchfkhi/moss-dark-logo.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583065448400000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/fhchfkhi/moss-dark-logo.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583065448400000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/fhchfkhi/moss-dark-logo.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583065448400000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/fhchfkhi/moss-dark-logo.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583065448400000" alt="" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="وزارة التضامن">وزارة التضامن</p>
-                </a>
-                <a href="https://digital.gov.eg/" title="بوابة مصر الرقمية" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/anapdutv/de-logo-og.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583049124830000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/anapdutv/de-logo-og.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583049124830000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/anapdutv/de-logo-og.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583049124830000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/anapdutv/de-logo-og.jpeg?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132583049124830000" alt="بوابة مصر الرقمية" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="بوابة مصر الرقمية">بوابة مصر الرقمية</p>
-                </a>
-                <a href="https://www.presidency.eg/en/" title="رئاسة جمهورية مصر العربية" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/v2wpzh5n/serv13.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132525034842370000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/v2wpzh5n/serv13.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132525034842370000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/v2wpzh5n/serv13.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132525034842370000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/v2wpzh5n/serv13.png?anchor=center&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132525034842370000" alt="رئاسة جمهورية مصر العربية" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="رئاسة جمهورية مصر العربية">رئاسة جمهورية مصر العربية</p>
-                </a>
-                <a href="https://mohesr.gov.eg/ar-eg/Pages/Home.aspx" title="وزارة التعليم العالي و البحث العلمي" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/x3ae5v3y/graduation.jpeg?center=0.50080826650606991%2C0.49995324178314254&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934238984770000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/x3ae5v3y/graduation.jpeg?center=0.50080826650606991%2C0.49995324178314254&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934238984770000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/x3ae5v3y/graduation.jpeg?center=0.50080826650606991%2C0.49995324178314254&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934238984770000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/x3ae5v3y/graduation.jpeg?center=0.50080826650606991%2C0.49995324178314254&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=133934238984770000" alt="وزارة التعليم العالي و البحث العلمي" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="وزارة التعليم العالي و البحث العلمي">وزارة التعليم العالي و البحث العلمي</p>
-                </a>
-                <a href="https://egypt2030.gov.eg/" title="" target="_blank" class="swiper-slide">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/14zh4nk0/download-1-7.png?center=0.50222222222222224%2C0.50222222222222224&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132599250771600000" />
-                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/14zh4nk0/download-1-7.png?center=0.50222222222222224%2C0.50222222222222224&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132599250771600000" />
-                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/14zh4nk0/download-1-7.png?center=0.50222222222222224%2C0.50222222222222224&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132599250771600000" />
-                            <img class="related-link-img" src="https://moe.gov.eg//media/14zh4nk0/download-1-7.png?center=0.50222222222222224%2C0.50222222222222224&amp;mode=crop&amp;width=408&amp;height=221&amp;rnd=132599250771600000" alt="" />
-                        </picture>
-                    <p class="related-link-desc text-truncate" title="موقع رؤية مصر 2030">موقع رؤية مصر 2030</p>
-                </a>
-        </div>
-    </div>
-    <div class="circle-swiper-nav text-center">
-        <div class="swiper-button-prev swiper-button-prev-related-link d-none d-md-inline-block"></div>
-        <div class="swiper-button-next swiper-button-next-related-link d-none d-md-inline-block"></div>
-    </div>
-                    <a href="https://moe.gov.eg//ar/related-links/" class="border-white btn btn-primary btn-primary-center d-md-none text-white">عرض كل الجهات</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</section>
-<section class="media-center">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-wrp d-md-flex justify-content-md-between align-items-md-center">
-                    <div class="">
-                        <h3 class="section-heading text-primary">المركز الاعلامى</h3>
-                        <p class="section-desc">
-                            شاهد الصور والفيديوهات عن وزارة التعليم
-                        </p>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3 mb-md-0">
-                        <a href="#" onclick="switchMedia('video-wrp','image-wrp', event)" class="btn btn-primary">معرض الفيديوهات</a>
-                        <a href="#" onclick="switchMedia('image-wrp', 'video-wrp', event)" class="btn btn-primary active">معرض الصور</a>
-                    </div>
-                </div>
-                    <div class="image-video-wrp">
-                        <div class="image-wrp">
-                            <div class="row">
-                                <div class="col-md-6 px-1 mb-2 mb-md-0">
-
-                                    <div data-toggle="modal" class="w-100 h-100" data-target="#media-modal">
-                                        <div class="folder-cont position-relative img-cont w-100 h-100" data-target="#media-carousel" data-slide-to="0">
-                                                <picture>
-                                                    <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" />
-                                                    <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" />
-                                                    <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" />
-                                                    <img src="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" alt="" />
-
-                                                </picture>
-                                            <span class="file-title lineTrim-1" title="Stefania Giannini">
-                                                Stefania Giannini
-                                            </span>
-                                            <i class="icon icon-picture"></i>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="col-md-6  px-0 px-md-1">
-                                    <div class="h-100 mx-0 mx-md-1 row small-media-cards">
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div data-toggle="modal" class="w-100 h-100" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 img-cont" data-target="#media-carousel" data-slide-to="1">
-                                                            <picture>
-                                                                <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" />
-                                                                <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" />
-                                                                <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" />
-                                                                <img class="thumb-media-img" src="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" alt="" />
-                                                            </picture>
-                                                        <span class="file-title lineTrim-1" title="Greek Kyriakos Pierrakakis">
-                                                            Greek Kyriakos Pierrakakis
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div data-toggle="modal" class="w-100 h-100" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 img-cont" data-target="#media-carousel" data-slide-to="2">
-                                                            <picture>
-                                                                <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" />
-                                                                <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" />
-                                                                <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" />
-                                                                <img class="thumb-media-img" src="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" alt="" />
-                                                            </picture>
-                                                        <span class="file-title lineTrim-1" title="زيارة محافظة الإسكندرية ">
-                                                            زيارة محافظة الإسكندرية 
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div data-toggle="modal" class="w-100 h-100" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 img-cont" data-target="#media-carousel" data-slide-to="3">
-                                                            <picture>
-                                                                <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" />
-                                                                <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" />
-                                                                <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" />
-                                                                <img class="thumb-media-img" src="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" alt="" />
-                                                            </picture>
-                                                        <span class="file-title lineTrim-1" title="">
-                                                            
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div data-toggle="modal" class="w-100 h-100" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 img-cont" data-target="#media-carousel" data-slide-to="4">
-                                                            <picture>
-                                                                <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" />
-                                                                <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" />
-                                                                <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" />
-                                                                <img class="thumb-media-img" src="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" alt="" />
-                                                            </picture>
-                                                        <span class="file-title lineTrim-1" title="">
-                                                            
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                    </div>
-                                </div>
-                                <a href="/ar/media?type=2,1" class="btn btn-primary btn-primary-center">كل الصور</a>
-                            </div>
-                        </div>
-                        <div class="video-wrp d-none">
-                            <div class="row">
-                                <div class="col-md-6 px-0 px-md-1">
-                                    <div class="h-100 mx-0 mx-md-1 row small-media-cards">
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div class="w-100 h-100" data-toggle="modal" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 video-cont" data-target="#media-carousel" data-slide-to="5">
-
-                                                                <iframe class="w-100 h-100 video-media" src="https://www.youtube.com/embed/jyxnZwX1jDc" frameborder="0" allowTransparency="true" allowfullscreen>
-                                                                </iframe>
-                                                                <div class="w-100 h-100 videoPoster-home js-videoPoster-home" style="background-image:url();"></div>                                                         <button class="play-video"> <i class="icon icon-play-arrow"></i></button>
-
-
-                                                        <span class="file-title lineTrim-1" title="أشادت السيدة كارين ماكيشيما، البرلمانية اليابانية والوزيرة السابقة النجاحات التي حققتها مصر في تطبيق نظام التعليم على النمط الياباني في المدارس المصرية اليابانية">
-                                                            أشادت السيدة كارين ماكيشيما، البرلمانية اليابانية والوزيرة السابقة النجاحات التي حققتها مصر في تطبيق نظام التعليم على النمط الياباني في المدارس المصرية اليابانية
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div class="w-100 h-100" data-toggle="modal" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 video-cont" data-target="#media-carousel" data-slide-to="6">
-
-                                                                <iframe class="w-100 h-100 video-media" src="https://www.youtube.com/embed/FYOCcr4kRiI" frameborder="0" allowTransparency="true" allowfullscreen>
-                                                                </iframe>
-                                                                <div class="w-100 h-100 videoPoster-home js-videoPoster-home" style="background-image:url();"></div>                                                         <button class="play-video"> <i class="icon icon-play-arrow"></i></button>
-
-
-                                                        <span class="file-title lineTrim-1" title="هدفنا إننا نسمع ونشارك عشان مع بعض نخلي المدرسة مكان لينا كلنا.">
-                                                            هدفنا إننا نسمع ونشارك عشان مع بعض نخلي المدرسة مكان لينا كلنا.
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div class="w-100 h-100" data-toggle="modal" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 video-cont" data-target="#media-carousel" data-slide-to="7">
-
-                                                                <iframe class="w-100 h-100 video-media" src="https://www.youtube.com/embed/mavyQhYJt9s" frameborder="0" allowTransparency="true" allowfullscreen>
-                                                                </iframe>
-                                                                <div class="w-100 h-100 videoPoster-home js-videoPoster-home" style="background-image:url();"></div>                                                         <button class="play-video"> <i class="icon icon-play-arrow"></i></button>
-
-
-                                                        <span class="file-title lineTrim-1" title="في الفيديو ده هنسمع أمهات بيشاركوا قصصهم مع أطفالهم من ذوي الاحتياجات التعليمية الخاصة والإعاقات.">
-                                                            في الفيديو ده هنسمع أمهات بيشاركوا قصصهم مع أطفالهم من ذوي الاحتياجات التعليمية الخاصة والإعاقات.
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6 px-0 px-md-1">
-
-                                                <div class="w-100 h-100" data-toggle="modal" data-target="#media-modal">
-                                                    <div class="folder-cont position-relative w-100 h-100 video-cont" data-target="#media-carousel" data-slide-to="8">
-
-                                                                <iframe class="w-100 h-100 video-media" src="https://www.youtube.com/embed/yOCdUcX-KE4" frameborder="0" allowTransparency="true" allowfullscreen>
-                                                                </iframe>
-                                                                <div class="w-100 h-100 videoPoster-home js-videoPoster-home" style="background-image:url();"></div>                                                         <button class="play-video"> <i class="icon icon-play-arrow"></i></button>
-
-
-                                                        <span class="file-title lineTrim-1" title="3 أسئلة محتاجين نسألهم لأولادنا كل يوم..هيكلمنا عنهم د. مهاب مجاهد، الطبيب النفسي">
-                                                            3 أسئلة محتاجين نسألهم لأولادنا كل يوم..هيكلمنا عنهم د. مهاب مجاهد، الطبيب النفسي
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 px-1 mb-2 mb-md-0">
-                                    <div class="w-100 h-100" data-toggle="modal" data-target="#media-modal">
-                                        <div class="folder-cont position-relative w-100 h-100 video-cont" data-target="#media-carousel" data-slide-to="9">
-
-                                                    <iframe class="w-100 h-100 video-media" src="https://www.youtube.com/embed/8Tkf7WOVZRU" frameborder="0" allowTransparency="true" allowfullscreen>
-                                                    </iframe>
-                                                    <div class="videoPoster-home w-100 h-100 js-videoPoster-home" style="background-image:url();"></div>
-                                                                                            <span class="file-title lineTrim-1" title="وزير التربية والتعليم يكرم الطلاب الفائزين فى مسابقة &quot;ISEF&quot; على المستوى الوطنى والعالمى لعام ٢٠٢٤">
-                                                    وزير التربية والتعليم يكرم الطلاب الفائزين فى مسابقة &quot;ISEF&quot; على المستوى الوطنى والعالمى لعام ٢٠٢٤
-                                                </span>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <a href="/ar/media?type=4,3" class="btn btn-primary btn-primary-center">كل الفيديوهات</a>
-                            </div>
+        <header>
+            <h1 class="glitch-title">ERROR: ACCESS DENIED WITH OMAR_TAMER</h1>
+        </header>
+        
+        <main>
+            <section class="keypad-section">
+                <div class="keypad-container">
+                    <div class="pin-display">
+                        <div class="pin-dots">
+                            <span class="pin-dot"></span>
+                            <span class="pin-dot"></span>
+                            <span class="pin-dot"></span>
+                            <span class="pin-dot"></span>
                         </div>
                     </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-<div class="modal fade media-modal" id="media-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-        <span class="icon close-model icon-close1"></span>
-    </button>
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-
-            <div id="media-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner carousel-inner-home">
-                                <div class="carousel-item active">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" />
-                                            <img class="details-img" src="https://moe.gov.eg//media/z03nlvs0/whatsapp-image-2024-09-03-at-3-59-20-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700060026800000" alt="" />
-                                        </picture>
-                                        <div class="file-title">
-                                            <span class=" lineTrim-6" title="Stefania Giannini">
-                                                Stefania Giannini
-                                            </span>
-                                            <span class=" lineTrim-6" title="Stefania Giannini">
-                                                Stefania Giannini
-                                            </span>
-                                        </div>
-                                </div>                                 <div class="carousel-item">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" />
-                                            <img class="details-img" src="https://moe.gov.eg//media/z2mjbjcq/whatsapp-image-2024-09-02-at-5-00-44-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133700054346470000" alt="" />
-                                        </picture>
-                                        <div class="file-title">
-                                            <span class=" lineTrim-6" title="Greek Kyriakos Pierrakakis">
-                                                Greek Kyriakos Pierrakakis
-                                            </span>
-                                            <span class=" lineTrim-6" title="Greek Kyriakos Pierrakakis">
-                                                Greek Kyriakos Pierrakakis
-                                            </span>
-                                        </div>
-                                </div>                                 <div class="carousel-item">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" />
-                                            <img class="details-img" src="https://moe.gov.eg//media/3avbmn1z/whatsapp-image-2024-08-15-at-11-22-53-am.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133681873889000000" alt="" />
-                                        </picture>
-                                        <div class="file-title">
-                                            <span class=" lineTrim-6" title="زيارة محافظة الإسكندرية ">
-                                                زيارة محافظة الإسكندرية 
-                                            </span>
-                                            <span class=" lineTrim-6" title="زيارة محافظة الإسكندرية ">
-                                                زيارة محافظة الإسكندرية 
-                                            </span>
-                                        </div>
-                                </div>                                 <div class="carousel-item">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" />
-                                            <img class="details-img" src="https://moe.gov.eg//media/wpnp4lxk/whatsapp-image-2024-08-11-at-9-26-48-pm.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133680050417570000" alt="" />
-                                        </picture>
-                                        <div class="file-title">
-                                            <span class=" lineTrim-6" title="maya">
-                                                maya
-                                            </span>
-                                            <span class=" lineTrim-6" title="">
-                                                
-                                            </span>
-                                        </div>
-                                </div>                                 <div class="carousel-item">
-                                        <picture>
-                                            <source media="(min-width: 992px)" srcset="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" />
-                                            <source media="(min-width: 768px)" srcset="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" />
-                                            <source media="(max-width: 767px)" srcset="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" />
-                                            <img class="details-img" src="https://moe.gov.eg//media/g35bya0i/whatsapp-image-2024-08-08-at-7-30-27-pm-1.jpeg?anchor=center&amp;mode=crop&amp;width=1560&amp;height=528&amp;rnd=133679351968730000" alt="" />
-                                        </picture>
-                                        <div class="file-title">
-                                            <span class=" lineTrim-6" title="dr/ mohamed">
-                                                dr/ mohamed
-                                            </span>
-                                            <span class=" lineTrim-6" title="">
-                                                
-                                            </span>
-                                        </div>
-                                </div>                                 <div class="carousel-item">
-                                            <iframe class="video-media" src="https://www.youtube.com/embed/8Tkf7WOVZRU">
-                                            </iframe>                                         <div class="file-title">
-                                            <span class=" lineTrim-6" title="وزير التربية والتعليم يكرم الطلاب الفائزين فى مسابقة &quot;ISEF&quot; على المستوى الوطنى والعالمى لعام ٢٠٢٤">
-                                                وزير التربية والتعليم يكرم الطلاب الفائزين فى مسابقة &quot;ISEF&quot; على المستوى الوطنى والعالمى لعام ٢٠٢٤
-                                            </span>
-                                            <span class=" lineTrim-6" title="وزير التربية والتعليم يكرم الطلاب الفائزين فى مسابقة &quot;ISEF&quot; على المستوى الوطنى والعالمى لعام ٢٠٢٤">
-                                                وزير التربية والتعليم يكرم الطلاب الفائزين فى مسابقة &quot;ISEF&quot; على المستوى الوطنى والعالمى لعام ٢٠٢٤
-                                            </span>
-                                        </div>                                </div>                                 <div class="carousel-item">
-                                            <iframe class="video-media" src="https://www.youtube.com/embed/jyxnZwX1jDc">
-                                            </iframe>                                         <div class="file-title">
-                                            <span class=" lineTrim-6" title="إشادة برلمانية يابانية بنجاح نظام التعليم على النمط الياباني في المدارس المصرية اليابانية">
-                                                إشادة برلمانية يابانية بنجاح نظام التعليم على النمط الياباني في المدارس المصرية اليابانية
-                                            </span>
-                                            <span class=" lineTrim-6" title="أشادت السيدة كارين ماكيشيما، البرلمانية اليابانية والوزيرة السابقة النجاحات التي حققتها مصر في تطبيق نظام التعليم على النمط الياباني في المدارس المصرية اليابانية">
-                                                أشادت السيدة كارين ماكيشيما، البرلمانية اليابانية والوزيرة السابقة النجاحات التي حققتها مصر في تطبيق نظام التعليم على النمط الياباني في المدارس المصرية اليابانية
-                                            </span>
-                                        </div>                                </div>                                 <div class="carousel-item">
-                                            <iframe class="video-media" src="https://www.youtube.com/embed/FYOCcr4kRiI">
-                                            </iframe>                                         <div class="file-title">
-                                            <span class=" lineTrim-6" title="المدرسة_مكان_لينا_كلنا">
-                                                المدرسة_مكان_لينا_كلنا
-                                            </span>
-                                            <span class=" lineTrim-6" title="هدفنا إننا نسمع ونشارك عشان مع بعض نخلي المدرسة مكان لينا كلنا.">
-                                                هدفنا إننا نسمع ونشارك عشان مع بعض نخلي المدرسة مكان لينا كلنا.
-                                            </span>
-                                        </div>                                </div>                                 <div class="carousel-item">
-                                            <iframe class="video-media" src="https://www.youtube.com/embed/mavyQhYJt9s">
-                                            </iframe>                                         <div class="file-title">
-                                            <span class=" lineTrim-6" title="#المدرسة_مكان_لينا_كلنا">
-                                                #المدرسة_مكان_لينا_كلنا
-                                            </span>
-                                            <span class=" lineTrim-6" title="في الفيديو ده هنسمع أمهات بيشاركوا قصصهم مع أطفالهم من ذوي الاحتياجات التعليمية الخاصة والإعاقات.">
-                                                في الفيديو ده هنسمع أمهات بيشاركوا قصصهم مع أطفالهم من ذوي الاحتياجات التعليمية الخاصة والإعاقات.
-                                            </span>
-                                        </div>                                </div>                                 <div class="carousel-item">
-                                            <iframe class="video-media" src="https://www.youtube.com/embed/yOCdUcX-KE4">
-                                            </iframe>                                         <div class="file-title">
-                                            <span class=" lineTrim-6" title="3 أسئلة محتاجين نسألهم لأولادنا كل يوم">
-                                                3 أسئلة محتاجين نسألهم لأولادنا كل يوم
-                                            </span>
-                                            <span class=" lineTrim-6" title="3 أسئلة محتاجين نسألهم لأولادنا كل يوم..هيكلمنا عنهم د. مهاب مجاهد، الطبيب النفسي">
-                                                3 أسئلة محتاجين نسألهم لأولادنا كل يوم..هيكلمنا عنهم د. مهاب مجاهد، الطبيب النفسي
-                                            </span>
-                                        </div>                                </div> 
-                </div>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#media-carousel" role="button" data-slide="prev">
-        <span class="icon icon-arrow_left"></span>
-    </a>
-    <a class="carousel-control-next" href="#media-carousel" role="button" data-slide="next">
-        <span class="icon icon-arrow_right"></span>
-    </a>
-</div>
-
-<style>
-    @font-face {
-    font-family: 'primeicons';
-    font-display: block;
-    src: url('./fonts/primeicons.eot');
-    src: url('./fonts/primeicons.eot?#iefix') format('embedded-opentype'), url('./fonts/primeicons.woff2') format('woff2'), url('./fonts/primeicons.woff') format('woff'), url('./fonts/primeicons.ttf') format('truetype'), url('./fonts/primeicons.svg?#primeicons') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-.pi {
-    font-family: 'primeicons';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    display: inline-block;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.pi:before {
-    --webkit-backface-visibility:hidden;
-    backface-visibility: hidden;
-}
-
-.pi-fw {
-    width: 1.28571429em;
-    text-align: center;
-}
-
-.pi-spin {
-    -webkit-animation: fa-spin 2s infinite linear;
-    animation: fa-spin 2s infinite linear;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pi-spin {
-    -webkit-animation-delay: -1ms;
-    animation-delay: -1ms;
-    -webkit-animation-duration: 1ms;
-    animation-duration: 1ms;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-    -webkit-transition-delay: 0s;
-    transition-delay: 0s;
-    -webkit-transition-duration: 0s;
-    transition-duration: 0s;
-  }
-}
-
-@-webkit-keyframes fa-spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
-}
-
-@keyframes fa-spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
-}
-
-.pi-folder-plus:before {
-    content: "\ea05";
-}
-
-.pi-receipt:before {
-    content: "\ea06";
-}
-
-.pi-asterisk:before {
-    content: "\ea07";
-}
-
-.pi-face-smile:before {
-    content: "\ea08";
-}
-
-.pi-pinterest:before {
-    content: "\ea09";
-}
-
-.pi-expand:before {
-    content: "\ea0a";
-}
-
-.pi-pen-to-square:before {
-    content: "\ea0b";
-}
-
-.pi-wave-pulse:before {
-    content: "\ea0c";
-}
-
-.pi-turkish-lira:before {
-    content: "\ea0d";
-}
-
-.pi-spinner-dotted:before {
-    content: "\ea0e";
-}
-
-.pi-crown:before {
-    content: "\ea0f";
-}
-
-.pi-pause-circle:before {
-    content: "\ea10";
-}
-
-.pi-warehouse:before {
-    content: "\ea11";
-}
-
-.pi-objects-column:before {
-    content: "\ea12";
-}
-
-.pi-clipboard:before {
-    content: "\ea13";
-}
-
-.pi-play-circle:before {
-    content: "\ea14";
-}
-
-.pi-venus:before {
-    content: "\ea15";
-}
-
-.pi-cart-minus:before {
-    content: "\ea16";
-}
-
-.pi-file-plus:before {
-    content: "\ea17";
-}
-
-.pi-microchip:before {
-    content: "\ea18";
-}
-
-.pi-twitch:before {
-    content: "\ea19";
-}
-
-.pi-building-columns:before {
-    content: "\ea1a";
-}
-
-.pi-file-check:before {
-    content: "\ea1b";
-}
-
-.pi-microchip-ai:before {
-    content: "\ea1c";
-}
-
-.pi-trophy:before {
-    content: "\ea1d";
-}
-
-.pi-barcode:before {
-    content: "\ea1e";
-}
-
-.pi-file-arrow-up:before {
-    content: "\ea1f";
-}
-
-.pi-mars:before {
-    content: "\ea20";
-}
-
-.pi-tiktok:before {
-    content: "\ea21";
-}
-
-.pi-arrow-up-right-and-arrow-down-left-from-center:before {
-    content: "\ea22";
-}
-
-.pi-ethereum:before {
-    content: "\ea23";
-}
-
-.pi-list-check:before {
-    content: "\ea24";
-}
-
-.pi-thumbtack:before {
-    content: "\ea25";
-}
-
-.pi-arrow-down-left-and-arrow-up-right-to-center:before {
-    content: "\ea26";
-}
-
-.pi-equals:before {
-    content: "\ea27";
-}
-
-.pi-lightbulb:before {
-    content: "\ea28";
-}
-
-.pi-star-half:before {
-    content: "\ea29";
-}
-
-.pi-address-book:before {
-    content: "\ea2a";
-}
-
-.pi-chart-scatter:before {
-    content: "\ea2b";
-}
-
-.pi-indian-rupee:before {
-    content: "\ea2c";
-}
-
-.pi-star-half-fill:before {
-    content: "\ea2d";
-}
-
-.pi-cart-arrow-down:before {
-    content: "\ea2e";
-}
-
-.pi-calendar-clock:before {
-    content: "\ea2f";
-}
-
-.pi-sort-up-fill:before {
-    content: "\ea30";
-}
-
-.pi-sparkles:before {
-    content: "\ea31";
-}
-
-.pi-bullseye:before {
-    content: "\ea32";
-}
-
-.pi-sort-down-fill:before {
-    content: "\ea33";
-}
-
-.pi-graduation-cap:before {
-    content: "\ea34";
-}
-
-.pi-hammer:before {
-    content: "\ea35";
-}
-
-.pi-bell-slash:before {
-    content: "\ea36";
-}
-
-.pi-gauge:before {
-    content: "\ea37";
-}
-
-.pi-shop:before {
-    content: "\ea38";
-}
-
-.pi-headphones:before {
-    content: "\ea39";
-}
-
-.pi-eraser:before {
-    content: "\ea04";
-}
-
-.pi-stopwatch:before {
-    content: "\ea01";
-}
-
-.pi-verified:before {
-    content: "\ea02";
-}
-
-.pi-delete-left:before {
-    content: "\ea03";
-}
-
-.pi-hourglass:before {
-    content: "\e9fe";
-}
-
-.pi-truck:before {
-    content: "\ea00";
-}
-
-.pi-wrench:before {
-    content: "\e9ff";
-}
-
-.pi-microphone:before {
-    content: "\e9fa";
-}
-
-.pi-megaphone:before {
-    content: "\e9fb";
-}
-
-.pi-arrow-right-arrow-left:before {
-    content: "\e9fc";
-}
-
-.pi-bitcoin:before {
-    content: "\e9fd";
-}
-
-.pi-file-edit:before {
-    content: "\e9f6";
-}
-
-.pi-language:before {
-    content: "\e9f7";
-}
-
-.pi-file-export:before {
-    content: "\e9f8";
-}
-
-.pi-file-import:before {
-    content: "\e9f9";
-}
-
-.pi-file-word:before {
-    content: "\e9f1";
-}
-
-.pi-gift:before {
-    content: "\e9f2";
-}
-
-.pi-cart-plus:before {
-    content: "\e9f3";
-}
-
-.pi-thumbs-down-fill:before {
-    content: "\e9f4";
-}
-
-.pi-thumbs-up-fill:before {
-    content: "\e9f5";
-}
-
-.pi-arrows-alt:before {
-    content: "\e9f0";
-}
-
-.pi-calculator:before {
-    content: "\e9ef";
-}
-
-.pi-sort-alt-slash:before {
-    content: "\e9ee";
-}
-
-.pi-arrows-h:before {
-    content: "\e9ec";
-}
-
-.pi-arrows-v:before {
-    content: "\e9ed";
-}
-
-.pi-pound:before {
-    content: "\e9eb";
-}
-
-.pi-prime:before {
-    content: "\e9ea";
-}
-
-.pi-chart-pie:before {
-    content: "\e9e9";
-}
-
-.pi-reddit:before {
-    content: "\e9e8";
-}
-
-.pi-code:before {
-    content: "\e9e7";
-}
-
-.pi-sync:before {
-    content: "\e9e6";
-}
-
-.pi-shopping-bag:before {
-    content: "\e9e5";
-}
-
-.pi-server:before {
-    content: "\e9e4";
-}
-
-.pi-database:before {
-    content: "\e9e3";
-}
-
-.pi-hashtag:before {
-    content: "\e9e2";
-}
-
-.pi-bookmark-fill:before {
-    content: "\e9df";
-}
-
-.pi-filter-fill:before {
-    content: "\e9e0";
-}
-
-.pi-heart-fill:before {
-    content: "\e9e1";
-}
-
-.pi-flag-fill:before {
-    content: "\e9de";
-}
-
-.pi-circle:before {
-    content: "\e9dc";
-}
-
-.pi-circle-fill:before {
-    content: "\e9dd";
-}
-
-.pi-bolt:before {
-    content: "\e9db";
-}
-
-.pi-history:before {
-    content: "\e9da";
-}
-
-.pi-box:before {
-    content: "\e9d9";
-}
-
-.pi-at:before {
-    content: "\e9d8";
-}
-
-.pi-arrow-up-right:before {
-    content: "\e9d4";
-}
-
-.pi-arrow-up-left:before {
-    content: "\e9d5";
-}
-
-.pi-arrow-down-left:before {
-    content: "\e9d6";
-}
-
-.pi-arrow-down-right:before {
-    content: "\e9d7";
-}
-
-.pi-telegram:before {
-    content: "\e9d3";
-}
-
-.pi-stop-circle:before {
-    content: "\e9d2";
-}
-
-.pi-stop:before {
-    content: "\e9d1";
-}
-
-.pi-whatsapp:before {
-    content: "\e9d0";
-}
-
-.pi-building:before {
-    content: "\e9cf";
-}
-
-.pi-qrcode:before {
-    content: "\e9ce";
-}
-
-.pi-car:before {
-    content: "\e9cd";
-}
-
-.pi-instagram:before {
-    content: "\e9cc";
-}
-
-.pi-linkedin:before {
-    content: "\e9cb";
-}
-
-.pi-send:before {
-    content: "\e9ca";
-}
-
-.pi-slack:before {
-    content: "\e9c9";
-}
-
-.pi-sun:before {
-    content: "\e9c8";
-}
-
-.pi-moon:before {
-    content: "\e9c7";
-}
-
-.pi-vimeo:before {
-    content: "\e9c6";
-}
-
-.pi-youtube:before {
-    content: "\e9c5";
-}
-
-.pi-flag:before {
-    content: "\e9c4";
-}
-
-.pi-wallet:before {
-    content: "\e9c3";
-}
-
-.pi-map:before {
-    content: "\e9c2";
-}
-
-.pi-link:before {
-    content: "\e9c1";
-}
-
-.pi-credit-card:before {
-    content: "\e9bf";
-}
-
-.pi-discord:before {
-    content: "\e9c0";
-}
-
-.pi-percentage:before {
-    content: "\e9be";
-}
-
-.pi-euro:before {
-    content: "\e9bd";
-}
-
-.pi-book:before {
-    content: "\e9ba";
-}
-
-.pi-shield:before {
-    content: "\e9b9";
-}
-
-.pi-paypal:before {
-    content: "\e9bb";
-}
-
-.pi-amazon:before {
-    content: "\e9bc";
-}
-
-.pi-phone:before {
-    content: "\e9b8";
-}
-
-.pi-filter-slash:before {
-    content: "\e9b7";
-}
-
-.pi-facebook:before {
-    content: "\e9b4";
-}
-
-.pi-github:before {
-    content: "\e9b5";
-}
-
-.pi-twitter:before {
-    content: "\e9b6";
-}
-
-.pi-step-backward-alt:before {
-    content: "\e9ac";
-}
-
-.pi-step-forward-alt:before {
-    content: "\e9ad";
-}
-
-.pi-forward:before {
-    content: "\e9ae";
-}
-
-.pi-backward:before {
-    content: "\e9af";
-}
-
-.pi-fast-backward:before {
-    content: "\e9b0";
-}
-
-.pi-fast-forward:before {
-    content: "\e9b1";
-}
-
-.pi-pause:before {
-    content: "\e9b2";
-}
-
-.pi-play:before {
-    content: "\e9b3";
-}
-
-.pi-compass:before {
-    content: "\e9ab";
-}
-
-.pi-id-card:before {
-    content: "\e9aa";
-}
-
-.pi-ticket:before {
-    content: "\e9a9";
-}
-
-.pi-file-o:before {
-    content: "\e9a8";
-}
-
-.pi-reply:before {
-    content: "\e9a7";
-}
-
-.pi-directions-alt:before {
-    content: "\e9a5";
-}
-
-.pi-directions:before {
-    content: "\e9a6";
-}
-
-.pi-thumbs-up:before {
-    content: "\e9a3";
-}
-
-.pi-thumbs-down:before {
-    content: "\e9a4";
-}
-
-.pi-sort-numeric-down-alt:before {
-    content: "\e996";
-}
-
-.pi-sort-numeric-up-alt:before {
-    content: "\e997";
-}
-
-.pi-sort-alpha-down-alt:before {
-    content: "\e998";
-}
-
-.pi-sort-alpha-up-alt:before {
-    content: "\e999";
-}
-
-.pi-sort-numeric-down:before {
-    content: "\e99a";
-}
-
-.pi-sort-numeric-up:before {
-    content: "\e99b";
-}
-
-.pi-sort-alpha-down:before {
-    content: "\e99c";
-}
-
-.pi-sort-alpha-up:before {
-    content: "\e99d";
-}
-
-.pi-sort-alt:before {
-    content: "\e99e";
-}
-
-.pi-sort-amount-up:before {
-    content: "\e99f";
-}
-
-.pi-sort-amount-down:before {
-    content: "\e9a0";
-}
-
-.pi-sort-amount-down-alt:before {
-    content: "\e9a1";
-}
-
-.pi-sort-amount-up-alt:before {
-    content: "\e9a2";
-}
-
-.pi-palette:before {
-    content: "\e995";
-}
-
-.pi-undo:before {
-    content: "\e994";
-}
-
-.pi-desktop:before {
-    content: "\e993";
-}
-
-.pi-sliders-v:before {
-    content: "\e991";
-}
-
-.pi-sliders-h:before {
-    content: "\e992";
-}
-
-.pi-search-plus:before {
-    content: "\e98f";
-}
-
-.pi-search-minus:before {
-    content: "\e990";
-}
-
-.pi-file-excel:before {
-    content: "\e98e";
-}
-
-.pi-file-pdf:before {
-    content: "\e98d";
-}
-
-.pi-check-square:before {
-    content: "\e98c";
-}
-
-.pi-chart-line:before {
-    content: "\e98b";
-}
-
-.pi-user-edit:before {
-    content: "\e98a";
-}
-
-.pi-exclamation-circle:before {
-    content: "\e989";
-}
-
-.pi-android:before {
-    content: "\e985";
-}
-
-.pi-google:before {
-    content: "\e986";
-}
-
-.pi-apple:before {
-    content: "\e987";
-}
-
-.pi-microsoft:before {
-    content: "\e988";
-}
-
-.pi-heart:before {
-    content: "\e984";
-}
-
-.pi-mobile:before {
-    content: "\e982";
-}
-
-.pi-tablet:before {
-    content: "\e983";
-}
-
-.pi-key:before {
-    content: "\e981";
-}
-
-.pi-shopping-cart:before {
-    content: "\e980";
-}
-
-.pi-comments:before {
-    content: "\e97e";
-}
-
-.pi-comment:before {
-    content: "\e97f";
-}
-
-.pi-briefcase:before {
-    content: "\e97d";
-}
-
-.pi-bell:before {
-    content: "\e97c";
-}
-
-.pi-paperclip:before {
-    content: "\e97b";
-}
-
-.pi-share-alt:before {
-    content: "\e97a";
-}
-
-.pi-envelope:before {
-    content: "\e979";
-}
-
-.pi-volume-down:before {
-    content: "\e976";
-}
-
-.pi-volume-up:before {
-    content: "\e977";
-}
-
-.pi-volume-off:before {
-    content: "\e978";
-}
-
-.pi-eject:before {
-    content: "\e975";
-}
-
-.pi-money-bill:before {
-    content: "\e974";
-}
-
-.pi-images:before {
-    content: "\e973";
-}
-
-.pi-image:before {
-    content: "\e972";
-}
-
-.pi-sign-in:before {
-    content: "\e970";
-}
-
-.pi-sign-out:before {
-    content: "\e971";
-}
-
-.pi-wifi:before {
-    content: "\e96f";
-}
-
-.pi-sitemap:before {
-    content: "\e96e";
-}
-
-.pi-chart-bar:before {
-    content: "\e96d";
-}
-
-.pi-camera:before {
-    content: "\e96c";
-}
-
-.pi-dollar:before {
-    content: "\e96b";
-}
-
-.pi-lock-open:before {
-    content: "\e96a";
-}
-
-.pi-table:before {
-    content: "\e969";
-}
-
-.pi-map-marker:before {
-    content: "\e968";
-}
-
-.pi-list:before {
-    content: "\e967";
-}
-
-.pi-eye-slash:before {
-    content: "\e965";
-}
-
-.pi-eye:before {
-    content: "\e966";
-}
-
-.pi-folder-open:before {
-    content: "\e964";
-}
-
-.pi-folder:before {
-    content: "\e963";
-}
-
-.pi-video:before {
-    content: "\e962";
-}
-
-.pi-inbox:before {
-    content: "\e961";
-}
-
-.pi-lock:before {
-    content: "\e95f";
-}
-
-.pi-unlock:before {
-    content: "\e960";
-}
-
-.pi-tags:before {
-    content: "\e95d";
-}
-
-.pi-tag:before {
-    content: "\e95e";
-}
-
-.pi-power-off:before {
-    content: "\e95c";
-}
-
-.pi-save:before {
-    content: "\e95b";
-}
-
-.pi-question-circle:before {
-    content: "\e959";
-}
-
-.pi-question:before {
-    content: "\e95a";
-}
-
-.pi-copy:before {
-    content: "\e957";
-}
-
-.pi-file:before {
-    content: "\e958";
-}
-
-.pi-clone:before {
-    content: "\e955";
-}
-
-.pi-calendar-times:before {
-    content: "\e952";
-}
-
-.pi-calendar-minus:before {
-    content: "\e953";
-}
-
-.pi-calendar-plus:before {
-    content: "\e954";
-}
-
-.pi-ellipsis-v:before {
-    content: "\e950";
-}
-
-.pi-ellipsis-h:before {
-    content: "\e951";
-}
-
-.pi-bookmark:before {
-    content: "\e94e";
-}
-
-.pi-globe:before {
-    content: "\e94f";
-}
-
-.pi-replay:before {
-    content: "\e94d";
-}
-
-.pi-filter:before {
-    content: "\e94c";
-}
-
-.pi-print:before {
-    content: "\e94b";
-}
-
-.pi-align-right:before {
-    content: "\e946";
-}
-
-.pi-align-left:before {
-    content: "\e947";
-}
-
-.pi-align-center:before {
-    content: "\e948";
-}
-
-.pi-align-justify:before {
-    content: "\e949";
-}
-
-.pi-cog:before {
-    content: "\e94a";
-}
-
-.pi-cloud-download:before {
-    content: "\e943";
-}
-
-.pi-cloud-upload:before {
-    content: "\e944";
-}
-
-.pi-cloud:before {
-    content: "\e945";
-}
-
-.pi-pencil:before {
-    content: "\e942";
-}
-
-.pi-users:before {
-    content: "\e941";
-}
-
-.pi-clock:before {
-    content: "\e940";
-}
-
-.pi-user-minus:before {
-    content: "\e93e";
-}
-
-.pi-user-plus:before {
-    content: "\e93f";
-}
-
-.pi-trash:before {
-    content: "\e93d";
-}
-
-.pi-external-link:before {
-    content: "\e93c";
-}
-
-.pi-window-maximize:before {
-    content: "\e93b";
-}
-
-.pi-window-minimize:before {
-    content: "\e93a";
-}
-
-.pi-refresh:before {
-    content: "\e938";
-}
-  
-.pi-user:before {
-    content: "\e939";
-}
-
-.pi-exclamation-triangle:before {
-    content: "\e922";
-}
-
-.pi-calendar:before {
-    content: "\e927";
-}
-
-.pi-chevron-circle-left:before {
-    content: "\e928";
-}
-
-.pi-chevron-circle-down:before {
-    content: "\e929";
-}
-
-.pi-chevron-circle-right:before {
-    content: "\e92a";
-}
-
-.pi-chevron-circle-up:before {
-    content: "\e92b";
-}
-
-.pi-angle-double-down:before {
-    content: "\e92c";
-}
-
-.pi-angle-double-left:before {
-    content: "\e92d";
-}
-
-.pi-angle-double-right:before {
-    content: "\e92e";
-}
-
-.pi-angle-double-up:before {
-    content: "\e92f";
-}
-
-.pi-angle-down:before {
-    content: "\e930";
-}
-
-.pi-angle-left:before {
-    content: "\e931";
-}
-
-.pi-angle-right:before {
-    content: "\e932";
-}
-
-.pi-angle-up:before {
-    content: "\e933";
-}
-
-.pi-upload:before {
-    content: "\e934";
-}
-
-.pi-download:before {
-    content: "\e956";
-}
-
-.pi-ban:before {
-    content: "\e935";
-}
-
-.pi-star-fill:before {
-    content: "\e936";
-}
-
-.pi-star:before {
-    content: "\e937";
-}
-
-.pi-chevron-left:before {
-    content: "\e900";
-}
-
-.pi-chevron-right:before {
-    content: "\e901";
-}
-
-.pi-chevron-down:before {
-    content: "\e902";
-}
-
-.pi-chevron-up:before {
-    content: "\e903";
-}
-
-.pi-caret-left:before {
-    content: "\e904";
-}
-
-.pi-caret-right:before {
-    content: "\e905";
-}
-
-.pi-caret-down:before {
-    content: "\e906";
-}
-
-.pi-caret-up:before {
-    content: "\e907";
-}
-
-.pi-search:before {
-    content: "\e908";
-}
-
-.pi-check:before {
-    content: "\e909";
-}
-
-.pi-check-circle:before {
-    content: "\e90a";
-}
-
-.pi-times:before {
-    content: "\e90b";
-}
-
-.pi-times-circle:before {
-    content: "\e90c";
-}
-
-.pi-plus:before {
-    content: "\e90d";
-}
-
-.pi-plus-circle:before {
-    content: "\e90e";
-}
-
-.pi-minus:before {
-    content: "\e90f";
-}
-
-.pi-minus-circle:before {
-    content: "\e910";
-}
-
-.pi-circle-on:before {
-    content: "\e911";
-}
-
-.pi-circle-off:before {
-    content: "\e912";
-}
-
-.pi-sort-down:before {
-    content: "\e913";
-}
-
-.pi-sort-up:before {
-    content: "\e914";
-}
-
-.pi-sort:before {
-    content: "\e915";
-}
-
-.pi-step-backward:before {
-    content: "\e916";
-}
-
-.pi-step-forward:before {
-    content: "\e917";
-}
-
-.pi-th-large:before {
-    content: "\e918";
-}
-
-.pi-arrow-down:before {
-    content: "\e919";
-}
-
-.pi-arrow-left:before {
-    content: "\e91a";
-}
-
-.pi-arrow-right:before {
-    content: "\e91b";
-}
-
-.pi-arrow-up:before {
-    content: "\e91c";
-}
-
-.pi-bars:before {
-    content: "\e91d";
-}
-
-.pi-arrow-circle-down:before {
-    content: "\e91e";
-}
-
-.pi-arrow-circle-left:before {
-    content: "\e91f";
-}
-
-.pi-arrow-circle-right:before {
-    content: "\e920";
-}
-
-.pi-arrow-circle-up:before {
-    content: "\e921";
-}
-
-.pi-info:before {
-    content: "\e923";
-}
-
-.pi-info-circle:before {
-    content: "\e924";
-}
-
-.pi-home:before {
-    content: "\e925";
-}
-
-.pi-spinner:before {
-    content: "\e926";
-}
-
-</style>
-
-
-    </main>
-    
-
-    <div class="footer change-ico-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="d-flex justify-content-start align-items-center">
-                    <img src="/wwwroot/images/logo.png" class="logo" alt="MOE logo" />
-                    
-                    <div class="footer-link">
-                        <p class="copy-rights">جميع الحقوق محفوظة &#169; 2021</p>
+                    <div class="keypad-grid">
+                        <button class="key" data-key="1">1</button>
+                        <button class="key" data-key="2">2</button>
+                        <button class="key" data-key="3">3</button>
+                        <button class="key" data-key="4">4</button>
+                        <button class="key" data-key="5">5</button>
+                        <button class="key" data-key="6">6</button>
+                        <button class="key" data-key="7">7</button>
+                        <button class="key" data-key="8">8</button>
+                        <button class="key" data-key="9">9</button>
+                        <button class="key key-delete" data-key="delete">DEL</button>
+                        <button class="key" data-key="0">0</button>
+                        <button class="key key-unlock" data-key="unlock">UNLOCK</button>
                     </div>
                 </div>
-            </div>
-            
-        <div class="col-md-4 bg-primary">
-            <p class="follow-on">تابعنا على</p>
-            <ul class="social-links">
-                    <li>
-                        <a href="https://moe.gov.eg/" target="_blank"><span class="moe-ico-whatsapp"></span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/egypt.moe" target="_blank"><span class="moe-ico-facebook"></span></a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/MoeteEg" target="_blank"><span class="moe-ico-twitter"></span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.youtube.com/channel/UCGgeDgjIJ3GXZcLUnExAybw" target="_blank"><span class="moe-ico-youtube"></span></a>
-                    </li>
-                
-            </ul>
-        </div>
+            </section>
 
+            <section class="log-section">
+                <div class="log-container">
+                    <div class="log-header">
+                        <h2>CIPHER ATTEMPT LOG</h2>
+                        <div class="attempts-counter">
+                            <span class="attempts-text">ATTEMPTS REMAINING:</span>
+                            <span class="attempts-number">5</span>
+                        </div>
+                    </div>
+                    <div class="log-content" id="log-content">
+                        <div class="log-placeholder">
+                            <div class="scanner-line"></div>
+                            <p>ENTER ACCESS CODE </p>
+                            <p>5 ATTEMPTS BEFORE SECURITY LOCKDOWN</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-
-        </div>
+        <div class="overlay"></div>
+        <div class="scanlines"></div>
+        <div class="glow"></div>
     </div>
-</div>
+    <video muted loop autoplay id="myVideo">
+  <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1753375071/%D8%A7%D8%BA%D9%86%D9%8A%D8%A9_%D8%B2%D8%B9%D9%8A%D9%85_%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9_lzfkdn.mp4" type="video/mp4">
+  متصفحك لا يدعم عنصر الفيديو.
+</video>
 
+    <div class="container">
+        <header>
+            <h1>Cipher Quest: Codebreaker</h1>
+            <p>Embark on a thrilling journey to decode mysteries and unlock secrets!</p>
+        </div>
 
+    <audio id="background-audio" loop>
+        <source src="https://res.cloudinary.com/dorrpdul5/video/upload/v1758191965/ElGay.bta3y-Houda-MaTb3aa.Com_nns0i4.mp3" type="audio/mpeg">
+        متصفحك لا يدعم عنصر الصوت.
+    </audio>
 
-
-    
-
-    <script src="/wwwroot/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="/wwwroot/js/bootstrap-datepicker.min.js"></script>
-    <script src="/wwwroot/js/popper.min.js"></script>
-    <script src="/wwwroot/js/bootstrap.min.js"></script>
-    <script src="/wwwroot/js/swiper-bundle.min.js"></script>
-    <script src="/wwwroot/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="/wwwroot/js/basics.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="/vapp/dist/js/app.js"></script>
-    <script src="/vapp/dist/js/chunk-vendors.js"></script>
-    
+  <script>
+        document.addEventListener('click', function() {
+            const video = document.getElementById('myVideo');
+            if (video.paused) {
+                video.play();
+            }
+            const audio = document.getElementById('background-audio');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
 
 
 </body>
 </html>
+<!-- partial -->
+  <script>const PIN_LENGTH = 4;
+const MAX_ATTEMPTS = 5;
+const CORRECT_PIN = (() => {
+  const digits = new Set();
+  while (digits.size < 4) { digits.add(Math.floor(Math.random() * 10));
+  }
+  return Array.from(digits).join('');
+})();
+
+const pinDots = document.querySelectorAll('.pin-dot');
+const keys = document.querySelectorAll('.key');
+const attemptsCounter = document.querySelector('.attempts-number');
+const logContent = document.getElementById('log-content');
+const container = document.querySelector('.container');
+
+let currentPin = '';
+let attemptsRemaining = MAX_ATTEMPTS;
+let isLocked = false;
+
+function init() {
+    addEventListeners();
+    animateElements();
+}
+
+function addEventListeners() {
+    keys.forEach(key => {
+        key.addEventListener('click', () => handleKeyPress(key));
+
+        key.addEventListener('mouseenter', () => {
+            playSound('hover');
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') {
+            toggleBackgroundAudio();
+        }
+    });
+}
+
+function handleKeyPress(key) {
+    if (isLocked) return;
+
+    key.classList.add('clicked');
+    setTimeout(() => key.classList.remove('clicked'), 300);
+
+    playSound('keypress');
+
+    const keyValue = key.getAttribute('data-key');
+
+    switch (keyValue) {
+        case 'delete':
+            deleteLastDigit();
+            break;
+        case 'unlock':
+            attemptUnlock();
+            break;
+        default:
+
+            if (currentPin.length < PIN_LENGTH) {
+                addDigit(keyValue);
+            }
+    }
+}
+
+function addDigit(digit) {
+    if (currentPin.length < PIN_LENGTH) {
+        currentPin += digit;
+        updatePinDisplay();
+
+        if (currentPin.length === PIN_LENGTH) {
+            setTimeout(attemptUnlock, 500);
+        }
+    }
+}
+
+function deleteLastDigit() {
+    if (currentPin.length > 0) {
+        currentPin = currentPin.slice(0, -1);
+        updatePinDisplay();
+    }
+}
+
+document.addEventListener('click', function() {
+  const audio = document.getElementById('background-audio');
+  if (audio.paused) {
+    audio.play();
+  }
+}, { once: true });
 
 
 
+function updatePinDisplay() {
+    pinDots.forEach((dot, index) => {
+        if (index < currentPin.length) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
 
+function attemptUnlock() {
+    if (currentPin.length !== PIN_LENGTH) {
+        shakeEffect('.pin-display');
+        playSound('error');
+        return;
+    }
+
+    attemptsRemaining--;
+    attemptsCounter.textContent = attemptsRemaining;
+
+    const isCorrect = checkPin(currentPin);
+
+    if (isCorrect) {
+        handleSuccessfulUnlock();
+    } else {
+        handleFailedAttempt();
+    }
+
+    currentPin = '';
+    updatePinDisplay();
+}
+
+function checkPin(pin) {
+    return pin === CORRECT_PIN;
+}
+
+function getPinFeedback(enteredPin) {
+    const feedback = [];
+
+    for (let i = 0; i < PIN_LENGTH; i++) {
+        if (i < enteredPin.length) {
+            const digit = enteredPin[i];
+
+            if (digit === CORRECT_PIN[i]) {
+                feedback.push('correct');
+            } else if (CORRECT_PIN.includes(digit)) {
+                feedback.push('wrong-position');
+            } else {
+                feedback.push('wrong');
+            }
+        } else {
+            feedback.push('empty');
+        }
+    }
+
+    return feedback;
+}
+
+function handleSuccessfulUnlock() {
+    playSound('success');
+
+    addLogEntry({
+        message: 'ACCESS GRANTED - DECRYPTION SUCCESSFUL',
+        pin: currentPin,
+        feedback: getPinFeedback(currentPin),
+        type: 'success'
+    });
+
+    container.classList.add('access-granted');
+
+    document.body.style.animation = 'pulseSuccess 0.5s 3';
+
+    setTimeout(() => {
+        alert('Access granted! System unlocked.');
+        resetSystem();
+    }, 1500);
+}
+
+function handleFailedAttempt() {
+    playSound('error');
+    shakeEffect('.keypad-container');
+
+    addLogEntry({
+        message: `INVALID PIN - ATTEMPT ${MAX_ATTEMPTS - attemptsRemaining} OF ${MAX_ATTEMPTS}`,
+        pin: currentPin,
+        feedback: getPinFeedback(currentPin),
+        type: 'error'
+    });
+
+    if (attemptsRemaining <= 0) {
+        setTimeout(lockSystem, 500);
+    }
+}
+
+function lockSystem() {
+    isLocked = true;
+
+    const lockMessage = 'SECURITY BREACH DETECTED - SYSTEM LOCKED';
+    addLogEntry({
+        message: lockMessage,
+        type: 'error',
+        isLockout: true
+    });
+
+    playSound('lockdown');
+
+    shakeEffect('.keypad-container', 10);
+    shakeEffect('.log-container', 10);
+
+    container.classList.add('system-locked');
+
+    setTimeout(() => {
+        alert('Too many failed attempts. System locked!');
+        resetSystem();
+    }, 3000);
+}
+
+function resetSystem() {
+
+    currentPin = '';
+    attemptsRemaining = MAX_ATTEMPTS;
+    isLocked = false;
+
+    updatePinDisplay();
+    attemptsCounter.textContent = attemptsRemaining;
+    container.classList.remove('system-locked', 'access-granted');
+
+    if (logContent.querySelector('.log-placeholder')) {
+        return; 
+    }
+
+    logContent.innerHTML = `
+        <div class="log-placeholder">
+            <div class="scanner-line"></div>
+            <p>ENTER ACCESS CODE WITH OMAR_TAMER   </p>
+            <p>5 ATTEMPTS BEFORE SECURITY LOCKDOWN</p>
+        </div>
+    `;
+
+    playSound('reset');
+}
+
+function addLogEntry(entry) {
+
+    const placeholder = logContent.querySelector('.log-placeholder');
+    if (placeholder) {
+        logContent.removeChild(placeholder);
+    }
+
+    const logEntry = document.createElement('div');
+    logEntry.className = `log-entry ${entry.type || ''}`;
+
+    const now = new Date();
+    const timestamp = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now.getMilliseconds().toString().padStart(3, '0')}`;
+
+    let logHTML = `<div class="timestamp">[${timestamp}]</div>`;
+    logHTML += `<div class="message">${entry.message}</div>`;
+
+    if (entry.pin && entry.feedback) {
+        logHTML += '<div class="code">';
+
+        for (let i = 0; i < PIN_LENGTH; i++) {
+            if (i < entry.pin.length) {
+                const digitClass = entry.feedback[i];
+                logHTML += `<div class="digit ${digitClass}">${entry.pin[i]}</div>`;
+            } else {
+                logHTML += `<div class="digit">-</div>`;
+            }
+        }
+
+        logHTML += '</div>';
+    }
+
+    if (entry.isLockout) {
+        logHTML += `
+            <div class="lockout-animation">
+                <div class="lockout-text">SYSTEM LOCKDOWN</div>
+            </div>
+        `;
+    }
+
+    logEntry.innerHTML = logHTML;
+    logContent.appendChild(logEntry);
+
+    logContent.scrollTop = logContent.scrollHeight;
+}
+
+function shakeEffect(selector, intensity = 5) {
+    const element = document.querySelector(selector);
+    element.style.animation = `shake 0.5s cubic-bezier(.36,.07,.19,.97) both`;
+    element.style.transform = `translate3d(0, 0, 0)`;
+
+    const keyframes = `
+        @keyframes shake {
+            10%, 90% { transform: translate3d(${-intensity}px, 0, 0); }
+            20%, 80% { transform: translate3d(${intensity * 2}px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(${-intensity * 2}px, 0, 0); }
+            40%, 60% { transform: translate3d(${intensity * 2}px, 0, 0); }
+        }
+    `;
+
+    let style = document.getElementById('shake-style');
+    if (!style) {
+        style = document.createElement('style');
+        style.id = 'shake-style';
+        document.head.appendChild(style);
+    }
+
+    style.innerHTML = keyframes;
+
+    setTimeout(() => {
+        element.style.animation = '';
+    }, 500);
+}
+
+function playSound(type) {
+
+    if (!window.audioContext) {
+        window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const context = window.audioContext;
+
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+
+    switch (type) {
+        case 'keypress':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, context.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.2, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.1);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.1);
+            break;
+
+        case 'error':
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(300, context.currentTime);
+            oscillator.frequency.setValueAtTime(280, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(260, context.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.3);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.3);
+            break;
+
+        case 'success':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, context.currentTime);
+            oscillator.frequency.setValueAtTime(554, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(659, context.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.3);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.3);
+            break;
+
+        case 'lockdown':
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(180, context.currentTime);
+            oscillator.frequency.setValueAtTime(150, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(120, context.currentTime + 0.2);
+            oscillator.frequency.setValueAtTime(100, context.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.4, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.4);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.4);
+            break;
+
+        case 'hover':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(1760, context.currentTime);
+            gain.gain.setValueAtTime(0.05, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.05);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.05);
+            break;
+
+        case 'reset':
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(659, context.currentTime);
+            oscillator.frequency.setValueAtTime(554, context.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(440, context.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.2, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.3);
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + 0.3);
+            break;
+    }
+}
+
+let backgroundAudio = null;
+
+function createBackgroundAudio() {
+    if (!window.audioContext) {
+        window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const context = window.audioContext;
+
+    const bufferSize = 2 * context.sampleRate;
+    const noiseBuffer = context.createBuffer(1, bufferSize, context.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
+
+    const noise = context.createBufferSource();
+    noise.buffer = noiseBuffer;
+    noise.loop = true;
+
+    const filter = context.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 400;
+
+    const gain = context.createGain();
+    gain.gain.value = 0.03;
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(context.destination);
+
+    noise.start(0);
+
+    return {
+        noise,
+        gain,
+        filter,
+        isPlaying: true
+    };
+}
+
+function toggleBackgroundAudio() {
+    if (!backgroundAudio) {
+        backgroundAudio = createBackgroundAudio();
+    } else {
+        if (backgroundAudio.isPlaying) {
+            backgroundAudio.gain.gain.value = 0;
+            backgroundAudio.isPlaying = false;
+        } else {
+            backgroundAudio.gain.gain.value = 0.03;
+            backgroundAudio.isPlaying = true;
+        }
+    }
+}
+
+function animateElements() {
+
+    const glow = document.querySelector('.glow');
+    setInterval(() => {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(0, 255, 213, 0.1), transparent 70%)`;
+    }, 3000);
+
+    document.addEventListener('click', () => {
+        if (!backgroundAudio) {
+            backgroundAudio = createBackgroundAudio();
+        }
+    }, { once: true });
+}
+
+init();
+</script>
+
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --primary-color: #00ffd5;
+    --secondary-color: #ff005b;
+    --tertiary-color: #001eff;
+    --background-dark: #0a0a14;
+    --glass-bg: rgba(23, 25, 35, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --neu-shadow-dark: rgba(0, 0, 0, 0.4);
+    --neu-shadow-light: rgba(255, 255, 255, 0.05);
+    --font-main: 'Orbitron', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--background-dark);
+    color: var(--primary-color);
+    font-family: var(--font-main);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    perspective: 1000px;
+    background: radial-gradient(circle at center, #1a1a2e, #0a0a14);
+    overflow: hidden;
+}
+
+header {
+    position: relative;
+    padding: 20px 0;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    animation: float 4s ease-in-out infinite;
+}
+
+.glitch-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    position: relative;
+    animation: textShadow 1.6s infinite;
+    text-shadow: 0 0 10px var(--primary-color), 
+                 0 0 20px var(--primary-color),
+                 0 0 30px var(--primary-color);
+}
+
+.glitch-title::before, .glitch-title::after {
+    content: "ERROR: ACCESS DENIED WITH OMAR_TAMER";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+.glitch-title::before {
+    color: var(--secondary-color);
+    animation: glitch 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-2px, -2px);
+}
+
+.glitch-title::after {
+    color: var(--tertiary-color);
+    animation: glitch 2s infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(2px, 2px);
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 0 20px 30px;
+    perspective: 1000px;
+    z-index: 5;
+    position: relative;
+    margin: -35px auto;
+}
+
+.keypad-section, .log-section {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.keypad-container {
+    width: min(380px, 90%);
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px var(--neu-shadow-dark),
+                inset 0 1px 1px var(--neu-shadow-light),
+                0 0 20px rgba(0, 255, 213, 0.2);
+    transform-style: preserve-3d;
+    animation: floatKeypad 6s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.keypad-container::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 255, 213, 0.1) 0%, transparent 70%);
+    opacity: 0.5;
+    animation: moveGlow 15s infinite alternate;
+}
+
+.pin-display {
+    margin-bottom: 30px;
+    height: 60px;
+    background: rgba(10, 12, 18, 0.8);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5),
+                0 1px 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pin-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.pin-dot.active {
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color),
+                0 0 20px var(--primary-color);
+    animation: pulseDot 1.5s infinite;
+}
+
+.keypad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.key {
+    height: clamp(50px, 10vh, 70px);
+    border-radius: 15px;
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background: linear-gradient(145deg, #15152a, #1a1a33);
+    border: none;
+    box-shadow: 5px 5px 10px var(--neu-shadow-dark),
+                -5px -5px 10px var(--neu-shadow-light);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.85, 0.45, 1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.key::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 213, 0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.key:hover {
+    transform: translateY(-2px);
+}
+
+.key:hover::before {
+    opacity: 1;
+}
+
+.key:active {
+    transform: translateY(2px);
+    box-shadow: 3px 3px 6px var(--neu-shadow-dark),
+                -3px -3px 6px var(--neu-shadow-light),
+                0 0 15px rgba(0, 255, 213, 0.3);
+    background: linear-gradient(145deg, #14142a, #191932);
+}
+
+.key-delete {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.key-unlock {
+    font-size: 1.2rem;
+    color: #0f0;
+}
+
+.key-delete:active, .key-unlock:active {
+    box-shadow: 3px 3px 6px var(--neu-shadow-dark),
+                -3px -3px 6px var(--neu-shadow-light),
+                0 0 15px rgba(255, 0, 89, 0.3);
+}
+
+.key.clicked {
+    animation: keyPress 0.3s forwards;
+}
+
+.log-container {
+    width: min(440px, 90%);  
+    height: min(500px, 80vh);  
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px var(--neu-shadow-dark),
+                inset 0 1px 1px var(--neu-shadow-light),
+                0 0 20px rgba(0, 255, 213, 0.2);
+    display: flex;
+    flex-direction: column;
+    animation: floatLog 7s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.log-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 255, 213, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.log-header h2 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--primary-color), #1ef3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: pulse 3s infinite alternate;
+}
+
+.attempts-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+}
+
+.attempts-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+    animation: pulsate 2s infinite alternate;
+}
+
+.log-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.2);
+}
+
+.log-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.log-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.log-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.log-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.log-placeholder p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    animation: scanLine 2s linear infinite;
+}
+
+.log-entry {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: rgba(10, 15, 20, 0.6);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 5px;
+    animation: fadeInUp 0.5s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.log-entry::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 213, 0.1), transparent);
+    transform: translateX(-100%);
+    animation: scan 2s ease-in-out infinite;
+}
+
+.log-entry.error {
+    border-left-color: var(--secondary-color);
+    background: rgba(20, 0, 10, 0.6);
+}
+
+.log-entry.success {
+    border-left-color: #0f0;
+    background: rgba(0, 20, 10, 0.6);
+}
+
+.log-entry .timestamp {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.log-entry .code {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.log-entry .digit {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.log-entry .digit.correct {
+    background: rgba(0, 255, 0, 0.2);
+    color: #0f0;
+    box-shadow: 0 0 5px #0f0;
+    animation: pulse 2s infinite alternate;
+}
+
+.log-entry .digit.wrong-position {
+    background: rgba(255, 255, 0, 0.2);
+    color: #ff0;
+    box-shadow: 0 0 5px #ff0;
+}
+
+.log-entry .digit.wrong {
+    background: rgba(255, 0, 0, 0.2);
+    color: #f55;
+    box-shadow: 0 0 5px #f55;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.01) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 3;
+    animation: scanlines 1s steps(60) infinite;
+    opacity: 0.2;
+}
+
+.glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 213, 0.1), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes floatKeypad {
+    0%, 100% { transform: translateY(0) rotateX(5deg); }
+    50% { transform: translateY(-15px) rotateX(2deg); }
+}
+
+@keyframes floatLog {
+    0%, 100% { transform: translateY(0) rotateY(-5deg); }
+    50% { transform: translateY(-10px) rotateY(-2deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes pulsate {
+    0% { text-shadow: 0 0 5px var(--primary-color); }
+    100% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color); }
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.8); }
+}
+
+@keyframes scanLine {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes keyPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); background: linear-gradient(145deg, #1a1a33, #15152a); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes textShadow {
+    0% { text-shadow: 0.4389924193300864px 0 1px rgba(0, 255, 213, 0.5), 
+                     -0.4389924193300864px 0 1px rgba(255, 0, 91, 0.3), 
+                     0 0 3px; }
+    5% { text-shadow: 2.7928974010788217px 0 1px rgba(0, 255, 213, 0.5), 
+                     -2.7928974010788217px 0 1px rgba(255, 0, 91, 0.3), 
+                     0 0 3px; }
+    10% { text-shadow: 0.02956275843481219px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.02956275843481219px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    15% { text-shadow: 0.40218538552878136px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.40218538552878136px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    20% { text-shadow: 3.4794037899852017px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.4794037899852017px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    25% { text-shadow: 1.6125630401149584px 0 1px rgba(0, 255, 213, 0.5), 
+                      -1.6125630401149584px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    30% { text-shadow: 0.7015590085143956px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.7015590085143956px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    35% { text-shadow: 3.896914047650351px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.896914047650351px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    40% { text-shadow: 3.870905614848819px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.870905614848819px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    45% { text-shadow: 2.231056963361899px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.231056963361899px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    50% { text-shadow: 0.08084290417898504px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.08084290417898504px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    55% { text-shadow: 2.3758461067427543px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.3758461067427543px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    60% { text-shadow: 2.202193051050636px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.202193051050636px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    65% { text-shadow: 2.8638780614874975px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.8638780614874975px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    70% { text-shadow: 0.48874025155497314px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.48874025155497314px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    75% { text-shadow: 1.8948491305757957px 0 1px rgba(0, 255, 213, 0.5), 
+                      -1.8948491305757957px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    80% { text-shadow: 0.0833037308038857px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.0833037308038857px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    85% { text-shadow: 0.09769827255241735px 0 1px rgba(0, 255, 213, 0.5), 
+                      -0.09769827255241735px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    90% { text-shadow: 3.443339761481782px 0 1px rgba(0, 255, 213, 0.5), 
+                      -3.443339761481782px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    95% { text-shadow: 2.1841838852799786px 0 1px rgba(0, 255, 213, 0.5), 
+                      -2.1841838852799786px 0 1px rgba(255, 0, 91, 0.3), 
+                      0 0 3px; }
+    100% { text-shadow: 2.6208764473832513px 0 1px rgba(0, 255, 213, 0.5), 
+                       -2.6208764473832513px 0 1px rgba(255, 0, 91, 0.3), 
+                       0 0 3px; }
+}
+
+@keyframes scanlines {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+}
+
+@keyframes moveGlow {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(250px, 100px); }
+    50% { transform: translate(100px, 250px); }
+    75% { transform: translate(300px, 0); }
+    100% { transform: translate(0, 200px); }
+}
+
+@media (max-width: 200px) {
+    main {
+        flex-direction: column;
+        padding: 0 20px 20px;
+    }
+
+    .keypad-section, .log-section {
+        padding: 10px;
+    }
+
+    .glitch-title {
+        font-size: 2.5rem;
+    }
+}
+
+</style>
+
+    <style>
+        /* كود CSS المخصص للفيديو */
+#myVideo {
+  position: fixed;       /* يخلي الفيديو ثابت بالخلفية */
+  right: 0;
+  bottom: 0;
+  min-width: 100%;       /* يخلي الفيديو يغطي العرض */
+  min-height: 100%;      /* يخلي الفيديو يغطي الطول */
+  z-index: -1;           /* يخليه ورا كل العناصر */
+  object-fit: cover; 
+  left: auto;
+      /* يملأ الشاشة من غير تشويه */
+}
+
+    </style>
+</html>
