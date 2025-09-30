@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>صفحة المحتوى</title>
+    <title>  فيدوهات اخيار الزعيم </title>
     <link
       rel="icon"
       type="image/png"
@@ -17,9 +17,11 @@
       body {
         margin: 0;
         font-family: Cairo, sans-serif;
-        background: #f4f6f8;
-        padding-bottom: 100px;
+        background: #f4f6f8; /* خلفية رمادية فاتحة وناعمة */
+        padding-bottom: 100px; /* لترك مساحة للتذييل الثابت */
       }
+
+      /* ------------------ الرأس (Header) ------------------ */
       .desktop-header,
       .main-header {
         background-color: #2c3e50;
@@ -28,11 +30,13 @@
         font-weight: 700;
         font-size: 18px;
       }
+
       .desktop-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
+
       .desktop-header a {
         color: #fff;
         text-decoration: none;
@@ -41,18 +45,12 @@
         cursor: pointer;
         font-size: 16px !important;
       }
-      .desktop-header a:hover::after {
-        content: "";
-        position: absolute;
-        bottom: -3px;
-        right: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #fff;
-      }
+
       .mobile-footer {
         display: none;
       }
+
+      /* ------------------ استعلام الوسائط (Mobile View) ------------------ */
       @media (max-width: 768px) {
         .desktop-header {
           display: none;
@@ -60,40 +58,56 @@
         .main-header {
           text-align: center;
         }
+        /* ✅ تحسين تصميم التذييل الهاتفي (Mobile Footer) */
         .mobile-footer {
           display: flex;
-          justify-content: center;
-          gap: 15px;
+          justify-content: space-around;
+          align-items: center;
           position: fixed;
           bottom: 0;
           width: 100%;
-          background-color: #2c3e50;
+          background-color: #34495e; /* لون داكن مختلف قليلاً */
           color: #fff;
-          padding: 10px 0;
+          padding: 12px 0;
+          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
           z-index: 1000;
         }
         .mobile-footer a {
           color: #fff;
           text-decoration: none;
+          font-size: 14px;
+          padding: 5px 10px;
+          border-radius: 5px;
+          transition: background-color 0.2s;
+        }
+        .mobile-footer a:active {
+          background-color: rgba(255, 255, 255, 0.2);
         }
       }
 
       .content {
         padding: 20px;
       }
+
+      /* ------------------ العناوين والمحتوى ------------------ */
       h2,
-      h3 {
+      h3,
+      h4 {
         text-align: center;
-        color: #1e3799;
+        color: #007bff; /* لون أزرق جذاب للعناوين */
+        margin-top: 25px;
+        margin-bottom: 15px;
       }
 
+      /* ✅ تحسين صندوق المحتوى (Media Box) */
       .media-box {
         background: #fff;
         padding: 15px;
-        margin: 20px auto;
+        margin: 15px auto; /* هامش رأسي وأفقي موحد */
         max-width: 600px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 12px; /* زيادة الانحناء قليلاً */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* ظل أقوى */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* إضافة انتقال سلس */
       }
 
       .media-box img,
@@ -101,36 +115,59 @@
         width: 100%;
         max-height: 300px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 10px; /* انحناء متناسق */
         margin-top: 10px;
         cursor: pointer;
       }
 
+      /* ✅ تحسين مظهر النصوص (Text Content) */
       .text-content {
-        font-size: 16px;
-        background-color: #f9f9f9;
-        padding: 15px;
+        font-size: 17px; /* تكبير حجم الخط قليلاً */
+        background-color: #eaf6ff; /* خلفية فاتحة للنص تميزه */
+        padding: 18px;
+        border-left: 5px solid #007bff; /* خط جانبي أزرق كعلامة اقتباس */
         border-radius: 8px;
         white-space: pre-wrap;
-        line-height: 1.7;
+        line-height: 1.8; /* تباعد أكبر بين السطور */
+        color: #333; /* لون نص داكن */
       }
-      /* ✅ أي لينك في النص يبقى تحتيه خط */
+
       .text-content a {
-        color: #2980b9;
+        color: #007bff;
         text-decoration: underline;
       }
 
+      /* ✅ تحسين التاريخ والوقت (Timestamp) */
       .timestamp {
-        font-size: 13px;
-        color: #888;
-        margin-top: 8px;
-      }
-      .media-box:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        font-size: 14px;
+        color: #6c757d; /* لون رمادي محايد */
+        margin-top: 10px;
       }
 
-      /* ✅ Modal */
+      .media-box:hover {
+        transform: translateY(-5px); /* رفع الصندوق قليلاً عند التحويم */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ✅ تحسين شكل الأزرار (Share Button) */
+      .share-btn {
+        margin-top: 15px;
+        background: #28a745; /* لون أخضر للمشاركة (أكثر حيوية) */
+        color: #fff;
+        border: none;
+        padding: 10px 20px; /* حجم أكبر يسهل الضغط عليه */
+        border-radius: 25px; /* شكل بيضاوي جميل */
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .share-btn:hover {
+        background-color: #218838;
+      }
+
+      /* ------------------ المودال (Modal) ------------------ */
       #mediaModal {
         display: none;
         position: fixed;
@@ -139,7 +176,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.85);
         justify-content: center;
         align-items: center;
       }
@@ -158,16 +195,8 @@
         font-size: 40px;
         cursor: pointer;
       }
-      .share-btn {
-        margin-top: 10px;
-        background: #2980b9;
-        color: #fff;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      /* ✅ Footer Style */
+      
+      /* ------------------ التذييل (Footer) ------------------ */
       .footer {
         text-align: center;
         padding: 20px;
@@ -183,9 +212,6 @@
         color: #fff;
         text-decoration: none;
         font-weight: bold;
-      }
-      .footer a:hover {
-        text-decoration: underline;
       }
     </style>
   </head>
@@ -242,7 +268,6 @@
         appId: "1:80129288547:web:05c480484ba5eb1b908b56",
         measurementId: "G-51VB9VFYFJ",
       };
-
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
@@ -256,7 +281,6 @@
         const modal = document.getElementById("mediaModal");
         const video = document.getElementById("modalVideo");
         const img = document.getElementById("modalImg");
-
         if (type === "video") {
           video.src = url;
           video.style.display = "block";
@@ -266,7 +290,6 @@
           img.style.display = "block";
           video.style.display = "none";
         }
-
         modal.style.display = "flex";
       }
 
@@ -277,20 +300,19 @@
         video.pause();
       }
 
-   function copyLink(type, docId, btn) {
-  let prefix = "";
-  if (type === "video") prefix = "video_";
-  if (type === "img" || type === "image") prefix = "img_";
-  if (type === "text") prefix = "text_";
-  const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
-  navigator.clipboard.writeText(newLink).then(() => {
-    btn.innerText = "✅ تم النسخ";
-    setTimeout(() => {
-      btn.innerText = "🔗 مشاركة";
-    }, 2000);
-  });
-}
-
+      function copyLink(type, docId, btn) {
+        let prefix = "";
+        if (type === "video") prefix = "video_";
+        if (type === "img" || type === "image") prefix = "img_";
+        if (type === "text") prefix = "text_";
+        const newLink = `https://omartamer.netlify.app/single_videoNews#${prefix}${docId}`;
+        navigator.clipboard.writeText(newLink).then(() => {
+          btn.innerText = "✅ تم النسخ";
+          setTimeout(() => {
+            btn.innerText = "🔗 مشاركة";
+          }, 2000);
+        });
+      }
 
       function loadVideos() {
         let container = document.getElementById("videoContainer");
@@ -342,10 +364,7 @@
                       <p class="timestamp">📅 ${formatTimestamp(
                         data.timestamp
                       )}</p>
-                      <button onclick="copyLink('img', '${doc.id}', this)" class="share-btn">
-    🔗 مشاركة
-</button>
-`;
+                      <button onclick="copyLink('img', '${doc.id}', this)" class="share-btn">    🔗 مشاركة</button>`;
               container.appendChild(box);
             });
           });
@@ -406,6 +425,7 @@
         }
       }
 
+      // تحميل البيانات عند بدء تشغيل الصفحة
       loadVideos();
       loadImages();
       loadTexts();
