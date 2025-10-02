@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>  فيدوهات اخبار الزعيم </title>
+    <title>فيدوهات اخبار الزعيم</title>
     <link
       rel="icon"
       type="image/png"
@@ -17,10 +17,9 @@
       body {
         margin: 0;
         font-family: Cairo, sans-serif;
-        background: #f4f6f8; /* خلفية رمادية فاتحة وناعمة */
-        padding-bottom: 100px; /* لترك مساحة للتذييل الثابت */
+        background: #f4f6f8;
+        padding-bottom: 100px;
       }
-
       /* ------------------ الرأس (Header) ------------------ */
       .desktop-header,
       .main-header {
@@ -30,13 +29,11 @@
         font-weight: 700;
         font-size: 18px;
       }
-
       .desktop-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-
       .desktop-header a {
         color: #fff;
         text-decoration: none;
@@ -45,11 +42,9 @@
         cursor: pointer;
         font-size: 16px !important;
       }
-
       .mobile-footer {
         display: none;
       }
-
       /* ------------------ استعلام الوسائط (Mobile View) ------------------ */
       @media (max-width: 768px) {
         .desktop-header {
@@ -66,7 +61,7 @@
           position: fixed;
           bottom: 0;
           width: 100%;
-          background-color: #34495e; /* لون داكن مختلف قليلاً */
+          background-color: #34495e;
           color: #fff;
           padding: 12px 0;
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
@@ -84,89 +79,78 @@
           background-color: rgba(255, 255, 255, 0.2);
         }
       }
-
       .content {
         padding: 20px;
       }
-
       /* ------------------ العناوين والمحتوى ------------------ */
       h2,
       h3,
       h4 {
         text-align: center;
-        color: #007bff; /* لون أزرق جذاب للعناوين */
+        color: #007bff;
         margin-top: 25px;
         margin-bottom: 15px;
       }
-
       /* ✅ تحسين صندوق المحتوى (Media Box) */
       .media-box {
         background: #fff;
         padding: 15px;
-        margin: 15px auto; /* هامش رأسي وأفقي موحد */
+        margin: 15px auto;
         max-width: 600px;
-        border-radius: 12px; /* زيادة الانحناء قليلاً */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* ظل أقوى */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* إضافة انتقال سلس */
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
-
       .media-box img,
       .media-box video {
         width: 100%;
         max-height: 300px;
         object-fit: cover;
-        border-radius: 10px; /* انحناء متناسق */
+        border-radius: 10px;
         margin-top: 10px;
         cursor: pointer;
       }
-
       /* ✅ تحسين مظهر النصوص (Text Content) */
       .text-content {
-        font-size: 17px; /* تكبير حجم الخط قليلاً */
-        background-color: #eaf6ff; /* خلفية فاتحة للنص تميزه */
+        font-size: 17px;
+        background-color: #eaf6ff;
         padding: 18px;
-        border-left: 5px solid #007bff; /* خط جانبي أزرق كعلامة اقتباس */
+        border-left: 5px solid #007bff;
         border-radius: 8px;
         white-space: pre-wrap;
-        line-height: 1.8; /* تباعد أكبر بين السطور */
-        color: #333; /* لون نص داكن */
+        line-height: 1.8;
+        color: #333;
       }
-
       .text-content a {
         color: #007bff;
         text-decoration: underline;
       }
-
       /* ✅ تحسين التاريخ والوقت (Timestamp) */
       .timestamp {
         font-size: 14px;
-        color: #6c757d; /* لون رمادي محايد */
+        color: #6c757d;
         margin-top: 10px;
       }
-
       .media-box:hover {
-        transform: translateY(-5px); /* رفع الصندوق قليلاً عند التحويم */
+        transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       }
-
       /* ✅ تحسين شكل الأزرار (Share Button) */
       .share-btn {
         margin-top: 15px;
-        background: #28a745; /* لون أخضر للمشاركة (أكثر حيوية) */
+        background: #28a745;
         color: #fff;
         border: none;
-        padding: 10px 20px; /* حجم أكبر يسهل الضغط عليه */
-        border-radius: 25px; /* شكل بيضاوي جميل */
+        padding: 10px 20px;
+        border-radius: 25px;
         cursor: pointer;
         font-size: 16px;
         font-weight: bold;
         transition: background-color 0.3s ease;
       }
-
       .share-btn:hover {
         background-color: #218838;
       }
-
       /* ------------------ المودال (Modal) ------------------ */
       #mediaModal {
         display: none;
@@ -195,7 +179,7 @@
         font-size: 40px;
         cursor: pointer;
       }
-      
+
       /* ------------------ التذييل (Footer) ------------------ */
       .footer {
         text-align: center;
@@ -224,7 +208,6 @@
       </div>
       <div>موقع الاخبار (News)</div>
     </header>
-
     <div class="content">
       <h3>الفيديوهات</h3>
       <div id="videoContainer"></div>
@@ -233,19 +216,16 @@
       <h3>النصوص</h3>
       <div id="textContainer"></div>
     </div>
-
     <div id="mediaModal" onclick="closeModal()">
       <span onclick="closeModal()">&times;</span>
       <video id="modalVideo" controls style="display: none"></video>
       <img id="modalImg" src="" style="display: none" />
     </div>
-
     <header class="mobile-footer">
       <a href="https://omartamer.netlify.app/contactnews" target="_blank"
         >التواصل</a
       >
     </header>
-
     <div class="footer">
       <p>
         Made The Website of
@@ -254,10 +234,8 @@
         >
       </p>
     </div>
-
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
     <script>
       const firebaseConfig = {
         apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
@@ -314,92 +292,6 @@
         });
       }
 
-      function loadVideos() {
-        let container = document.getElementById("videoContainer");
-        container.innerHTML = "";
-        db.collection("videos")
-          .orderBy("timestamp", "desc")
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              let data = doc.data();
-              let videoId = `video_${doc.id}`;
-              let box = document.createElement("div");
-              box.className = "media-box";
-              box.id = videoId;
-              box.innerHTML = `
-                      <h4>${data.name}</h4>
-                      <video onclick="openModal('${data.url}','video')" style="width: 100%; max-height: 70vh;">
-                          <source src="${data.url}" type="video/mp4">
-                          متصفحك لا يدعم تشغيل الفيديو.
-                      </video>
-                      <p class="timestamp">📅 ${formatTimestamp(
-                        data.timestamp
-                      )}</p>
-                      <button onclick="copyLink('video', '${doc.id}', this)" class="share-btn">
-                          🔗 مشاركة
-                      </button>`;
-              container.appendChild(box);
-            });
-            highlightIfAnchorExists();
-          });
-      }
-
-      function loadImages() {
-        let container = document.getElementById("imageContainer");
-        container.innerHTML = "";
-        db.collection("images")
-          .orderBy("timestamp", "desc")
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              let data = doc.data();
-              let imageId = `image_${doc.id}`;
-              let box = document.createElement("div");
-              box.className = "media-box";
-              box.id = imageId;
-              box.innerHTML = `
-                      <h4>${data.name}</h4>
-                      <img src="${data.url}" alt="${data.name}" onclick="openModal('${data.url}','image')" style="width: 100%; max-height: 70vh; border-radius: 8px;">
-                      <p class="timestamp">📅 ${formatTimestamp(
-                        data.timestamp
-                      )}</p>
-                      <button onclick="copyLink('img', '${doc.id}', this)" class="share-btn">    🔗 مشاركة</button>`;
-              container.appendChild(box);
-            });
-          });
-      }
-
-      function loadTexts() {
-        let container = document.getElementById("textContainer");
-        container.innerHTML = "";
-        db.collection("texts")
-          .orderBy("timestamp", "desc")
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              let data = doc.data();
-              let textId = `text_${doc.id}`;
-              let box = document.createElement("div");
-              box.className = "media-box";
-              box.id = textId;
-              let safeContent = data.content.replace(
-                /(https?:\/\/[^\s]+)/g,
-                '<a href="$1" target="_blank">$1</a>'
-              );
-              box.innerHTML = `
-                      <div class="text-content">${safeContent}</div>
-                      <p class="timestamp">📅 ${formatTimestamp(
-                        data.timestamp
-                      )}</p>
-                      <button onclick="copyLink('text', '${doc.id}', this)" class="share-btn">
-                          🔗 مشاركة
-                      </button>`;
-              container.appendChild(box);
-            });
-          });
-      }
-
       function highlightIfAnchorExists() {
         const hash = location.hash;
         if (hash) {
@@ -425,10 +317,146 @@
         }
       }
 
+      // ----------------------------------------------------
+      // ✅ وظائف التحميل بالتحديث التلقائي (onSnapshot)
+      // ----------------------------------------------------
+
+      function loadVideos() {
+        let container = document.getElementById("videoContainer");
+        // نستخدم onSnapshot لمراقبة التغييرات
+        db.collection("videos")
+          .orderBy("timestamp", "desc")
+          
+          .onSnapshot((querySnapshot) => {
+            container.innerHTML = ""; // مسح المحتوى الحالي
+            querySnapshot.forEach((doc) => {
+              let data = doc.data();
+              // ✅ الشرط هنا بعد ما جبنا البيانات
+        if (data.isActive !== true) return;
+              let videoId = `video_${doc.id}`;
+              let box = document.createElement("div");
+              box.className = "media-box";
+              box.id = videoId;
+              box.innerHTML = `
+                      <h4>${data.name}</h4>
+                      <video onclick="openModal('${data.url}','video')" style="width: 100%; max-height: 70vh;">
+                          <source src="${data.url}" type="video/mp4">
+                          متصفحك لا يدعم تشغيل الفيديو.
+                      </video>
+                      <p class="timestamp">📅 ${formatTimestamp(
+                        data.timestamp
+                      )}</p>
+                      <button onclick="copyLink('video', '${doc.id}', this)" class="share-btn">
+                          🔗 مشاركة
+                      </button>`;
+              container.appendChild(box);
+            });
+            highlightIfAnchorExists();
+          });
+      }
+
+      function loadImages() {
+        let container = document.getElementById("imageContainer");
+         if (data.isActive !== true) return;
+        // نستخدم onSnapshot لمراقبة التغييرات
+        db.collection("images")
+          .orderBy("timestamp", "desc")
+          .onSnapshot((querySnapshot) => {
+            container.innerHTML = ""; // مسح المحتوى الحالي
+            querySnapshot.forEach((doc) => {
+              let data = doc.data();
+              // ✅ الشرط هنا بعد ما جبنا البيانات
+        if (data.isActive !== true) return;
+              let imageId = `image_${doc.id}`;
+              let box = document.createElement("div");
+              box.className = "media-box";
+              box.id = imageId;
+              box.innerHTML = `
+                      <h4>${data.name}</h4>
+                      <img src="${data.url}" alt="${data.name}" onclick="openModal('${data.url}','image')" style="width: 100%; max-height: 70vh; border-radius: 8px;">
+                      <p class="timestamp">📅 ${formatTimestamp(
+                        data.timestamp
+                      )}</p>
+                      <button onclick="copyLink('img', '${doc.id}', this)" class="share-btn">    🔗 مشاركة</button>`;
+              container.appendChild(box);
+            });
+          });
+      }
+
+      function loadTexts() {
+        let container = document.getElementById("textContainer");
+         if (data.isActive !== true) return;
+        // نستخدم onSnapshot لمراقبة التغييرات
+        db.collection("texts")
+          .orderBy("timestamp", "desc")
+          .onSnapshot((querySnapshot) => {
+            container.innerHTML = ""; // مسح المحتوى الحالي
+            querySnapshot.forEach((doc) => {
+              let data = doc.data();
+              // ✅ الشرط هنا بعد ما جبنا البيانات
+        if (data.isActive !== true) return;
+              let textId = `text_${doc.id}`;
+              let box = document.createElement("div");
+              box.className = "media-box";
+              box.id = textId;
+              let safeContent = data.content.replace(
+                /(https?:\/\/[^\s]+)/g,
+                '<a href="$1" target="_blank">$1</a>'
+              );
+              box.innerHTML = `
+                      <div class="text-content">${safeContent}</div>
+                      <p class="timestamp">📅 ${formatTimestamp(
+                        data.timestamp
+                      )}</p>
+                      <button onclick="copyLink('text', '${doc.id}', this)" class="share-btn">
+                          🔗 مشاركة
+                      </button>`;
+              container.appendChild(box);
+            });
+          });
+      }
+
+      async function addIsActiveToAll() {
+  // تحديث الفيديوهات
+  const videosSnap = await db.collection("videos").get();
+  videosSnap.forEach(async (doc) => {
+    let data = doc.data();
+    if (data.isActive === undefined) {
+      await db.collection("videos").doc(doc.id).update({ isActive: true });
+      console.log("✅ تم تحديث فيديو:", doc.id);
+    }
+  });
+
+  // تحديث الصور
+  const imagesSnap = await db.collection("images").get();
+  imagesSnap.forEach(async (doc) => {
+    let data = doc.data();
+    if (data.isActive === undefined) {
+      await db.collection("images").doc(doc.id).update({ isActive: true });
+      console.log("✅ تم تحديث صورة:", doc.id);
+    }
+  });
+
+  // تحديث النصوص
+  const textsSnap = await db.collection("texts").get();
+  textsSnap.forEach(async (doc) => {
+    let data = doc.data();
+    if (data.isActive === undefined) {
+      await db.collection("texts").doc(doc.id).update({ isActive: true });
+      console.log("✅ تم تحديث نص:", doc.id);
+    }
+  });
+
+  console.log("🎉 خلصنا! كل المستندات القديمة دلوقتي فيها isActive=true");
+}
+
+// ناد الفنكشن
+addIsActiveToAll();
       // تحميل البيانات عند بدء تشغيل الصفحة
       loadVideos();
       loadImages();
       loadTexts();
+      
     </script>
   </body>
 </html>
