@@ -1,270 +1,364 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>لوحة تحكم المدير</title>
-<link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
-<link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<style>
-body {
-  font-family: 'Cairo', sans-serif;
-  direction: rtl;
-  background: #f0f0f0;
-  margin: 0;
-  padding: 0;
-}
-.topbar {
-  background: #1e3799;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logout-btn, button {
-  background: #e74c3c;
-  border: none;
-  padding: 5px 10px;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.section {
-  margin: 20px;
-}
-#videoContainer, #imageContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-}
-.box video, 
-.box img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 5px;
-  cursor: pointer;
-}
-/* ✅ Modal مشترك */
-#mediaModal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-#mediaModal video, 
-#mediaModal img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #000;
-}
-#mediaModal span {
-  position: absolute;
-  top: 20px; right: 30px;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
-}
-</style>
+<head><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم المدير</title>
+    <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .topbar {
+            background: #1e3799;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout-btn, button {
+            background: #e74c3c;
+            border: none;
+            padding: 5px 10px;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px; /* لإضافة مسافة بين الأزرار */
+        }
+        .section {
+            margin: 20px;
+        }
+        #videoContainer, #imageContainer, #textContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+        .box {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .box video, .box img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        /* تصميم للعناصر المعطلة */
+        .box.inactive-item video, .box.inactive-item img {
+            filter: grayscale(100%) opacity(0.7);
+            cursor: default !important;
+        }
+        .box.inactive-item {
+            opacity: 0.6;
+        }
+
+        /* ✅ Modal مشترك */
+        #mediaModal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        #mediaModal video, #mediaModal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #000;
+        }
+        #mediaModal span {
+            position: absolute;
+            top: 20px; right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body oncontextmenu="return false;">
 <div class="topbar">
-  <h2>لوحة تحكم المدير</h2>
+    <h2>لوحة تحكم المدير</h2>
 </div>
 
 <div class="section">
-  <h1>رفع فيديو</h1>
-  <input type="file" id="videoFile" accept="video/*">
-  <input type="text" id="videoName" placeholder="اسم الفيديو">
-  <button onclick="uploadVideo()">رفع</button>
+    <h1>رفع فيديو</h1>
+    <input type="file" id="videoFile" accept="video/*">
+    <input type="text" id="videoName" placeholder="اسم الفيديو">
+    <button onclick="uploadVideo()">رفع</button>
 </div>
 <div id="videoContainer" class="section"></div>
 
 <div class="section">
-  <h1>رفع صور متعددة</h1>
-  <input type="file" id="imageFile" accept="image/*" multiple>
-  <input type="text" id="imageName" placeholder="اسم الألبوم أو الصور">
-  <button onclick="uploadImages()">رفع</button>
+    <h1>رفع صور متعددة</h1>
+    <input type="file" id="imageFile" accept="image/*" multiple>
+    <input type="text" id="imageName" placeholder="اسم الألبوم أو الصور">
+    <button onclick="uploadImages()">رفع</button>
 </div>
 <div id="imageContainer" class="section"></div>
 
-<!-- ✅ Modal واحد للصور والفيديو -->
 <div id="mediaModal">
-  <span onclick="closeModal()">&times;</span>
-  <video id="modalVideo" controls style="display:none;"></video>
-  <img id="modalImg" src="" style="display:none;">
+    <span onclick="closeModal()">&times;</span>
+    <video id="modalVideo" controls style="display:none;"></video>
+    <img id="modalImg" src="" style="display:none;">
 </div>
 
 <div class="section">
-  <h1>إضافة نص</h1>
-  <textarea id="textContent" rows="4" placeholder="اكتب النص هنا..."></textarea>
-  <button onclick="uploadText()">حفظ النص</button>
+    <h1>إضافة نص</h1>
+    <textarea id="textContent" rows="4" placeholder="اكتب النص هنا..."></textarea>
+    <button onclick="uploadText()">حفظ النص</button>
 </div>
 <div id="textContainer" class="section"></div>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
-  authDomain: "bluetooth-4791f.firebaseapp.com",
-  projectId: "bluetooth-4791f",
-  storageBucket: "bluetooth-4791f.firebasestorage.app",
-  messagingSenderId: "80129288547",
-  appId: "1:80129288547:web:05c480484ba5eb1b908b56",
-  measurementId: "G-51VB9VFYFJ"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+    const firebaseConfig = {
+        apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
+        authDomain: "bluetooth-4791f.firebaseapp.com",
+        projectId: "bluetooth-4791f",
+        storageBucket: "bluetooth-4791f.firebasestorage.app",
+        messagingSenderId: "80129288547",
+        appId: "1:80129288547:web:05c480484ba5eb1b908b56",
+        measurementId: "G-51VB9VFYFJ"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-const cloudName = "dquoqajno";
-const uploadPreset = "public_upload";
+    const db = firebase.firestore();
+    const cloudName = "dquoqajno";
+    const uploadPreset = "public_upload";
 
-function uploadMedia(file, name, mediaType, collectionName, callback) {
-  let formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", uploadPreset);
-  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${mediaType}/upload`, {
-      method: "POST",
-      body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    db.collection(collectionName).add({
-      name: name,
-      url: data.secure_url,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(callback);
-  });
-}
+    // ---------------------------------------------
+    // 1. وظائف الرفع (مع إضافة isActive: true)
+    // ---------------------------------------------
+    function uploadMedia(file, name, mediaType, collectionName, callback) {
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset);
 
-function uploadVideo() {
-  let file = document.getElementById("videoFile").files[0];
-  let name = document.getElementById("videoName").value.trim();
-  if (!file || !name) return alert("يرجى إدخال البيانات");
-  uploadMedia(file, name, "video", "videos", loadVideos);
-}
+        fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${mediaType}/upload`, {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            db.collection(collectionName).add({
+                name: name,
+                url: data.secure_url,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                // ✅ إضافة خاصية التفعيل التلقائية
+                isActive: true
+            }).then(callback).catch(e => console.error("Error adding doc:", e));
+        }).catch(e => console.error("Error uploading to Cloudinary:", e));
+    }
 
-function uploadImages() {
-  let files = document.getElementById("imageFile").files;
-  let name = document.getElementById("imageName").value.trim() || "صورة";
-  if (files.length === 0) return alert("اختر صور");
-  Array.from(files).forEach((file, i) => {
-    uploadMedia(file, `${name} ${i+1}`, "image", "images", loadImages);
-  });
-}
+    function uploadVideo() {
+        let file = document.getElementById("videoFile").files[0];
+        let name = document.getElementById("videoName").value.trim();
+        if (!file || !name) return alert("يرجى إدخال البيانات");
+        uploadMedia(file, name, "video", "videos", loadVideos);
+    }
 
-function deleteImage(id) {
-  if (confirm("هل تريد الحذف؟")) {
-    db.collection("images").doc(id).delete().then(loadImages);
-  }
-}
+    function uploadImages() {
+        let files = document.getElementById("imageFile").files;
+        let name = document.getElementById("imageName").value.trim() || "صورة";
+        if (files.length === 0) return alert("اختر صور");
+        Array.from(files).forEach((file, i) => {
+            uploadMedia(file, `${name} ${i+1}`, "image", "images", loadImages);
+        });
+    }
 
-/* ✅ فتح الصور والفيديوهات في نفس المودال */
-function openModal(url, type="image") {
-  const modal = document.getElementById("mediaModal");
-  const img = document.getElementById("modalImg");
-  const video = document.getElementById("modalVideo");
+    function uploadText() {
+        let content = document.getElementById("textContent").value.trim();
+        if (!content) return alert("اكتب النص");
+        db.collection("texts").add({
+            content: content,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            // ✅ إضافة خاصية التفعيل التلقائية
+            isActive: true
+        }).then(() => {
+            document.getElementById("textContent").value = "";
+            loadTexts();
+        }).catch(e => console.error("Error adding text:", e));
+    }
 
-  if(type === "image"){
-    img.src = url;
-    img.style.display = "block";
-    video.style.display = "none";
-  } else {
-    video.src = url;
-    video.style.display = "block";
-    img.style.display = "none";
-  }
+    // ---------------------------------------------
+    // 2. وظيفة التبديل (Toggle Function)
+    // ---------------------------------------------
+    function toggleActiveStatus(collection, id, currentStatus, callback) {
+        const newStatus = !currentStatus;
+        db.collection(collection).doc(id).update({
+            isActive: newStatus
+        }).then(() => {
+            alert(`تم ${newStatus ? 'تفعيل' : 'تعطيل'} المحتوى بنجاح!`);
+            callback();
+        }).catch(error => {
+            console.error("خطأ في التحديث:", error);
+            alert("حدث خطأ أثناء التحديث.");
+        });
+    }
 
-  modal.style.display = "flex";
-}
+    // ---------------------------------------------
+    // 3. وظائف الحذف
+    // ---------------------------------------------
+    function deleteImage(id) {
+        if (confirm("هل تريد الحذف؟")) {
+            db.collection("images").doc(id).delete().then(loadImages).catch(e => console.error("Error deleting image:", e));
+        }
+    }
 
-function closeModal() {
-  const modal = document.getElementById("mediaModal");
-  const video = document.getElementById("modalVideo");
-  modal.style.display = "none";
-  video.pause(); 
-}
+    function deleteItem(collection, id, callback) {
+        if (confirm("هل تريد الحذف؟")) {
+            db.collection(collection).doc(id).delete().then(callback).catch(e => console.error("Error deleting item:", e));
+        }
+    }
+    
+    // ---------------------------------------------
+    // 4. وظائف التحميل والعرض (مع التحقق من isActive)
+    // ---------------------------------------------
 
-function uploadText() {
-  let content = document.getElementById("textContent").value.trim();
-  if (!content) return alert("اكتب النص");
-  db.collection("texts").add({
-    content: content,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(() => {
-    document.getElementById("textContent").value = "";
-    loadTexts();
-  });
-}
+    function loadVideos() {
+        let container = document.getElementById("videoContainer");
+        container.innerHTML = "";
+        db.collection("videos").orderBy("timestamp","desc").get().then(snap=>{
+            if(snap.empty){container.innerHTML="<p>لا توجد فيديوهات</p>";return;}
+            snap.forEach(doc=>{
+                let d = doc.data();
+                // ✅ التحقق من حالة التفعيل
+                const isActive = d.isActive === true; 
+                const statusText = isActive ? 'مُفعَّل' : 'مُعطَّل';
+                const actionText = isActive ? 'تعطيل' : 'تفعيل';
+                
+                // تحديد العنصر القابل للنقر (إذا كان مفعّلاً)
+                const videoElement = isActive ? 
+                    `<video src="${d.url}" onclick="openModal('${d.url}','video')"></video>` : 
+                    `<video src="${d.url}"></video>`; // بدون onclick
+                
+                const boxClass = isActive ? 'box' : 'box inactive-item';
 
-function deleteItem(collection, id, callback) {
-  if (confirm("هل تريد الحذف؟")) {
-    db.collection(collection).doc(id).delete().then(callback);
-  }
-}
+                container.innerHTML += `
+                    <div class="${boxClass}">
+                        ${videoElement}
+                        <p>${d.name} (<span style="color:${isActive?'green':'red'}">${statusText}</span>)</p>
+                        <button onclick="toggleActiveStatus('videos','${doc.id}',${isActive},loadVideos)">🔄 ${actionText}</button>
+                        <button onclick="deleteItem('videos','${doc.id}',loadVideos)">❌ حذف</button>
+                    </div>`;
+            });
+        }).catch(e => console.error("Error loading videos:", e));
+    }
 
-function loadVideos() {
-  let container = document.getElementById("videoContainer");
-  container.innerHTML = "";
-  db.collection("videos").orderBy("timestamp","desc").get().then(snap=>{
-    if(snap.empty){container.innerHTML="<p>لا توجد فيديوهات</p>";return;}
-    snap.forEach(doc=>{
-      let d = doc.data();
-      container.innerHTML += `
-        <div class="box">
-          <video src="${d.url}" onclick="openModal('${d.url}','video')"></video>
-          <p>${d.name}</p>
-          <button onclick="deleteItem('videos','${doc.id}',loadVideos)">❌ حذف</button>
-        </div>`;
-    });
-  });
-}
+    function loadImages() {
+        let container = document.getElementById("imageContainer");
+        container.innerHTML = "";
+        db.collection("images").orderBy("timestamp","desc").get().then(snap=>{
+            if(snap.empty){container.innerHTML="<p>لا توجد صور</p>";return;}
+            snap.forEach(doc=>{
+                let d = doc.data();
+                // ✅ التحقق من حالة التفعيل
+                const isActive = d.isActive === true; 
+                const statusText = isActive ? 'مُفعَّلة' : 'مُعطَّلة';
+                const actionText = isActive ? 'تعطيل' : 'تفعيل';
+                
+                // تحديد العنصر القابل للنقر (إذا كان مفعّلاً)
+                const imageElement = isActive ? 
+                    `<img src="${d.url}" alt="${d.name}" onclick="openModal('${d.url}','image')">` : 
+                    `<img src="${d.url}" alt="${d.name}">`; // بدون onclick
 
-function loadImages() {
-  let container = document.getElementById("imageContainer");
-  container.innerHTML = "";
-  db.collection("images").orderBy("timestamp","desc").get().then(snap=>{
-    if(snap.empty){container.innerHTML="<p>لا توجد صور</p>";return;}
-    snap.forEach(doc=>{
-      let d = doc.data();
-      container.innerHTML += `
-        <div class="box">
-          <img src="${d.url}" alt="${d.name}" onclick="openModal('${d.url}','image')">
-          <p>${d.name}</p>
-          <button onclick="deleteImage('${doc.id}')">❌ حذف</button>
-        </div>`;
-    });
-  });
-}
+                const boxClass = isActive ? 'box' : 'box inactive-item';
 
-function loadTexts() {
-  let container = document.getElementById("textContainer");
-  container.innerHTML = "";
-  db.collection("texts").orderBy("timestamp","desc").get().then(snap=>{
-    if(snap.empty){container.innerHTML="<p>لا توجد نصوص</p>";return;}
-    snap.forEach(doc=>{
-      let d = doc.data();
-      let content = d.content.replace(/(https?:\/\/[^\s]+)/g,
-        url => `<a href="${url}" target="_blank">🔗 ${url}</a>`);
-      container.innerHTML += `
-        <div class="box">
-          <div style="white-space:pre-wrap;">${content}</div>
-          <button onclick="deleteItem('texts','${doc.id}',loadTexts)">❌ حذف</button>
-        </div>`;
-    });
-  });
-}
+                container.innerHTML += `
+                    <div class="${boxClass}">
+                        ${imageElement}
+                        <p>${d.name} (<span style="color:${isActive?'green':'red'}">${statusText}</span>)</p>
+                        <button onclick="toggleActiveStatus('images','${doc.id}',${isActive},loadImages)">🔄 ${actionText}</button>
+                        <button onclick="deleteImage('${doc.id}')">❌ حذف</button>
+                    </div>`;
+            });
+        }).catch(e => console.error("Error loading images:", e));
+    }
 
-function loadAll(){loadVideos();loadImages();loadTexts();}
-window.onload=loadAll;
+    function loadTexts() {
+        let container = document.getElementById("textContainer");
+        container.innerHTML = "";
+        db.collection("texts").orderBy("timestamp","desc").get().then(snap=>{
+            if(snap.empty){container.innerHTML="<p>لا توجد نصوص</p>";return;}
+            snap.forEach(doc=>{
+                let d = doc.data();
+                // ✅ التحقق من حالة التفعيل
+                const isActive = d.isActive === true; 
+                const statusText = isActive ? 'مُفعَّل' : 'مُعطَّل';
+                const actionText = isActive ? 'تعطيل' : 'تفعيل';
+
+                let content = d.content;
+                // تحويل الروابط إلى روابط قابلة للنقر فقط إذا كان المحتوى مفعّلاً
+                if (isActive) {
+                    content = d.content.replace(/(https?:\/\/[^\s]+)/g,
+                        url => `<a href="${url}" target="_blank">🔗 ${url}</a>`);
+                }
+
+                const boxClass = isActive ? 'box' : 'box inactive-item';
+
+                container.innerHTML += `
+                    <div class="${boxClass}">
+                        <div style="white-space:pre-wrap;">${content}</div>
+                        <p>الحالة: (<span style="color:${isActive?'green':'red'}">${statusText}</span>)</p>
+                        <button onclick="toggleActiveStatus('texts','${doc.id}',${isActive},loadTexts)">🔄 ${actionText}</button>
+                        <button onclick="deleteItem('texts','${doc.id}',loadTexts)">❌ حذف</button>
+                    </div>`;
+            });
+        }).catch(e => console.error("Error loading texts:", e));
+    }
+
+    // ---------------------------------------------
+    // 5. وظائف إضافية
+    // ---------------------------------------------
+
+    /* ✅ فتح الصور والفيديوهات في نفس المودال */
+    function openModal(url, type="image") {
+        const modal = document.getElementById("mediaModal");
+        const img = document.getElementById("modalImg");
+        const video = document.getElementById("modalVideo");
+        
+        // التحقق من أن العنصر مفعّل قبل الفتح
+        // في هذا التصميم، لن يتم استدعاء openModal إلا للعناصر النشطة في load functions
+        
+        if(type === "image"){
+            img.src = url;
+            img.style.display = "block";
+            video.style.display = "none";
+        } else {
+            video.src = url;
+            video.style.display = "block";
+            img.style.display = "none";
+        }
+        modal.style.display = "flex";
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("mediaModal");
+        const video = document.getElementById("modalVideo");
+        modal.style.display = "none";
+        video.pause(); 
+    }
+
+    function loadAll(){
+        loadVideos();
+        loadImages();
+        loadTexts();
+    }
+
+    window.onload=loadAll;
 </script>
 </body>
 </html>
