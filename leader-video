@@ -1,0 +1,1492 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="is-rtl no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+<!-- Performance & Resource Hints - Optimized -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Theme -->
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
+    
+    <title>Programming_Leader:Video</title>
+
+		<!-- All in One SEO 4.9.2 - aioseo.com -->
+	<meta name="description" content="savefrom TikTok, YouTube, Instagram, and Facebook for free. TheVidSave lets you save high-quality videos with no watermark, fast and easy" />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://thevidsave.com/ar/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.2" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="VIDSAVE - Download Videos from YouTube, TikTok, Instagram &amp; Facebook » savefrom TikTok, YouTube, Instagram, Facebook. for free" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="VIDSAVE - Download Videos from YouTube, TikTok, Instagram &amp; Facebook" />
+		<meta property="og:description" content="savefrom TikTok, YouTube, Instagram, and Facebook for free. TheVidSave lets you save high-quality videos with no watermark, fast and easy" />
+		<meta property="og:url" content="https://thevidsave.com/ar/" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="VIDSAVE - Download Videos from YouTube, TikTok, Instagram &amp; Facebook" />
+		<meta name="twitter:description" content="savefrom TikTok, YouTube, Instagram, and Facebook for free. TheVidSave lets you save high-quality videos with no watermark, fast and easy" />
+		<script type="application/ld+json" class="aioseo-schema">
+			{"@context":"https:\/\/schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https:\/\/thevidsave.com\/ar\/#breadcrumblist","itemListElement":[{"@type":"ListItem","@id":"https:\/\/thevidsave.com#listItem","position":1,"name":"Home"}]},{"@type":"CollectionPage","@id":"https:\/\/thevidsave.com\/ar\/#collectionpage","url":"https:\/\/thevidsave.com\/ar\/","name":"VIDSAVE - Download Videos from YouTube, TikTok, Instagram & Facebook","description":"savefrom TikTok, YouTube, Instagram, and Facebook for free. TheVidSave lets you save high-quality videos with no watermark, fast and easy","inLanguage":"en-US","isPartOf":{"@id":"https:\/\/thevidsave.com\/#website"},"breadcrumb":{"@id":"https:\/\/thevidsave.com\/ar\/#breadcrumblist"},"about":{"@id":"https:\/\/thevidsave.com\/#person"}},{"@type":"Person","@id":"https:\/\/thevidsave.com\/#person","name":"devv.moha","image":{"@type":"ImageObject","@id":"https:\/\/thevidsave.com\/ar\/#personImage","url":"https:\/\/secure.gravatar.com\/avatar\/765e994c9a72bcd682d36d6d96d5697fc48b7fcdf4b46160d42ddb95f9fd0976?s=96&d=mm&r=g","width":96,"height":96,"caption":"devv.moha"}},{"@type":"WebSite","@id":"https:\/\/thevidsave.com\/#website","url":"https:\/\/thevidsave.com\/","name":"VIDSAVE - Download Videos from YouTube, TikTok, Instagram & Facebook","alternateName":"savefrom","description":"savefrom TikTok, YouTube, Instagram, Facebook. for free","inLanguage":"en-US","publisher":{"@id":"https:\/\/thevidsave.com\/#person"}}]}
+		</script>
+		<!-- All in One SEO -->
+
+<style id="critical-css">/* Critical CSS - الأنماط الضرورية للجزء العلوي من الصفحة */
+/* تحميل فوري في <head> لتحسين LCP */
+
+/* متغيرات أساسية فقط */
+:root{--primary:#667eea;--primary-light:#8b9df5;--primary-dark:#5568d3;--secondary:#764ba2;--success:#10b981;--dark:#1e293b;--gray-600:#475569;--gray-400:#94a3b8;--gray-200:#e2e8f0;--light-bg:#f8fafc;--white:#ffffff;--font-primary:'Poppins','Cairo',-apple-system,BlinkMacSystemFont,sans-serif;--font-arabic:'Cairo','Tajawal',sans-serif;--space-xs:.5rem;--space-sm:1rem;--space-md:1.5rem;--space-lg:2rem;--space-xl:3rem;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px;--radius-full:9999px;--shadow-lg:0 8px 32px rgba(0,0,0,.16);--shadow-xl:0 12px 48px rgba(0,0,0,.20);--transition-fast:.15s ease;--transition-normal:.3s ease;--transition-bounce:.4s cubic-bezier(.68,-.55,.265,1.55);--z-sticky:200}
+
+/* إعادة تعيين أساسية */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+body{font-family:var(--font-primary);background:var(--light-bg);color:var(--dark);line-height:1.6;overflow-x:hidden}
+
+body.rtl{font-family:var(--font-arabic);direction:rtl}
+
+img{max-width:100%;height:auto;display:block}
+
+a{text-decoration:none;color:inherit}
+
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* الحاوية */
+.container{max-width:1200px;margin:0 auto;padding:0 var(--space-md)}
+
+/* الهيدر - أعلى أولوية */
+.site-header{background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%);padding:var(--space-md) 0;box-shadow:var(--shadow-lg);position:sticky;top:0;z-index:var(--z-sticky);backdrop-filter:blur(10px);transition:padding var(--transition-normal)}
+
+.site-header.scrolled{padding:var(--space-sm) 0;box-shadow:var(--shadow-xl)}
+
+.site-branding{text-align:center}
+
+.site-title{display:inline-flex;align-items:center;gap:var(--space-sm);color:white;text-decoration:none;font-size:1.5rem;font-weight:800;transition:transform var(--transition-bounce);letter-spacing:-.02em}
+
+.site-title:hover{transform:scale(1.05) rotate(-1deg)}
+
+.site-title:active{transform:scale(.98)}
+
+.site-logo{height:40px;width:40px;border-radius:var(--radius-sm);transition:transform var(--transition-normal)}
+
+.site-title:hover .site-logo{transform:rotate(360deg)}
+
+/* قسم البطل - Hero */
+.hero-section{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:4rem var(--space-md);text-align:center;color:white;position:relative;overflow:hidden}
+
+.hero-section .container{position:relative;z-index:1}
+
+.hero-section h1{font-size:clamp(1.75rem,5vw,3rem);font-weight:900;margin-bottom:var(--space-md);line-height:1.2;letter-spacing:-.02em;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+
+.intro,.slogan{font-size:clamp(1rem,2.5vw,1.2rem);opacity:.95;max-width:700px;margin:0 auto var(--space-md);line-height:1.7}
+
+.slogan{font-weight:600}
+
+/* نموذج التحميل */
+#tiktok-form{max-width:700px;margin:var(--space-xl) auto var(--space-lg)}
+
+.input-wrapper{position:relative;margin-bottom:var(--space-md)}
+
+.input-wrapper::before{content:'🔗';position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:1.3rem;z-index:1;pointer-events:none;transition:transform var(--transition-normal)}
+
+body.rtl .input-wrapper::before{left:auto;right:18px}
+
+.input-wrapper:focus-within::before{transform:translateY(-50%) scale(1.1)}
+
+#tiktok-url{width:100%;padding:1.2rem 1.2rem 1.2rem 55px;font-size:1rem;border:1.5px solid #606060;border-radius:var(--radius-lg);background:rgba(255,255,255,.95);color:var(--dark);transition:all var(--transition-normal);font-family:inherit;box-shadow:var(--shadow-lg)}
+
+body.rtl #tiktok-url{padding:1.2rem 55px 1.2rem 1.2rem}
+
+#tiktok-url::placeholder{color:var(--gray-400)}
+
+#tiktok-url:focus{outline:none;border-color:#08a070;background:white;box-shadow:0 0 0 4px rgba(255,255,255,.3),var(--shadow-lg);transform:translateY(-2px)}
+
+/* زر اللصق */
+.paste-btn,#paste-btn{width:100%;background:rgba(255,255,255,.2);color:white;border:2px solid rgba(255,255,255,.3);padding:.85rem var(--space-md);border-radius:var(--radius-lg);font-size:.95rem;font-weight:600;cursor:pointer;transition:all var(--transition-normal);display:flex;align-items:center;justify-content:center;gap:var(--space-xs);backdrop-filter:blur(10px);position:relative;overflow:hidden}
+
+.paste-btn::before,#paste-btn::before{content:'📋';font-size:1.1rem}
+
+.paste-btn:hover,#paste-btn:hover{background:rgba(255,255,255,.3);border-color:white;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+
+.paste-btn:active,#paste-btn:active{transform:translateY(0)}
+
+/* زر التحميل الرئيسي */
+#submit-btn{width:100%;padding:1.1rem var(--space-lg);font-size:1.125rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--success) 0%,#059669 100%);border:none;border-radius:var(--radius-lg);cursor:pointer;transition:all var(--transition-normal);box-shadow:0 8px 20px rgba(16,185,129,.4);margin-top:var(--space-md);position:relative;overflow:hidden}
+
+#submit-btn::after{content:'';position:absolute;top:-50%;right:-50%;bottom:-50%;left:-50%;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.3),rgba(255,255,255,0));transform:rotate(45deg) translateX(-200%);transition:transform .6s}
+
+#submit-btn:hover::after{transform:rotate(45deg) translateX(200%)}
+
+#submit-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(16,185,129,.5)}
+
+#submit-btn:active{transform:translateY(-1px)}
+
+#submit-btn:disabled{opacity:.7;cursor:not-allowed;transform:none}
+
+/* رسائل التحميل */
+.loader-container{text-align:center;padding:var(--space-xl) var(--space-md)}
+
+.loader{border:5px solid var(--gray-200);border-top:5px solid var(--primary);border-radius:50%;width:60px;height:60px;animation:spin .8s linear infinite;margin:var(--space-md) auto}
+
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+.loader-text{color:var(--gray-600);font-weight:600;margin-top:var(--space-sm);animation:pulse 1.5s ease infinite}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* Responsive للشاشات الصغيرة */
+@media (max-width:768px){
+  .hero-section{padding:var(--space-xl) var(--space-md)}
+  .site-title{font-size:1.25rem}
+}
+
+@media (max-width:640px){
+  .hero-section h1{font-size:1.75rem}
+  #tiktok-url{font-size:16px;padding:1rem 1rem 1rem 50px}
+  body.rtl #tiktok-url{padding:1rem 50px 1rem 1rem}
+}</style>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//fonts.gstatic.com' />
+<link rel='preconnect' href='https://fonts.googleapis.com' />
+<link rel='preconnect' href='https://fonts.gstatic.com' />
+<meta name="description" content="برنامج تنزيل فيديوهات مجاني على الإنترنت من تيك توك، يوتيوب، إنستجرام وفيسبوك. حمّل فيديوهات بجودة عالية بدون علامة مائية. سريع، آمن وسهل الاستخدام.">
+<meta property="og:title" content="فيدسيف - تحميل الفيديوهات من جميع المنصات">
+<meta property="og:description" content="حمّل فيديوهات عالية الجودة من تيك توك، يوتيوب، إنستجرام وفيسبوك بدون علامة مائية. برنامج تنزيل فيديوهات مجاني، سريع وآمن.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar">
+<meta property="og:url" content="https://thevidsave.com/ar/">
+<meta property="og:site_name" content="VidSave">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="فيدسيف - برنامج تنزيل الفيديوهات المجاني">
+<meta name="twitter:description" content="احفظ الفيديوهات من تيك توك، يوتيوب، إنستجرام وفيسبوك بجودة HD بدون علامة مائية. مجاني 100% وسهل الاستخدام.">
+<link rel="canonical" href="https://thevidsave.com/ar/">
+<link rel="alternate" hreflang="en" href="https://thevidsave.com/en/">
+<link rel="alternate" hreflang="ar" href="https://thevidsave.com/ar/">
+<link rel="alternate" hreflang="es" href="https://thevidsave.com/es/">
+<link rel="alternate" hreflang="fr" href="https://thevidsave.com/fr/">
+<link rel="alternate" hreflang="de" href="https://thevidsave.com/de/">
+<link rel="alternate" hreflang="pt" href="https://thevidsave.com/pt/">
+<link rel="alternate" hreflang="ru" href="https://thevidsave.com/ru/">
+<link rel="alternate" hreflang="ja" href="https://thevidsave.com/ja/">
+<link rel="alternate" hreflang="zh-CN" href="https://thevidsave.com/zh-CN/">
+<link rel="alternate" hreflang="hi" href="https://thevidsave.com/hi/">
+<link rel="alternate" hreflang="tr" href="https://thevidsave.com/tr/">
+<link rel="alternate" hreflang="x-default" href="https://thevidsave.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"فيدسيف - برنامج تنزيل الفيديوهات المجاني من تيك توك، يوتيوب، إنستجرام وفيسبوك","description":"برنامج تنزيل فيديوهات مجاني على الإنترنت من تيك توك، يوتيوب، إنستجرام وفيسبوك. حمّل فيديوهات بجودة عالية بدون علامة مائية. سريع، آمن وسهل الاستخدام.","url":"https://thevidsave.com/ar/","applicationCategory":"MultimediaApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"15420"}}</script>
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+
+<link rel='stylesheet' id='wp-block-library-css' href='https://thevidsave.com/wp-includes/css/dist/block-library/style.min.css?ver=6.9' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<link rel='stylesheet' id='thevidsave-pro-style-css' href='https://thevidsave.com/wp-content/themes/thevidsave-modern-theme-4-10/style.css?ver=1765291532' type='text/css' media='all' />
+<link rel='stylesheet' id='thevidsave-main-css-css' href='https://thevidsave.com/wp-content/themes/thevidsave-modern-theme-4-10/css/main.min.css?ver=1766248529' type='text/css' media='all' />
+<script type="text/javascript" defer src="https://thevidsave.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" defer src="https://thevidsave.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+<!-- Google Analytics snippet added by Site Kit -->
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=GT-K46PTTHH" id="google_gtagjs-js" async></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+/* <![CDATA[ */
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["thevidsave.com"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-K46PTTHH");
+ window._googlesitekit = window._googlesitekit || {}; window._googlesitekit.throttledEvents = []; window._googlesitekit.gtagEvent = (name, data) => { var key = JSON.stringify( { name, data } ); if ( !! window._googlesitekit.throttledEvents[ key ] ) { return; } window._googlesitekit.throttledEvents[ key ] = true; setTimeout( () => { delete window._googlesitekit.throttledEvents[ key ]; }, 5 ); gtag( "event", name, { ...data, event_source: "site-kit" } ); }; 
+//# sourceURL=google_gtagjs-js-after
+/* ]]> */
+</script>
+<link rel="https://api.w.org/" href="https://thevidsave.com/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://thevidsave.com/xmlrpc.php?rsd" />
+<meta name="generator" content="Site Kit by Google 1.168.0" />		<script type="text/javascript">
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;
+					t.src="https://www.clarity.ms/tag/"+i+"?ref=wordpress";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", "un3bfoq9nb");
+		</script>
+					<meta name="monetag" content="099d9e04ce117fdf2989f17c155f17f9" />
+			<link rel="icon" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png" sizes="32x32" />
+<link rel="icon" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png" />
+<meta name="msapplication-TileImage" content="https://omartamer.netlify.app/صورة زعيم البرمجة.png" />
+    
+    <!-- Optimized Critical CSS -->
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6;overflow-x:hidden}
+        
+        /* Header - Optimized */
+        .site-header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:1rem 0;box-shadow:0 4px 20px rgba(102,126,234,.25);position:sticky;top:0;z-index:1000;transition:padding .2s;backdrop-filter:blur(10px);will-change:transform}
+        .site-header.scrolled{padding:.75rem 0;box-shadow:0 8px 32px rgba(102,126,234,.35)}
+        .header-container{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+        
+        /* Logo */
+        .site-branding{display:flex;align-items:center;z-index:1001;transition:opacity .3s,visibility .3s;order:-1}
+        .site-title{display:flex;align-items:center;gap:.75rem;color:white;text-decoration:none;font-size:1.25rem;font-weight:800;transition:transform .2s;letter-spacing:-.01em}
+        .site-title:hover{transform:scale(1.05)}
+        .site-logo{height:40px;width:40px;border-radius:10px;transition:transform .3s}
+        .site-title:hover .site-logo{transform:rotate(360deg)}
+        
+        @media (max-width:768px){
+            body.menu-open .site-branding{opacity:0;visibility:hidden;pointer-events:none}
+        }
+        
+        /* Mobile Menu */
+        .primary-navigation{display:none;position:fixed;top:0;right:0;width:320px;max-width:85%;height:100vh;background:white;z-index:999;transform:translateX(100%);transition:transform .3s cubic-bezier(.68,-.55,.265,1.55);overflow-y:auto}
+        .primary-navigation.is-open{display:block;transform:translateX(0)}
+        
+        .menu-header{padding:1.5rem;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.1);min-height:72px}
+        .menu-title{font-size:1.25rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem}
+        .menu-title::before{content:'☰';font-size:1.5rem}
+        
+        .nav-menu{list-style:none;padding:1.5rem 1rem}
+        .nav-menu li{margin-bottom:.25rem}
+        .nav-menu a{display:flex;align-items:center;gap:.75rem;padding:1rem 1.25rem;color:#1e293b;text-decoration:none;border-radius:12px;transition:all .2s;font-weight:600;font-size:1rem;position:relative;overflow:hidden}
+        .nav-menu a::before{content:'→';font-size:1.2rem;color:#667eea;transition:transform .2s}
+        .nav-menu a:hover{background:linear-gradient(135deg,#f0f4ff 0%,#f8f9ff 100%);color:#667eea;transform:translateX(8px);box-shadow:0 4px 12px rgba(102,126,234,.15)}
+        .nav-menu a:hover::before{transform:translateX(5px)}
+        .nav-menu a.active{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white}
+        .nav-menu a.active::before{color:white}
+        
+        .menu-footer{padding:1.5rem;border-top:2px solid #f1f5f9;margin-top:auto}
+        .menu-footer-text{font-size:.875rem;color:#64748b;text-align:center;margin:0}
+        
+        /* Hamburger */
+        .mobile-menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.3);border-radius:12px;color:white;cursor:pointer;transition:all .2s;z-index:1001;backdrop-filter:blur(10px);order:1}
+        .mobile-menu-toggle:hover{background:rgba(255,255,255,.3);transform:scale(1.1);box-shadow:0 4px 12px rgba(255,255,255,.2)}
+        .mobile-menu-toggle:active{transform:scale(.95)}
+        
+        .hamburger{width:24px;height:18px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+        .hamburger span{display:block;width:100%;height:3px;background:white;border-radius:3px;transition:all .2s}
+        .mobile-menu-toggle.active .hamburger span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+        .mobile-menu-toggle.active .hamburger span:nth-child(2){opacity:0;transform:translateX(20px)}
+        .mobile-menu-toggle.active .hamburger span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+        
+        /* Overlay */
+        .menu-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(102,126,234,.3);backdrop-filter:blur(4px);z-index:998;opacity:0;transition:opacity .2s}
+        .menu-overlay.active{display:block;opacity:1}
+        
+        /* RTL Support */
+        body.rtl .primary-navigation{right:auto;left:0;transform:translateX(-100%)}
+        body.rtl .primary-navigation.is-open{transform:translateX(0)}
+        body.rtl .nav-menu a::before{content:'←'}
+        body.rtl .nav-menu a:hover{transform:translateX(-8px)}
+        body.rtl .nav-menu a:hover::before{transform:translateX(-5px)}
+        body.rtl .menu-title{text-align:right}
+        body.rtl .nav-menu a{flex-direction:row-reverse;text-align:right}
+        body.rtl .skip-link{left:auto;right:0;border-radius:0 0 0 12px}
+        
+        /* Desktop */
+        @media (min-width:769px){
+            .mobile-menu-toggle{display:none}
+            .primary-navigation{display:block;position:static;width:auto;max-width:none;height:auto;background:transparent;box-shadow:none;transform:none}
+            body.rtl .primary-navigation{transform:none}
+            .menu-header,.menu-footer{display:none}
+            .nav-menu{display:flex;gap:.5rem;padding:0}
+            .nav-menu li{margin:0}
+            .nav-menu a{color:white;padding:.65rem 1.25rem;font-size:.95rem;background:transparent;flex-direction:row}
+            .nav-menu a::before{display:none}
+            .nav-menu a:hover{background:rgba(255,255,255,.2);color:white;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+            body.rtl .nav-menu a:hover{transform:translateY(-2px)}
+            .nav-menu a.active{background:rgba(255,255,255,.25);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+            body.menu-open .site-branding{opacity:1;visibility:visible;pointer-events:auto}
+        }
+        
+        /* Skip Link */
+        .skip-link{position:absolute;top:-100px;left:0;background:#667eea;color:white;padding:12px 20px;text-decoration:none;border-radius:0 0 12px 0;z-index:2000;transition:top .2s;font-weight:600;box-shadow:0 4px 12px rgba(102,126,234,.4)}
+        .skip-link:focus{top:0}
+        
+        body.menu-open{overflow:hidden}
+        *{-webkit-tap-highlight-color:transparent}
+    </style>
+    
+    <script>
+        document.documentElement.className=document.documentElement.className.replace('no-js','js');
+    </script>
+</head>
+
+<body class="home blog wp-custom-logo wp-theme-thevidsave-modern-theme-4-10 rtl">
+
+<a class="skip-link" href="#primary">تخطى إلى المحتوى</a>
+
+<div class="menu-overlay" id="menu-overlay"></div>
+
+<header class="site-header" role="banner">
+    <div class="header-container">
+        
+        <div class="site-branding">
+                        
+            <a href="https://thevidsave.com/ar/" class="site-title" rel="home">
+                <img src="https://omartamer.netlify.app/صورة زعيم البرمجة.png" alt="شعار" class="site-logo" width="40" height="40" loading="eager">
+                <span>Programming_Leader:Video</span>
+            </a>
+        </div>
+        
+        <nav id="primary-navigation" class="primary-navigation" role="navigation" aria-label="القائمة الرئيسية">
+            
+            <div class="menu-header">
+                <h2 class="menu-title">القائمة</h2>
+            </div>
+            
+            
+                            
+            <div class="menu-footer">
+                <p class="menu-footer-text">&copy; حقوق النشر © 2025، جميع الحقوق محفوظة لـ omartamer</p>
+            </div>
+        </nav>
+        
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="القائمة" aria-expanded="false">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        
+    </div>
+</header>
+
+<main id="primary" class="site-main" role="main">
+
+<script>
+(function(){
+    'use strict';
+    const t=document.getElementById('mobile-menu-toggle'),
+          m=document.getElementById('primary-navigation'),
+          o=document.getElementById('menu-overlay'),
+          b=document.body,
+          h=document.querySelector('.site-header');
+    
+    function open(){m.classList.add('is-open');o.classList.add('active');b.classList.add('menu-open');t.classList.add('active');t.setAttribute('aria-expanded','true')}
+    function close(){m.classList.remove('is-open');o.classList.remove('active');b.classList.remove('menu-open');t.classList.remove('active');t.setAttribute('aria-expanded','false')}
+    
+    if(t)t.addEventListener('click',()=>m.classList.contains('is-open')?close():open());
+    if(o)o.addEventListener('click',close);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m.classList.contains('is-open'))close()});
+    m.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{if(window.innerWidth<=768)close()}));
+    
+    let s=0;
+    window.addEventListener('scroll',()=>{const c=window.pageYOffset;h.classList.toggle('scrolled',c>50);s=c},{passive:true});
+})();
+</script>
+<section class="hero-section" aria-label="أداة تحميل الفيديو">
+  <div class="container">
+    <h1>
+      تنزيل الفيديوهات والأغاني من أي موقع: حفظ بجودة عالية مجانًا    </h1>
+
+    <p class="intro">
+      أداة مجانية لتحميل الفيديوهات من تيك توك، يوتيوب، إنستغرام، وفيسبوك. تحميل فيديوهات MP4 بجودة HD بدون علامة مائية، بسرعة وأمان.    </p>
+
+    <p class="slogan">
+      جودة عالية، بدون علامة مائية، تحميل سريع ومجاني من جميع المنصات الكبرى.    </p>
+
+    <form id="tiktok-form" action="" method="POST">
+      <input type="hidden" id="thevidsave_nonce" name="thevidsave_nonce" value="d5e4e2d23b" /><input type="hidden" name="_wp_http_referer" value="/ar/" />      
+      <div class="input-wrapper">
+        <label for="tiktok-url" class="sr-only">
+          الصق رابط  هنا... (Programming_Leader)      </label>
+        <input
+          type="url"
+          id="tiktok-url"
+          name="video_url"
+          placeholder="الصق رابط  هنا... (Programming_Leader) "
+          required
+          autocomplete="off"
+          aria-label="الصق رابط  هنا... (Programming_Leader)  ;"
+        >
+      </div>
+
+      <button 
+        type="button" 
+        class="paste-btn" 
+        id="paste-btn"
+        aria-label="لصق من الحافظة"
+      >
+        لصق      </button>
+
+      <button type="submit" id="submit-btn" aria-label="تحميل">
+        <span class="btn-text">
+          تحميل        </span>
+      </button>
+    </form>
+
+    <div id="result-container" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</section>
+
+
+
+
+<section class="features-section" aria-labelledby="features-title">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="features-title">لماذا تختارنا</h2>
+      <p>ندعم جميع المنصات الشهيرة مع تحميل سريع ونظيف.</p>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature-item">
+        <div class="feature-icon" aria-hidden="true">⭐</div>
+        <h3>دعم متعدد المنصات</h3>
+        <p>تحميل من تيك توك، يوتيوب، إنستغرام، وفيسبوك بسهولة.</p>
+      </article>
+
+      <article class="feature-item">
+        <div class="feature-icon" aria-hidden="true">🚫</div>
+        <h3>بدون علامة مائية</h3>
+        <p>الحصول على فيديوهات نظيفة بدون أي علامة مائية.</p>
+      </article>
+
+      <article class="feature-item">
+        <div class="feature-icon" aria-hidden="true">⚡</div>
+        <h3>سريع ومجاني</h3>
+        <p>تحميل فائق السرعة وبدون أي تكلفة.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="how-to-section" aria-labelledby="howto-title">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="howto-title">التحميل بثلاث خطوات بسيطة</h2>
+    </div>
+
+    <div class="steps-grid">
+      <article class="step-item">
+        <div class="step-number" aria-hidden="true">1</div>
+        <h3>انسخ رابط الفيديو</h3>
+        <p>من تطبيق أو موقع تيك توك، يوتيوب، إنستغرام، أو فيسبوك.</p>
+      </article>
+
+      <article class="step-item">
+        <div class="step-number" aria-hidden="true">2</div>
+        <h3>الصق الرابط</h3>
+        <p>ضع الرابط المنسوخ في المربع أعلاه.</p>
+      </article>
+
+      <article class="step-item">
+        <div class="step-number" aria-hidden="true">3</div>
+        <h3>ابدأ التحميل فوراً</h3>
+        <p>اضغط الزر لتحميل الفيديو بدون علامة مائية بصيغة MP4 HD.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="platform-section" aria-labelledby="platforms-title">
+  <div class="container">
+    <h2 id="platforms-title" class="platform-title">
+      المنصات المدعومة    </h2>
+
+    <div class="platform-links">
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات تيك توك (بدون علامة مائية)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg"
+          alt="TikTok" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات تيك توك (بدون علامة مائية)</span>
+      </a>
+
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات يوتيوب (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg"
+          alt="YouTube" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات يوتيوب (MP4، HD)</span>
+      </a>
+
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل ريلز إنستغرام (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg"
+          alt="Instagram" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل ريلز إنستغرام (MP4، HD)</span>
+      </a>
+
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات فيسبوك (HD، بدون علامة مائية)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg"
+          alt="Facebook" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات فيسبوك (HD، بدون علامة مائية)</span>
+      </a>
+  <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات بينتريست (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pinterest.svg"
+          alt="Pinterest" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات بينتريست (MP4، HD)</span>
+      </a>
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات 9GAG (بدون علامة مائية)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/9gag.svg"
+          alt="9GAG" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات 9GAG (بدون علامة مائية)</span>
+      </a>
+
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات ريديت (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/reddit.svg"
+          alt="Reddit" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات ريديت (MP4، HD)</span>
+      </a>
+
+    
+<a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات تيليجرام (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/telegram.svg"
+          alt="Telegram" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات تيليجرام (MP4، HD)</span>
+      </a>
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات ثريدز (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/threads.svg"
+          alt="Threads" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات ثريدز (MP4، HD)</span>
+      </a>
+
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات تويتر (X) (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg"
+          alt="Twitter (X)" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات تويتر (X) (MP4، HD)</span>
+      </a>
+
+      <a 
+        href="#"
+        class="platform-box"
+        aria-label="تحميل فيديوهات سناب شات (MP4، HD)"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/snapchat.svg"
+          alt="Snapchat" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>تحميل فيديوهات سناب شات (MP4، HD)</span>
+      </a>
+
+      
+
+      <a 
+        href="https://omartamer.netlify.app"
+        class="platform-box"
+        aria-label="زعيم البرمجة"
+      >
+        <img 
+          loading="lazy" 
+          decoding="async"
+          src="https://omartamer.netlify.app/صورة زعيم البرمجة.png"
+          alt="Dailymotion" 
+          class="icon"
+          width="48"
+          height="48"
+        >
+        <span>زعيم البرمجة</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+          </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "كيف أحمل فيديو تيك توك بدون علامة مائية مجاناً؟","acceptedAnswer": {"@type": "Answer","text": "لتحميل فيديو تيك توك بدون علامة مائية، اتبع هذه الخطوات البسيطة: أولاً، افتح تطبيق تيك توك وابحث عن الفيديو الذي تريد تنزيله. ثانياً، اضغط على زر المشاركة وانسخ رابط الفيديو. ثالثاً، افتح موقع فيدسيف والصق رابط تيك توك في مربع البحث أعلاه. رابعاً، اضغط على زر &#039;تحميل&#039; وانتظر بضع ثوان. سيقوم برنامج تحميل فيديو تيك توك بتحليل الرابط وإزالة العلامة المائية تلقائياً. أخيراً، اختر جودة الفيديو HD أو Full HD واضغط تنزيل. يمكنك تحميل فيديو تيك توك بدون علامة مائية مجاناً بصيغة MP4 على جهازك أو هاتفك بسرعة عالية."}},{"@type": "Question","name": "هل أستطيع تحميل فيديو يوتيوب بصيغة MP4 HD ومجاناً؟","acceptedAnswer": {"@type": "Answer","text": "نعم بالتأكيد! يمكنك تحميل فيديو يوتيوب بصيغة MP4 بجودة HD وحتى Full HD 1080p بسهولة تامة ومجاناً. فقط انسخ رابط فيديو يوتيوب من المتصفح أو التطبيق، ثم الصق الرابط في مربع البحث أعلاه واضغط على زر التحميل. سيقوم برنامج تنزيل فيديو يوتيوب بتحليل الفيديو وعرض جميع خيارات الجودة المتاحة. يمكنك اختيار تحميل فيديو يوتيوب بجودة 720p HD، 1080p Full HD، أو حتى 4K حسب جودة الفيديو الأصلي. عملية تنزيل فيديو يوتيوب سريعة جداً وآمنة تماماً ولا تتطلب تسجيل دخول أو تثبيت برامج. يدعم موقعنا تحميل فيديو يوتيوب بصيغة MP4 القياسية المتوافقة مع جميع الأجهزة والهواتف."}},{"@type": "Question","name": "هل يدعم فيدسيف تحميل ريلز إنستغرام وفيديوهات؟","acceptedAnswer": {"@type": "Answer","text": "نعم! فيدسيف يدعم تحميل ريلز إنستغرام وجميع أنواع الفيديوهات من إنستغرام بجودة عالية وبدون علامة مائية. يمكنك تنزيل فيديو من إنستغرام سواء كان ريلز أو فيديو عادي أو قصة ستوري أو IGTV بكل سهولة. لتحميل ريلز إنستغرام، انسخ رابط الريل من تطبيق إنستغرام، ثم الصقه في مربع البحث أعلاه واضغط تحميل. سيتم تنزيل فيديو إنستغرام بصيغة MP4 بجودة HD الأصلية خلال ثوانٍ معدودة. برنامج تحميل فيديو إنستغرام الخاص بنا سريع وآمن ومجاني تماماً بدون قيود. يمكنك أيضاً تحميل فيديو من إنستغرام بدون تسجيل دخول أو تثبيت أي برامج."}},{"@type": "Question","name": "هل أستطيع تحميل فيديو فيسبوك بدون علامة مائية وبجودة HD؟","acceptedAnswer": {"@type": "Answer","text": "بالطبع! يمكنك تحميل فيديو فيسبوك بدون علامة مائية وبجودة HD عالية بسهولة تامة. انسخ رابط فيديو فيسبوك من الموقع أو التطبيق، والصقه في مربع البحث الخاص بنا، واضغط على زر التحميل. سيقوم برنامج تنزيل فيديو فيسبوك بمعالجة الرابط وتوفير خيارات التحميل بجودات مختلفة. يمكنك تحميل فيديو فيسبوك بجودة HD أو SD حسب جودة الفيديو الأصلي والمتاح. عملية تنزيل فيديو فيسبوك آمنة تماماً ولا تتطلب تسجيل دخول في حسابك. يدعم موقعنا تحميل فيديو فيسبوك من المنشورات العامة والصفحات والمجموعات. كما يمكنك تنزيل فيديو فيسبوك Watch وفيديوهات Facebook Live بعد انتهاء البث المباشر بصيغة MP4."}},{"@type": "Question","name": "هل فيدسيف مجاني وآمن للاستخدام بدون قيود؟","acceptedAnswer": {"@type": "Answer","text": "نعم، فيدسيف مجاني 100% وآمن تماماً للاستخدام بدون أي قيود. برنامج تحميل الفيديو الخاص بنا لا يتطلب أي اشتراكات أو رسوم أو تسجيل حساب. يمكنك تنزيل فيديو تيك توك، تحميل فيديو يوتيوب، تنزيل ريلز إنستغرام، وتحميل فيديو فيسبوك مجاناً بدون حدود على عدد التحميلات أو حجم الملفات. نحن نحترم خصوصيتك ولا نحتفظ بأي بيانات شخصية أو روابط الفيديوهات التي تحملها. الموقع محمي بتشفير SSL الآمن ولا يحتوي على فيروسات أو برمجيات خبيثة. جميع عمليات تحميل الفيديو تتم مباشرة من خوادم المنصات الأصلية. فيدسيف هو أفضل برنامج تحميل فيديو آمن وموثوق للاستخدام على جميع الأجهزة والمتصفحات."}}  ]
+}
+</script>
+
+
+
+<div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+(function() {
+  'use strict';
+  
+  // ============================================
+  // 1. نظام الإشعارات (Toast Notification)
+  // ============================================
+  function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container') || document.body;
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+      <div class="toast-icon"></div>
+      <div class="toast-message">${message}</div>
+    `;
+    
+    container.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 10);
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    }, 3000);
+  }
+  
+  // ============================================
+  // 2. شكل التحميل (Skeleton Loading)
+  // ============================================
+  function showSkeletonLoading() {
+    return `
+      <div class="skeleton-video">
+        <div class="skeleton skeleton-thumb"></div>
+        <div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text short"></div>
+          <div class="skeleton-buttons">
+            <div class="skeleton skeleton-button"></div>
+            <div class="skeleton skeleton-button"></div>
+            <div class="skeleton skeleton-button"></div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // ============================================
+  // 3. كود زر اللصق (Paste)
+  // ============================================
+  const pasteBtn = document.getElementById('paste-btn');
+  const urlInput = document.getElementById('tiktok-url');
+  
+  if (pasteBtn && urlInput) {
+    pasteBtn.addEventListener('click', async function() {
+      try {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          const text = await navigator.clipboard.readText();
+          if (text && text.trim()) {
+            urlInput.value = text.trim();
+            showToast('Pasted from clipboard!', 'success');
+            urlInput.focus();
+          } else {
+            showToast('Clipboard is empty.', 'error');
+          }
+        } else {
+          throw new Error('Clipboard API not supported');
+        }
+      } catch (error) {
+        // Fallback للمتصفحات القديمة
+        const fallback = prompt('ألصق الرابط هنا:');
+        if (fallback && fallback.trim()) {
+          urlInput.value = fallback.trim();
+          showToast('Link pasted successfully!', 'success');
+        }
+      }
+    });
+  }
+  
+  // ============================================
+  // 4. كود إرسال النموذج (Submit) مع تحسين INP
+  // ============================================
+  const form = document.getElementById('tiktok-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const resultContainer = document.getElementById('result-container');
+  
+  if (form && submitBtn && resultContainer) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const url = urlInput.value.trim();
+      
+      if (!url) {
+        showToast('Please enter a video URL first.', 'error');
+        return;
+      }
+      
+      // ✅ تحسين INP: استجابة بصرية فورية
+      requestAnimationFrame(() => {
+          submitBtn.disabled = true;
+          const btnText = submitBtn.querySelector('.btn-text');
+          // حفظ النص الأصلي لاستعادته لاحقاً
+          if (!submitBtn.dataset.originalText) {
+              submitBtn.dataset.originalText = btnText.textContent;
+          }
+          btnText.textContent = 'جارٍ المعالجة...';
+          // عرض Skeleton فوراً
+          resultContainer.innerHTML = showSkeletonLoading();
+      });
+
+      // ✅ تأخير بسيط للسماح للمتصفح برسم التغييرات قبل بدء الـ Fetch الثقيل
+      await new Promise(resolve => setTimeout(resolve, 0));
+      
+      try {
+        const formData = new FormData();
+        formData.append('action', 'download_video');
+        formData.append('video_url', url);
+        
+        // استخدام Nonce و URL من PHP مباشرة لضمان العمل
+        const ajaxUrl = 'https://thevidsave.com/wp-admin/admin-ajax.php';
+        const nonce = 'd5e4e2d23b';
+        formData.append('nonce', nonce);
+        
+        const response = await fetch(ajaxUrl, {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+          displayVideoResult(data.data);
+        } else {
+          throw new Error(data.data?.message || 'An unexpected error occurred.');
+        }
+      } catch (error) {
+        resultContainer.innerHTML = `
+          <div class="error-message">
+            ${error.message || 'An unexpected error occurred.'}
+          </div>
+        `;
+        showToast(error.message, 'error');
+      } finally {
+        // إعادة تفعيل الزر
+        submitBtn.disabled = false;
+        if (submitBtn.dataset.originalText) {
+            submitBtn.querySelector('.btn-text').textContent = submitBtn.dataset.originalText;
+        }
+      }
+    });
+  }
+  
+  // ============================================
+  // 5. عرض النتائج (Display Result)
+  // ============================================
+function displayVideoResult(data) {
+    let html = `
+      <div class="video-info-new">
+        <div class="video-thumbnail">
+          <img 
+            src="${data.cover || data.origin_cover || ''}" 
+            alt="${data.title || 'Video thumbnail'}"
+            loading="lazy"
+          >
+          ${data.durationFormatted ? `<span class="video-duration">${data.durationFormatted}</span>` : ''}
+          <span class="quality-badge">HD</span>
+        </div>
+        
+        <div class="video-details">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <h3 class="video-title-new" style="margin:0;flex:1;min-width:0">${data.title || 'Downloaded Video'}</h3>
+            ${data.title ? `<button onclick="navigator.clipboard.writeText('${(data.title || '').replace(/'/g, "\\'")}').then(()=>{this.textContent='✅';setTimeout(()=>this.textContent='📋',2000)})" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:4px;opacity:.7;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7" title="Copy caption">📋</button>` : ''}
+          </div>
+          
+          <div class="download-buttons-new">
+    `;
+    
+    // إضافة أزرار التحميل
+    if (data.download_links && data.download_links.length > 0) {
+      data.download_links.forEach(link => {
+        const isWatermark = link.quality?.toLowerCase().includes('watermark');
+        const ajaxUrl = 'https://thevidsave.com/wp-admin/admin-ajax.php';
+        const proxyUrl = `${ajaxUrl}?action=proxy_download&url=${encodeURIComponent(link.url)}&filename=${encodeURIComponent(data.title || 'video')}.${link.type === 'audio' ? 'mp3' : 'mp4'}`;
+        
+        html += `
+          <a 
+            href="${proxyUrl}" 
+            class="download-link-new ${isWatermark ? 'watermark' : ''}"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ${link.quality || 'Download'}
+          </a>
+        `;
+      });
+    }
+    
+    html += `
+          </div>
+        </div>
+      </div>
+    `;
+    
+    resultContainer.innerHTML = html;
+    
+    // Smooth scroll للنتيجة
+    resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  
+  // ============================================
+  // 6. الأسئلة الشائعة (FAQ)
+  // ============================================
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      const answer = this.nextElementSibling;
+      
+      // تبديل الحالة
+      this.setAttribute('aria-expanded', !expanded);
+      answer.hidden = expanded;
+      
+      // إضافة/إزالة class للأنيميشن
+      if (!expanded) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      } else {
+        answer.style.maxHeight = '0';
+      }
+    });
+  });
+  
+  // ============================================
+  // 7. الهيدر المثبت (Sticky Header)
+  // ============================================
+  const header = document.querySelector('.site-header');
+  if (header) {
+    window.addEventListener('scroll', function() {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
+  
+})();
+</script>
+
+
+</main><!-- #primary -->
+
+<!-- Footer -->
+<footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
+    <div class="container">
+        
+        <!-- Footer Content Grid -->
+        <div class="footer-content">
+            
+            <!-- About Section -->
+            <div class="footer-section footer-about">
+                <h3>عن الموقع</h3>
+                <p>
+                    مرحباً، أنا زعيم البرمجة، اسمي عمر تامر. اشتركوا في قناتي على يوتيوب.
+              </p>
+                
+                <!-- Social Links -->
+                <div class="social-links" role="navigation" aria-label="روابط التواصل الاجتماعي">
+                    <a href="https://www.facebook.com/Programming.Leader" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://x.com/omarta89068" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/omartameradel2025/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@omartameradel" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-section footer-links">
+                <h3>روابط سريعة</h3>
+                <ul role="list">
+                    <li><a href="https://omartamer.netlify.app/">الرئيسية</a></li>
+                    <li><a href="https://omartamer.netlify.app/contact">اتصل بنا</a></li>
+                </ul>
+            </div>
+            
+            <!-- Supported Platforms -->
+
+            
+            <!-- Legal + Language Switcher -->
+            
+                
+                <!-- Language Switcher -->
+                <div class="language-selector">
+                    <label for="footer-lang-select">
+                        <span class="lang-icon">🌐</span>
+                        اللغة                    </label>
+                    <select id="footer-lang-select" 
+                            aria-label="اختر اللغة"
+                            onchange="window.location.href=this.value">
+                                                    <option value="https://thevidsave.com/" >
+                                🇺🇸 English                            </option>
+                                   
+                                                    <option value="https://thevidsave.com/ar/" selected>
+                                🇸🇦 العربية                            </option>
+                               
+                                            </select>
+                </div>
+            </div>
+            
+        </div><!-- .footer-content -->
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p class="copyright">
+                    
+                    <span itemprop="copyrightHolder"></span>. 
+                    <p> omartameradel2025 ©2025</p>
+                </p>
+                
+                <!-- Back to Top Button -->
+                <button id="back-to-top" 
+                        class="back-to-top" 
+                        aria-label="العودة للأعلى"
+                        title="العودة للأعلى">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div><!-- .footer-bottom -->
+        
+    </div><!-- .container -->
+</footer><!-- #colophon -->
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/thevidsave-modern-theme-4-10/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="module"  src="https://thevidsave.com/wp-content/plugins/all-in-one-seo-pack/dist/Lite/assets/table-of-contents.95d0dfce.js?ver=4.9.2" id="aioseo/js/src/vue/standalone/blocks/table-of-contents/frontend.js-js"></script>
+<script type="text/javascript" id="thevidsave-pro-main-js-js-extra">
+/* <![CDATA[ */
+var app_data = {"ajax_url":"https://thevidsave.com/wp-admin/admin-ajax.php","home_url":"https://thevidsave.com/","nonce":"2d7c6ab2e2","i18n":{"enter_video_url":"Please enter a video URL first.","download_without_wm":"Download without watermark","download_with_wm":"Download with watermark","long_response":"The server took too long to respond. Please try again later.","unexpected_error":"An unexpected error occurred. Please check the link and try again.","likes":"Likes","comments":"Comments","shares":"Shares","preparing_download":"Preparing Download...","pasted_from_clipboard":"Pasted from clipboard!","clipboard_empty":"Clipboard is empty.","paste_failed":"Could not paste. Please paste manually.","paste_unsupported":"Paste feature not supported."}};
+//# sourceURL=thevidsave-pro-main-js-js-extra
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://thevidsave.com/wp-content/themes/thevidsave-modern-theme-4-10/assets/js/main.js?ver=1766248617" id="thevidsave-pro-main-js-js"></script>
+
+<!-- Enhanced Footer Scripts -->
+<script>
+(function() {
+    'use strict';
+    
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }, { passive: true });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // External Links
+    const externalLinks = document.querySelectorAll('a[href^="http"]');
+    externalLinks.forEach(link => {
+        if (!link.href.includes(window.location.hostname)) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Language Switcher Animation
+    const langSelect = document.getElementById('footer-lang-select');
+    if (langSelect) {
+        langSelect.addEventListener('change', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+        });
+    }
+    
+})();
+</script>
+
+<!-- Inline Footer Styles -->
+<style>
+/* Footer Critical Styles */
+.site-footer {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: white;
+    padding: 3rem 0 2rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #10b981);
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-section a {
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.footer-section a:hover {
+    color: #667eea;
+    transform: translateX(5px);
+}
+
+body.rtl .footer-section a:hover {
+    transform: translateX(-5px);
+}
+
+.footer-section p {
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateX(0);
+}
+
+.social-links a:hover {
+    background: #667eea;
+    transform: translateY(-5px) rotate(5deg) translateX(0);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Language Selector - FIXED */
+.language-selector {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.language-selector label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: white;
+}
+
+.lang-icon {
+    font-size: 1.2rem;
+}
+
+.language-selector select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    color: white !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+body.rtl .language-selector select {
+    background-position: left 1rem center;
+    padding-right: 1rem;
+    padding-left: 2.5rem;
+}
+
+.language-selector select:hover {
+    background-color: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.language-selector select option {
+    background: #1a202c;
+    color: white;
+    padding: 0.75rem;
+    font-weight: 600;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 2rem;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.copyright {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 99;
+}
+
+body.rtl .back-to-top {
+    right: auto;
+    left: 30px;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 12px 28px rgba(102, 126, 234, 0.5);
+}
+
+.back-to-top:active {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-bottom-content {
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+    
+    .footer-section a:hover {
+        transform: none;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    body.rtl .back-to-top {
+        right: auto;
+        left: 20px;
+    }
+    
+    .language-selector {
+        text-align: left;
+    }
+    
+    body.rtl .language-selector {
+        text-align: right;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .site-footer,
+    .back-to-top,
+    .social-links,
+    .language-selector {
+        display: none;
+    }
+}
+
+window.addEventListener('load', function() {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GT-K46PTTTH');
+});
+</style>
+
+<!-- PWA Service Worker -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('✅ PWA Ready'))
+      .catch(err => console.log('SW Error:', err));
+  });
+}
+
+// PWA Install Prompt
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  
+  const installBtn = document.createElement('button');
+  installBtn.innerHTML = '📲 أضف للشاشة';
+  installBtn.style.cssText = 'position:fixed;bottom:90px;left:30px;padding:12px 20px;background:#667eea;color:#fff;border:none;border-radius:50px;cursor:pointer;z-index:98;font-weight:600;box-shadow:0 4px 15px rgba(102,126,234,0.4)';
+  
+  installBtn.onclick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.remove();
+    }
+  };
+  
+  document.body.appendChild(installBtn);
+});
+</script>
+
+</body>
+</html>
+
+<!-- Page cached by LiteSpeed Cache 7.7 on 2025-12-20 16:36:57 -->
