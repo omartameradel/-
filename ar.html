@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التقييمات
+الصف الثاني الإعدادي</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+
+        :root {
+            --main-color: #ff4d4d;
+            --bg-dark: #0f0f0f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
+        }
+
+        /* Navbar */
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .logo span { color: var(--main-color); }
+
+        /* Main Auth Section */
+        .auth-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 40px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .intro-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--main-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Login Card */
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+        }
+
+        .card-container:hover {
+            border-color: var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-white);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-group i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--main-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            color: #fff;
+            outline: none;
+            transition: var(--transition);
+            text-align: right;
+        }
+
+        .form-control:focus {
+            border-color: var(--main-color);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--main-color);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.2);
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #ff3333;
+            transform: scale(1.02);
+            box-shadow: 0 15px 25px rgba(255, 77, 77, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-content b { color: var(--main-color); }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .card-container { padding: 25px; }
+            .intro-text h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">مدرسة   <span>قومبانية الوقين الاعدادية</span></div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <div class="intro-text">
+            <h2>مرحباً بك في منصة التقييمات</h2>
+            <p style="color: var(--text-gray);">  الصف الثاني الاعدادي</p>
+        </div>
+
+        <div class="card-container">
+            <h3 class="form-title">تسجيل الدخول</h3>
+            
+            <div class="form-group">
+                <i class="material-icons">person</i>
+                <input type="text" id="loginUsername" class="form-control" placeholder="اسم المستخدم">
+            </div>
+
+            <div class="form-group">
+                <i class="material-icons">lock</i>
+                <input type="password" id="loginPassword" class="form-control" placeholder="كلمة المرور">
+            </div>
+
+            <button id="loginBtn" class="btn-submit">دخول للمنصة</button>
+            
+            <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: var(--text-gray);">
+                تأكد من إدخال البيانات المسلمة لك من الإدارة
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>تم الإنشاء والتصميم بواسطة: <b>عمر تامر محمد عادل</b></p>
+            <p>© 2026 جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Firebase Configuration
+     const firebaseConfig = {
+
+  apiKey: "AIzaSyDqXceaD8qaVJjift9tzVCOaN1jxVy3C0M",
+  authDomain: "homework-baf7d.firebaseapp.com",
+  projectId: "homework-baf7d",
+  storageBucket: "homework-baf7d.firebasestorage.app",
+  messagingSenderId: "851167846938",
+  appId: "1:851167846938:web:dfba12f189ed94b44567a3",
+  measurementId: "G-J4PBDGPEF6"
+
+};
+
+
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Login Logic
+        async function login() {
+            const user = document.getElementById("loginUsername").value.trim();
+            const pass = document.getElementById("loginPassword").value.trim();
+            const btn = document.getElementById("loginBtn");
+
+            if (!user || !pass) {
+                alert("يرجى إدخال اسم المستخدم وكلمة المرور");
+                return;
+            }
+
+            // UI Feedback
+            btn.innerText = "جاري التحقق...";
+            btn.disabled = true;
+
+            try {
+                // Admin Access
+                if (user === "admin" && pass === "313589") {
+                    window.location.href = "min.html";
+                    return;
+                }
+
+                const querySnapshot = await db.collection("users")
+                    .where("username", "==", user)
+                    .where("password", "==", pass)
+                    .get();
+
+                if (querySnapshot.empty) {
+                    alert("❌ بيانات الدخول غير صحيحة");
+                } else {
+                    const userData = querySnapshot.docs[0].data();
+                    sessionStorage.setItem("username", userData.username);
+                    window.location.href = "vid.html";
+                }
+            } catch (error) {
+                console.error("Error logging in: ", error);
+                alert("حدث خطأ في الاتصال بالسيرفر");
+            } finally {
+                btn.innerText = "دخول للمنصة";
+                btn.disabled = false;
+            }
+        }
+
+        document.getElementById("loginBtn").addEventListener("click", login);
+
+      
+    </script>
+</body>
+</html>

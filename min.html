@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | زعيم البرمجة</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.12/iconfont/material-icons.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+
+        :root {
+            --main-color: #ff4d4d;
+            --bg-dark: #0b0b0b;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --danger: #ff3333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            background-image: radial-gradient(circle at 10% 20%, #1a1a1a 0%, #000000 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo span { color: var(--main-color); }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        @media (max-width: 992px) { .grid { grid-template-columns: 1fr; } }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-title { color: var(--main-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--text-gray); font-size: 0.85rem; }
+        .form-control {
+            width: 100%; padding: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid transparent;
+            border-radius: 8px; color: white; text-align: right;
+            transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--main-color); outline: none; background: rgba(255, 255, 255, 0.12); }
+
+        .btn-add {
+            width: 100%; padding: 12px; background: var(--main-color);
+            color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;
+        }
+        .btn-add:hover { background: #e60000; transform: translateY(-2px); }
+
+        /* Table Design */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { text-align: right; padding: 15px; color: var(--text-gray); border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 400; }
+        td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.9rem; }
+        
+        code { background: rgba(255, 77, 77, 0.1); color: var(--main-color); padding: 2px 6px; border-radius: 4px; }
+
+        .delete-icon {
+            color: var(--danger);
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(255, 51, 51, 0.1);
+            padding: 6px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .delete-icon:hover { background: var(--danger); color: white; }
+
+        .stat-card {
+            background: linear-gradient(45deg, var(--main-color), #b30000);
+            padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.2);
+        }
+        .stat-card h1 { font-size: 3rem; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">المحافظة : <span>البحيرة</span> - لوحة التحكم</div>
+    </header>
+
+    <div class="container">
+        <div class="stat-card">
+            <p>إجمالي الطلاب  المسجلين</p>
+            <h1 id="userCount">0</h1>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title"><i class="material-icons">person_add</i> إضافة طالب جديد</h3>
+                <div class="form-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="regUsername" class="form-control" placeholder="مثال: omar2026">
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="text" id="regPassword" class="form-control" placeholder="********">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="text" id="regPhone" class="form-control" placeholder="010xxxxxxxx">
+                </div>
+                <button onclick="addUser()" class="btn-add">إنشاء الحساب الآن</button>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="material-icons">group</i> إدارة الحسابات</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم الطالب</th>
+                                <th>كلمة المرور</th>
+                                <th>الهاتف</th>
+                                <th>حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تكوين Firebase الخاص بك
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqXceaD8qaVJjift9tzVCOaN1jxVy3C0M",
+            authDomain: "homework-baf7d.firebaseapp.com",
+            projectId: "homework-baf7d",
+            storageBucket: "homework-baf7d.firebasestorage.app",
+            messagingSenderId: "851167846938",
+            appId: "1:851167846938:web:dfba12f189ed94b44567a3"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // 1. دالة تحميل وعرض المستخدمين (شاملة رقم الهاتف والحذف)
+        function loadUsers() {
+            db.collection("users").onSnapshot((snapshot) => {
+                const tableBody = document.getElementById("userTableBody");
+                document.getElementById("userCount").innerText = snapshot.size;
+                tableBody.innerHTML = "";
+
+                snapshot.forEach((doc) => {
+                    const user = doc.data();
+                    const row = `
+                        <tr>
+                            <td><b>${user.username}</b></td>
+                            <td><code>${user.password}</code></td>
+                            <td>${user.phone || '<span style="color:#666">لا يوجد</span>'}</td>
+                            <td>
+                                <span class="delete-icon" onclick="deleteSingleUser('${doc.id}')">
+                                    <i class="material-icons" style="font-size: 18px;">delete</i>
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            }, (error) => {
+                console.error("خطأ في جلب البيانات: ", error);
+            });
+        }
+
+        // 2. دالة إضافة مستخدم جديد
+        async function addUser() {
+            const user = document.getElementById("regUsername").value.trim();
+            const pass = document.getElementById("regPassword").value.trim();
+            const phone = document.getElementById("regPhone").value.trim();
+
+            if (!user || !pass) {
+                alert("برجاء إدخال اسم المستخدم وكلمة المرور على الأقل");
+                return;
+            }
+
+            try {
+                // التأكد من عدم تكرار الاسم
+                const check = await db.collection("users").doc(user).get();
+                if (check.exists) {
+                    alert("هذا الاسم مسجل بالفعل!");
+                    return;
+                }
+
+                await db.collection("users").doc(user).set({
+                    username: user,
+                    password: pass,
+                    phone: phone,
+                    createdAt: new Date()
+                });
+
+                alert("✅ تم إضافة الطالب بنجاح");
+                // مسح الخانات بعد الإضافة
+                document.getElementById("regUsername").value = "";
+                document.getElementById("regPassword").value = "";
+                document.getElementById("regPhone").value = "";
+
+            } catch (e) {
+                alert("حدث خطأ أثناء الإضافة، راجع الـ Console");
+                console.error(e);
+            }
+        }
+
+        // 3. دالة حذف مستخدم واحد
+        async function deleteSingleUser(userId) {
+            if (confirm(`هل أنت متأكد من حذف حساب: ${userId}؟`)) {
+                try {
+                    await db.collection("users").doc(userId).delete();
+                } catch (error) {
+                    alert("خطأ أثناء الحذف");
+                }
+            }
+        }
+
+        // تشغيل التحميل عند فتح الصفحة
+        window.onload = loadUsers;
+    </script>
+</body>
+</html>

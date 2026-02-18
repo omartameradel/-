@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المكتبة الالكترونية 2025-2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #fff;
+            --primary: #1e3799;
+            --accent: #ff4d4d;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: #2d2d2d;
+            --primary: #4a69bd;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: 0.3s;
+            direction: rtl;
+        }
+
+        /* --- تنسيق الهيدر والقائمة المنسدلة الجديدة --- */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .user-nav {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .greeting-text {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .dropdown-menu {
+            display: none; /* مخفي افتراضياً */
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-width: 150px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show { display: block; }
+
+        .download-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            color: var(--text-color);
+            font-family: 'Cairo';
+            text-align: right;
+            cursor: pointer;
+            transition: 0.3s;
+            border-bottom: 1px solid #eee;
+        }
+
+        .download-btn:hover { background: #f0f0f0; color: var(--primary); }
+
+        /* --- باقي التنسيقات الأصلية --- */
+        .toggle-mode, .main-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Cairo';
+            font-weight: bold;
+        }
+
+        .toggle-mode { background: var(--accent); color: white; }
+        .main-btn { background: #27ae60; color: white; width: 80%; max-width: 400px; }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: 'Cairo';
+            min-width: 150px;
+        }
+
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            border-top: 5px solid var(--primary);
+        }
+
+        .term-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .book-card h3 { margin: 15px 0 10px; color: var(--primary); }
+        .book-card a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="user-nav">
+        <div class="greeting-text" id="userGreeting" onclick="toggleDropdown()">
+            مرحباً، <span id="usernameDisplay">زائر</span> ▼
+        </div>
+        <div class="dropdown-menu" id="dropdownDesktop">
+            <button class="download-btn" onclick="location.href='usr.html'">👤 ملف الشخصي</button>
+            <button class="download-btn" onclick="logout()" style="color: red;">🚪 تسجيل الخروج</button>
+        </div>
+    </div>
+
+    <h1>المكتبة الإلكترونية</h1>
+    <p>المرحلة التعليمية والتقييمات 2025-2026</p>
+</header>
+
+<button class="toggle-mode" onclick="toggleDarkMode()">🌓 تبديل الوضع (ليلي/نهاري)</button>
+
+<button class="main-btn" onclick="window.open('')">
+    🔗 محافظة: البحيرة
+</button>
+
+<div class="filters">
+    <select id="stage-select">
+        <option value="">اختر المرحلة</option>
+        <option value="الإعدادي">المرحلة الإعدادية</option>
+    </select>
+    <select id="grade-select" disabled><option value="">اختر الصف</option></select>
+    <select id="term-select" disabled><option value="">الفصل الدراسي</option></select>
+    <select id="subject-select" disabled><option value="">المادة</option></select>
+</div>
+
+<div class="books-container" id="books-container">
+    <p style="text-align: center; grid-column: 1/-1;">يرجى اختيار المرحلة أولاً لعرض الكتب المتاحة.</p>
+</div>
+
+<footer>جميع الحقوق محفوظة © عمر تامر محمد عادل 2025</footer>
+
+<script>
+    // --- جلب اسم المستخدم عند التحميل ---
+    const savedUsername = sessionStorage.getItem("username") || "زائر";
+    document.getElementById("usernameDisplay").textContent = savedUsername;
+
+    // --- دالة التحكم في القائمة المنسدلة ---
+    function toggleDropdown() {
+        document.getElementById("dropdownDesktop").classList.toggle("show");
+    }
+
+    // إغلاق القائمة عند الضغط في أي مكان آخر
+    window.onclick = function(event) {
+        if (!event.target.matches('.greeting-text') && !event.target.matches('#usernameDisplay')) {
+            const dropdown = document.getElementById("dropdownDesktop");
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+
+    function logout() {
+        sessionStorage.clear();
+        window.location.href = "ar.html"; // غير المسار لصفحة تسجيل الدخول عندك
+    }
+
+    // --- باقي الكود الخاص بالكتب والفلترة كما هو ---
+    const booksData = [
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "اللغة العربية", type: "الكتاب المدرسي", link: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Prepratory/Prepratory2/Term2/StudentBook/Arabic_prep2_Tr2.pdf" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "اللغة العربية", type: "تقييم الأسبوع 1", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771417123/%D8%AA%D9%82-%D8%B9%D8%B1-1_nzc8ue.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "اللغة العربية", type: "تقييم الأسبوع 2", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771417521/%D8%AA%D9%82-%D8%B9%D8%B1-2_jhltca.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "الرياضيات", type: "الكتاب المدرسي", link: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Prepratory/Prepratory2/Term2/StudentBook/Math_AR_prep2_Tr2.pdf" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "الرياضيات", type: "تقييم الأسبوع 1", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771419567/%D8%AA%D9%82-%D8%B1%D9%8A-1_fdzzid.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "الرياضيات", type: "تقييم الأسبوع 2", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771418035/%D8%AA%D9%82-%D8%B1%D9%8A-2_mblukr.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "العلوم", type: "الكتاب المدرسي", link: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Prepratory/Prepratory2/Term2/StudentBook/Science_AR_Prp2_Tr2.pdf" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "العلوم", type: "تقييم الأسبوع 1", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771419766/%D8%AA%D9%82-%D8%B9%D9%84-1_irnakq.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "العلوم", type: "تقييم الأسبوع 2", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771419914/%D8%AA%D9%82-%D8%B9%D9%84-2_at33uz.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "الدراسات الاجتماعية", type: "الكتاب المدرسي", link: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Prepratory/Prepratory2/Term2/StudentBook/Social_prp2_T2.pdf" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "الدراسات الاجتماعية", type: "تقييم الأسبوع 1", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771401632/%D8%AA%D9%82-%D8%AF%D8%B1-1_ots97y.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "الدراسات الاجتماعية", type: "تقييم الأسبوع 2", link: "https://res.cloudinary.com/dorrpdul5/video/upload/v1771416129/%D8%AA%D9%82-%D8%AF%D8%B1-2_yxbsfb.mp4" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "اللغة الإنجليزية", type: "الكتاب المدرسي", link: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Prepratory/Prepratory2/Term2/StudentBook/English_prep2_Tr2.pdf" },
+        { stage: "الإعدادي", grade: "الصف الثاني", term: "الفصل الدراسي الثاني", subject: "اللغة الإنجليزية", type: "تقييم الاسابيع كلها", link: "https://drive.google.com/file/d/1T6TtpxGpWwkCooEwE-CVfHFi4spT7tt3/view" }
+    ];
+
+    const stageSelect = document.getElementById("stage-select");
+    const gradeSelect = document.getElementById("grade-select");
+    const termSelect = document.getElementById("term-select");
+    const subjectSelect = document.getElementById("subject-select");
+    const container = document.getElementById("books-container");
+
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+    }
+
+    if(localStorage.getItem("theme") === "dark") document.body.classList.add("dark-mode");
+
+    stageSelect.addEventListener("change", () => {
+        const stage = stageSelect.value;
+        if (!stage) {
+            disableAll(true);
+            return;
+        }
+        const filtered = booksData.filter(b => b.stage === stage);
+        fillSelect(gradeSelect, [...new Set(filtered.map(b => b.grade))], "اختر الصف");
+        fillSelect(termSelect, [...new Set(filtered.map(b => b.term))], "الفصل الدراسي");
+        fillSelect(subjectSelect, [...new Set(filtered.map(b => b.subject))], "المادة");
+        disableAll(false);
+        renderBooks(filtered);
+    });
+
+    [gradeSelect, termSelect, subjectSelect].forEach(el => {
+        el.addEventListener("change", () => {
+            let filtered = booksData.filter(b => b.stage === stageSelect.value);
+            if(gradeSelect.value) filtered = filtered.filter(b => b.grade === gradeSelect.value);
+            if(termSelect.value) filtered = filtered.filter(b => b.term === termSelect.value);
+            if(subjectSelect.value) filtered = filtered.filter(b => b.subject === subjectSelect.value);
+            renderBooks(filtered);
+        });
+    });
+
+    function fillSelect(el, values, placeholder) {
+        el.innerHTML = `<option value="">${placeholder}</option>`;
+        values.forEach(v => {
+            el.innerHTML += `<option value="${v}">${v}</option>`;
+        });
+    }
+
+    function disableAll(status) {
+        gradeSelect.disabled = status;
+        termSelect.disabled = status;
+        subjectSelect.disabled = status;
+    }
+
+    function renderBooks(data) {
+        container.innerHTML = "";
+        if (data.length === 0) {
+            container.innerHTML = "<p>لا توجد نتائج مطابقة.</p>";
+            return;
+        }
+        data.forEach(book => {
+            container.innerHTML += `
+                <div class="book-card">
+                    <div class="term-badge">${book.term}</div>
+                    <h3>${book.subject}</h3>
+                    <p>${book.grade} - ${book.stage}</p>
+                    <p>النوع: ${book.type}</p>
+                    <a href="${book.link}" target="_blank">استعراض / تحميل</a>
+                </div>
+            `;
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>الملف الشخصي - المكتبة الإلكترونية</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #fff;
+            --primary: #1e3799;
+            --accent: #ff4d4d;
+            --input-border: #ddd;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: #2d2d2d;
+            --primary: #4a69bd;
+            --input-border: #444;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .profile-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .user-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .user-header .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #usernameDisplay {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Cairo';
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cairo';
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-save { background-color: var(--primary); color: white; }
+        .btn-save:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .btn-toggle-pass { background-color: #f39c12; color: white; }
+        
+        .btn-confirm { background-color: #27ae60; color: white; margin-top: 15px; }
+
+        #passwordForm {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--input-border);
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .home-link {
+            margin-top: 25px;
+        }
+
+        .home-link a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .home-link a:hover { text-decoration: underline; }
+
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <button class="toggle-theme" onclick="toggleDarkMode()">🌓</button>
+
+    <header>
+        <h1>إعدادات الحساب</h1>
+    </header>
+
+    <div class="profile-card">
+        <div class="user-header">
+            <div class="avatar" id="userInitial">ع</div>
+            <span class="info-label">مرحباً بك يا بطل</span>
+            <div id="usernameDisplay">تحميل...</div>
+        </div>
+
+        <div>
+            <span class="info-label">رقم الهاتف</span>
+            <input type="tel" id="phoneInput" placeholder="أدخل رقم هاتفك">
+            <button class="btn-save" onclick="savePhone()">💾 حفظ التغييرات</button>
+        </div>
+
+        <button class="btn-toggle-pass" onclick="togglePasswordForm()">🔒 تغيير كلمة المرور</button>
+
+        <div id="passwordForm">
+            <input type="password" id="oldPassword" placeholder="كلمة المرور القديمة">
+            <input type="password" id="newPassword" placeholder="كلمة المرور الجديدة">
+            <button class="btn-confirm" onclick="changePassword()">✅ تأكيد التحديث</button>
+        </div>
+    </div>
+
+    <div class="home-link">
+        <a href="vid.html">🏠 العودة للمكتبة الرئيسية</a>
+    </div>
+
+    <script>
+        // إعداد Firebase 
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqXceaD8qaVJjift9tzVCOaN1jxVy3C0M",
+            authDomain: "homework-baf7d.firebaseapp.com",
+            projectId: "homework-baf7d",
+            storageBucket: "homework-baf7d.firebasestorage.app",
+            messagingSenderId: "851167846938",
+            appId: "1:851167846938:web:dfba12f189ed94b44567a3"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const username = sessionStorage.getItem("username") || "زائر";
+        document.getElementById("usernameDisplay").textContent = username;
+        document.getElementById("userInitial").textContent = username.charAt(0).toUpperCase();
+
+        // تفعيل الوضع الليلي بناءً على الاختيار السابق في المكتبة
+        if(localStorage.getItem("theme") === "dark") document.body.classList.add("dark-mode");
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+        }
+
+        if (username !== "زائر") {
+            db.collection("users").doc(username).get().then(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    if (data.phone) document.getElementById("phoneInput").value = data.phone;
+                } else {
+                    db.collection("users").doc(username).set({ password: "", phone: "" });
+                }
+            });
+        }
+
+        function savePhone() {
+            const phone = document.getElementById("phoneInput").value.trim();
+            if (!phone) return alert("❌ اكتب رقم الهاتف أولًا");
+            db.collection("users").doc(username).update({ phone: phone })
+            .then(() => alert("✅ تم التحديث بنجاح"))
+            .catch(e => alert("❌ حدث خطأ"));
+        }
+
+        function togglePasswordForm() {
+            const form = document.getElementById("passwordForm");
+            form.style.display = (form.style.display === "block") ? "none" : "block";
+        }
+
+        function changePassword() {
+            const oldPass = document.getElementById("oldPassword").value.trim();
+            const newPass = document.getElementById("newPassword").value.trim();
+            
+            db.collection("users").doc(username).get().then(doc => {
+                const currentPass = String(doc.data().password || "").trim();
+                if (oldPass !== currentPass) return alert("❌ كلمة المرور القديمة خطأ");
+                
+                db.collection("users").doc(username).update({ password: newPass }).then(() => {
+                    alert("✅ تم التغيير بنجاح");
+                    togglePasswordForm();
+                });
+            });
+        }
+    </script>
+</body>
+</html>
