@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>محتوى عمر تامر</title>
+  <title>عرض المحتوى - عمر تامر</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: 'Cairo', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 600px; text-align: center; }
+    body { margin: 0; font-family: 'Cairo', sans-serif; background: #f4f6f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .container { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 700px; text-align: center; }
     img, video { width: 100%; border-radius: 10px; margin-top: 15px; }
-    .text-content { background: #f9f9f9; padding: 15px; border-right: 5px solid #1e3799; text-align: right; margin-top: 15px; font-size: 18px; white-space: pre-wrap; }
+    .text-box { background: #f9f9f9; padding: 20px; border-right: 6px solid #1e3799; text-align: right; margin-top: 15px; font-size: 18px; white-space: pre-wrap; line-height: 1.6; }
     h2 { color: #1e3799; margin: 0; }
-    .error { color: red; font-weight: bold; }
+    .loading { color: #777; font-size: 20px; }
   </style>
 </head>
 <body>
 
-  <div class="card" id="display">
-    <div id="status">جاري التحميل...</div>
+  <div class="container" id="mainBox">
+    <div id="status" class="loading">جاري تحميل المحتوى...</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // إعداداتك الأصلية
+    // إعدادات Firebase الخاصة بك
     const firebaseConfig = {
       apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
       authDomain: "ahmed-saeed-669ab.firebaseapp.com",
@@ -34,55 +34,56 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    async function showContent() {
-      const display = document.getElementById('display');
-      const hash = window.location.hash; // يقرأ ما بعد الـ #
+    async function loadContent() {
+      const mainBox = document.getElementById('mainBox');
+      const hash = window.location.hash;
 
-      // لو الرابط فاضي
       if (!hash || !hash.includes('_')) {
-        display.innerHTML = '<p class="error">الرابط ناقص! <br> جرب تفتح الرابط بالشكل ده: <br> index.html#img_ID </p>';
+        mainBox.innerHTML = '<h2>رابط غير صالح</h2>';
         return;
       }
 
-      const type = hash.split('_')[0].replace('#', ''); // يستخرج img أو video أو text
-      const id = hash.split('_')[1]; // يستخرج الـ ID
+      // استخراج النوع والمعرف من الرابط (مثل text و 4QxXMwrAR...)
+      const parts = hash.substring(1).split('_');
+      const type = parts[0]; 
+      const id = parts[1];
 
-      // تحديد المجموعة
-      let col = "";
-      if (type === "img") col = "images";
-      else if (type === "video") col = "videos";
-      else if (type === "text") col = "texts";
+      // تحديد اسم المجموعة في فايربيز بناءً على النوع
+      let collectionName = "";
+      if (type === "text") collectionName = "texts";
+      else if (type === "img") collectionName = "images";
+      else if (type === "video") collectionName = "videos";
 
-      if (col === "") {
-        display.innerHTML = '<p class="error">نوع الرابط غير معروف! استخدم img أو video أو text</p>';
+      if (!collectionName) {
+        mainBox.innerHTML = '<h2>نوع المحتوى غير معروف</h2>';
         return;
       }
 
       try {
-        const doc = await db.collection(col).doc(id).get();
+        const doc = await db.collection(collectionName).doc(id).get();
         if (doc.exists) {
           const data = doc.data();
-          let contentHtml = `<h2>${data.name || 'محتوى'}</h2>`;
+          let html = `<h2>${data.name || 'محتوى'}</h2>`;
 
-          if (type === "img") {
-            contentHtml += `<img src="${data.url}">`;
+          if (type === "text") {
+            html += `<div class="text-box">${data.content}</div>`;
+          } else if (type === "img") {
+            html += `<img src="${data.url}">`;
           } else if (type === "video") {
-            contentHtml += `<video controls autoplay><source src="${data.url}" type="video/mp4"></video>`;
-          } else if (type === "text") {
-            contentHtml += `<div class="text-content">${data.content}</div>`;
+            html += `<video controls autoplay><source src="${data.url}" type="video/mp4"></video>`;
           }
 
-          display.innerHTML = contentHtml;
+          mainBox.innerHTML = html;
         } else {
-          display.innerHTML = `<p class="error">لم نجد بيانات بهذا الـ ID في مجموعة (${col})</p>`;
+          mainBox.innerHTML = `<h2>المحتوى غير موجود في مجموعة ${collectionName}</h2>`;
         }
-      } catch (e) {
-        display.innerHTML = '<p class="error">حدث خطأ في الاتصال بالفايربيز</p>';
+      } catch (error) {
+        mainBox.innerHTML = '<h2>حدث خطأ أثناء الاتصال بقاعدة البيانات</h2>';
       }
     }
 
-    window.onload = showContent;
-    window.onhashchange = showContent;
+    window.onload = loadContent;
+    window.onhashchange = loadContent;
   </script>
 </body>
 </html>
