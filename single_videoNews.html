@@ -4,27 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>محتوى عمر تامر</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: 'Cairo', sans-serif; background: #f4f7f6; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
-    .container { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 800px; text-align: center; }
-    h2 { color: #1e3799; }
-    video, img { width: 100%; border-radius: 12px; margin-bottom: 15px; display: block; }
-    .text-box { text-align: right; line-height: 1.8; font-size: 1.2rem; background: #f9f9f9; padding: 20px; border-right: 6px solid #1e3799; border-radius: 4px; white-space: pre-wrap; }
-    .loading { color: #888; font-size: 1.2rem; padding: 20px; }
-    .error-box { background: #ffeaea; color: #d63031; padding: 15px; border-radius: 8px; border: 1px solid #fab1a0; }
+    body { margin: 0; font-family: 'Cairo', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 600px; text-align: center; }
+    img, video { width: 100%; border-radius: 10px; margin-top: 15px; }
+    .text-content { background: #f9f9f9; padding: 15px; border-right: 5px solid #1e3799; text-align: right; margin-top: 15px; font-size: 18px; white-space: pre-wrap; }
+    h2 { color: #1e3799; margin: 0; }
+    .error { color: red; font-weight: bold; }
   </style>
 </head>
 <body>
 
-  <div class="container" id="mainContainer">
-    <div id="loader" class="loading">جاري فحص الرابط وتحميل البيانات...</div>
+  <div class="card" id="display">
+    <div id="status">جاري التحميل...</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
+    // إعداداتك الأصلية
     const firebaseConfig = {
       apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
       authDomain: "ahmed-saeed-669ab.firebaseapp.com",
@@ -34,60 +34,55 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    async function loadContent() {
-      const container = document.getElementById('mainContainer');
-      const hash = window.location.hash;
+    async function showContent() {
+      const display = document.getElementById('display');
+      const hash = window.location.hash; // يقرأ ما بعد الـ #
 
+      // لو الرابط فاضي
       if (!hash || !hash.includes('_')) {
-        container.innerHTML = '<div class="error-box"><h2>رابط غير صالح</h2><p>مثال صحيح: #img_IDأو #video_ID</p></div>';
+        display.innerHTML = '<p class="error">الرابط ناقص! <br> جرب تفتح الرابط بالشكل ده: <br> index.html#img_ID </p>';
         return;
       }
 
-      // استخراج النوع والمعرف
-      const type = hash.substring(1).split('_')[0]; // فيديو أو صورة أو نص
-      const docId = hash.substring(1).split('_')[1]; // المعرف
+      const type = hash.split('_')[0].replace('#', ''); // يستخرج img أو video أو text
+      const id = hash.split('_')[1]; // يستخرج الـ ID
 
-      // تحديد المجموعة المناسبة
-      let collectionName = "";
-      if (type === "video") collectionName = "videos";
-      else if (type === "img") collectionName = "images";
-      else if (type === "text") collectionName = "texts";
+      // تحديد المجموعة
+      let col = "";
+      if (type === "img") col = "images";
+      else if (type === "video") col = "videos";
+      else if (type === "text") col = "texts";
 
-      if (!collectionName || !docId) {
-        container.innerHTML = '<div class="error-box"><h2>خطأ في بيانات الرابط</h2></div>';
+      if (col === "") {
+        display.innerHTML = '<p class="error">نوع الرابط غير معروف! استخدم img أو video أو text</p>';
         return;
       }
 
       try {
-        const doc = await db.collection(collectionName).doc(docId).get();
-        
+        const doc = await db.collection(col).doc(id).get();
         if (doc.exists) {
           const data = doc.data();
-          let html = `<h2>${data.name || 'محتوى'}</h2>`;
+          let contentHtml = `<h2>${data.name || 'محتوى'}</h2>`;
 
-          if (type === 'video') {
-            html += `<video controls autoplay><source src="${data.url}" type="video/mp4"></video>`;
-          } 
-          else if (type === 'img') {
-            html += `<img src="${data.url}" alt="Image">`;
-          } 
-          else if (type === 'text') {
-            html += `<div class="text-box">${data.content}</div>`;
+          if (type === "img") {
+            contentHtml += `<img src="${data.url}">`;
+          } else if (type === "video") {
+            contentHtml += `<video controls autoplay><source src="${data.url}" type="video/mp4"></video>`;
+          } else if (type === "text") {
+            contentHtml += `<div class="text-content">${data.content}</div>`;
           }
 
-          container.innerHTML = html;
+          display.innerHTML = contentHtml;
         } else {
-          container.innerHTML = `<div class="error-box"><h2>غير موجود</h2><p>هذا العنصر غير موجود في مجموعة ${collectionName}</p></div>`;
+          display.innerHTML = `<p class="error">لم نجد بيانات بهذا الـ ID في مجموعة (${col})</p>`;
         }
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = `<div class="error-box"><h2>خطأ في التحميل</h2><p>${err.message}</p></div>`;
+      } catch (e) {
+        display.innerHTML = '<p class="error">حدث خطأ في الاتصال بالفايربيز</p>';
       }
     }
 
-    // التشغيل عند فتح الصفحة أو تغيير الرابط
-    window.onload = loadContent;
-    window.onhashchange = loadContent;
+    window.onload = showContent;
+    window.onhashchange = showContent;
   </script>
 </body>
 </html>
