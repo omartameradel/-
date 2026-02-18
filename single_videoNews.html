@@ -37,13 +37,66 @@
 
     async function loadContent() {
       const container = document.getElementById('mainContainer');
-      const hash = window.location.hash; // قراءة الهاش مثل #img_123
+     const hash = window.location.hash;
+let type = null;
+let docId = null;
 
-      // 1. التأكد من وجود هاش
-      if (!hash || hash.length < 3) {
-        container.innerHTML = '<div class="error-box"><h2>رابط ناقص!</h2><p>يجب أن يكون الرابط هكذا: index.html#img_ID</p></div>';
-        return;
+if (hash) {
+  if (hash.startsWith('#video_')) {
+    type = 'video';
+    docId = hash.replace('#video_', '');
+  } else if (hash.startsWith('#img_')) {
+    type = 'image';
+    docId = hash.replace('#img_', '');
+  } else if (hash.startsWith('#text_')) {
+    type = 'text';
+    docId = hash.replace('#text_', '');
+  }
+}
+
+const videoContentDiv = document.getElementById('videoContent');
+
+if (docId) {
+  db.collection('videos').doc(docId).get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+
+        if (type === 'video') {
+          videoContentDiv.innerHTML = `
+            <h2>${data.name}</h2>
+            <video controls autoplay>
+              <source src="${data.url}" type="video/mp4">
+            </video>
+          `;
+        }
+
+        else if (type === 'image') {
+          videoContentDiv.innerHTML = `
+            <h2>${data.name}</h2>
+            <img src="${data.url}" style="width:100%;border-radius:10px;" />
+          `;
+        }
+
+        else if (type === 'text') {
+          videoContentDiv.innerHTML = `
+            <h2>${data.name}</h2>
+            <p style="font-size:20px">${data.content}</p>
+          `;
+        }
+
+      } else {
+        videoContentDiv.innerHTML = '<h2>المحتوى غير موجود!</h2>';
       }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      videoContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
+    });
+} else {
+  videoContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+}
+
 
       // 2. استخراج النوع والمعرف
       const cleanHash = hash.substring(1); // إزالة علامة #
@@ -95,3 +148,4 @@
   </script>
 </body>
 </html>
+
