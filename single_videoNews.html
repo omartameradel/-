@@ -6,62 +6,26 @@
   <title>محتوى عمر تامر</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background: #f4f7f6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .container {
-      background: #fff;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 800px;
-      text-align: center;
-    }
-    h2 { color: #1e3799; margin-bottom: 20px; }
-    
-    /* تنسيق الفيديو والصور */
-    video, img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      margin-bottom: 15px;
-    }
-
-    /* تنسيق النص */
-    .text-box {
-      text-align: right;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      background: #fafafa;
-      padding: 20px;
-      border-right: 6px solid #1e3799;
-      border-radius: 4px;
-      white-space: pre-wrap; /* للحفاظ على تنسيق الأسطر */
-    }
-
-    .loading { color: #888; font-style: italic; }
-    .error { color: #d63031; font-weight: bold; }
+    body { margin: 0; font-family: 'Cairo', sans-serif; background: #f4f7f6; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+    .container { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 800px; text-align: center; }
+    h2 { color: #1e3799; }
+    video, img { width: 100%; border-radius: 12px; margin-bottom: 15px; display: block; }
+    .text-box { text-align: right; line-height: 1.8; font-size: 1.2rem; background: #f9f9f9; padding: 20px; border-right: 6px solid #1e3799; border-radius: 4px; white-space: pre-wrap; }
+    .loading { color: #888; }
+    .error-box { background: #ffeaea; color: #d63031; padding: 15px; border-radius: 8px; border: 1px solid #fab1a0; }
   </style>
 </head>
 <body>
 
   <div class="container" id="mainContainer">
-    <div id="loader" class="loading">جاري جلب المحتوى من السحابة...</div>
+    <div id="loader" class="loading">جاري فحص الرابط وتحميل البيانات...</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // إعدادات مشروعك
+    // إعدادات Firebase الخاصة بك
     const firebaseConfig = {
       apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
       authDomain: "ahmed-saeed-669ab.firebaseapp.com",
@@ -71,58 +35,63 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    const container = document.getElementById('mainContainer');
+    async function loadContent() {
+      const container = document.getElementById('mainContainer');
+      const hash = window.location.hash; // قراءة الهاش مثل #img_123
 
-    // وظيفة تحديد نوع المحتوى وعرضه
-    async function fetchContent() {
-      const hash = window.location.hash; // يقرأ مثلاً #img_ID أو #video_ID
-      
-      if (!hash || !hash.includes('_')) {
-        container.innerHTML = '<p class="error">عذراً، الرابط غير صحيح.</p>';
+      // 1. التأكد من وجود هاش
+      if (!hash || hash.length < 3) {
+        container.innerHTML = '<div class="error-box"><h2>رابط ناقص!</h2><p>يجب أن يكون الرابط هكذا: index.html#img_ID</p></div>';
         return;
       }
 
-      const type = hash.substring(1).split('_')[0]; // يستخرج img أو video أو text
-      const docId = hash.substring(1).split('_')[1]; // يستخرج معرف المستند
+      // 2. استخراج النوع والمعرف
+      const cleanHash = hash.substring(1); // إزالة علامة #
+      const parts = cleanHash.split('_');
+      const type = parts[0]; 
+      const docId = parts[1];
 
-      // تحديد اسم المجموعة (Collection) في فايربيز بناءً على النوع
+      if (!docId) {
+        container.innerHTML = '<div class="error-box"><h2>معرف (ID) مفقود!</h2><p>تأكد من وجود شرطة سفلية (_) بعد النوع.</p></div>';
+        return;
+      }
+
+      // 3. تحديد المجموعة في Firestore
       let collectionName = "";
-      if (type === "video") collectionName = "videos";
-      else if (type === "img") collectionName = "images";
+      if (type === "img") collectionName = "images";
+      else if (type === "video") collectionName = "videos";
       else if (type === "text") collectionName = "texts";
+      else {
+        container.innerHTML = '<div class="error-box"><h2>نوع غير معروف!</h2><p>استخدم img أو video أو text.</p></div>';
+        return;
+      }
 
       try {
         const doc = await db.collection(collectionName).doc(docId).get();
         
         if (doc.exists) {
           const data = doc.data();
-          renderUI(type, data);
+          let html = `<h2>${data.name || 'محتوى'}</h2>`;
+
+          if (type === 'img') {
+            html += `<img src="${data.url}" alt="Image">`;
+          } else if (type === 'video') {
+            html += `<video controls autoplay><source src="${data.url}" type="video/mp4"></video>`;
+          } else if (type === 'text') {
+            html += `<div class="text-box">${data.content}</div>`;
+          }
+
+          container.innerHTML = html;
         } else {
-          container.innerHTML = '<p class="error">المحتوى غير موجود في قاعدة البيانات!</p>';
+          container.innerHTML = `<div class="error-box"><h2>غير موجود!</h2><p>لم يتم العثور على هذا الـ ID في مجموعة ${collectionName}.</p></div>`;
         }
       } catch (err) {
-        container.innerHTML = '<p class="error">حدث خطأ في الاتصال: ' + err.message + '</p>';
+        container.innerHTML = `<div class="error-box"><h2>خطأ اتصال</h2><p>${err.message}</p></div>`;
       }
     }
 
-    function renderUI(type, data) {
-      let contentHtml = `<h2>${data.name || 'محتوى جديد'}</h2>`;
-
-      if (type === 'video') {
-        contentHtml += `<video controls autoplay><source src="${data.url}" type="video/mp4">لا يدعم متصفحك تشغيل الفيديو.</video>`;
-      } 
-      else if (type === 'img') {
-        contentHtml += `<img src="${data.url}" alt="${data.name}">`;
-      } 
-      else if (type === 'text') {
-        contentHtml += `<div class="text-box">${data.content}</div>`;
-      }
-
-      container.innerHTML = contentHtml;
-    }
-
-    // تشغيل الدالة عند فتح الصفحة
-    fetchContent();
+    window.onload = loadContent;
+    window.onhashchange = loadContent; // تحديث الصفحة إذا تغير الرابط دون إعادة تحميل
   </script>
 </body>
 </html>
