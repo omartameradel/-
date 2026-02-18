@@ -3,133 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>عرض المحتوى - عمر تامر</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <title>محتوى عمر تامر</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Cairo', sans-serif;
-      background: #f0f2f5;
+      background: #f4f7f6;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
-      color: #333;
-    }
-    .content-card {
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 90%;
-      width: 700px;
-    }
-    video, img {
-      width: 100%;
-      max-height: 500px;
-      border-radius: 10px;
-      margin-top: 15px;
-      object-fit: contain;
-    }
-    .text-box {
-      font-size: 20px;
-      line-height: 1.8;
-      background: #f9f9f9;
       padding: 20px;
-      border-right: 5px solid #1e3799;
-      text-align: right;
-      white-space: pre-wrap;
+    }
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
     }
     h2 { color: #1e3799; margin-bottom: 20px; }
-    .loading { font-size: 20px; color: #888; }
-    .error { color: #e74c3c; font-weight: bold; }
+    
+    /* تنسيق الفيديو والصور */
+    video, img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+    }
+
+    /* تنسيق النص */
+    .text-box {
+      text-align: right;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      background: #fafafa;
+      padding: 20px;
+      border-right: 6px solid #1e3799;
+      border-radius: 4px;
+      white-space: pre-wrap; /* للحفاظ على تنسيق الأسطر */
+    }
+
+    .loading { color: #888; font-style: italic; }
+    .error { color: #d63031; font-weight: bold; }
   </style>
 </head>
 <body>
 
-  <div class="content-card">
-    <div id="displayArea" class="loading">
-      جاري فحص الرابط وتحميل المحتوى...
-    </div>
+  <div class="container" id="mainContainer">
+    <div id="loader" class="loading">جاري جلب المحتوى من السحابة...</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // إعدادات الفايربيز الخاصة بك
+    // إعدادات مشروعك
     const firebaseConfig = {
       apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
       authDomain: "ahmed-saeed-669ab.firebaseapp.com",
       projectId: "ahmed-saeed-669ab"
     };
-    
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    const displayArea = document.getElementById('displayArea');
-    const hash = window.location.hash; // يقرأ ما بعد الـ # في الرابط
+    const container = document.getElementById('mainContainer');
 
-    // وظيفة التحميل
-    async function loadContent() {
+    // وظيفة تحديد نوع المحتوى وعرضه
+    async function fetchContent() {
+      const hash = window.location.hash; // يقرأ مثلاً #img_ID أو #video_ID
+      
       if (!hash || !hash.includes('_')) {
-        displayArea.innerHTML = '<div class="error">رابط غير صالح! تأكد من كتابة النوع والـ ID بشكل صحيح.</div>';
+        container.innerHTML = '<p class="error">عذراً، الرابط غير صحيح.</p>';
         return;
       }
 
-      // تحليل الرابط (مثال: #img_123 أو #video_456 أو #text_789)
-      const parts = hash.substring(1).split('_');
-      const type = parts[0]; // img, video, text
-      const id = parts[1];   // معرف المستند في Firebase
+      const type = hash.substring(1).split('_')[0]; // يستخرج img أو video أو text
+      const docId = hash.substring(1).split('_')[1]; // يستخرج معرف المستند
 
+      // تحديد اسم المجموعة (Collection) في فايربيز بناءً على النوع
       let collectionName = "";
-      if (type === 'img') collectionName = "images";
-      else if (type === 'video') collectionName = "videos";
-      else if (type === 'text') collectionName = "texts";
-
-      if (!collectionName) {
-        displayArea.innerHTML = '<div class="error">نوع المحتوى غير مدعوم!</div>';
-        return;
-      }
+      if (type === "video") collectionName = "videos";
+      else if (type === "img") collectionName = "images";
+      else if (type === "text") collectionName = "texts";
 
       try {
-        const doc = await db.collection(collectionName).doc(id).get();
+        const doc = await db.collection(collectionName).doc(docId).get();
         
         if (doc.exists) {
           const data = doc.data();
-          renderContent(type, data);
+          renderUI(type, data);
         } else {
-          displayArea.innerHTML = '<div class="error">المحتوى المطلوب غير موجود في قاعدة البيانات.</div>';
+          container.innerHTML = '<p class="error">المحتوى غير موجود في قاعدة البيانات!</p>';
         }
-      } catch (error) {
-        console.error(error);
-        displayArea.innerHTML = '<div class="error">حدث خطأ أثناء الاتصال بـ Firebase.</div>';
+      } catch (err) {
+        container.innerHTML = '<p class="error">حدث خطأ في الاتصال: ' + err.message + '</p>';
       }
     }
 
-    function renderContent(type, data) {
-      let html = `<h2>${data.name || 'محتوى بدون عنوان'}</h2>`;
-      
-      if (type === 'img') {
-        html += `<img src="${data.url}" alt="${data.name}">`;
+    function renderUI(type, data) {
+      let contentHtml = `<h2>${data.name || 'محتوى جديد'}</h2>`;
+
+      if (type === 'video') {
+        contentHtml += `<video controls autoplay><source src="${data.url}" type="video/mp4">لا يدعم متصفحك تشغيل الفيديو.</video>`;
       } 
-      else if (type === 'video') {
-        html += `
-          <video controls autoplay>
-            <source src="${data.url}" type="video/mp4">
-            متصفحك لا يدعم الفيديو.
-          </video>`;
+      else if (type === 'img') {
+        contentHtml += `<img src="${data.url}" alt="${data.name}">`;
       } 
       else if (type === 'text') {
-        html += `<div class="text-box">${data.content}</div>`;
+        contentHtml += `<div class="text-box">${data.content}</div>`;
       }
 
-      displayArea.innerHTML = html;
+      container.innerHTML = contentHtml;
     }
 
-    loadContent();
+    // تشغيل الدالة عند فتح الصفحة
+    fetchContent();
   </script>
 </body>
 </html>
