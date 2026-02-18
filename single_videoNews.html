@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>المحتوى - عمر تامر محمد عادل</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
   <style>
     body {
       margin: 0;
@@ -28,78 +27,51 @@
       width: 800px;
       margin: 20px auto;
     }
-video, img {
-  max-width: 100%;      /* ما يتعداش حدود الصندوق */
-  max-height: 80vh;     /* يمنع الطول من إنه يخرج برة الشاشة */
-  height: auto;         /* يحافظ على النسبة */
-  width: auto;          /* يحافظ على النسبة */
-  border-radius: 8px;
-  margin: 10px 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;   /* يخليها في النص */
-}
-
+    video, img {
+      max-width: 100%;
+      max-height: 70vh;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .text-content {
       font-size: 18px;
       line-height: 1.6;
       white-space: pre-wrap;
-      text-align: justify;
+      text-align: right;
       margin: 10px 0;
     }
-    h2 {
-      color: #1e3799;
-    }
-    .loading {
-      font-size: 24px;
-      color: #777;
-    }
-    .timestamp {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #777;
-    }
-    .footer a {
-      color: #1e3799;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
+    h2 { color: #1e3799; }
+    .loading { font-size: 24px; color: #777; }
+    .timestamp { margin-top: 10px; font-size: 14px; color: #555; }
+    .footer { margin-top: 20px; font-size: 14px; color: #777; }
+    .footer a { color: #1e3799; text-decoration: none; }
   </style>
 </head>
 <body>
+
   <div id="contentContainer" class="media-box">
-    <div id="itemContent" class="loading">
-      جاري تحميل المحتوى...
-    </div>
+    <div id="itemContent" class="loading">جاري تحميل المحتوى...</div>
   </div>
 
   <div class="footer">
-    <p style="text-align: center; color: #777; font-size: 14px;">
-      Website created by <a href="https://www.facebook.com/omar.tamer.adel" target="_blank">Omar_Tamer</a>
-    </p>
+    <p>Website created by <a href="https://www.facebook.com/omar.tamer.adel" target="_blank">Omar_Tamer</a></p>
   </div>
 
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // ✅ Firebase Config صحيح بدون تكرار
     const firebaseConfig = {
       apiKey: "AIzaSyCN9vN9zcPa6OCUnzin101OTtyOYBDSPEk",
       authDomain: "bluetooth-4791f.firebaseapp.com",
       projectId: "bluetooth-4791f",
       storageBucket: "bluetooth-4791f.appspot.com",
       messagingSenderId: "80129288547",
-      appId: "1:80129288547:web:05c480484ba5eb1b908b56",
-      measurementId: "G-51VB9VFYFJ"
+      appId: "1:80129288547:web:05c480484ba5eb1b908b56"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -108,69 +80,56 @@ video, img {
     const hash = window.location.hash;
     const itemContentDiv = document.getElementById('itemContent');
 
-    function formatTimestamp(e) {
-      if (!e) return "";
-      let t = e.toDate();
-      return `${t.toLocaleDateString()} - ${t.toLocaleTimeString()}`;
+    function formatTimestamp(ts) {
+      if (!ts) return "غير متوفر";
+      // التأكد أن التاريخ قادم من Firebase Timestamp
+      const date = ts.toDate ? ts.toDate() : new Date(ts);
+      return date.toLocaleString('ar-EG');
     }
 
-    if (hash && hash.startsWith('#')) {
-      const parts = hash.substring(1).split('_');
-      const type = parts[0]; // video, img, text
-      const docId = parts[1];
+    // تصحيح استخراج الـ ID من الهاش
+    if (hash && hash.includes('_')) {
+      const cleanHash = hash.substring(1); // إزالة #
+      const type = cleanHash.split('_')[0]; 
+      const docId = cleanHash.split('_')[1];
 
-      if (!docId) {
-        itemContentDiv.innerHTML = '<h2>معرّف المحتوى مفقود.</h2>';
-      } else {
-        let collection = '';
-        if (type === 'video') collection = 'videos';
-        if (type === 'img') collection = 'images';
-        if (type === 'text') collection = 'texts';
+      let collection = '';
+      if (type === 'video') collection = 'videos';
+      else if (type === 'img') collection = 'images';
+      else if (type === 'text') collection = 'texts';
 
-        if (collection) {
-          db.collection(collection).doc(docId).get()
-            .then((doc) => {
-              if (doc.exists) {
-                const data = doc.data();
-                let htmlContent = `<h2>${data.name || 'المحتوى'}</h2>`;
+      if (collection && docId) {
+        db.collection(collection).doc(docId).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const data = doc.data();
+              let htmlContent = `<h2>${data.name || 'محتوى بدون عنوان'}</h2>`;
 
-                if (type === 'video' && data.url) {
-                  htmlContent += `
-                    <video controls autoplay>
-                      <source src="${data.url}" type="video/mp4">
-                      متصفحك لا يدعم تشغيل الفيديو.
-                    </video>`;
-                }
-
-                if (type === 'img' && data.url) {
-                  htmlContent += `
-                    <img src="${data.url}" alt="صورة">`;
-                }
-
-                if (type === 'text' && data.content) {
-                  htmlContent += `
-                    <div class="text-content">${data.content}</div>`;
-                }
-
-                htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
-                itemContentDiv.innerHTML = htmlContent;
-                itemContentDiv.classList.remove('loading');
-              } else {
-                itemContentDiv.innerHTML = '<h2>عنصر المحتوى غير موجود!</h2>';
+              if (type === 'video' && data.url) {
+                htmlContent += `<video controls autoplay><source src="${data.url}" type="video/mp4">عذراً، متصفحك لا يدعم التشغيل.</video>`;
+              } else if (type === 'img' && data.url) {
+                htmlContent += `<img src="${data.url}" alt="صورة المعاينة">`;
+              } else if (type === 'text' && data.content) {
+                htmlContent += `<div class="text-content">${data.content}</div>`;
               }
-            })
-            .catch((error) => {
-              console.error("Error getting document:", error);
-              itemContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-            });
-        } else {
-          itemContentDiv.innerHTML = '<h2>نوع محتوى غير صالح.</h2>';
-        }
+
+              htmlContent += `<p class="timestamp">📅 ${formatTimestamp(data.timestamp)}</p>`;
+              itemContentDiv.innerHTML = htmlContent;
+              itemContentDiv.classList.remove('loading');
+            } else {
+              itemContentDiv.innerHTML = '<h2>هذا العنصر غير موجود في قاعدة البيانات!</h2>';
+            }
+          })
+          .catch((error) => {
+            console.error("Firebase Error:", error);
+            itemContentDiv.innerHTML = '<h2>خطأ في الوصول لقاعدة البيانات. تأكد من إعدادات الحماية (Rules).</h2>';
+          });
+      } else {
+        itemContentDiv.innerHTML = '<h2>الرابط يحتوي على بيانات ناقصة.</h2>';
       }
     } else {
-      itemContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
+      itemContentDiv.innerHTML = '<h2>رابط غير صحيح، تأكد من وجود معرف الفيديو أو الصورة.</h2>';
     }
   </script>
 </body>
 </html>
-
