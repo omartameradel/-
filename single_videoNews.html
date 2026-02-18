@@ -11,7 +11,7 @@
     h2 { color: #1e3799; }
     video, img { width: 100%; border-radius: 12px; margin-bottom: 15px; display: block; }
     .text-box { text-align: right; line-height: 1.8; font-size: 1.2rem; background: #f9f9f9; padding: 20px; border-right: 6px solid #1e3799; border-radius: 4px; white-space: pre-wrap; }
-    .loading { color: #888; }
+    .loading { color: #888; font-size: 1.2rem; padding: 20px; }
     .error-box { background: #ffeaea; color: #d63031; padding: 15px; border-radius: 8px; border: 1px solid #fab1a0; }
   </style>
 </head>
@@ -25,7 +25,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // إعدادات Firebase الخاصة بك
     const firebaseConfig = {
       apiKey: "AIzaSyDTyEZBO2U2UTWl-DJuJgYrS0oiKEDr6Jw",
       authDomain: "ahmed-saeed-669ab.firebaseapp.com",
@@ -37,85 +36,25 @@
 
     async function loadContent() {
       const container = document.getElementById('mainContainer');
-     const hash = window.location.hash;
-let type = null;
-let docId = null;
+      const hash = window.location.hash;
 
-if (hash) {
-  if (hash.startsWith('#video_')) {
-    type = 'video';
-    docId = hash.replace('#video_', '');
-  } else if (hash.startsWith('#img_')) {
-    type = 'image';
-    docId = hash.replace('#img_', '');
-  } else if (hash.startsWith('#text_')) {
-    type = 'text';
-    docId = hash.replace('#text_', '');
-  }
-}
-
-const videoContentDiv = document.getElementById('videoContent');
-
-if (docId) {
-  db.collection('videos').doc(docId).get()
-    .then((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-
-        if (type === 'video') {
-          videoContentDiv.innerHTML = `
-            <h2>${data.name}</h2>
-            <video controls autoplay>
-              <source src="${data.url}" type="video/mp4">
-            </video>
-          `;
-        }
-
-        else if (type === 'image') {
-          videoContentDiv.innerHTML = `
-            <h2>${data.name}</h2>
-            <img src="${data.url}" style="width:100%;border-radius:10px;" />
-          `;
-        }
-
-        else if (type === 'text') {
-          videoContentDiv.innerHTML = `
-            <h2>${data.name}</h2>
-            <p style="font-size:20px">${data.content}</p>
-          `;
-        }
-
-      } else {
-        videoContentDiv.innerHTML = '<h2>المحتوى غير موجود!</h2>';
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      videoContentDiv.innerHTML = '<h2>حدث خطأ أثناء التحميل.</h2>';
-    });
-} else {
-  videoContentDiv.innerHTML = '<h2>رابط غير صالح.</h2>';
-}
-
-
-      // 2. استخراج النوع والمعرف
-      const cleanHash = hash.substring(1); // إزالة علامة #
-      const parts = cleanHash.split('_');
-      const type = parts[0]; 
-      const docId = parts[1];
-
-      if (!docId) {
-        container.innerHTML = '<div class="error-box"><h2>معرف (ID) مفقود!</h2><p>تأكد من وجود شرطة سفلية (_) بعد النوع.</p></div>';
+      if (!hash || !hash.includes('_')) {
+        container.innerHTML = '<div class="error-box"><h2>رابط غير صالح</h2><p>مثال صحيح: #img_IDأو #video_ID</p></div>';
         return;
       }
 
-      // 3. تحديد المجموعة في Firestore
+      // استخراج النوع والمعرف
+      const type = hash.substring(1).split('_')[0]; // فيديو أو صورة أو نص
+      const docId = hash.substring(1).split('_')[1]; // المعرف
+
+      // تحديد المجموعة المناسبة
       let collectionName = "";
-      if (type === "img") collectionName = "images";
-      else if (type === "video") collectionName = "videos";
+      if (type === "video") collectionName = "videos";
+      else if (type === "img") collectionName = "images";
       else if (type === "text") collectionName = "texts";
-      else {
-        container.innerHTML = '<div class="error-box"><h2>نوع غير معروف!</h2><p>استخدم img أو video أو text.</p></div>';
+
+      if (!collectionName || !docId) {
+        container.innerHTML = '<div class="error-box"><h2>خطأ في بيانات الرابط</h2></div>';
         return;
       }
 
@@ -126,26 +65,29 @@ if (docId) {
           const data = doc.data();
           let html = `<h2>${data.name || 'محتوى'}</h2>`;
 
-          if (type === 'img') {
-            html += `<img src="${data.url}" alt="Image">`;
-          } else if (type === 'video') {
+          if (type === 'video') {
             html += `<video controls autoplay><source src="${data.url}" type="video/mp4"></video>`;
-          } else if (type === 'text') {
+          } 
+          else if (type === 'img') {
+            html += `<img src="${data.url}" alt="Image">`;
+          } 
+          else if (type === 'text') {
             html += `<div class="text-box">${data.content}</div>`;
           }
 
           container.innerHTML = html;
         } else {
-          container.innerHTML = `<div class="error-box"><h2>غير موجود!</h2><p>لم يتم العثور على هذا الـ ID في مجموعة ${collectionName}.</p></div>`;
+          container.innerHTML = `<div class="error-box"><h2>غير موجود</h2><p>هذا العنصر غير موجود في مجموعة ${collectionName}</p></div>`;
         }
       } catch (err) {
-        container.innerHTML = `<div class="error-box"><h2>خطأ اتصال</h2><p>${err.message}</p></div>`;
+        console.error(err);
+        container.innerHTML = `<div class="error-box"><h2>خطأ في التحميل</h2><p>${err.message}</p></div>`;
       }
     }
 
+    // التشغيل عند فتح الصفحة أو تغيير الرابط
     window.onload = loadContent;
-    window.onhashchange = loadContent; // تحديث الصفحة إذا تغير الرابط دون إعادة تحميل
+    window.onhashchange = loadContent;
   </script>
 </body>
 </html>
-
