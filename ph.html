@@ -3,133 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرفاع الصور الاحترافي</title>
+    <title>مرفاع الصور | OMAR TAMER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="icon" type="image/png" href="https://omartamer.netlify.app/صورة زعيم البرمجة.png">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+        
         :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f8fafc;
+            --main-color: #ff4d4d;
+            --bg-dark: #0f0f0f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --transition: all 0.3s ease;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
+        }
+
+        /* Navbar */
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .logo span { color: var(--main-color); }
+
+        /* Main Section */
+        .auth-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow-x: hidden;
+            padding: 120px 20px 60px;
         }
 
-        .container {
+        .intro-text { text-align: center; margin-bottom: 30px; }
+        .intro-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--main-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Card Container */
+        .card-container {
+            width: 100%;
+            max-width: 450px;
             background: var(--card-bg);
-            padding: 2rem;
+            backdrop-filter: blur(15px);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            width: 90%;
-            max-width: 500px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary); }
+        .card-container:hover { border-color: var(--main-color); }
 
-        .upload-area {
-            border: 2px dashed var(--secondary);
-            padding: 40px;
+        /* Upload Area Style */
+        .upload-zone {
+            border: 2px dashed rgba(255, 77, 77, 0.3);
+            padding: 40px 20px;
             border-radius: 15px;
             cursor: pointer;
-            transition: 0.3s;
-            background: rgba(58, 123, 213, 0.05);
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 20px;
         }
 
-        .upload-area:hover {
-            border-color: var(--primary);
-            background: rgba(58, 123, 213, 0.1);
+        .upload-zone:hover {
+            border-color: var(--main-color);
+            background: rgba(255, 77, 77, 0.05);
         }
+
+        .upload-zone i { font-size: 3rem; color: var(--main-color); margin-bottom: 15px; }
 
         #fileInput { display: none; }
 
-        .btn {
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-
-        .btn:active { transform: scale(0.98); }
-
-        #resultArea {
-            margin-top: 20px;
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
+        /* Results & Link Box */
         .link-box {
-            background: #000;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid var(--main-color);
             word-break: break-all;
-            color: #00ff88;
             font-family: monospace;
-            border: 1px solid #333;
+            color: #4ade80; /* لون أخضر للرابط للتوضيح */
+            direction: ltr;
         }
 
-        #previewImg {
+        .preview-img {
             max-width: 100%;
             border-radius: 10px;
             margin-top: 20px;
-            display: none;
+            border: 2px solid var(--main-color);
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--main-color);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.2);
+            margin-top: 15px;
+        }
+
+        .btn-submit:hover {
+            background: #ff3333;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content p { color: var(--text-gray); font-size: 0.9rem; }
+        .footer-content b { color: var(--main-color); }
+
+        /* Display Transitions */
+        #resultArea, #displayView { display: none; }
     </style>
 </head>
 <body>
 
-<div class="container" id="mainContainer">
-    <div id="uploadView">
-        <h1>🚀 ارفع صورتك واحصل على رابط خاص</h1>
-        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-            <p>اضغط هنا أو اسحب الصورة</p>
-            <p style="font-size: 0.8rem; opacity: 0.6;">(PNG, JPG, GIF)</p>
+<nav>
+    <div class="logo">OMAR <span>TAMER</span></div>
+</nav>
+
+<div class="auth-wrapper">
+    <div class="intro-text">
+        <h2>منصة رفع الصور الاحترافية</h2>
+        <p style="color: var(--text-gray);">ارفع صورتك واحصل على رابط مباشر فوراً</p>
+    </div>
+
+    <div class="card-container" id="uploadView">
+        <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>اضغط هنا لاختيار الصورة</p>
+            <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 5px;">JPG, PNG, GIF</p>
         </div>
         <input type="file" id="fileInput" accept="image/*" onchange="handleUpload()">
     </div>
 
-    <div id="resultArea">
-        <h2 style="color: #4ade80;">✅ تم الرفع بنجاح!</h2>
+    <div class="card-container" id="resultArea">
+        <h3 style="margin-bottom: 15px;">✅ تم الرفع بنجاح</h3>
         <div class="link-box" id="linkText"></div>
-        <button class="btn" onclick="copyLink()">نسخ الرابط</button>
-        <button class="btn" style="background: #334155;" onclick="location.reload()">رفع صورة أخرى</button>
+        <button class="btn-submit" onclick="copyLink()"><i class="fa-regular fa-copy"></i> نسخ الرابط</button>
+        <button class="btn-submit" style="background: #333; box-shadow: none;" onclick="location.reload()">رفع ملف آخر</button>
     </div>
 
-    <div id="displayView" style="display: none;">
-        <h1>صورتك المرفوعة</h1>
-        <img id="previewImg">
-        <button class="btn" onclick="window.location.href = window.location.origin">ارفع صورتك الآن</button>
+    <div class="card-container" id="displayView">
+        <h3 id="imageTitle">🖼️ عرض الصورة</h3>
+        <img id="previewImg" class="preview-img">
+        <button class="btn-submit" onclick="window.location.hash=''; location.reload();">ارفع صورتك أنت أيضاً</button>
     </div>
 </div>
 
+<footer>
+    <div class="footer-content">
+        <p>جميع الحقوق محفوظة © 2026 | تم التطوير بواسطة <b>OMAR TAMER</b></p>
+    </div>
+</footer>
+
 <script>
-    // عند فتح الصفحة، نتأكد هل الرابط يحتوي على صورة؟
     window.onload = () => {
-        const path = window.location.hash; // نستخدم الـ Hash ليعمل على نيتليفاي بدون مشاكل
-        if (path.startsWith('#/photo-')) {
-            const imageData = localStorage.getItem(path);
+        const hash = window.location.hash;
+        if (hash && hash.includes('/photo-')) {
+            const imageData = localStorage.getItem(hash);
             if (imageData) {
                 showImage(imageData);
+            } else {
+                alert("الصورة غير موجودة أو انتهت صلاحيتها");
+                window.location.hash = '';
             }
         }
     }
@@ -138,13 +216,15 @@
         const file = document.getElementById('fileInput').files[0];
         if (!file) return;
 
+        const ext = file.name.split('.').pop().toLowerCase();
         const reader = new FileReader();
+        
         reader.onload = function(e) {
             const imageData = e.target.result;
-            const randomId = Math.floor(Math.random() * 900000000) + 100000000;
-            const customPath = '#/photo-' + randomId;
+            const randomId = Math.floor(Math.random() * 9999999) + 1111111;
+            const customPath = `#/photo-${randomId}.${ext}`;
 
-            // تخزين الصورة في المتصفح (كمثال تعليمي)
+            // حفظ في المتصفح
             localStorage.setItem(customPath, imageData);
 
             const fullUrl = window.location.origin + window.location.pathname + customPath;
@@ -158,11 +238,8 @@
 
     function showImage(data) {
         document.getElementById('uploadView').style.display = 'none';
-        document.getElementById('resultArea').style.display = 'none';
         document.getElementById('displayView').style.display = 'block';
-        const img = document.getElementById('previewImg');
-        img.src = data;
-        img.style.display = 'block';
+        document.getElementById('previewImg').src = data;
     }
 
     function copyLink() {
