@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرفاع الصور الاحترافي</title>
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h1 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary); }
+
+        .upload-area {
+            border: 2px dashed var(--secondary);
+            padding: 40px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(58, 123, 213, 0.05);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(58, 123, 213, 0.1);
+        }
+
+        #fileInput { display: none; }
+
+        .btn {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .btn:active { transform: scale(0.98); }
+
+        #resultArea {
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .link-box {
+            background: #000;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            word-break: break-all;
+            color: #00ff88;
+            font-family: monospace;
+            border: 1px solid #333;
+        }
+
+        #previewImg {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainContainer">
+    <div id="uploadView">
+        <h1>🚀 ارفع صورتك واحصل على رابط خاص</h1>
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <p>اضغط هنا أو اسحب الصورة</p>
+            <p style="font-size: 0.8rem; opacity: 0.6;">(PNG, JPG, GIF)</p>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" onchange="handleUpload()">
+    </div>
+
+    <div id="resultArea">
+        <h2 style="color: #4ade80;">✅ تم الرفع بنجاح!</h2>
+        <div class="link-box" id="linkText"></div>
+        <button class="btn" onclick="copyLink()">نسخ الرابط</button>
+        <button class="btn" style="background: #334155;" onclick="location.reload()">رفع صورة أخرى</button>
+    </div>
+
+    <div id="displayView" style="display: none;">
+        <h1>صورتك المرفوعة</h1>
+        <img id="previewImg">
+        <button class="btn" onclick="window.location.href = window.location.origin">ارفع صورتك الآن</button>
+    </div>
+</div>
+
+<script>
+    // عند فتح الصفحة، نتأكد هل الرابط يحتوي على صورة؟
+    window.onload = () => {
+        const path = window.location.hash; // نستخدم الـ Hash ليعمل على نيتليفاي بدون مشاكل
+        if (path.startsWith('#/photo-')) {
+            const imageData = localStorage.getItem(path);
+            if (imageData) {
+                showImage(imageData);
+            }
+        }
+    }
+
+    function handleUpload() {
+        const file = document.getElementById('fileInput').files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            const randomId = Math.floor(Math.random() * 900000000) + 100000000;
+            const customPath = '#/photo-' + randomId;
+
+            // تخزين الصورة في المتصفح (كمثال تعليمي)
+            localStorage.setItem(customPath, imageData);
+
+            const fullUrl = window.location.origin + window.location.pathname + customPath;
+            
+            document.getElementById('uploadView').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+            document.getElementById('linkText').innerText = fullUrl;
+        }
+        reader.readAsDataURL(file);
+    }
+
+    function showImage(data) {
+        document.getElementById('uploadView').style.display = 'none';
+        document.getElementById('resultArea').style.display = 'none';
+        document.getElementById('displayView').style.display = 'block';
+        const img = document.getElementById('previewImg');
+        img.src = data;
+        img.style.display = 'block';
+    }
+
+    function copyLink() {
+        const text = document.getElementById('linkText').innerText;
+        navigator.clipboard.writeText(text);
+        alert('تم نسخ الرابط بنجاح!');
+    }
+</script>
+
+</body>
+</html>
